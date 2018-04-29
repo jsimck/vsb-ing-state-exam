@@ -1,5 +1,7 @@
 # vsb-ing-state-exam
 
+- Zpracované otázky k BC (třeba SWI je stejné takže z toho budu vycházet co je podobné) - [https://www.dropbox.com/s/1b632w3kh41eg63/statnice_bc.zip?dl=0](https://www.dropbox.com/s/1b632w3kh41eg63/statnice_bc.zip?dl=0)
+
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 
 ### I. Matematické základy informatiky
@@ -45,8 +47,7 @@ paralelního zpracování a vlákna.
 pro vstup a výstup. Rozdíl mezi znakově a bytově orientovanými datovými proudy.
 8. Jazyk UML – typy diagramů a jejich využití v rámci vývoje.
 
-### III. Databázové a informační systémy (Úvod do databázových systémů, Databázové a
-informační systémy)
+### III. Databázové a informační systémy (Úvod do databázových systémů, Databázové a informační systémy)
 1. Modelování databázových systémů, konceptuální modelování, datová analýza,
 funkční analýza; nástroje a modely.
 2. Relační datový model, SQL; funkční závislosti, dekompozice a normální formy.
