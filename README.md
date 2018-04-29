@@ -2,6 +2,13 @@
 
 - Zpracované otázky k BC (třeba SWI je stejné takže z toho budu vycházet co je podobné) - [https://www.dropbox.com/s/1b632w3kh41eg63/statnice_bc.zip?dl=0](https://www.dropbox.com/s/1b632w3kh41eg63/statnice_bc.zip?dl=0)
 
+## Download
+- https://github.com/R1crd/vsb-ing-state-exam/raw/master/1_it_mpzz/1_it_mpzz.pdf
+- https://github.com/R1crd/vsb-ing-state-exam/raw/master/2_swi/2_swi.pdf
+- https://github.com/R1crd/vsb-ing-state-exam/raw/master/4_ps/4_ps.pdf
+- https://github.com/R1crd/vsb-ing-state-exam/raw/master/3_dais/3_dais.pdf
+- https://github.com/R1crd/vsb-ing-state-exam/raw/master/5_pgo/5_pgo.pdf
+
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 
 ### I. Matematické základy informatiky
