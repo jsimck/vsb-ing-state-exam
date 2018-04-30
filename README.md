@@ -41,9 +41,9 @@ pro zpracování znalostí
 
 ### II. Softwarové inženýrství
 1. Softwarový proces. Jeho definice, modely a úrovně vyspělosti. [x]
-2. Vymezení fáze „sběr a analýza požadavků“. Diagramy UML využité v dané fázi.
+2. Vymezení fáze „sběr a analýza požadavků“. Diagramy UML využité v dané fázi. [x]
 3. Vymezení fáze „Návrh“. Diagramy UML využité v dané fázi. Návrhové vzory –
-členění, popis a příklady.
+členění, popis a příklady. [x]
 4. Objektově orientované paradigma. Pojmy třída, objekt, rozhraní. Základní
 vlastnosti objektu a vztah ke třídě. Základní vztahy mezi třídami a rozhraními.
 Třídní vs. instanční vlastnosti.
