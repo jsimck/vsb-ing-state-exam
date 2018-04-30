@@ -1,37 +1,51 @@
-\subsection{Třída}
-Třída je \textbf{základní konstrukční prvek objektově orientovaného programování} sloužící jako \textbf{předpis} pro objekty, pro instance třídy. Definuje jejich vlastnosti a metody. Hodnoty vlastností, atributů, se mohou u jednotlivých instancí objektů odlišovat. Metody, funkce objektu, určují chování objektu a jeho schopnosti. Třída také definuje \textbf{třídní vlastnosti}, ty jsou k dispozici v rámci dané třídy, nejsou vázány na žádné objekty a jsou viditelné bez nutnosti vytváření objektů.
+\subsection{OOP}
+\textbf{Objektově-orientované programování (OOP)} je metodika vývoje softwaru, která jej odlišuje od procedurálního programování. Paradigma OOP popisují způsob vývoje a zápisu programu a způsob uvažování o problému. 
 
+OOP definuje program jako \textbf{soubor} \textbf{spolupracujících komponent (objektů)} s přesně stanoveným \textbf{chováním} a \textbf{stavem}. Metody OOP napodobují vzhled a chování objektu z reálného světa s možností velké abstrakce.
+
+\subsubsection{Základní paradigma OOP}
 \begin{itemize}
-\item \textbf{Vztahy} (relace) mezi třídami specifikují \textbf{způsob}, jak mohou objekty mezi sebou \textbf{komunikovat}.
-\item \textbf{Role} definuje specifické chování objektu v daném kontextu jeho použití.
-\item \textbf{Typ objektu} specifikuje skupinu operací, které mohou být objektem prováděny.
+\item Při řešení úlohy vytváříme \textbf{model popisované reality} - popisujeme entity a interakci mezi entitami.
+\item \textbf{Abstrahujeme} od nepodstatných detailů - při popisu/modelování entity vynecháváme jejich nepodstatné vlastnosti.
+\item Postup řešení je v řadě případů efektivnější než při procedurálním přístupu (ne vždy), kdy se úlohy řeší jako posloupnost příkazů.
 \end{itemize}
+
+\subsubsection{Cíle OOP}
+\begin{itemize}
+\item Je vedeno snahou o \textbf{znovupoužitelnost} komponent.
+\item Rozkládá složitou úlohu na dílčí součásti, které jdou pokud možno řešit nezávisle.
+\item Přiblížení struktury řešení v počítači reálnému světu (komunikující objekty).
+\item \textbf{Skrytí detailů implementace} řešení před uživatelem.
+\end{itemize}
+
+\subsection{Třída}
+\textbf{Třída představuje základní konstrukční prvek OOP}. Třída slouží jako šablona pro vytváření \textbf{instancí tříd - objektů}. Seskupuje objekty stejného typu a podchycuje jejich podstatu na obecné úrovni.  (Samotná třída tedy nepředstavuje vlastní informace, jedná se pouze o předlohu; data obsahují až objekty.) Třída definuje data a metody objektů. \textbf{}
 
 \subsection{Objekt, jeho vlastnosti a vztahy}
-Objekt je \textbf{identifikovatelná samostatná entita} daná svou: 
-\begin{itemize}
-\item \textbf{Identitou} - jedinečností umožňující ji odlišit od ostatních, 
-\item \textbf{Chováním} - službami poskytovanými v interakci s ostatními objekty.  
-\end{itemize}
-Kromě těchto primárních vlastností vyjádřených v definici má objekt také sekundární vlastnosti, kterými jsou: 
-\begin{itemize}
-\item \textbf{Atributy} - (v čase se měnící) datové hodnoty popisující objekt.
-\item \textbf{Doba existence} - časový interval daný okamžikem vzniku a zániku objektu.
-\item \textbf{Stavy} - odrážející různé fáze doby existence objektu.
-\end{itemize}
-Ve vztahu k definovaným případům užití je nutné definovat takové interakce mezi objekty, které povedou ke splnění jejich funkcionality, účelu ke kterému byly navrženy. Jazyk UML poskytuje pro účely zaznamenání těchto vzájemných interakcí tzv. \textbf{sekvenční} \textbf{diagram}.
+Jednotlivé prvky modelované reality (jak data, tak související funkčnost) jsou v programu seskupeny do entit, nazývaných objekty. Objekt je \textbf{identifikovatelná samostatná entita} (dána jedinečností a chováním). Objekty si pamatují svůj stav a navenek poskytují operace přístupné jako metody pro volání. \textbf{Objekt} je také \textbf{instancí třídy}.
 
+Ve vztahu k definovaným případům užití je nutné definovat takové interakce mezi objekty, které povedou ke splnění jejich funkcionality, účelu ke kterému byly navrženy. Jazyk UML poskytuje pro účely zaznamenání těchto vzájemných interakcí tzv. \textbf{sekvenční} \textbf{diagram}.
 
 \subsection{Rozhraní}
 Rozhraní entity je \textbf{souhrn informací, kterým entita specifikuje,} \textbf{co} \textbf{o ní okolí ví} a\textbf{ jakým způsobem je možné s ní komunikovat}. Je to množina metod, která může být implementována třídou. Interface \textbf{pouze popisuje metody}, jejich vlastní implementace však neobsahuje. Je \textbf{pojmenování skupiny externě viditelných operací}. Každá třída však může implementovat libovolný počet rozhraní, do jisté míry tedy rozhraní vícenásobnou dědičnost nahrazují. Implementace rozhraní není na hierarchii tříd nijak vázána a nevzniká z ní vztah dědičnosti.
 
+\subsection{Abstraktní třída}
+Je to takový hybrid mezi rozhraním a klasickou třídou. Od klasické třídy má schopnost implementovat vlastnosti (proměnné) a metody, které se na všech odvozených třídách budou vykonávat stejně. Od rozhraní zase získala možnost obsahovat prázdné \textbf{abstraktní metody}, které si každá odvozená podtřída \textbf{musí naimplementovat sama}. S těmito výhodami má abstraktní třída i pár omezení, a to že jedna podtřída \textbf{nemůže zdědit víc abstraktních tříd} a od rozhraní přebírá omezení, že \textbf{nemůže vytvořit samostatnou instanci} (operátorem new).
 
 \subsection{Základní vztahy}
 Vztahy (relace) mezi třídami \textbf{specifikují cestu, jak mohou objekty mezi sebou komunikovat.} Relace složení částí do jednoho celku, má v podstatě dvě možné podoby.  Jedná se  o tzv. \textbf{agregaci}, pro kterou platí, že části mohou být obsaženy i v jiných celcích, jinými slovy řečeno, jsou sdíleny.  Nebo se jedná o výhradní vlastnictví částí celkem, pak hovoříme o  složení typu \textbf{kompozice}.  Druhá z uvedených typu složení má jednu důležitou vlastnost  z hlediska životního cyklu celku a jeho částí.  Existence obou je totiž totožná.  \textbf{Zánik} celku  (\textbf{kompozitu}) \textbf{vede i k zániku jeho částí} na rozdíl od agregace, kde části mohou přežívat dále jako součástí jiných celků.
-
 \begin{itemize}
-\item \textbf{Asociace} popisující\textbf{ skupinu spojení (mezi objekty)} mající společnou strukturu a sémantiku. Vztah mezi asociací a spojením je analogický vztahu mezi třídou a objektem. Jinými slovy řečeno, jedná se tedy o dvousměrné propojení mezi třídami popisující množinu potenciálních spojení mezi instancemi asociovaných tříd stejně jako třída popisuje množinu svých potenciálních objektů.
-\item \textbf{Složení} popisující \textbf{vztah mezi celkem a jeho částmi}, kde některé objekty definují komponenty jejichž složením vzniká celek reprezentovaný jiným objektem.
-\item \textbf{Závislost} reprezentující slabší formu \textbf{vztahu mezi klientem a poskytovatelem služby}.
+\item \textbf{Asociace} popisuje\textbf{ skupinu spojení (mezi objekty)} mající společnou strukturu a sémantiku. Vztah mezi asociací a spojením je analogický vztahu mezi třídou a objektem. Jinými slovy řečeno, jedná se tedy o dvousměrné propojení mezi třídami popisující množinu potenciálních spojení mezi instancemi asociovaných tříd stejně jako třída popisuje množinu svých potenciálních objektů.
+\item \textbf{Složení} popisuje \textbf{vztah mezi celkem a jeho částmi}, kde některé objekty definují komponenty jejichž složením vzniká celek reprezentovaný jiným objektem.
+\item \textbf{Závislost} reprezentuje slabší formu \textbf{vztahu mezi klientem a poskytovatelem služby}.
 \item \textbf{Zobecnění (generalizace)} je taxonomický \textbf{vztah mezi obecnějším elementem a jeho více specikovaným elementem}, který je plně konzistentní s prvním z uvedených pouze k jeho specifikaci \textbf{přidává další konkretizující informaci}.
+\end{itemize}
+
+\subsection{Rysy OOP}
+\begin{itemize}
+\item \textbf{Skládání} - Objekt může obsahovat jiné objekty.
+\item \textbf{Delegování} - Objekt může využívat služeb jiných objektů tak, že je požádá o provedení operace.
+\item \textbf{Dědičnost} - objekty jsou organizovány stromovým způsobem, kdy objekty nějakého druhu mohou dědit z jiného druhu objektů, čímž přebírají jejich schopnosti, ke kterým pouze přidávají svoje vlastní rozšíření. Tato myšlenka se obvykle implementuje pomocí rozdělení objektů do tříd, přičemž každý objekt je instancí nějaké třídy. Každá třída pak může dědit od jiné třídy (v některých programovacích jazycích i z několika jiných tříd).
+\item \textbf{Polymorfismus} - odkazovaný\textbf{ objekt se chová podle toho, jaké třídy je instancí}. Pozná se tak, že několik objektů poskytuje stejné rozhraní, pracuje se s nimi navenek stejným způsobem, ale jejich konkrétní chování se liší podle implementace. U \textbf{polymorfismu podmíněného dědičností} to znamená, že na místo, kde je očekávána instance nějaké třídy, můžeme dosadit i instanci libovolné její podtřídy, neboť rozhraní třídy je podmnožinou rozhraní podtřídy. U \textbf{polymorfismu nepodmíněného dědičností} je dostačující, jestliže se rozhraní (nebo jejich požadované části) u různých tříd shodují, pak jsou vzájemně polymorfní.
+\item \textbf{Zapouzdření} - zaručuje, že objekt \textbf{nemůže přímo přistupovat k „vnitřnostem“} jiných objektů, což by mohlo vést k nekonzistenci. Každý objekt navenek poskytuje rozhraní, pomocí kterého (a nijak jinak) se s objektem pracuje.
 \end{itemize}

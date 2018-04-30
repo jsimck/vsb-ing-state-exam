@@ -40,13 +40,13 @@ Okruhy pokývají předměty Teoretická informatika, Pravděpodobnost a statist
 pro zpracování znalostí
 
 ### II. Softwarové inženýrství
-1. Softwarový proces. Jeho definice, modely a úrovně vyspělosti. [x]
-2. Vymezení fáze „sběr a analýza požadavků“. Diagramy UML využité v dané fázi. [x]
-3. Vymezení fáze „Návrh“. Diagramy UML využité v dané fázi. Návrhové vzory –
-členění, popis a příklady. [x]
-4. Objektově orientované paradigma. Pojmy třída, objekt, rozhraní. Základní
+1. ~~Softwarový proces. Jeho definice, modely a úrovně vyspělosti.~~
+2. ~~Vymezení fáze „sběr a analýza požadavků“. Diagramy UML využité v dané fázi.~~
+3. ~~Vymezení fáze „Návrh“. Diagramy UML využité v dané fázi. Návrhové vzory –
+členění, popis a příklady.~~
+4. ~~Objektově orientované paradigma. Pojmy třída, objekt, rozhraní. Základní
 vlastnosti objektu a vztah ke třídě. Základní vztahy mezi třídami a rozhraními.
-Třídní vs. instanční vlastnosti.
+Třídní vs. instanční vlastnosti.~~
 5. Mapování UML diagramů na zdrojový kód.
 6. Správa paměti (v jazycích C/C++, JAVA, C#, Python), virtuální stroj, podpora
 paralelního zpracování a vlákna.
