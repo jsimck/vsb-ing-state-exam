@@ -40,7 +40,7 @@ Okruhy pokývají předměty Teoretická informatika, Pravděpodobnost a statist
 pro zpracování znalostí
 
 ### II. Softwarové inženýrství
-1. Softwarový proces. Jeho definice, modely a úrovně vyspělosti.
+1. Softwarový proces. Jeho definice, modely a úrovně vyspělosti. [x]
 2. Vymezení fáze „sběr a analýza požadavků“. Diagramy UML využité v dané fázi.
 3. Vymezení fáze „Návrh“. Diagramy UML využité v dané fázi. Návrhové vzory –
 členění, popis a příklady.
@@ -56,7 +56,7 @@ pro vstup a výstup. Rozdíl mezi znakově a bytově orientovanými datovými pr
 
 ### III. Databázové a informační systémy (Úvod do databázových systémů, Databázové a informační systémy)
 1. Modelování databázových systémů, konceptuální modelování, datová analýza,
-funkční analýza; nástroje a modely. [x]
+funkční analýza; nástroje a modely.
 2. Relační datový model, SQL; funkční závislosti, dekompozice a normální formy.
 3. Transakce, zotavení, log, ACID, operace COMMIT a ROLLBACK; problémy souběhu,
 řízení souběhu: zamykání, úroveň izolace v SQL.
