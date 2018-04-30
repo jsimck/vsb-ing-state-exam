@@ -1,0 +1,37 @@
+\subsection{Třída}
+Třída je \textbf{základní konstrukční prvek objektově orientovaného programování} sloužící jako \textbf{předpis} pro objekty, pro instance třídy. Definuje jejich vlastnosti a metody. Hodnoty vlastností, atributů, se mohou u jednotlivých instancí objektů odlišovat. Metody, funkce objektu, určují chování objektu a jeho schopnosti. Třída také definuje \textbf{třídní vlastnosti}, ty jsou k dispozici v rámci dané třídy, nejsou vázány na žádné objekty a jsou viditelné bez nutnosti vytváření objektů.
+
+\begin{itemize}
+\item \textbf{Vztahy} (relace) mezi třídami specifikují \textbf{způsob}, jak mohou objekty mezi sebou \textbf{komunikovat}.
+\item \textbf{Role} definuje specifické chování objektu v daném kontextu jeho použití.
+\item \textbf{Typ objektu} specifikuje skupinu operací, které mohou být objektem prováděny.
+\end{itemize}
+
+\subsection{Objekt, jeho vlastnosti a vztahy}
+Objekt je \textbf{identifikovatelná samostatná entita} daná svou: 
+\begin{itemize}
+\item \textbf{Identitou} - jedinečností umožňující ji odlišit od ostatních, 
+\item \textbf{Chováním} - službami poskytovanými v interakci s ostatními objekty.  
+\end{itemize}
+Kromě těchto primárních vlastností vyjádřených v definici má objekt také sekundární vlastnosti, kterými jsou: 
+\begin{itemize}
+\item \textbf{Atributy} - (v čase se měnící) datové hodnoty popisující objekt.
+\item \textbf{Doba existence} - časový interval daný okamžikem vzniku a zániku objektu.
+\item \textbf{Stavy} - odrážející různé fáze doby existence objektu.
+\end{itemize}
+Ve vztahu k definovaným případům užití je nutné definovat takové interakce mezi objekty, které povedou ke splnění jejich funkcionality, účelu ke kterému byly navrženy. Jazyk UML poskytuje pro účely zaznamenání těchto vzájemných interakcí tzv. \textbf{sekvenční} \textbf{diagram}.
+
+
+\subsection{Rozhraní}
+Rozhraní entity je \textbf{souhrn informací, kterým entita specifikuje,} \textbf{co} \textbf{o ní okolí ví} a\textbf{ jakým způsobem je možné s ní komunikovat}. Je to množina metod, která může být implementována třídou. Interface \textbf{pouze popisuje metody}, jejich vlastní implementace však neobsahuje. Je \textbf{pojmenování skupiny externě viditelných operací}. Každá třída však může implementovat libovolný počet rozhraní, do jisté míry tedy rozhraní vícenásobnou dědičnost nahrazují. Implementace rozhraní není na hierarchii tříd nijak vázána a nevzniká z ní vztah dědičnosti.
+
+
+\subsection{Základní vztahy}
+Vztahy (relace) mezi třídami \textbf{specifikují cestu, jak mohou objekty mezi sebou komunikovat.} Relace složení částí do jednoho celku, má v podstatě dvě možné podoby.  Jedná se  o tzv. \textbf{agregaci}, pro kterou platí, že části mohou být obsaženy i v jiných celcích, jinými slovy řečeno, jsou sdíleny.  Nebo se jedná o výhradní vlastnictví částí celkem, pak hovoříme o  složení typu \textbf{kompozice}.  Druhá z uvedených typu složení má jednu důležitou vlastnost  z hlediska životního cyklu celku a jeho částí.  Existence obou je totiž totožná.  \textbf{Zánik} celku  (\textbf{kompozitu}) \textbf{vede i k zániku jeho částí} na rozdíl od agregace, kde části mohou přežívat dále jako součástí jiných celků.
+
+\begin{itemize}
+\item \textbf{Asociace} popisující\textbf{ skupinu spojení (mezi objekty)} mající společnou strukturu a sémantiku. Vztah mezi asociací a spojením je analogický vztahu mezi třídou a objektem. Jinými slovy řečeno, jedná se tedy o dvousměrné propojení mezi třídami popisující množinu potenciálních spojení mezi instancemi asociovaných tříd stejně jako třída popisuje množinu svých potenciálních objektů.
+\item \textbf{Složení} popisující \textbf{vztah mezi celkem a jeho částmi}, kde některé objekty definují komponenty jejichž složením vzniká celek reprezentovaný jiným objektem.
+\item \textbf{Závislost} reprezentující slabší formu \textbf{vztahu mezi klientem a poskytovatelem služby}.
+\item \textbf{Zobecnění (generalizace)} je taxonomický \textbf{vztah mezi obecnějším elementem a jeho více specikovaným elementem}, který je plně konzistentní s prvním z uvedených pouze k jeho specifikaci \textbf{přidává další konkretizující informaci}.
+\end{itemize}

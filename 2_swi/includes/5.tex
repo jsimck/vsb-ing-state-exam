@@ -1,0 +1,33 @@
+Důsledná a \textbf{přesná specifikace objektů a jejich tříd} v etapě návrhu \textbf{umožňuje automatické generování zdrojových kódů} dle následující tabulky. Tabulka má dva sloupce, první z nich odpovídá elementům jazyka UML, zatímco druhá z nich popisuje jejich zobrazení v programovacím jazyce, v našem případě se jedná o jazyk Java.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Analýza a návrh (UML)} & \textbf{Zdrojový kód (Java)}                                \\ \hline
+		Třída                          & Struktura typu class                                        \\ \hline
+		Role, Typ a Rozhraní           & Struktura typu interface                                    \\ \hline
+		Operace                        & Metoda                                                      \\ \hline
+		Atribut třídy                  & Statická proměnná označená static                           \\ \hline
+		Atribut                        & Instanční proměnná                                          \\ \hline
+		Asociace                       & Instanční proměnná                                          \\ \hline
+		Závislost                      & Lokální proměnná, argument nebo návratová hodnota zprávy    \\ \hline
+		Interakce mezi objekty         & Volání metod                                                \\ \hline
+		Případ užití                   & Sekvence volání metod                                       \\ \hline
+		Balíček, Subsystém             & Kód nacházející se v adresáři specifikovaném pomocí package \\ \hline
+	\end{tabular}
+\end{table}
+
+Cílem implementace je doplnit navrženou architekturu (kostru) aplikace o programový kód a vytvořit tak kompletní systém. \textbf{Implementační model }specifikuje, jak jsou jednotlivé elementy (objekty a třídy) vytvořené v etapě návrhu{ implementovány ve smyslu softwarových komponent}, kterými jsou zdrojové kódy, spustitelné kódy, data a podobně. \textbf{Softwarová komponenta} je definována jako fyzicky existující a zaměnitelná část systému vyhovující požadované množině rozhraní a poskytující jejich realizaci. Podle \textbf{typu softwarových komponent} hovoříme o:
+
+\begin{itemize}
+\item \textbf{Zdrojovém kódu}, částech systému zapsaném v programovacím jazyce.
+\item \textbf{Binárním} (přeloženém do strojové kódu procesoru) a spustitelném kódu.
+\item \textbf{Ostatních částech} reprezentovaných databázovými tabulkami, dokumenty apod.
+\end{itemize}
+
+Jestliže jsme ve fázi analýzy a návrhu pracovali pouze s abstrakcemi dokumentovanými v podobě jednotlivých \textbf{diagramů}, pak v \textbf{průběhu implementace dochází k jejich fyzické realizaci}. Implementační model se tedy také zaměřuje na specifikaci toho, jak budou tyto \textbf{komponenty fyzicky organizovány podle implementačního prostředí} a programovacího jazyka poskytujícího konkrétní mechanizmus strukturování a modularizace.Ke splnění těchto cílů, stejně jako v předchozích případech, nabízí jazyk UML prostředky, kterými jsou v tomto případě tyto \textbf{dva} následující \textbf{diagramy}:
+\begin{itemize}
+\item \textbf{Diagram komponent} ilustrující organizaci a závislosti mezi softwarovými komponentami.
+\item \textbf{Diagram nasazení} upřesněný nejen ve smyslu konfigurace technických prostředků, ale především z hlediska rozmístění implementovaných softwarových komponent na těchto prostředcích.
+\end{itemize}

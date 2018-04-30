@@ -1,0 +1,152 @@
+Většina moderních jazyků používá zejména \textbf{automatické správy paměti}: BASIC, C\#, Dylan, Erlang, Haskell, Java, JavaScript, Lisp, ML, Modula-3, Perl, PHP, Prolog, Python, Ruby, Scheme, Smalltalk, atd.
+
+\subsubsection*{Výhody Automatické správy paměti}
+\begin{itemize}
+\item Programátor se může věnovat řešení skutečného problému.
+\item \textbf{Rozhraní modulů jsou přehlednější} - není třeba řešit problém zodpovědnosti za uvolnění paměti pro objekty vytvořené různými moduly.
+\item Nastává \textbf{menší množství chyb} spojených s přístupem do paměti.
+\item \textbf{Správa paměti je často mnohem efektivnější}.
+\end{itemize}
+
+\subsubsection*{Nevýhody Automatické správy paměti}
+\begin{itemize}
+\item Paměť může být zachována jen proto, že je dostupná, i když není dále využita.
+\item Automatická správa paměti \textbf{není k dispozici ve starších}, ale často používaných \textbf{jazycích}.
+\end{itemize}
+
+Pro zjištění toho, které úseky paměti se již nepoužívají, je k dispozici mnoho algoritmů. Většinou spoléhá automatická regenerace paměti na informace o tom, na které bloky paměti \textbf{neukazuje žádná programová proměnná}. V zásadě existují \textbf{dvě} \textbf{skupiny} metod - metody založené na \textbf{sledování odkazů} a metody založené na \textbf{čítačích odkazů}.
+
+\subsection{C}
+Správa paměti je v \textbf{rukou programátora}. V jazyce C se setkáme se správou paměti pouze pro \textbf{dynamicky alokovanou paměť}, tu spravujeme pomocí \textbf{4 funkcí} (malloc, realloc, calloc, free). \textbf{Staticky alokovaná} paměť (pole, datové typy) je známá v době kompilace a je tedy v paměti pořád. Dynamicky alokovanou paměť musíme spravovat sami.
+
+\subsection{C++}
+C++ obsahuje volitelnou podporu pro Garbage Collectory třetích stran, nicméně standard jako takový nepředepisuje jejich použití. Správa paměti je tedy víceméně v \textbf{rukou programátora}. K správě paměti tedy využíváme operátorů \textbf{new} (přiděluje) a \textbf{delete} (ruší). Zároveň specifikace třídy implementuje \textbf{destruktor}, kde je programátor povinen uvolnit veškerou alokovanou paměť v rámci dané třídy (objektu). Tento destruktor se volá při zavolání operátoru \textbf{delete} na daný objekt.
+
+\subsection{C\#}
+Správa paměti je v jazyce C\# \textbf{plně automatizovaná}, paměťový prostor se přiděluje operátorem \textbf{new}, jeho uvolnění zajistí systém \textbf{řízení běhu programu}. Varianta \textbf{Mark \& Sweep} je použita v \textbf{.NET}.
+
+\subsection{Java}
+V jazyce Java je správa paměti rovněž \textbf{plně automatizovaná}, o \textbf{uvolňování} paměti se stará \textbf{separátní vlákno}, které běží s nízkou prioritou a zajišťuje kontinuální sledování nepoužitých bloků paměti. Přidělování paměti se provádí operátorem \textbf{new}. \textbf{Java} GC používá \textbf{5 algoritmů} (JDK 7, Serial GC, Paralel GC, Paralel Old GC, Garbage First GC, Mark \& Sweep GC).
+
+\subsection{Garbage collector}
+Garbage collecting je \textbf{způsob automatické správy paměti}. Uvolňování paměti  šetří čas při vývoji a osvobozuje programátora od uvolňování objektů, které již dále nejsou zapotřebí, což ho většinou stojí značné úsilí. Je to vlastně \textbf{pomůcka pro stabilnější program}, protože zabraňuje některým třídám provozních chyb. Například zabraňuje \textbf{chybám ukazatelů}, které ukazují na již nepoužívaný objekt, nebo který je již zrušen a tato paměť se dále k ničemu nevyužívá. \textbf{Základní princip garbage collectingu:}
+\begin{enumerate}
+\item Vyhledají se v programu takové datové objekty, které nebudou v budoucnu použity.
+\item Vrácení zdrojů, kde se vyskytovaly nalezené objekty.
+\end{enumerate}
+
+\subsection{Mark \& Sweep (Typ GC)}
+Algoritmus nejdříve nastaví všem objektům, které jsou v paměti, \textbf{speciální příznak} navštíven na hodnotu ne. Poté projde všechny objekty, ke kterým se lze dostat. Těm, které takto navštívil, nastaví příznak na hodnotu ano. V okamžiku, kdy se už nemůže dostat k žádnému dalšímu objektu, znamená to, že všechny objekty s příznakem navštíven majícím hodnotu ne jsou odpad - a mohou být tedy uvolněny z paměti.
+\\\\
+Tato metoda má několik nevýhod. Největší je, že při garbage collectionu je \textbf{přerušen běh programu}. To znamená,že programy \textbf{pravidelně zamrznou}, takže je nemožné pracovat s aplikacemi používající reálný čas.
+
+\subsection{Reference counting (Typ GC)}
+Ke každému objektu je přiřazen \textbf{čítač referencí}. Když je objekt vytvořen, jeho čítači je nastavena \textbf{hodnota 1}. V okamžiku, kdy si nějaký jiný objekt nebo kořen programu (kořeny jsou hledány v programových registrech, v lokálních proměnných uložených v zásobnících jednotlivých vláken a ve statických proměnných) uloží referenci na tento objekt, hodnota čítače je \textbf{zvětšena o 1}. Ve chvíli, kdy je reference mimo rozsah platnosti (např. po opuštění funkce, která si referenci uložila), nebo když je referenci přiřazena nová hodnota, čítač je \textbf{snížen o 1}. Jestliže je hodnota čítače některého objektu nulová, může být tento objekt uvolněn z paměti.
+
+\subsection{Generační algoritmus (Typ GC)}
+Staví na \textbf{dvou základních principech}:
+\begin{itemize}
+\item Mnoho objektů se stane \textbf{odpadem} krátce \textbf{po} svém \textbf{vzniku}.
+\item Jen malé procento \textbf{referencí} ve „starších“ objektech \textbf{ukazuje na objekty mladší}.
+\end{itemize}
+\textbf{Rozděluje si paměť programu do několika částí}, tzv. „\textbf{generací}“. Objekty jsou vytvářeny ve spodní (nejmladší) generaci a po splnění určité podmínky, obvykle stáří), jsou přeřazeny do starší generace. Pro každou generaci může být \textbf{úklid} prováděn v rozdílných \textbf{časových intervalech }(nejkratší intervaly obvykle budou platit pro nejmladší generaci) a dokonce pro rozdílné generace mohou být použity \textbf{rozdílné algoritmy úklidu}. V okamžiku, kdy se prostor pro spodní generaci zaplní, všechny dosažitelné objekty v nejmladší generaci jsou zkopírovány do starší generace. I tak bude množství kopírovaných objektů pouze zlomkem z celkového množství mladších objektů, jelikož většina z nich se již stala odpadem.
+
+\subsection{Nevýhody GC}
+\begin{itemize}
+\item Garbage collector potřebuje ke své práci \textbf{procesorový čas}, aby mohl rozhodovat o tom, jestli je objekt v paměti „mrtvý“, nebo „živý“.
+\item Některé garbage collectory mohou způsobit i dosti znatelné \textbf{pauzy}, což je vážný problém pro systémy běžící v reálném čase.
+\item O stavu objektů musí mít garbage collector uloženou informaci. Tyto informace vyžadují určitou \textbf{paměť navíc}.
+\item Některé jazyky s garbage collectorem neumožňují programátorovi \textbf{znovupoužití paměti}, i když ví, že paměť už nebude použita. To vede k \textbf{nárůstu alokace paměti}.
+\end{itemize}
+
+
+
+\subsection{Virtuální stroj}
+Je v informatice software, který \textbf{vytváří virtualizované prostředí mezi platformou počítače a operačním systémem}, ve kterém koncový uživatel může provozovat software na abstraktním stroji.
+
+\subsubsection{Hardwarový virtuální stroj}
+Označuje \textbf{několik jednotlivých totožných pracovních prostředí na jediném počítači}, z nichž na každém běží operační systém. Díky tomu může být aplikace psaná pro jeden OS používána na stroji, na kterém běží jiný OS, nebo zajišťuje vykonání sandboxu, který poskytuje \textbf{větší úroveň izolace} mezi procesy než je dosaženo při vykonávání několika procesů najednou (multitasking) na stejném OS. Jedním využitím může být také poskytnutí iluze mnoha uživatelům, že používají celý počítač, který je jejich „soukromým“ strojem, izolovaným od ostatních uživatelů, přestože všichni používají jeden fyzický stroj.
+\\\\
+Podobný software je často označován termíny jako \textbf{virtualizace} a \textbf{virtuální servery}. Hostitelský software, který poskytuje tuto schopnost je často označovaný jako \textbf{hypervisor} nebo \textbf{virtuální strojový monitor} (virtual machine monitor). Softwarové virtualizace mohou být prováděny \textbf{ve třech hlavních úrovních}:
+\begin{itemize}
+\item \textbf{Emulace}, plná systémová simulace nebo „plná virtualizace s dynamickým přestavením (recompilation)“ — virtuální stroj simuluje kompletní hardware, dovolující provoz nemodifikovaného OS na úplně jiném procesoru.
+\item\textbf{Paravirtualizace} — virtuální stroj nesimuluje hardware, ale místo toho nabídne \textbf{speciální rozhraní API}, které vyžaduje modifikace OS.
+\item\textbf{Nativní virtualizace} a „\textbf{plná virtualizace}“ — virtuální stroj jen částečně simuluje dost hardwaru, aby mohl nemodifikovaný OS běžet samostatně, ale hostitelský OS musí být určený pro stejný druh procesoru. Pojem nativní virtualizace se někdy používá ke zdůraznění, že je \textbf{využita hardwarová podpora pro virtualizaci} (tzv. virtualizační technologie).
+\end{itemize}
+
+\subsubsection{Aplikační virtuální stroj}
+Dalším významem termínu virtuální stroj je počítačový software, který\textbf{ izoluje aplikace používané uživatelem na počítači}. Protože \textbf{verze virtuálního stroje jsou psány pro různé počítačové platformy}, jakákoliv aplikace psaná pro virtuální stroj může být provozována na kterékoli z platforem, místo toho, aby se musely vytvářet oddělené verze aplikace pro každý počítač a operační systém. Aplikace běžící na počítači používá \textbf{interpret} nebo \textbf{Just in time kompilaci}. Jeden z nejlepších známých příkladů aplikace virtuálního stroje je \textbf{Java Virtual Machine} (\textbf{JVM}) od firmy Sun Microsystem.
+
+\subsubsection{Virtuální prostředí}
+Virtuální prostředí je jiný \textbf{druh virtuálního stroje}. Ve skutečnosti, to je \textbf{virtualizované prostředí pro běh programů na úrovni uživatele} (tj. ne jádra operačního systému a ovladače, ale aplikace). Virtuální prostředí jsou vytvořena použitím softwaru zavádějícího virtualizaci na úrovni operačního systému.
+
+\subsection{Podpora paralelního zpracování}
+\textbf{Paralelně programovaný software} využívá možnost rozdělení jednoho velkého výpočetního problému na několik menších problémů, které jsou řešeny „\textbf{současně}". Prvky sloužící k paralelnímu zpracování výpočtu mohou být různé. Jedná se například o jeden \textbf{počítač s více procesory}, \textbf{několik počítačů }v síti, \textbf{specializovaný hardware} nebo \textbf{kombinaci} těchto prvků.
+\\\\
+\textbf{Vlákno} označuje v informatice \textbf{odlehčený proces}, pomocí něhož se \textbf{snižuje režie} operačního systému při změně kontextu, které je nutné pro zajištění \textbf{multitaskingu} nebo při masivně \textbf{paralelních výpočtech}. Zatímco běžné procesy jsou navzájem striktně odděleny, \textbf{sdílí} vlákna nejen \textbf{společný paměťový prostor}, ale i \textbf{další struktury}.
+\\\\
+Operační systém, který vlákna nepodporuje, má technicky jedno vlákno na každý proces, zatímco při podpoře vláken je možné v rámci jediného procesu vytvořit mnoho vláken. Vlákna usnadňují díky sdílené paměti vzájemnou komunikaci, což však přináší další komplikace v podobě \textbf{souběhu} (race condition).
+
+\subsubsection{Shrnutí}
+\begin{itemize}
+	\item Vlákno - \textbf{Thread}.
+	\item Vlákno je \textbf{samostatně prováděný výpočetní tok}.
+	\item Vlákna běží v \textbf{rámci procesu}.
+	\item Vlákna jednoho procesu běží v rámci stejného prostoru paměti. \textbf{Sdílí jeho prostředky}.
+	\item Každé vlákno má vyhrazený prostor pro specifické proměnné (runtime prostředí).
+\end{itemize}
+
+\subsection{Semafor}
+Semafor je založen na \textbf{atomických operacích} V (verhogen, též označováno jako \textbf{up}) a P (proberen, též označováno jako \textbf{down}). Operace down otestuje stav čítače a v případě že je nulový, zahájí čekání. Je-li nenulový, je čítač snížen o jedničku a vstup do kritické sekce je \textbf{povolen}. Při výstupu z kritické sekce je vyvolána operace up, která \textbf{odblokuje} vstup do kritické sekce pro další (čekající) proces. Čítač je možné si představit jako \textbf{omezení počtu procesů}, které mohou zároveň vstoupit do kritické sekce nebo například jako \textbf{počitadlo volných prostředků}. Tato implementace neodstraňuje problém aktivního čekání.
+
+\subsection{Vlákna v operačním systému}
+Vlákna \textbf{běží v rámci výpočetního toku procesu.} S ohledem na realizaci se mohou nacházet:
+\begin{itemize}
+	\item V \textbf{uživatelském prostoru procesu} - realizace vláken je na úrovni knihovních funkcí. Vlákna nevyžadují zvláštní podporu OS, jsou rozvrhována uživatelským knihovním rozvrhovačem. \textbf{Nevyužívají více procesorů.}
+	\item V \textbf{prostoru jádra OS} - tvoří entitu OS a jsou také rozvrhována systémovým rozvrhovačem. Mohou \textbf{paralelně běžet na více procesorech}.
+\end{itemize}
+
+\subsection{Kdy použít vlákna?}
+Vlákna je výhodné použít, pokud aplikace splňuje některé následující kritérium:
+\begin{itemize}
+	\item Je \textbf{složena}\textbf{ z nezávislých úloh}.
+	\item Může být \textbf{blokována} po dlouho dobu.
+	\item Obsahuje \textbf{výpočetně náročnou} část.
+	\item Musí reagovat na asynchronní události.
+	\item Obsahuje úlohy s nižší nebo vyšší prioritou než zbytek aplikace.
+\end{itemize}
+
+\subsection{Typické aplikace}
+\begin{itemize}
+	\item \textbf{Servery} - obsluhují více klientů najednou. Obsluha typicky znamená \textbf{přístup k několika sdíleným zdrojům} a hodně vstupně výstupních operací (I/O).
+	\item \textbf{Výpočetní aplikace} - na \textbf{víceprocesorovém systému} lze výpočet urychlit rozdělením úlohu na více procesorů.
+	\item \textbf{Aplikace reálného času} - lze využít specifických rozvrhovačů. Více vláknová aplikace je výkonnější než složité asynchronní programování, neboť vlákno čeká na příslušnou událost namísto přerušování vykonávání kódu a přepínání kontextu.
+\end{itemize}
+
+\subsection{Typické aplikace}
+Modely řeší způsob \textbf{vytváření} a \textbf{rozdělování práce} mezi vlákna:
+\begin{itemize}
+	\item \textbf{Boss/Worker} - hlavní vlákno, řídí rozdělení úlohy jiným vláknům.
+	\item \textbf{Peer} - vlákna běží paralelně bez specifického vedoucího.
+	\item \textbf{Pipeline} - zpracování dat sekvencí operací. Předpokládá dlouhý vstupní proud dat.
+\end{itemize}
+
+\subsection{Mechanismy synchronizace}
+Stejné principy jako synchronizace procesů. Základními primitivy jsou:
+\begin{itemize}
+	\item \textbf{Mutex} - zámek kritické sekce.
+	\item \textbf{Podmíněná proměnná} (condition variable) synchronizace hodnotou proměnné. Čekání vlákna na probuzení od jiného vlákna.
+\end{itemize}
+
+\subsubsection{Mutex}
+Mutex = mutual exclusion, neboli vzájemné vyloučení je algoritmus používaný v programování jako \textbf{synchronizační prostředek}. Zabraňuje tomu, aby byly současně vykonávány dva (nebo více) kódy nad stejným sdíleným prostředkem. Základní operace:
+\begin{itemize}
+	\item \textbf{Lock} - uzamknutí mutexu (přiřazení mutexu vláknu). Pokud nelze mutex získat, vlákno přechází do blokovaného režimu a čeká na uvolnění zámku.
+	\item \textbf{Unlock} - uvolnění zámku. Pokud jiná vlákna čekají na uvolnění, je vybráno jedno vlákno, které mutex získá.
+	\item \textbf{Rozšířené metody:}
+	\begin{itemize}
+		\item \textbf{Rekursivní} - vícenásobné zamykání stejným vláknem.
+		\item \textbf{Try} - okamžitý návrat pokud není možné mutex získat.
+		\item \textbf{Timed} - pokus o získání zámku s omezenou dobou čekání.
+	\end{itemize}
+\end{itemize}

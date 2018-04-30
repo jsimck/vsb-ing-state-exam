@@ -1,0 +1,33 @@
+Model návrhu dále \textbf{upřesňuje model analýzy ve světle skutečného implementačního prostředí}. Model návrhu tak představuje abstrakci zdrojového kódu, jinými slovy řečeno, reprezentuje „výkresovou“ dokumentaci určující jak bude zdrojový kód strukturován a napsán. Cílem etapy návrhu v rámci toku činností zabývajícího se analýzou a návrhem je \textbf{vytvoření modelu návrhu}. Co je model návrhu můžeme definovat následujícím způsobem:
+\begin{itemize}
+\item Model návrhu dále \textbf{upřesňuje model analýzy} ve světle skutečného implementačního prostředí.
+\item Model návrhu tak \textbf{představuje abstrakci zdrojového kódu}, jinými slovy řečeno, reprezentuje „výkresovou“ dokumentaci určující jak bude zdrojový kód strukturován a napsán. 
+\end{itemize}
+
+\subsection{Implementační prostředí}
+Pojem implementační prostředí v podstatě vyjadřuje \textbf{možnost namapovat navržené softwarové komponenty} obsažené v modelu analýzy na architekturu systému určeného k provozu vyvíjené aplikace \textbf{s maximálním možným využitím služeb již existujících softwarových komponent}. Postup včlenění implementačního prostředí do vyvíjené aplikace je dán následující posloupností činností:
+\begin{enumerate}
+\item Definice \textbf{systémové architektury}.
+\item Identifikace \textbf{návrhových vzorů} a možnosti znovupoužití tzv. rámcových řešení.
+\item Definice softwarových komponent a jejich \textbf{znovupoužití}.
+\end{enumerate}
+Jako v předchozích tocích činností, tak i v analýze a návrhu jsou výše uvedené \textbf{modely} \textbf{vytvářeny} \textbf{pomocí} k tomu určených \textbf{diagramů}. V tomto případě se jedná o následující diagramy, přičemž první dva z nich jsem již poznali v předcházejících kapitolách popisujících úvodní etapy vývoje softwarového systému zabývající se byznys modelováním \textbf{(diagram tříd) }a specifikací požadavků \textbf{(sekvenční diagram)}:
+
+\begin{itemize}
+\item \textbf{Diagram tříd} specifikující \textbf{množinu tříd, rozhraní a jejich vzájemné vztahy}. Tyto diagramy slouží k vyjádření \textbf{statického} pohledu na systém.
+\item \textbf{Sekvenční diagram} popisující \textbf{interakce mezi objekty} z hlediska jejich \textbf{časového} pořádaní.
+\item \textbf{Diagram spolupráce} je obdobně jako předchozí sekvenční diagram zaměřen na \textbf{interakce}, ale {z pohledu strukturální organizace objektů}. Jinými slovy není primárním aspektem časová posloupnost posílaných zpráv, ale\textbf{ topologie rozmístění objektů}.
+\item \textbf{Stavový diagram} dokumentující \textbf{životní cyklus objektu} dané třídy z hlediska jeho stavů, přechodů mezi těmito stavy a událostmi, které tyto přechody uskutečňují.
+\item \textbf{Diagram nasazení} popisující \textbf{konfiguraci} (topologii) \textbf{technických prostředků} umožňujících běh vlastního softwarového systému.
+\end{itemize}
+
+\subsection{Návrhové vzory - členění}
+Návrhové vzory můžeme chápat jako \textbf{abstrakci imitování užitečných části jiných softwarových produktů}. Volně interpretováno, pokud zjistíme že používáme k řešení určitého problému úspěšné řešení, které se opakuje v různých produktech z různých doménových oblastí, pak zobecnění tohoto řešení se stává návrhovým vzorem. Každý takový \textbf{návrhový vzor je popsán množinou komunikujících objektů a jejich tříd}, které jsou přizpůsobeny řešení obecného problému návrhu v daném konkrétním kontextu, tedy již existujícímu okolí. Klasifikovat můžeme návrhové vzory podle \textbf{způsobu jejich použití} do těchto základních \textbf{3 skupin}:
+\begin{itemize}
+\item Návrhové vzory \textbf{tvořící} určené k řešení problému vytváření instancí tříd cestou delegace této funkce na speciálně k tomuto účelu navržené třídy. Patří sem návrhový vzor \textbf{Továrna}.
+\item Návrhové vzory \textbf{strukturální} řešící problémy způsobu strukturování objektů a jejich tříd. Patří sem návrhový vzor \textbf{Kompozit}.
+\item Návrhové vzory \textbf{chování} popisující algoritmy a spolupráci objektů. Sem se řadí návrhový vzor \textbf{Pozorovatel}.
+\end{itemize}
+
+
+

@@ -1,0 +1,105 @@
+\textbf{Správné programování} je situace, kdy vše půjde podle plánu a nikdy nedojde k nějaké nepředvídané situaci. Pod takovouto situací si můžeme představit \textbf{chyby} programu \textbf{způsobené programátorem} – \textbf{dělení nulou}, sáhnutí \textbf{mimo rozsah pole}, pokus o v\textbf{olání metody na nullové referenci} a podobně. Druhou skupinou pak mohou být neplatné \textbf{uživatelské vstupy} – pokud uživatel předá do kolonky věk řetězec, pokusí se uložit soubor někam, kam nemá přístup a jiné. Poslední skupinou jsou chyby mimo kontrolu a moc programátora – \textbf{vyčerpání paměti}, \textbf{zásah operačního systému} atd.
+\\\\
+Při všech těchto situacích (a mnohých dalších) dojde k vyvolání výjimky. \textbf{Výjimky} (exceptions) dovolují tvorbu programů, které mohou reagovat na různé \textbf{chybové stavy vzniklé za běhu} Cílem výjimek je učinit programy \textbf{robustnější} tím, že jsou rozšířeny o schopnosti správy chyb vzniklých na úrovni aplikace nebo operačního systému.
+
+\subsection{C\#}
+Výjimky v jazyce C\#:
+\begin{itemize}
+\item Jsou \textbf{objektově orientované}.
+\item Oddělují zpracování chyb od výkonného kódu.
+\item Nejsou hlídané (jsou \textbf{unchecked}).
+\item Měly by být dokumentovány.
+\end{itemize}
+
+Každá výjimka v jazyku C\# je:
+\begin{itemize}
+\item \textbf{Objekt}.
+\item Odvozena z třídy \textbf{Exception} nebo z některé z je-jich následníků.
+\item Obsahuje informace o:
+\begin{itemize}
+\item Svém původu.
+\item Důvodu vzniku.
+\end{itemize}
+\end{itemize}
+
+Pomocí zachycení výjimky je možné vzniklý (chybový) stav \textbf{zpracovat (obsloužit)}. Jestliže dojde ke vzniku výjimky, která není nijak obsloužena, pak dochází k \textbf{ukončení programu} s odpovídající \textbf{běhovou chybou}. Mechanismus výjimek je v jazyce C\# založen na klíčových slovech: \texttt{\textbf{try}}, \texttt{\textbf{catch}}, \texttt{\textbf{finally}}. Vlastní vyhození výjimky lze pomocí klíčového slova \textbf{\texttt{throw}}.
+
+\subsubsection{try}
+\begin{itemize}
+\item Vymezuje z\textbf{ačátek chráněného bloku} kódu.
+\item Jestliže nějaká operace v tomto bloku způsobí výjimku, pak je okamžitě \textbf{řízení předáno do bloku}, který je umístěný za klíčovým slovem \textbf{catch}.
+\end{itemize}
+
+\subsubsection{catch}
+\begin{itemize}
+\item Slouží k zápisu bloku, který se provede, jestliže ve sdruženém chráněném bloku dojde ke vzniku výjimky.
+\item Po bloku try může následovat \textbf{více bloků catch}, z nichž každý slouží pro \textbf{ošetření specifického typu výjimky}.
+\item \textbf{Zápis:} \texttt{catch (typ\_výjimky err)\{ ... \}}
+\item Proměnná \texttt{\textbf{err}} obsahuje \textbf{objekt} vyjadřující podrobné údaje o vzniklé výjimce (např. vlastnost \textbf{Message} obsahuje textový popis chyby, která způsobila výjimku).
+\end{itemize}
+
+\subsubsection{finally}
+\begin{itemize}
+\item Udává \textbf{volitelný blok} používaný většinou \textbf{k uvolnění zdrojů} alokovaných v bloku try.
+\item Blok \texttt{finally} se vykoná vždy po opuštění try/catch.
+\end{itemize}
+
+\subsubsection{Třída Exception}
+\begin{itemize}
+\item Definovaná ve \textbf{jmenném prostoru} \textbf{\texttt{System}}.
+\item Reprezentuje chyby, ke kterým dochází v \textbf{době běhu programu}.
+\item Slouží jako \textbf{výchozí třída} pro všechny další výjimky.
+\end{itemize}
+
+\subsection{Java}
+Výjimky samotné jsou objekty, které dědí ze speciální hierarchie, jejímž kořenem je třída \textbf{Throwable}. Throwable dále rozšiřují třídy \textbf{Error} a \textbf{Exception}.
+
+\subsubsection{Error}
+Výjimky typu Error bychom \textbf{neměli v žádném případě ošetřovat} - značí totiž \textbf{kritickou chybu} (nedostatech zdrojů pro práci virtuálního stroje, přetečení zásobníku, nenalezení potřebné třídy při classloadingu atp.) – a většině případů \textbf{je ani ošetřit nemůžeme}.
+
+\subsubsection{Runtime exception}
+Mezi výjimky dědící z Exception patří také podtřída RuntimeException (dokumentace). Runtime exception jsou výjimky, které sice nejsou kritické z hlediska samotné možnosti pokračování aplikace (na rozdíl od Error), ale přesto se \textbf{velmi často neošetřují}. Značí totiž \textbf{obvyklé chyby}, které \textbf{způsobil sám programátor} (neplatný index pole, volání nad nullovým ukazatelem...).
+\\\\
+Zvláštní vlastností těchto výjimek je, že \textbf{nemusíme deklarovat v hlavičce metody možnost jejich vyvolání} (klíčové slovo throws). Tím je usnadněno vybublání chyby skrz program a jeho případné ukončení. Tyto výjimky označujeme jako \textbf{nekontrolované (unchecked exceptions)}.
+
+\subsubsection{Exception}
+Zbylé výjimky dědící přímo z Exception značí ty situace, které by se sice neměly stávat, ale na které \textbf{jsme schopni adekvátně zareagovat}. Pokud uživatel zadá neplatný adresář, tak mu vyhubujeme a řekneme, že to má zkusit ještě jednou. Obdobně jsme schopni vyřešit situaci, kdy uživatelské rozhraní nenalezne knihovny potřebné pro uživatelský motiv (look and feel) na daném systému. V tomto případě můžeme přejít k výchozímu nastavení uživatelského rozhraní. (Klasické chyby které normálně ošetřujeme).
+\\\\
+Protože se jedná, jak jsme si již řekli, o chyby, ze kterých se program může snadno zotavit, tak je \textbf{vždy musíme uvést v hlavičce metody, jež je může vyvolat}. To učiníme pomocí klíčového slova \textbf{throws} a seznamu jmen tříd vyvolávaných výjimek. Ve volající metodě se pak musíme rozhodnout, zda-li výjimky ošetříme, nebo necháme vybublat dál (opět je uvedeme v hlavičce).
+Tyto výjimky označujeme jako \textbf{kontrolované (checked exceptions)}.
+
+\subsubsection{Vyvolávání výjimek}
+Výjimku můžeme vyvolat v našem kódu prostřenictvím příkazu \textbf{throw} následovaným objektem výjimky (\texttt{throw new NumberFormatException()}).
+
+\subsubsection{Try-catch-finally}
+\textbf{Každou výjimku bez ohledu na její typ můžeme zpracovat}. K tomu používáme bloky try, catch a finally. V bloku try uvedeme sekci, která je krirická a vyvolává výjimku. Až v\textbf{ mnoha blocích catch} můžeme postupně zpracovávat případné výjimky dle jejich typu. Volitelný blok \textbf{finally} obsahuje kód, který \textbf{se vyvolá vždy}, bez ohledu na to, k čemu dojde v bloku try (dokonce se vyvolá i případě, že dojde k opuštění metody prostřednictvím příkazu return).
+
+
+
+\subsection{Datové proudy}
+Proudy \textbf{streamy} můžeme dělit dle jejich směru na \textbf{vstupní} (přenášejí data do aplikace) a na \textbf{výstupní} (přenášejí data z aplikace). Proudy také rozlišujeme na \textbf{binární} a \textbf{znakové}. Jak již názvy napovídají, tak zatímco binární proudy využijeme pro libovolná binární data (tj. data vkládáme je po bajtech), tak znakové proudy jsou určeny pouze pro text (znaky).
+\\\\
+\textbf{Proudy jsou základní cestou jak pracovat s daty, náhodným i sekvenčním přístupem}. Mezi nejjednodušší stream patří výpis na obrazovku \texttt{System.out.print(); \linebreak console.Writeln();}.
+
+\subsubsection{Streamy v .NET}
+\begin{itemize}
+	\item \textbf{Textové}: \texttt{StreamWritter}\texttt{SreamReader} 
+	\item \textbf{Binární}:	 \texttt{BinaryWriter},	 \texttt{BinaryReader} 
+	\item \textbf{Další}:	 \texttt{MemoryStream},	 \texttt{GZipStream},		 \texttt{Bufferedstream} 
+\end{itemize}
+
+\subsubsection{Streamy v Javě}
+V Javě všechny vstupní streamy dědí z abstraktní třídy \textbf{InputStream} a všechny výstupní z \textbf{OutputStream} a obě tyto abstraktní třídy ze třídy \texttt{Object}.
+\begin{itemize}
+	\item \textbf{Textové}: \texttt{FileWriter}, \texttt{FileReader} (Tyto streamy jsou obaly pro bytové streamy, tzn. přijímají jako argument objekt \texttt{FileInputStream} nebo \texttt{FileOutputStream})
+	\item \textbf{Binární}:	 \texttt{FileInputStream},	 \texttt{FileOutputStream} 
+	\item \textbf{Další}: \texttt{ObjectInputStream}, \texttt{ObjectOutputStream}
+\end{itemize}
+
+\subsubsection{Binární}
+Binární proudy umožňují přenést \textbf{libovolná data}. Základní operací definovanou v InputStreamu je metoda \textbf{read}, pomocí které můžeme z proudu přečíst jeden byte. Analogicky výstupní proud definuje metodu \textbf{write}. \textbf{Čtení a zápis po jednotlivých bytech je velmi pomalé}, zvláště pokud uvážíme, že na druhé straně proudu může být disk – a každý dotaz může velmi snadno znamenat nutnost nového vystavení hlaviček.
+\\\\
+Třídy \textbf{BufferedInputStream} a \textbf{BufferedOutputStream} (\textbf{v Javě}) za nás tento nedostatek řeší. Tyto proudy obsahují \textbf{pole, které slouží jako vyrovnávací paměť}. V případě čtení z disku bufferovaný proud načte celý blok dat a uloží jej do pole, ze kterého data dále posílá našemu programu. V okamžiku, kdy se pole vyprázdní, učiní dotaz na další blok. Tímto způsobem dochází k eliminaci velkého množství zbytečných a drahých volání. (V .NET existuje třída \textbf{BufferedStream}, nicméně .NET implementuje buffering do určité míry i u jiných streamů, nesetkáme se tedy s jeho použitím tak často.)
+
+\subsubsection{Textový}
+Znakové proudy fungují stejným způsobem jako ty binární, pouze \textbf{operují s textem}. Poměrně důležitou poznámkou je, že \textbf{Java} interně uchovává řetězce ve znakové sadě \textbf{Unicode}. Z toho plyne, že při každém zápisu a čtení ze znakového proudu dochází k překódování daného řetězce (znaků).

@@ -15,6 +15,8 @@
 \usepackage{enumitem}
 
 % Config
+\renewcommand{\thesubsection}{\hspace{-14pt}}
+\renewcommand{\thesubsubsection}{\hspace{-13pt}}
 \setlength\parindent{0pt}
 \renewcommand{\baselinestretch}{1.2} 
 \setitemize{itemsep=0pt}
@@ -26,26 +28,34 @@
 \maketitle
 
 \section{Softwarový proces. Jeho definice, modely a úrovně vyspělosti.}
+\input{includes/1.tex}
 
 \pagebreak
 \section{Vymezení fáze „sběr a analýza požadavků“. Diagramy UML využité v dané fázi.}
+\input{includes/2.tex}
 
 \pagebreak
 \section{Vymezení fáze „Návrh“. Diagramy UML využité v dané fázi. Návrhové vzory – členění, popis a příklady.}
+\input{includes/3.tex}
 
 \pagebreak
 \section{Objektově orientované paradigma. Pojmy třída, objekt, rozhraní. Základní vlastnosti objektu a vztah ke třídě. Základní vztahy mezi třídami a rozhraními. Třídní vs. instanční vlastnosti.}
+\input{includes/4.tex}
 
 \pagebreak
 \section{Mapování UML diagramů na zdrojový kód.}
+\input{includes/5.tex}
 
 \pagebreak
 \section{Správa paměti (v jazycích C/C++, JAVA, C\#, Python), virtuální stroj, podpora paralelního zpracování a vlákna.}
+\input{includes/6.tex}
 
 \pagebreak
 \section{Zpracování chyb v moderních programovacích jazycích, princip datových proudů – pro vstup a výstup. Rozdíl mezi znakově a bytově orientovanými datovými proudy.}
+\input{includes/7.tex}
 
 \pagebreak
 \section{Jazyk UML – typy diagramů a jejich využití v rámci vývoje.}
+\input{includes/8.tex}
 
 \end{document}
