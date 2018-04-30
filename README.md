@@ -56,7 +56,7 @@ pro vstup a výstup. Rozdíl mezi znakově a bytově orientovanými datovými pr
 
 ### III. Databázové a informační systémy (Úvod do databázových systémů, Databázové a informační systémy)
 1. Modelování databázových systémů, konceptuální modelování, datová analýza,
-funkční analýza; nástroje a modely.
+funkční analýza; nástroje a modely. [x]
 2. Relační datový model, SQL; funkční závislosti, dekompozice a normální formy.
 3. Transakce, zotavení, log, ACID, operace COMMIT a ROLLBACK; problémy souběhu,
 řízení souběhu: zamykání, úroveň izolace v SQL.

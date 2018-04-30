@@ -13,19 +13,27 @@
 \usepackage{float}
 \usepackage{color}
 \usepackage{enumitem}
+\usepackage{hyperref}
 
 % Config
-\renewcommand{\thesubsection}{\hspace{-14pt}}
-\renewcommand{\thesubsubsection}{\hspace{-13pt}}
-\setlength\parindent{0pt}
 \renewcommand{\baselinestretch}{1.2} 
 \setitemize{itemsep=0pt}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
 
 \title{\textbf{II. Softwarové inženýrství}}
 \date{\small\vspace{-9ex}Update: \today}
 
 \begin{document}
 \maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+\pagebreak
 
 \section{Softwarový proces. Jeho definice, modely a úrovně vyspělosti.}
 \input{includes/1.tex}
