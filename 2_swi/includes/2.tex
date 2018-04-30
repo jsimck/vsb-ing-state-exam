@@ -1,4 +1,37 @@
- Model analýzy, \textbf{zkoumá specifikované požadavky} z pohledu objektů, které lze nalézt v problémové doméně. \textbf{Kvalita} výsledného produktu je dána \textbf{mírou uspokojení požadavků zadavatele}. Právě otázka \textbf{korektní specifikace všech požadavků} bývá \textbf{problémem} všech softwarových systémů. Velmi často výsledek i mnohaletého úsilí týmu softwarových inženýrů propadne díky nedostatečné specifikaci zadání.
+\subsection{Specifikace požadavků}
+Specifikace a analýza požadavků je první fáze vývoje softwaru. \textbf{Cílem je definovat požadavky na software a popsat jeho funkcionalitu}. Výsledkem této fáze by měly být dokumenty, které se stanou součásti smlouvy mezi zadavatelem a vývojovým týmem. \textbf{Kvalita} výsledného produktu je pak dána \textbf{mírou uspokojení požadavků zadavatele}.
+
+V rámci specifikace požadavků je třeba analyzovat procesy u zadavatele, které bude software řešit, nebo s ním nějak jinak souvisí. K popisu těchto procesů dobře poslouží \textbf{Diagram případu užití}, \textbf{Sekvenční diagram} a \textbf{Diagram aktivity}.
+
+\subsubsection{Cíle požadavků}
+\begin{itemize}
+\item chceme vytvořit a udržovat dohody se zákazníky a dalšími zainteresovanými stranami o tom, co by \textbf{systém měl dělat a proč},
+\item aby vývojáři lépe pochopili \textbf{požadavky na systém},
+\item definování \textbf{hranic systému},
+\item vytvořit základ pro plánování \textbf{technického obsahu} interakcí,
+\item poskytnout základ pro \textbf{odhad} \textbf{nákladů} a \textbf{času} na \textbf{vytvoření systému},
+\item definovat \textbf{uživatelské rozhraní} pro systém, se zaměřením na potřeby uživatelů.
+\end{itemize}
+
+\subsubsection{Aktivity spojené s analýzou požadavků}
+\begin{itemize}
+	\item \textbf{Sběr požadavků} -  komunikace se zákazníky a uživateli za účelem získání jejich požadavků na systém.
+	\item \textbf{Analýza požadavků} - identifikování nejasných požadavků, nekompletních, nebo protichůdných a následné řešení těchto nesrovnalostí.
+	\item \textbf{Zaznamenání požadavků} - dokumentování požadavků v různých formách, jako běžný textový dokument, případy užití (use case), nebo specifikace procesů.
+\end{itemize}
+Požadavky je také nutno: \textbf{organizovat}, \textbf{dokumentovat}, \textbf{priorizovat}, \textbf{filtrovat} a \textbf{sledovat}.
+
+\subsubsection{Typy požadavků}
+\begin{itemize}
+\item \textbf{Funkční požadavky (chování)} - se používají k vyjádření chování systému zadáním jak vstupních tak i výstupních podmínek.
+\item \textbf{Doplňující požadavky (nefunkční)}
+\begin{itemize}
+\item \textbf{Použitelnost (Usability)} - se zabývá lidskými faktory, jako je vzhled, snadné používání, atd.
+\item \textbf{Spolehlivost (Reliability)} -  četnost a závažnost selhání, obnovitelnost a přesnost.
+\item \textbf{Výkon (Performance)} - se zabývá množstvím transakcí, jako je rychlost, doba odezvy, atd.
+\item \textbf{Podporovatelnost (Supportability)} - řeší, jak těžké je udržet systém a další vlastnosti potřebné k udržení systému po jeho vydání.
+\end{itemize}
+\end{itemize}
 
 \subsection{Jazyk UML}
 Slouží k \textbf{vytváření} výše uvedených \textbf{modelů vznikajících v průběhu realizace} požadovaného produktu.  V průběhu let se UML stal standardizovaným jazykem určeným pro vytvoření výkresové dokumentace (softwarového) systému. UML je jazyk umožňující \textbf{specifikaci}, \textbf{vizualizaci}, \textbf{konstrukci} a \textbf{dokumentaci} artefaktů softwarového systému. K vytváření jednotlivých modelů systému jazyk UML poskytuje celou \textbf{řadu diagramů} umožňujících \textbf{postihnout různé aspekty} systému. Jedná se celkem o \textbf{čtyři} \textbf{základní} \textbf{náhledy} a k nim přiřazené diagramy:
@@ -6,7 +39,7 @@ Slouží k \textbf{vytváření} výše uvedených \textbf{modelů vznikajícíc
 \begin{enumerate}
 	\item \textbf{Funkční náhled}
 	\begin{enumerate}
-		\item \textbf{Diagram případů užití} - popisující vztahy mezi aktéry a jednotlivými případy použití. 
+		\item \textbf{Diagram případů užití (use-case)} - popisuje vztahy mezi aktéry a jednotlivými případy použití. 
 	\end{enumerate}
 	\item \textbf{Logický náhled}
 	\begin{enumerate}
@@ -15,48 +48,68 @@ Slouží k \textbf{vytváření} výše uvedených \textbf{modelů vznikajícíc
 	\end{enumerate}
 	\item \textbf{Dynamický náhled popisující chování}
 	\begin{enumerate}
-		\item \textbf{Stavový diagram} - dokumentující životní cyklus objektu dané třídy z hlediska jeho stavů, přechodů mezi těmito stavy a událostmi, které tyto přechody uskutečňují. 
-		\item \textbf{Diagram aktivit} -  popisující podnikový proces pomocí jeho stavů reprezentovaných vykonáváním aktivit a pomocí přechodů mezi těmito stavy způsobených ukončením těchto aktivit. Účelem diagramu aktivit je blíže popsat tok činností daný vnitřním
-		mechanismem jejich provádění. 
+		\item \textbf{Stavový diagram} - dokumentuje životní cyklus objektu dané třídy z hlediska jeho stavů, přechodů mezi těmito stavy a událostmi, které tyto přechody uskutečňují. 
+		\item \textbf{Diagram aktivit} -  popisuje podnikový proces pomocí jeho stavů reprezentovaných vykonáváním aktivit a pomocí přechodů mezi těmito stavy způsobených ukončením těchto aktivit. Účelem diagramu aktivit je blíže popsat tok činností daný vnitřním mechanismem jejich provádění. 
 		\item \textbf{Interakční diagramy}
 		\begin{enumerate}
-			\item \textbf{Sekvenční diagramy} -  popisující interkace mezi objekty z hlediska jejich časového uspořádaní.
+			\item \textbf{Sekvenční diagramy} -  popisuje interakce mezi objekty z hlediska jejich \textbf{časového uspořádaní}.
 			\item \textbf{Diagramy spolupráce} -  je obdobně jako předchozí sekvenční diagram zaměřen na interkace, ale z pohledu strukturální organizace objektů. Jinými slovy není primárním aspektem časová posloupnost posílaných zpráv, ale \textbf{topologie rozmístění objektů}. 
 		\end{enumerate}
 	\end{enumerate}
 	\item \textbf{Implementační náhled}
 	\begin{enumerate}
-		\item \textbf{Diagram komponent} - ilustrující organizaci a závislosti mezi softwarovými komponentami. 
-		\item \textbf{Diagram nasazení} - upřesněný nejen ve smyslu konfigurace technických prostředků, ale především z hlediska rozmístění implementovaných softwarových komponent na těchto prostředcích.
+		\item \textbf{Diagram komponent} - ilustruje organizaci a závislosti mezi softwarovými komponentami. 
+		\item \textbf{Diagram nasazení} - upřesňuje nejen ve smyslu konfigurace technických prostředků, ale především z hlediska rozmístění implementovaných softwarových komponent na těchto prostředcích.
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{Specifikace požadavků}
-Jazyk UML pro potřeby sestavení modelů \textbf{specifikace požadavků} využívá dvou typů diagramů: 
-\begin{itemize}
-\item \textbf{Diagram případů užití} popisující \textbf{vztahy} mezi \textbf{aktéry} a jednotlivými \textbf{případy použití}. 
-\item \textbf{Sekvenční diagram} zobrazující \textbf{vzájemnou interakci} participujících \textbf{objektů} organizovanou podle časového hlediska. 
-\end{itemize}
-Cílem specifikace požadavků je \textbf{popsat co má softwarový systém dělat prostřednictvím specifikace jeho funkcionality}.  Modely specifikace požadavků slouží k odsouhlasení zadání mezi vývojovým týmem a zadavatelem.
-
 
 \subsection{Diagram případů užití}
-Modely, které jsou v rámci specifikace činností vytvářeny vychází z tak zvaných \textbf{případů užití} (\textbf{Use Cases}) tvořených: 
+\textbf{Případ užití (use case)} - je technika pro zdokumentování případného požadavku na nový systém, nebo změny na stávající systém. Každý use case poskytuje jeden nebo více scénářů, které zaznamenávají, jak by systém měl spolupracovat s koncovým uživatelem nebo jiným systémem.
+
+Diagram případu užití popisuje \textbf{vztahy} mezi \textbf{aktéry} a jednotlivými \textbf{případy užití}. Součástí diagramu jsou:
 \begin{itemize}
-\item \textbf{Aktéry} definující \textbf{uživatele} či \textbf{jiné systémy}, kteří budou vstupovat do interakce s vyvíjeným softwarovým systémem.
-\item \textbf{Případy užití} specifikující vzory chování realizovaných softwarovým systémem.  Každý případ užití lze chápat jako \textbf{posloupnost vzájemně navazujících transakcí} vykonaných \textbf{v dialogu mezi aktérem a vlastním softwarovým systémem}.
+\item \textbf{Aktéři} - definují \textbf{uživatele} či \textbf{jiné systémy}, kteří budou vstupovat do interakce s vyvíjeným softwarovým systémem.
+\item \textbf{Relace (vztahy)} - \textbf{vazby} a \textbf{vztahy} mezi aktéry a případy užití. V diagramu jsou znázorněny \textbf{šipkami případně čárami}.
+\item \textbf{Případy užití} - specifikující vzory chování  softwarovým systémem.  Každý případ užití lze chápat jako \textbf{posloupnost vzájemně navazujících transakcí} vykonaných \textbf{v dialogu mezi aktérem a vlastním softwarovým systémem}.
+\item \textbf{Scénář} - unikátní sekvence akcí skrz use-case (jedna cesta/instance provedení).
 \end{itemize}
-\textbf{Účelem} diagramu případů užití \textbf{je definovat co existuje vně vyvíjeného systému} (\textbf{aktéři}) a \textbf{co má být systémem prováděno (případy užití)}. Vstupem pro sestavení diagramu případů užití je \textbf{byznys model}, konkrétně modely podnikových procesů.  \textbf{Výsledkem} analýzy těchto procesů \textbf{je seznam požadovaných funkcí softwarového systému}, které podpoří nebo dokonce nahradí některé z uvedených aktivity cestou jejich softwarové implementace. \\
-\noindent\makebox[\textwidth]{\includegraphics[width=13cm]{assets/usecase}}
-Pro složitější a obsáhlejší diagramy případy užití se zavadí \textbf{tři typy vztahů mezi jednotlivými případy užití}:
+\textbf{Účelem} diagramu případů užití \textbf{je definovat co existuje vně vyvíjeného systému} (\textbf{aktéři}) a \textbf{co má být systémem prováděno (případy užití)}. Vstupem pro sestavení diagramu případů užití je \textbf{byznys model}, konkrétně modely podnikových procesů.  \textbf{Výsledkem} analýzy těchto procesů \textbf{je seznam požadovaných funkcí softwarového systému}, které podpoří nebo dokonce nahradí některé z uvedených aktivity jejich softwarovou implementací.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{assets/usecase.png}
+\end{figure}
+
+\noindent Pro složitější a obsáhlejší diagramy případů užití se zavadí \textbf{tři typy vztahů}:
 \begin{itemize}
 \item \textbf{Include} – případ užití může \textbf{obsahovat} jiný (UC s include se vždy provede před samotným UC).
 \item \textbf{Extend} – případ užití může \textbf{rozšiřovat} jiný (UC s extend se může nebo nemusí provést).
-\item \textbf{Generalization} – případ užití může být s\textbf{peciálním případem }jiného (dědičnost).
+\item \textbf{Generalizace} – případ užití může být \textbf{speciálním případem} jiného (dědičnost).
 \end{itemize}
 
+\subsubsection{Doporučená forma vytváření use-case}
+\begin{itemize}
+\item má vyjadřovat \textbf{co systém dělá} (ne jak) a co od něj očekávají aktéři,
+\item měly by být používány jen pojmy problémové domény - žádné neznámé termíny,
+\item případy užití by měly být co \textbf{nejjednodušší}, ať jim rozumí i zadavatelé - nepoužívat příliš \texttt{<include>} a \texttt{<extend>},
+\item \textbf{nepoužívat} příliš funkční dekompozici (\textbf{specializaci}),
+\item primární aktéři umístěni vlevo a pojmenováni krátkým podstatným jménem,
+\item každý \textbf{aktér} by měl být \textbf{propojen s minimálně jedním use-case},
+\item základní use case vlevo a další kreslit směrem doprava, rozšířující use-case směrem dolů.
+\end{itemize}
 
 \subsection{Sekvenční diagram}
-Jazyk UML poskytuje pro účely zaznamenání těchto \textbf{vzájmených intrakcí} tzv. sekvenční, někdy také nazývaný interakční, diagram. Tento diagram postihuje jaké \textbf{zprávy} (\textbf{požadavky}) \textbf{jsou mezi objekty zasílány} \textbf{z pohledu času}. Diagram je tvořen \textbf{objekty uspořádanými do sloupců} a šipky mezi nimi odpovídají {vzájemně si zasílaným zprávám}. Zprávy mohou být {synchronní} nebo {asynchronní}. V případě \textbf{synchronních zpráv odesílatel čeká na odpověď} (odezvu) adresáta, v případě \textbf{asynchronní zprávy odesílatel nečeká} na odpověď a pokračuje ve vykonávání své činnosti. Souvislé provádění nějaké činnosti se v sekvenčním diagram vyjadřuje svisle orientovaným obdélníkem. Odezvu adresáta lze opět modelovat, v tomto případě tzv. \textbf{návratovou zprávou (přerušovaná čára)}. Tok času probíhá ve směru od shora dolů.
+Sekvenční diagram popisuje funkce systému z pohledu \textbf{objektů} a\textbf{ jejich interakcí}. Komunikace mezi objekty je \textbf{znázorněná v čase}, takže z diagramu můžeme vyčíst i životní cyklus objektu. 
+
+Tento diagram popisuje jaké \textbf{zprávy} (\textbf{požadavky}) \textbf{jsou mezi objekty zasílány} \textbf{z pohledu času}. Diagram je tvořen \textbf{objekty uspořádanými do sloupců} a šipky mezi nimi odpovídají {vzájemně si zasílaným zprávám}. Zprávy mohou být {synchronní} nebo {asynchronní}. V případě \textbf{synchronních zpráv odesílatel čeká na odpověď} (odezvu) adresáta, v případě \textbf{asynchronní zprávy odesílatel nečeká} na odpověď a pokračuje ve vykonávání své činnosti. Souvislé provádění nějaké činnosti se v sekvenčním diagram vyjadřuje svisle orientovaným obdélníkem. Odezvu adresáta lze opět modelovat, v tomto případě tzv. \textbf{návratovou zprávou (přerušovaná čára)}. Tok času probíhá ve směru od shora dolů.
 \\\\
-\noindent\makebox[\textwidth]{\includegraphics[width=\textwidth]{assets/sekv}}
+\noindent\makebox[\textwidth]{\includegraphics[width=1\textwidth]{assets/sekv}}
+
+\subsection{Diagram aktivit}
+Diagram aktivit popisuje jednotlivé procesy pomocí aktivit reprezentující jeho (akční) \textbf{stavy} a \textbf{přechody mezi nimi}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{assets/diag_aktivit.png}
+\end{figure}
