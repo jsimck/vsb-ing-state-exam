@@ -74,6 +74,7 @@ Znakové proudy fungují stejným způsobem jako ty binární, pouze \textbf{ope
 
 \subsubsection{Datové proudy}
 Java obsahuje třídy pro \textbf{pohodlné čtení a zápis primitivních datových typů} a typu \textbf{String}. Nejrozšířenější třídy jsou \texttt{DataInputStream} a \texttt{DataOutputStream}. String je ukládán v kódování UTF-8. Údaje takto uložené např. do souboru nejsou uživatelsky přívětivé a s výjimkou řetězců čitelné. Metody pro čtení jsou \texttt{readDouble}, \texttt{readInt}, \texttt{readUTF}. Obdobně metody pro zápis mají předponu \texttt{write}.
+
 \subsubsection{Objektové proudy}
 Většina standardních tříd implementuje rozhraní \textbf{Serializable} (serializovatelný), které je nezbytné pro jejich podporu objektovými proudy. Objektové proudy rozšiřují datové proudy, takže objektové proudy \textbf{umí pracovat i s primitivními datovými typy}. Nové metody jsou \texttt{readObject} a \texttt{writeObject}. Pokud metoda \texttt{readObject} vrátí jiný než očekávaný objekt, vyhodí výjimku typu ClassNotFoundException. Pokud se objekt neskládá jen z primitivních typů ale i z referencí na další objekty, je potřeba zachovat tyto reference. Proto je při zápisu objektu uložit i všechny objekty, na které má daný objekt odkaz. Podobně se bude chovat čtecí proud, který se bude snažit zrekonstruovat celou takovou síť objektů
 
