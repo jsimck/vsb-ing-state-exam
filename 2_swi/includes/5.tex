@@ -1,4 +1,6 @@
-Důsledná a \textbf{přesná specifikace objektů a jejich tříd} v etapě návrhu \textbf{umožňuje automatické generování zdrojových kódů} dle následující tabulky. Tabulka má dva sloupce, první z nich odpovídá elementům jazyka UML, zatímco druhá z nich popisuje jejich zobrazení v programovacím jazyce, v našem případě se jedná o jazyk Java.
+Důsledná a přesná specifikace {objektů} a jejich {tříd} v etapě návrhu umožňuje\textbf{ automatické generování zdrojových kódů}. K mapování UML diagramů na kód dochází v první části implementační fáze vývoje.
+
+Z \textbf{diagramu tříd} lze vygenerovat jednotlivá rozhraní, třídy s proměnnými a metodami (bez implementace) - \url{http://www.milosnemec.cz/clanek.php?id=199}. Úkolem samotné implementace je pak dopsat těla metod, jejichž chování může být popsáno v \textbf{diagramu aktivit}.
 
 \begin{table}[H]
 	\centering
@@ -18,16 +20,30 @@ Důsledná a \textbf{přesná specifikace objektů a jejich tříd} v etapě ná
 	\end{tabular}
 \end{table}
 
-Cílem implementace je doplnit navrženou architekturu (kostru) aplikace o programový kód a vytvořit tak kompletní systém. \textbf{Implementační model }specifikuje, jak jsou jednotlivé elementy (objekty a třídy) vytvořené v etapě návrhu{ implementovány ve smyslu softwarových komponent}, kterými jsou zdrojové kódy, spustitelné kódy, data a podobně. \textbf{Softwarová komponenta} je definována jako fyzicky existující a zaměnitelná část systému vyhovující požadované množině rozhraní a poskytující jejich realizaci. Podle \textbf{typu softwarových komponent} hovoříme o:
+Cílem implementace je \textbf{doplnit} navrženou architekturu (kostru) aplikace \textbf{o programový kód} a vytvořit tak kompletní systém.
+
+\textbf{Implementační model }specifikuje, jak jsou jednotlivé elementy (objekty a třídy) implementovány ve smyslu softwarových komponent.
+
+\textbf{Softwarová komponenta} je definována jako \textbf{fyzicky existující} a \textbf{zaměnitelná část} systému, která vyhovuje požadované množině rozhraní a poskytuje jejich realizaci. Typy softwarových komponent dělíme na:
 
 \begin{itemize}
-\item \textbf{Zdrojovém kódu}, částech systému zapsaném v programovacím jazyce.
-\item \textbf{Binárním} (přeloženém do strojové kódu procesoru) a spustitelném kódu.
-\item \textbf{Ostatních částech} reprezentovaných databázovými tabulkami, dokumenty apod.
+\item \textbf{Zdrojové kódy} - části systému zapsané v programovacím jazyce.
+\item \textbf{Binární a spustitelné kódy} - přeložené do strojové kódu procesoru.
+\item \textbf{Ostatní části} - databázové tabulky, dokumenty apod.
 \end{itemize}
 
-Jestliže jsme ve fázi analýzy a návrhu pracovali pouze s abstrakcemi dokumentovanými v podobě jednotlivých \textbf{diagramů}, pak v \textbf{průběhu implementace dochází k jejich fyzické realizaci}. Implementační model se tedy také zaměřuje na specifikaci toho, jak budou tyto \textbf{komponenty fyzicky organizovány podle implementačního prostředí} a programovacího jazyka poskytujícího konkrétní mechanizmus strukturování a modularizace.Ke splnění těchto cílů, stejně jako v předchozích případech, nabízí jazyk UML prostředky, kterými jsou v tomto případě tyto \textbf{dva} následující \textbf{diagramy}:
+Jestliže jsme ve fázi analýzy a návrhu pracovali pouze s abstrakcemi dokumentovanými v podobě jednotlivých {diagramů}, pak v \textbf{průběhu implementace dochází k jejich fyzické realizaci}. Implementační model se tedy také zaměřuje na specifikaci toho, jak budou tyto {komponenty fyzicky organizovány podle implementačního prostředí}, pro splnění těchto cílů lze využít následující diagramy:
 \begin{itemize}
-\item \textbf{Diagram komponent} ilustrující organizaci a závislosti mezi softwarovými komponentami.
-\item \textbf{Diagram nasazení} upřesněný nejen ve smyslu konfigurace technických prostředků, ale především z hlediska rozmístění implementovaných softwarových komponent na těchto prostředcích.
+\item \textbf{Diagram komponent} - ilustruje organizaci a závislosti mezi softwarovými komponentami.
+\item \textbf{Diagram nasazení} - upřesňuje nejen konfiguraci technických prostředků, ale především rozmístění implementovaných softwarových komponent na těchto prostředcích.
 \end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{assets/mapovani_uml.jpg}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{assets/diagram_komponent.jpg}
+\end{figure}
