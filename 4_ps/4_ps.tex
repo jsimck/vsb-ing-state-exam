@@ -1,3 +1,4 @@
+
 \documentclass[11pt]{article}
 
 % Packages
@@ -13,23 +14,33 @@
 \usepackage{float}
 \usepackage{color}
 \usepackage{enumitem}
+\usepackage{hyperref}
 
 % Config
-\setlength\parindent{0pt}
+%\setlength\parindent{0pt}
 \renewcommand{\baselinestretch}{1.2} 
 \setitemize{itemsep=0pt}
-
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
 \title{\textbf{IV. Počítače a sítě}}
 \date{\small\vspace{-9ex}Update: \today}
 
 \begin{document}
 \maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+\pagebreak
 
 \section{Architektura univerzálních procesorů. Principy urychlování činnosti procesorů.}
-
+\input{includes/1.tex}
 \pagebreak
 \section{Základní vlastnosti monolitických počítačů a jejich typické integrované periférie. Možnosti použití.}
-
+\input{includes/2.tex}
 \pagebreak
 \section{Struktura OS a jeho návaznost na technické vybavení počítače.}
 
