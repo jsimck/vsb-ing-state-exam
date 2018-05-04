@@ -22,30 +22,44 @@ Výjimky fungují stejně jako v Javě, v případě neošetřené chyby dojde k
 \subsection{try-catch-finally}
 Zpracování výjimky se vždy vztahuje k bloku programu vymezeného příkazem \texttt{try} následovaném \textbf{jedním nebo více} bloky \texttt{catch} popisujícími způsob ošetření jednotlivých výjimek a volitelným blokem \texttt{finally}, který se vykoná vždy na konci bloku (vhodné místo pro uvolnění zdrojů.).
 
-\begin{minted}{java}
+\begin{minted}[tabsize=4,obeytabs]{java}
 class MojeVyjimka extends Exception { 
-  MojeVyjimka(String msg) { super(msg); } 
+	MojeVyjimka(String msg) { super(msg); } 
 }
 class Vyjimky {
-  static void zpracuj(int x) throws MojeVyjimka { 
-    System.out.println("Volani zpracuj " + x); 
-    if( x < 0 ) { throw new MojeVyjimka("Parametr nesmi byt zaporny"); }
-  } 
+	static void zpracuj(int x) throws MojeVyjimka { 
+		System.out.println("Volani zpracuj " + x); 
+		if( x < 0 ) { throw new MojeVyjimka("Parametr nesmi byt zaporny"); }
+	} 
 	
-  public static void main(String args[]) { 
-    try { 
-      zpracuj(1); 
-      zpracuj(-1); 
-    } catch( MojeVyjimka e ) {  
-      e.printStackTrace();  
-    } finally {
-    }
-  } 
+	public static void main(String args[]) { 
+		try { 
+			zpracuj(1); 
+			zpracuj(-1); 
+		} catch( MojeVyjimka e ) {  
+			e.printStackTrace();  
+		} finally {
+		}
+	} 
 }
 \end{minted}
 
 \subsection{Assert}
 Assert (od verze 1.4) přináší snadný způsob jak vkládat do programu \textbf{jednoduché kontroly} (např.: zda je hodnota $> 0$), které se vyhodnotí a přeloží pouze pokud při překladu zadáme parametr \texttt{-ea}. To se hodí zejména při vývoji aplikace a ladění, kdy v produkčním buildu se program přeloží bez těchto kontrol (bez \texttt{-ea}) a výpočet se tak nikde nezdržuje.
+
+\begin{minted}[tabsize=4,obeytabs]{java}
+class TestAssert { 
+	static double prevracena_hodnota(double x) { 
+		assert x != 0.0 : "Argument nesmi byt nulovy"; 
+		return 1.0 / x; 
+	}    
+	
+	public static void main(String args[]) { 
+		System.out.println(prevracena_hodnota(1)); 
+		System.out.println(prevracena_hodnota(0)); 
+	} 
+}
+\end{minted}
 
 \subsection{Datové proudy}
 Datové proudy jsou \textbf{sekvence dat}. Proud je definován svým \textbf{vstupem} a \textbf{výstupem}, těmi mohou být například soubor na disku, zařízení (vstupní klávesnice nebo myš, výstupní displej) nebo jiný program.
