@@ -5,15 +5,15 @@ Jazyk Java, podobně jako např. C++, využívá pro ošetření výjimek metodu
 \subsection{Java}
 Výjimky jsou v jazyce Java reprezentovány jako objekty. Tyto objekty jsou instancemi tříd odvozených obecně od třídy \textbf{Throwable} se dvěma podtřídami \textbf{Error} a \textbf{Exception}:
 \begin{itemize}
-\item \textbf{Error} - tyto výjimky představují vážný problém v činnosti aplikace a programátor by je \textbf{neměl zachytávat} (nedostatech zdrojů pro práci virtuálního stroje, přetečení zásobníku, nenalezení potřebné třídy při classloadingu) - \textbf{unchecked}.
-\item \textbf{Exception} - ošetření těchto výjimek má smysl. Jde například o výjimky jako pokus o otevření neexistujícího souboru, chybný formát čísla, dělení nulou apod. Do této skupiny by měly patřit také veškeré výjimky \textbf{definované uživatelem}. Jedná se o \textbf{checked} exceptions - kompilátor kontroluje zda jsou ošetřeny při kompilaci.
-\item \textbf{RuntimeException} - potomek třídy \texttt{Exception}, značí obvyklé chyby, které \textbf{způsobil sám programátor} (neplatný index pole, volání nad nullovým ukazatelem). Jedná se o tzv. \textbf{unchecked} exceptions, tedy není při kompilaci kontrolováno zda jsou zachytávány \texttt{catch}, \texttt{throws}.
+\item \textbf{Error} -- tyto výjimky představují vážný problém v činnosti aplikace a programátor by je \textbf{neměl zachytávat} (nedostatech zdrojů pro práci virtuálního stroje, přetečení zásobníku, nenalezení potřebné třídy při classloadingu) -- \textbf{unchecked}.
+\item \textbf{Exception} -- ošetření těchto výjimek má smysl. Jde například o výjimky jako pokus o otevření neexistujícího souboru, chybný formát čísla, dělení nulou apod. Do této skupiny by měly patřit také veškeré výjimky \textbf{definované uživatelem}. Jedná se o \textbf{checked} exceptions -- kompilátor kontroluje zda jsou ošetřeny při kompilaci.
+\item \textbf{RuntimeException} -- potomek třídy \texttt{Exception}, značí obvyklé chyby, které \textbf{způsobil sám programátor} (neplatný index pole, volání nad nullovým ukazatelem). Jedná se o tzv. \textbf{unchecked} exceptions, tedy není při kompilaci kontrolováno zda jsou zachytávány \texttt{catch}, \texttt{throws}.
 \end{itemize}
 V javě lze zachytávat výjimky pomocí bloku \texttt{try-catch-finally} nebo klíčovým slovíčkem \texttt{throws} \textbf{v hlavičce metody}, který přenechá její ošetření nadřazenému bloku. Vlastní výjimky lze vracet slovíčkem \texttt{throw}.
 
 \subsection{C\#}
 \begin{itemize}
-\item Všechny výjimky v C\# jsou jsou \textbf{unchecked (nehlídané)} - kompilátor nekontroluje zda se ošetřují.
+\item Všechny výjimky v C\# jsou jsou \textbf{unchecked (nehlídané)} -- kompilátor nekontroluje zda se ošetřují.
 \item Odvozena z třídy \textbf{Exception} nebo z některé z je-jich následníků.
 \item Obsahuje informace o: svém \textbf{původu}, \textbf{důvodu vzniku}.
 \end{itemize}

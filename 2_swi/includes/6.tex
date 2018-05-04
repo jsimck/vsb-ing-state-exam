@@ -4,7 +4,7 @@ Správa paměti je v soubor metod, které operační systém používá při \te
 \subsubsection*{Výhody Automatické správy paměti}
 \begin{itemize}
 \item Programátor se může věnovat řešení skutečného problému.
-\item Rozhraní modulů jsou přehlednější - není třeba řešit problém zodpovědnosti za uvolnění paměti pro objekty vytvořené různými moduly.
+\item Rozhraní modulů jsou přehlednější -- není třeba řešit problém zodpovědnosti za uvolnění paměti pro objekty vytvořené různými moduly.
 \item Nastává \textbf{menší množství chyb} spojených s přístupem do paměti.
 \item Správa paměti je často pro nezkušené uživatele mnohem \textbf{efektivnější}.
 \end{itemize}
@@ -18,12 +18,12 @@ Správa paměti je v soubor metod, které operační systém používá při \te
 
 \subsection{Úrovně správy paměti}
 \begin{itemize}
-	\item \textbf{Technické vybavení} - registry, cache
-	\item \textbf{Operační systém} - virtuální paměť, segmentace, stránkování
-	\item \textbf{Aplikace} - přidělování paměti, regenerace paměti:
+	\item \textbf{Technické vybavení} -- registry, cache
+	\item \textbf{Operační systém} -- virtuální paměť, segmentace, stránkování
+	\item \textbf{Aplikace} -- přidělování paměti, regenerace paměti:
 	\begin{itemize}
-		\item \textbf{Manuální} - delete, dispose, free()
-		\item \textbf{Automatická} - garbage collector
+		\item \textbf{Manuální} -- delete, dispose, free()
+		\item \textbf{Automatická} -- garbage collector
 	\end{itemize}
 \end{itemize}
 
@@ -40,7 +40,7 @@ Jazyk C umožňuje spravovat paměť staticky (automaticky) a dynamicky. \textbf
 \textbf{Dynamická} správa paměti je plně v \textbf{rukou programátora} a využívá se \textbf{4 funkcí} (\texttt{malloc}, \texttt{realloc}, \texttt{calloc}, \texttt{free}). Typicky je paměť alokována na haldě a přistupuje se k ní pomocí ukazatelů. 
 
 \subsubsection{C++}
-C++ poskytuje mnoho způsobů jak na správu paměti, od \textbf{automatické} po \textbf{manuální} pomocí operátorů \texttt{new} a \texttt{delete}. \textbf{Automatická správa paměti} alokovaných objektů je z velké části postavena na návrhovém vzoru \textbf{RAII} (Resource Aquisition Is Initialization) - správa zdrojů daného objektu je vázána na jeho životnost a jeho destruktor je povinen jejich uvolnění. Jednoduše stačí získat zdroj (paměť, soubor, grafický handle, cokoli) a uložit ho do proměnné, která ho bude vlastnit a při jejím zániku (voláním destruktoru) ho také uvolní. A tím se o to můžete přestat starat, protože zbytek zařídí C++ kompilátor, který bude uvolňovat zdroje automaticky v rámci rušení lokálních proměnných na konci oboru platnosti (scope). Mezi \textbf{výhody} RAII patří:
+C++ poskytuje mnoho způsobů jak na správu paměti, od \textbf{automatické} po \textbf{manuální} pomocí operátorů \texttt{new} a \texttt{delete}. \textbf{Automatická správa paměti} alokovaných objektů je z velké části postavena na návrhovém vzoru \textbf{RAII} (Resource Aquisition Is Initialization) -- správa zdrojů daného objektu je vázána na jeho životnost a jeho destruktor je povinen jejich uvolnění. Jednoduše stačí získat zdroj (paměť, soubor, grafický handle, cokoli) a uložit ho do proměnné, která ho bude vlastnit a při jejím zániku (voláním destruktoru) ho také uvolní. A tím se o to můžete přestat starat, protože zbytek zařídí C++ kompilátor, který bude uvolňovat zdroje automaticky v rámci rušení lokálních proměnných na konci oboru platnosti (scope). Mezi \textbf{výhody} RAII patří:
 \begin{itemize}
 \item RAII uklízí nejenom paměť, ale všechny zdroje (soubory, mutex, databáze, transakce, síťové sockety).
 \item Úklid je proveden okamžitě bez prodlení, přesně v čase kdy zdroj přestává být potřeba.
@@ -58,7 +58,7 @@ Má však i \textbf{nevýhody}:
 \subsubsection{C\#}
 Správa paměti je v jazyce C\# \textbf{plně automatizovaná}, paměťový prostor se přiděluje operátorem \textbf{new} a jeho uvolnění zajistí systém \textbf{řízení běhu programu}. V \textbf{.NET} se používá varianta GC v podobě \textbf{Mark \& Sweep}.
 
-V případě, že pracujeme s \textbf{neřízenými zdroji} (systémové zdroje - soubory, připojení k DB, síť), které je třeba \textbf{explicitně uvolnit}, implementuje se rozhraní \textbf{IDisposable}. To předepisuje jedinou metodu \texttt{Dispose()}, kterou je třeba zavolat po skončení práce s objektem (stará se o uvolnění zdrojů, samotný objekt poté existuje dál až do uvolnění GC).
+V případě, že pracujeme s \textbf{neřízenými zdroji} (systémové zdroje -- soubory, připojení k DB, síť), které je třeba \textbf{explicitně uvolnit}, implementuje se rozhraní \textbf{IDisposable}. To předepisuje jedinou metodu \texttt{Dispose()}, kterou je třeba zavolat po skončení práce s objektem (stará se o uvolnění zdrojů, samotný objekt poté existuje dál až do uvolnění GC).
 
 Dále lze v .NET definovat u tříd i tzv. safe-guard v podobě \textbf{finalizer} (metoda, která se volá při uklízení objektu pomocí GC). Syntaxe je podobná C++ (\texttt{\textasciitilde{}ClassName()}). Jelikož však zhoršuje efektivitu, definuje se pouze u tříd s rozhraním IDisposable. Jeho cílem je uvolnit zdroje, \textbf{pokud uživatel objektu nezavolá/zapomene zavolat} metodu \texttt{Dispose()}. 
 
@@ -67,9 +67,9 @@ V jazyce Java je správa paměti rovněž \textbf{plně automatizovaná} a o jej
 
 Speciálním případem jsou Stringy (jsou \textbf{immutable}), kdy Java spravuje tzv. \textbf{String pool}. To znamená, že si ukládá a snaží se stringy znovupoužívat jak je to možné. To neplatí pro stringy, které jsou vypočítány, pouze pro konstanty. Můžeme však přinutit JVM k vložení těchto stringů do poolu pomocí metody \texttt{.intern()}. V Javě existují \textbf{3 typy GC}:
 \begin{itemize}
-\item \textbf{Serial GC} - kolektor, který běží pouze v jednom jádře (malé aplikace, malé využití dat).
-\item \textbf{Parallel GC} - oproti serial využívá více threadů.
-\item \textbf{Mostly concurent GC} - při běhu GC vždy dojde k pozastavení aplikace, tento GC se tomu snaží předejít tak, že jede \textbf{souběžně} s aplikací. Nefunguje však souběžně 100\% času, kdy je někdy nutné program pozastavit, tyto pauzy se však snaží být co nejkratší pro zajištění co nejlepšího výkonu.
+\item \textbf{Serial GC} -- kolektor, který běží pouze v jednom jádře (malé aplikace, malé využití dat).
+\item \textbf{Parallel GC} -- oproti serial využívá více threadů.
+\item \textbf{Mostly concurent GC} -- při běhu GC vždy dojde k pozastavení aplikace, tento GC se tomu snaží předejít tak, že jede \textbf{souběžně} s aplikací. Nefunguje však souběžně 100\% času, kdy je někdy nutné program pozastavit, tyto pauzy se však snaží být co nejkratší pro zajištění co nejlepšího výkonu.
 \end{itemize}
 
 Podobně jako v C\#, Java poskytuje rozhraní \texttt{AutoCloseable}, které poskytuje operaci \texttt{close()}. Nejedná se o přímého zástupce za IDisposable, ale toto rozhranní umožňuje v javě využívat tzv. \textbf{try-with-resources} (ekvivalent v C\# using), kdy dochází k automatickému zavolání metody \texttt{close()} na konci \texttt{try-catch} bloku v části \texttt{finally}.
@@ -78,7 +78,7 @@ Podobně jako v C\#, Java poskytuje rozhraní \texttt{AutoCloseable}, které pos
 Je obvykle část běhového prostředí (programovacího) jazyka, nebo přídavná knihovna (podporovaná kompilátorem, hardware, operačním systémem, nebo jakoukoli kombinací těchto tří). Má za úkol \textbf{automaticky} \textbf{určit}, která část \textbf{paměti} programu je už \textbf{nepoužívaná}, a připravit ji pro další znovupoužití.
 
 \subsubsection{Mark \& Sweep}
-Algoritmus nejdříve nastaví všem objektům, které jsou v paměti, \textbf{speciální příznak} navštíven na hodnotu ne. Poté projde všechny objekty, ke kterým se lze dostat. Těm, které takto navštívil, nastaví příznak na hodnotu ano. V okamžiku, kdy se už nemůže dostat k žádnému dalšímu objektu, znamená to, že všechny objekty s příznakem navštíven majícím hodnotu ne jsou odpad - a mohou být tedy uvolněny z paměti.
+Algoritmus nejdříve nastaví všem objektům, které jsou v paměti, \textbf{speciální příznak} navštíven na hodnotu ne. Poté projde všechny objekty, ke kterým se lze dostat. Těm, které takto navštívil, nastaví příznak na hodnotu ano. V okamžiku, kdy se už nemůže dostat k žádnému dalšímu objektu, znamená to, že všechny objekty s příznakem navštíven majícím hodnotu ne jsou odpad -- a mohou být tedy uvolněny z paměti.
 
 Tato metoda má několik nevýhod. Největší je, že při garbage collectionu je \textbf{přerušen běh programu}. To znamená,že programy \textbf{pravidelně zamrznou}, takže je nemožné pracovat s aplikacemi pracujícími v reálném čase.
 
@@ -167,9 +167,9 @@ Vlákna je výhodné použít, pokud aplikace splňuje některé následující 
 
 \subsubsection{Typické aplikace}
 \begin{itemize}
-	\item \textbf{Servery} - obsluhují více klientů najednou. Obsluha typicky znamená \textbf{přístup k několika sdíleným zdrojům} a hodně vstupně výstupních operací (I/O).
-	\item \textbf{Výpočetní aplikace} - na \textbf{víceprocesorovém systému} lze výpočet urychlit rozdělením úlohy na více procesorů.
-	\item \textbf{Aplikace reálného času} - lze využít specifických rozvrhovačů. Více vláknová aplikace je výkonnější než složité asynchronní programování, neboť vlákno čeká na příslušnou událost namísto přerušování vykonávání kódu a přepínání kontextu.
+	\item \textbf{Servery} -- obsluhují více klientů najednou. Obsluha typicky znamená \textbf{přístup k několika sdíleným zdrojům} a hodně vstupně výstupních operací (I/O).
+	\item \textbf{Výpočetní aplikace} -- na \textbf{víceprocesorovém systému} lze výpočet urychlit rozdělením úlohy na více procesorů.
+	\item \textbf{Aplikace reálného času} -- lze využít specifických rozvrhovačů. Více vláknová aplikace je výkonnější než složité asynchronní programování, neboť vlákno čeká na příslušnou událost namísto přerušování vykonávání kódu a přepínání kontextu.
 \end{itemize}
 
 \subsection{Vlákna v Javě}
@@ -178,18 +178,18 @@ Každé vlákno v Javě je instancí třídy \texttt{java.lang.Thread}. Tato tř
 \subsubsection{Životní cyklus}
 Vlákno v průběhu svého života prochází posloupností následujících stavů:
 \begin{itemize}
-\item \textbf{New} - bezprostředně po vytvoření ještě nejsou vláknu přiděleny žádné systémové prostředky, vlákno neběží.
-\item \textbf{Runnable} - v tomto stavu se nachází po provedení metody \texttt{start()}, scheduler jej však nezvolil, aby byl běžící.
-\item \textbf{Running} - vlákno běží, do tohoto stavu se dostane po té co jej vybere scheduler.
-\item \textbf{Not runnable (Blocked)} - vlákno je pozastaveno voláním jedné s metod \texttt{sleep}, \texttt{wait} nebo \texttt{suspend}, případně čeká na dokončení operace vstupu/výstupu.
-\item \textbf{Terminated} - thread je ukončen nebo ve stavu \textbf{Dead} pokud existuje metoda run.
+\item \textbf{New} -- bezprostředně po vytvoření ještě nejsou vláknu přiděleny žádné systémové prostředky, vlákno neběží.
+\item \textbf{Runnable} -- v tomto stavu se nachází po provedení metody \texttt{start()}, scheduler jej však nezvolil, aby byl běžící.
+\item \textbf{Running} -- vlákno běží, do tohoto stavu se dostane po té co jej vybere scheduler.
+\item \textbf{Not runnable (Blocked)} -- vlákno je pozastaveno voláním jedné s metod \texttt{sleep}, \texttt{wait} nebo \texttt{suspend}, případně čeká na dokončení operace vstupu/výstupu.
+\item \textbf{Terminated} -- thread je ukončen nebo ve stavu \textbf{Dead} pokud existuje metoda run.
 \end{itemize}
 
 \subsection{Hlavní problémy vícevláknových aplikací}
 \begin{itemize}
-\item \textbf{Deadlock (uváznutí)} - je situace, kdy úspěšné dokončení první akce je \textbf{podmíněno předchozím dokončením druhé akce}, přičemž druhá akce může být dokončena až po dokončení první akce. Deadlocku můžeme zabránit například tím, že proces musí o \textbf{všechny prostředky}, které potřebuje, zažádat \textbf{najednou}. Buď je všechny dostane, nebo nedostane ani jeden. 
-\item \textbf{Souběh (race conditions)} - \textbf{přístup více vláken ke sdíleným proměnným} a alespoň jedno vlákno nevyužívá synchronizačních mechanismů. Vlákno čte hodnotu, zatímco jiné vlákno zapisuje. Zápis a čtení nejsou atomické a data mohou být neplatná. K zabránění souběhu se používají \textbf{zámky} (lock), jejichž použitím se zajistí, že jen jedno vlákno může v jeden okamžik přistoupit k označenému resource souboru nebo části kódu.
-\item \textbf{Starvation (vyhladovění)} - stav, kdy jsou vláknu neustále odepírány prostředky. Bez těchto prostředků program nikdy nedokončí svůj úkol.
+\item \textbf{Deadlock (uváznutí)} -- je situace, kdy úspěšné dokončení první akce je \textbf{podmíněno předchozím dokončením druhé akce}, přičemž druhá akce může být dokončena až po dokončení první akce. Deadlocku můžeme zabránit například tím, že proces musí o \textbf{všechny prostředky}, které potřebuje, zažádat \textbf{najednou}. Buď je všechny dostane, nebo nedostane ani jeden. 
+\item \textbf{Souběh (race conditions)} -- \textbf{přístup více vláken ke sdíleným proměnným} a alespoň jedno vlákno nevyužívá synchronizačních mechanismů. Vlákno čte hodnotu, zatímco jiné vlákno zapisuje. Zápis a čtení nejsou atomické a data mohou být neplatná. K zabránění souběhu se používají \textbf{zámky} (lock), jejichž použitím se zajistí, že jen jedno vlákno může v jeden okamžik přistoupit k označenému resource souboru nebo části kódu.
+\item \textbf{Starvation (vyhladovění)} -- stav, kdy jsou vláknu neustále odepírány prostředky. Bez těchto prostředků program nikdy nedokončí svůj úkol.
 \end{itemize}
 
 \begin{figure}[H]
@@ -200,21 +200,21 @@ Vlákno v průběhu svého života prochází posloupností následujících sta
 
 \subsection{Mechanismy synchronizace}
 \begin{itemize}
-	\item \textbf{Mutex} - zámek kritické sekce.
+	\item \textbf{Mutex} -- zámek kritické sekce.
 	\item \textbf{Podmíněná proměnná} (condition variable) synchronizace hodnotou proměnné. Čekání vlákna na probuzení od jiného vlákna.
-	\item \textbf{Semafor} -  čítač, definuje kolik procesů může max přistupovat k nějakému zdroji.
+	\item \textbf{Semafor} --  čítač, definuje kolik procesů může max přistupovat k nějakému zdroji.
 \end{itemize}
 
 \subsubsection{Mutex}
 Mutex = mutual exclusion, neboli vzájemné vyloučení je algoritmus používaný v programování jako \textbf{synchronizační prostředek}. Zabraňuje tomu, aby byly současně vykonávány dva (nebo více) kódy nad stejným sdíleným prostředkem. Základní operace:
 \begin{itemize}
-	\item \textbf{Lock} - uzamknutí mutexu (přiřazení mutexu vláknu). Pokud nelze mutex získat, vlákno přechází do blokovaného režimu a čeká na uvolnění zámku.
-	\item \textbf{Unlock} - uvolnění zámku. Pokud jiná vlákna čekají na uvolnění, je vybráno jedno vlákno, které mutex získá.
+	\item \textbf{Lock} -- uzamknutí mutexu (přiřazení mutexu vláknu). Pokud nelze mutex získat, vlákno přechází do blokovaného režimu a čeká na uvolnění zámku.
+	\item \textbf{Unlock} -- uvolnění zámku. Pokud jiná vlákna čekají na uvolnění, je vybráno jedno vlákno, které mutex získá.
 	\item \textbf{Rozšířené metody:}
 	\begin{itemize}
-		\item \textbf{Rekursivní} - vícenásobné zamykání stejným vláknem.
-		\item \textbf{Try} - okamžitý návrat pokud není možné mutex získat.
-		\item \textbf{Timed} - pokus o získání zámku s omezenou dobou čekání.
+		\item \textbf{Rekursivní} -- vícenásobné zamykání stejným vláknem.
+		\item \textbf{Try} -- okamžitý návrat pokud není možné mutex získat.
+		\item \textbf{Timed} -- pokus o získání zámku s omezenou dobou čekání.
 	\end{itemize}
 \end{itemize}
 
@@ -224,7 +224,7 @@ Semafory jsou velmi podobné mutexům. Zatímco mutex má jen dva stavy – zamk
 \subsection{Rozdělování práce vláknům}
 Modely řeší způsob \textbf{vytváření} a \textbf{rozdělování práce} mezi vlákna:
 \begin{itemize}
-	\item \textbf{Boss/Worker} - hlavní vlákno, řídí rozdělení úlohy jiným vláknům.
-	\item \textbf{Peer} - vlákna běží paralelně bez specifického vedoucího.
-	\item \textbf{Pipeline} - zpracování dat sekvencí operací. Předpokládá dlouhý vstupní proud dat.
+	\item \textbf{Boss/Worker} -- hlavní vlákno, řídí rozdělení úlohy jiným vláknům.
+	\item \textbf{Peer} -- vlákna běží paralelně bez specifického vedoucího.
+	\item \textbf{Pipeline} -- zpracování dat sekvencí operací. Předpokládá dlouhý vstupní proud dat.
 \end{itemize}

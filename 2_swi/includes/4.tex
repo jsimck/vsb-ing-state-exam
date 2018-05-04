@@ -5,8 +5,8 @@ OOP definuje program jako \textbf{soubor} \textbf{spolupracujících komponent (
 
 \subsubsection{Základní paradigma OOP}
 \begin{itemize}
-\item Při řešení úlohy vytváříme \textbf{model popisované reality} - popisujeme entity a interakci mezi entitami.
-\item \textbf{Abstrahujeme} od nepodstatných detailů - při popisu/modelování entity vynecháváme jejich nepodstatné vlastnosti.
+\item Při řešení úlohy vytváříme \textbf{model popisované reality} -- popisujeme entity a interakci mezi entitami.
+\item \textbf{Abstrahujeme} od nepodstatných detailů -- při popisu/modelování entity vynecháváme jejich nepodstatné vlastnosti.
 \item Postup řešení je v řadě případů efektivnější než při procedurálním přístupu (ne vždy), kdy se úlohy řeší jako posloupnost příkazů.
 \end{itemize}
 
@@ -19,7 +19,7 @@ OOP definuje program jako \textbf{soubor} \textbf{spolupracujících komponent (
 \end{itemize}
 
 \subsection{Třída}
-\textbf{Třída představuje základní konstrukční prvek OOP}. Třída slouží jako šablona pro vytváření \textbf{instancí tříd - objektů}. Seskupuje objekty stejného typu a podchycuje jejich podstatu na obecné úrovni.  (Samotná třída tedy nepředstavuje vlastní informace, jedná se pouze o předlohu; data obsahují až objekty.) Třída definuje data a metody objektů. \textbf{}
+\textbf{Třída představuje základní konstrukční prvek OOP}. Třída slouží jako šablona pro vytváření \textbf{instancí tříd -- objektů}. Seskupuje objekty stejného typu a podchycuje jejich podstatu na obecné úrovni.  (Samotná třída tedy nepředstavuje vlastní informace, jedná se pouze o předlohu; data obsahují až objekty.) Třída definuje data a metody objektů. \textbf{}
 
 \subsection{Objekt, jeho vlastnosti a vztahy}
 Jednotlivé prvky modelované reality (jak data, tak související funkčnost) jsou v programu seskupeny do entit, nazývaných objekty. Objekt je \textbf{identifikovatelná samostatná entita} (dána jedinečností a chováním). Objekty si pamatují svůj stav a navenek poskytují operace přístupné jako metody pro volání. \textbf{Objekt} je také \textbf{instancí třídy}.
@@ -43,9 +43,9 @@ Vztahy (relace) mezi třídami \textbf{specifikují cestu, jak mohou objekty mez
 
 \subsection{Rysy OOP}
 \begin{itemize}
-\item \textbf{Skládání} - Objekt může obsahovat jiné objekty.
-\item \textbf{Delegování} - Objekt může využívat služeb jiných objektů tak, že je požádá o provedení operace.
-\item \textbf{Dědičnost} - objekty jsou organizovány stromovým způsobem, kdy objekty nějakého druhu mohou dědit z jiného druhu objektů, čímž přebírají jejich schopnosti, ke kterým pouze přidávají svoje vlastní rozšíření. Tato myšlenka se obvykle implementuje pomocí rozdělení objektů do tříd, přičemž každý objekt je instancí nějaké třídy. Každá třída pak může dědit od jiné třídy (v některých programovacích jazycích i z několika jiných tříd).
-\item \textbf{Polymorfismus} - odkazovaný\textbf{ objekt se chová podle toho, jaké třídy je instancí}. Pozná se tak, že několik objektů poskytuje stejné rozhraní, pracuje se s nimi navenek stejným způsobem, ale jejich konkrétní chování se liší podle implementace. U \textbf{polymorfismu podmíněného dědičností} to znamená, že na místo, kde je očekávána instance nějaké třídy, můžeme dosadit i instanci libovolné její podtřídy, neboť rozhraní třídy je podmnožinou rozhraní podtřídy. U \textbf{polymorfismu nepodmíněného dědičností} je dostačující, jestliže se rozhraní (nebo jejich požadované části) u různých tříd shodují, pak jsou vzájemně polymorfní.
-\item \textbf{Zapouzdření} - zaručuje, že objekt \textbf{nemůže přímo přistupovat k „vnitřnostem“} jiných objektů, což by mohlo vést k nekonzistenci. Každý objekt navenek poskytuje rozhraní, pomocí kterého (a nijak jinak) se s objektem pracuje.
+\item \textbf{Skládání} -- Objekt může obsahovat jiné objekty.
+\item \textbf{Delegování} -- Objekt může využívat služeb jiných objektů tak, že je požádá o provedení operace.
+\item \textbf{Dědičnost} -- objekty jsou organizovány stromovým způsobem, kdy objekty nějakého druhu mohou dědit z jiného druhu objektů, čímž přebírají jejich schopnosti, ke kterým pouze přidávají svoje vlastní rozšíření. Tato myšlenka se obvykle implementuje pomocí rozdělení objektů do tříd, přičemž každý objekt je instancí nějaké třídy. Každá třída pak může dědit od jiné třídy (v některých programovacích jazycích i z několika jiných tříd).
+\item \textbf{Polymorfismus} -- odkazovaný\textbf{ objekt se chová podle toho, jaké třídy je instancí}. Pozná se tak, že několik objektů poskytuje stejné rozhraní, pracuje se s nimi navenek stejným způsobem, ale jejich konkrétní chování se liší podle implementace. U \textbf{polymorfismu podmíněného dědičností} to znamená, že na místo, kde je očekávána instance nějaké třídy, můžeme dosadit i instanci libovolné její podtřídy, neboť rozhraní třídy je podmnožinou rozhraní podtřídy. U \textbf{polymorfismu nepodmíněného dědičností} je dostačující, jestliže se rozhraní (nebo jejich požadované části) u různých tříd shodují, pak jsou vzájemně polymorfní.
+\item \textbf{Zapouzdření} -- zaručuje, že objekt \textbf{nemůže přímo přistupovat k „vnitřnostem“} jiných objektů, což by mohlo vést k nekonzistenci. Každý objekt navenek poskytuje rozhraní, pomocí kterého (a nijak jinak) se s objektem pracuje.
 \end{itemize}

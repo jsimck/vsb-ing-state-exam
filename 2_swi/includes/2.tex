@@ -1,7 +1,7 @@
 \subsection{Specifikace požadavků}
 Specifikace a analýza požadavků je první fáze vývoje softwaru. \textbf{Cílem je definovat požadavky na software a popsat jeho funkcionalitu}. Výsledkem této fáze by měly být dokumenty, které se stanou součásti smlouvy mezi zadavatelem a vývojovým týmem. \textbf{Kvalita} výsledného produktu je pak dána \textbf{mírou uspokojení požadavků zadavatele}.
 
-V rámci specifikace požadavků je třeba analyzovat procesy u zadavatele, které bude software řešit, nebo s ním nějak jinak souvisí. K popisu těchto procesů dobře poslouží \textbf{Diagram případu užití}, \textbf{Sekvenční diagram} a \textbf{Diagram aktivity}.
+V rámci specifikace požadavků je třeba analyzovat procesy u zadavatele, které bude software řešit, nebo s ním nějak jinak souvisí. K popisu těchto procesů dobře poslouží \textbf{Diagram případu užití}, \textbf{Sekvenční diagram} a \textbf{Diagram aktivit}.
 
 \subsubsection{Cíle požadavků}
 \begin{itemize}
@@ -15,33 +15,33 @@ V rámci specifikace požadavků je třeba analyzovat procesy u zadavatele, kter
 
 \subsubsection{Aktivity spojené s analýzou požadavků}
 \begin{itemize}
-	\item \textbf{Sběr požadavků} -  komunikace se zákazníky a uživateli za účelem získání jejich požadavků na systém.
-	\item \textbf{Analýza požadavků} - identifikování nejasných požadavků, nekompletních, nebo protichůdných a následné řešení těchto nesrovnalostí.
-	\item \textbf{Zaznamenání požadavků} - dokumentování požadavků v různých formách, jako běžný textový dokument, případy užití (use case), nebo specifikace procesů.
+	\item \textbf{Sběr požadavků} --  komunikace se zákazníky a uživateli za účelem získání jejich požadavků na systém.
+	\item \textbf{Analýza požadavků} -- identifikování nejasných požadavků, nekompletních, nebo protichůdných a následné řešení těchto nesrovnalostí.
+	\item \textbf{Zaznamenání požadavků} -- dokumentování požadavků v různých formách, jako běžný textový dokument, případy užití (use case), nebo specifikace procesů.
 \end{itemize}
 Požadavky je také nutno: \textbf{organizovat}, \textbf{dokumentovat}, \textbf{priorizovat}, \textbf{filtrovat} a \textbf{sledovat}.
 
-\subsubsection{Typy požadavků}
+\subsubsection{Typy požadavků -- FURPS}
 \begin{itemize}
-\item \textbf{Funkční požadavky (chování)} - se používají k vyjádření chování systému zadáním jak vstupních tak i výstupních podmínek.
+\item \textbf{Funkční požadavky (chování)} -- se používají k vyjádření chování systému zadáním jak vstupních tak i výstupních podmínek.
 \item \textbf{Doplňující požadavky (nefunkční)}
 \begin{itemize}
-\item \textbf{Použitelnost (Usability)} - se zabývá lidskými faktory, jako je vzhled, snadné používání, atd.
-\item \textbf{Spolehlivost (Reliability)} -  četnost a závažnost selhání, obnovitelnost a přesnost.
-\item \textbf{Výkon (Performance)} - se zabývá množstvím transakcí, jako je rychlost, doba odezvy, atd.
-\item \textbf{Podporovatelnost (Supportability)} - řeší, jak těžké je udržet systém a další vlastnosti potřebné k udržení systému po jeho vydání.
+\item \textbf{Použitelnost (Usability)} -- se zabývá lidskými faktory, jako je vzhled, snadné používání, atd.
+\item \textbf{Spolehlivost (Reliability)} --  četnost a závažnost selhání, obnovitelnost a přesnost.
+\item \textbf{Výkon (Performance)} -- se zabývá množstvím transakcí, jako je rychlost, doba odezvy, atd.
+\item \textbf{Podporovatelnost (Supportability)} -- řeší, jak těžké je udržet systém a další vlastnosti potřebné k udržení systému po jeho vydání.
 \end{itemize}
 \end{itemize}
 
 \subsection{Diagram případů užití}
-\textbf{Případ užití (use case)} - je technika pro zdokumentování případného požadavku na nový systém, nebo změny na stávající systém. Každý use case poskytuje jeden nebo více scénářů, které zaznamenávají, jak by systém měl spolupracovat s koncovým uživatelem nebo jiným systémem.
+\textbf{Případ užití (use case)} -- je technika pro zdokumentování případného požadavku na nový systém, nebo změny na stávající systém. Každý use case poskytuje jeden nebo více scénářů, které zaznamenávají, jak by systém měl spolupracovat s koncovým uživatelem nebo jiným systémem.
 
 Diagram případu užití popisuje \textbf{vztahy} mezi \textbf{aktéry} a jednotlivými \textbf{případy užití}. Součástí diagramu jsou:
 \begin{itemize}
-\item \textbf{Aktéři} - definují \textbf{uživatele} či \textbf{jiné systémy}, kteří budou vstupovat do interakce s vyvíjeným softwarovým systémem.
-\item \textbf{Relace (vztahy)} - \textbf{vazby} a \textbf{vztahy} mezi aktéry a případy užití. V diagramu jsou znázorněny \textbf{šipkami případně čárami}.
-\item \textbf{Případy užití} - specifikující vzory chování  softwarovým systémem.  Každý případ užití lze chápat jako \textbf{posloupnost vzájemně navazujících transakcí} vykonaných \textbf{v dialogu mezi aktérem a vlastním softwarovým systémem}.
-\item \textbf{Scénář} - unikátní sekvence akcí skrz use-case (jedna cesta/instance provedení).
+\item \textbf{Aktéři} -- definují \textbf{uživatele} či \textbf{jiné systémy}, kteří budou vstupovat do interakce s vyvíjeným softwarovým systémem.
+\item \textbf{Relace (vztahy)} -- \textbf{vazby} a \textbf{vztahy} mezi aktéry a případy užití. V diagramu jsou znázorněny \textbf{šipkami případně čárami}.
+\item \textbf{Případy užití} -- specifikující vzory chování  softwarovým systémem.  Každý případ užití lze chápat jako \textbf{posloupnost vzájemně navazujících transakcí} vykonaných \textbf{v dialogu mezi aktérem a vlastním softwarovým systémem}.
+\item \textbf{Scénář} -- unikátní sekvence akcí skrz use-case (jedna cesta/instance provedení).
 \end{itemize}
 \textbf{Účelem} diagramu případů užití \textbf{je definovat co existuje vně vyvíjeného systému} (\textbf{aktéři}) a \textbf{co má být systémem prováděno (případy užití)}. Vstupem pro sestavení diagramu případů užití je \textbf{byznys model}, konkrétně modely podnikových procesů.  \textbf{Výsledkem} analýzy těchto procesů \textbf{je seznam požadovaných funkcí softwarového systému}, které podpoří nebo dokonce nahradí některé z uvedených aktivity jejich softwarovou implementací.
 
@@ -60,8 +60,8 @@ Diagram případu užití popisuje \textbf{vztahy} mezi \textbf{aktéry} a jedno
 \subsubsection{Doporučená forma vytváření use-case}
 \begin{itemize}
 \item má vyjadřovat \textbf{co systém dělá} (ne jak) a co od něj očekávají aktéři,
-\item měly by být používány jen pojmy problémové domény - žádné neznámé termíny,
-\item případy užití by měly být co \textbf{nejjednodušší}, ať jim rozumí i zadavatelé - nepoužívat příliš \texttt{<include>} a \texttt{<extend>},
+\item měly by být používány jen pojmy problémové domény -- žádné neznámé termíny,
+\item případy užití by měly být co \textbf{nejjednodušší}, ať jim rozumí i zadavatelé -- nepoužívat příliš \texttt{<include>} a \texttt{<extend>},
 \item \textbf{nepoužívat} příliš funkční dekompozici (\textbf{specializaci}),
 \item primární aktéři umístěni vlevo a pojmenováni krátkým podstatným jménem,
 \item každý \textbf{aktér} by měl být \textbf{propojen s minimálně jedním use-case},
@@ -75,6 +75,7 @@ Tento diagram popisuje jaké \textbf{zprávy} (\textbf{požadavky}) \textbf{jsou
 \\\\
 \noindent\makebox[\textwidth]{\includegraphics[width=1\textwidth]{assets/sekv}}
 
+\pagebreak
 \subsection{Diagram aktivit}
 Diagram aktivit popisuje jednotlivé procesy pomocí aktivit reprezentující jeho (akční) \textbf{stavy} a \textbf{přechody mezi nimi}.
 
