@@ -308,6 +308,44 @@ Klasifikátor na první vrstvě může vyfiltrovat většinu negativních oken. 
 \end{itemize}
 V~kombinaci více klasifikátorů s~výběrem trénovací sady v~každé iteraci algoritmu a~přidělení správné váhy na konci trénování, docílíme klasifikátoru s~dobrou přesností. Klasifikátory v~tomto řetězci, které mají klasifikační přesnost menší než 50\%, jsou ohodnoceny zápornou vahou. Váhou nula jsou ohodnoceny klasifikátory, které mají přesnost 50\%. Pouze ty, keré mají přesnost vyšší než 50\%, jsou přínosné do této kombinace a~můžeme hovořit o~zesílení (boosting) klasifikace. 
 
+\subsection{Template Matching}
+\begin{itemize}
+\item vytvoříme si model objektu obsahující tvar, barvu a texturu 
+\item následně se hledají v obraze jednotlivé prvky objektu samostatně a zjišťuje se míra podobnosti s vytvořeným modelem a tu pak v obrázku hledáme (pixel po pixelu)
+\end{itemize}
+Jednoznačnou výhodou tohoto přístupu je snadná implementace, ukázalo se však, že pro detekci obličejů není vhodná zdůvodů nízké odolnosti proti variabilitě
+Změna velikosti, pozice nebo tvaru objektu významně ovlivňuje výsledky metody. 
+
+Druhy metod:
+\begin{itemize}
+\item \textbf{SAD} suma absolutních rozdílů (Sum of Absolute Difference) --  lze vypočítat získáním absolutních rozdílů napříč všemi pixely mezi vstupním obrazem S a odpovídající pozicí pixelu v templatu T. Sumu těchto hodnot lze následně použít jako koeficient míry podobnosti mezi obrázkem S a templatem T, kdy čím menší tato hodnota je, tím více se jednotlivé pixely na daných pozicích shodují. Tudíž lze předpokládat, že se zde nachází hledaný objekt. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{assets/9_sad}
+\end{figure}
+Ve srovnání s ostatními metodami (SSD, NCC) je SAD přímočará, jednoduchá a výpočetně nenáročná. Může být však nespolehlivá a produkovat chybné výsledky v případě změn ve světelných podmínkách, barvě, velikosti či tvaru. Díky své rychlosti je však možné ji použít spolu s jinými metodami, jako je detekce hran, pro zlepšení spolehlivosti.
+\item \textbf{SSD} suma čtvercových rozdílů (Sum of Squared Difference) --  představuje jednu z více používaných metod pro výpočet koeficientu míry podobnosti. Nejmenší hodnota pixelu opět představuje nejlepší shodu, jako tomu bylo v případě SAD.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{assets/9_ssd}
+\end{figure}
+Ve srovnání s SAD se jedná o výpočetně náročnější, z důvodů nutnosti násobení, ale stále velice používanou metodu. Převážně vzhledem ke své jednoduchosti a stále relativně malé výpočetní náročnosti. NCC však ve většině případů produkuje přesnější a spolehlivější výsledky.
+\item \textbf{CC} vzájemná korelace (Cross-Correlation) --  představuje sumu párových násobků hodnot jednotlivých pixelů.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{assets/9_cc}
+\end{figure}
+V reálných aplikacích se však tato metoda většinou nepoužívá. Přestože je relativně výpočetně nenáročná, tak vzhledem k její nespolehlivosti v případech, kdy se v obrázku nachází větší změny v měřítku nebo rotaci mezi hledaným objektem a vstupním obrazem, se využívá spíše její normalizovaná varianta, a to i přes daleko větší výpočetní náročnost.
+
+\item \textbf{NCC} normalizovaná vzájemná korelace (Normalized Cross-Correlation) -- představuje jednu z nejpoužívanějších metod pro výpočet míry podobnosti mezi dvěma obrazy. Její největší výhodou oproti typické CC je větší odolnost vůči změnám v osvětlení scény.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{assets/9_ncc}
+\end{figure}
+V porovnání s metodami SAD, SSD a CC je NCC ve většině situací nejpřesnější, avšak výpočetně mnohem náročnější. Při jejím použití je, pro urychlení výpočtu koeficientů, doporučeno provést jednoduché předfiltrování zpracovávaných oken např. aplikací kontroly salience.
+\end{itemize}
+Všechny výše zmíněné metody bohužel trpí stejnými nedostatky. Při vyhledávání jsou výskyty vzorků ve vstupním obraze nuceny zachovat orientaci referenčního obrázku. Zároveň je velice neefektivní a časově náročné počítat korelaci mezi templatem a vstupním obrazem pro obrazy středních avyšších rozlišení.
+
 \subsection{Deep learning}
 \begin{itemize}
   \item Deep learning neboli \textbf{hluboké učení}, známé také jako hierarchické učení, je \textbf{sbírka algoritmů} používaných ve strojovém učení.
