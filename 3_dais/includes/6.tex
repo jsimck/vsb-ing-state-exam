@@ -1,0 +1,116 @@
+\subsection{Objektový datový model}
+\textbf{Objektový datový model} představuje data uložené v \textbf{objektové struktuře}. Jde většinou o \textbf{objektovou mezivrstvu mezi kódem a databázi}, do které se nasypou data, s kterými pak aplikace pracuje a nezatěžuje dotazy DB server.
+
+Objektové databázové systémy umožňují využití hostitelského objektového jazyka jako je třeba C++, Java, nebo Smalltalk přímo na objekty (skládají se z \textbf{atributů} a \textbf{metod}) "v databázi"; tj. místo věčného přeskakování mezi jazykem aplikace (např. C) a dotazovacím jazykem (např. SQL) \textbf{může programátor jednoduše používat objektový jazyk k vytváření a přístupu k metodám}. Krátce řečeno, ODBMS (Object Database Management System) jsou výborné pro manipulaci s daty. Pokud navíc opomeneme programátorskou stránku, dá se říct, že některé typy dotazů jsou efektivnější než v RDBMS díky dědičnosti a referencím. 
+
+\subsection{Objektově relační datový model}
+Objektově orientované DB $\rightarrow$ \textbf{nákladná migrace relačních dat}, proto vzniky \textbf{objektově-relační rysy }v relačních DB. (standart \textbf{SQL99} - víceméně se nedodržuje, musíme se bavit o konkrétním SŘBD - Oracle).
+
+ORDBMS využívají datový model tak, že "\textbf{přidávají objektovost do tabulek}". Všechny \textbf{trvalé informace jsou stále v tabulkách}, ale některé položky mohou mít \textbf{bohatší datovou strukturu}, nazývanou abstraktní datové typy (\textbf{ADT}). ADT je datový typ, který vznikne zkombinováním základních datových typů. Podpora ADT je atraktivní, protože operace a funkce asociované s novými datovými typy mohou být použity k indexování, ukládání a získávání záznamů na základě obsahu nového datového typu. OOSŘBD umožňují používat uživatelské typy, dědičnost, metody tříd, rozlišují pojmy instance a ukazatel na instanci. 
+
+\subsubsection{Prvky objektově-orientovaných SŘBD}
+\begin{itemize}
+\item Uživatelsky definované \textbf{datové typy} (s atributy i metodami).
+\item Uložené \textbf{procedury}, \textbf{triggery} (přenesení funkcionality na server).
+\item Kolekce (\textbf{pole} proměnné délky, \textbf{vnořené tabulky)}.
+\item Datový typ \textbf{ukazatel}, \textbf{reference} a \textbf{dereference}.
+\item \textbf{Dědičnost} -- \texttt{CREATE TYPE student\_type UNDER person\_type ( ... OVERRIDIND MEMBER FUNCTION show...}
+\end{itemize}
+
+\subsubsection{Výhody OOSŘBD}
+\begin{itemize}
+\item \textbf{Objektové typy} a jejich \textbf{metody} jsou \textbf{uloženy spolu s daty} v databází -> není nutné vytvářet podobné objekty v každé aplikaci.
+\item Na data je možné nahlížet z \textbf{relačního} i \textbf{objektového} \textbf{pohledu}.
+\item \textbf{Objekty} mohou \textbf{reprezentovat vazby}, kdy entita se skládá z jiných entit.
+\item \textbf{Metody} jsou \textbf{spouštěny na serveru} -- nedochází k neefektivnímu přenosu dat po síti, část výkonu přenesena na server.
+\item Programátor může přistupovat k množině objektů jako by se jednalo o jeden objekt.
+\end{itemize}
+
+\subsection{Typy tabulek a datové typy}
+\begin{itemize}
+\item \textbf{Objektové tabulky} -- obsahují pouze objekty, \textbf{každý záznam = objekt} (řádkový objekt).
+\begin{itemize}
+	\item \textbf{Objekty sdíleny dalšími objekty} by měly být uloženy v objektových tabulkách (mohou být \textbf{referencovány}).
+	\item Buď tabulka s \textbf{1 sloupcem objektů} (nad kterými lze provádět objektové metody), nebo tabulka obsahující atributy obj. dat. typu, nad kterou lze provádět relační operace (kompromis mezi O/RDM).
+\end{itemize}
+
+\item \textbf{Relační tabulky} -- Obsahují \textbf{objekty spolu s ostatními daty}, mluvíme o tzv. \textbf{sloupcovém objektu}.
+\end{itemize}
+
+\subsubsection{Objektově relační datové typy a metody}
+\begin{itemize}
+\item Data/atributy, operace/metody.
+\item Normální používání \textbf{objektových typů} při definici atributů -- \texttt{INSERT INTO contacts VALUES (person\_type(65, ‚John‘, ‚Smith‘), 2014-05-29)}
+\item \textbf{Objektový identifikátor (OID)} - identifikuje objekty objektových tabulek, není přístupné přímo, ale jen pomocí reference (typ \texttt{\textbf{REF}}). U relčaních tabulek s objekty OID nepotřebujeme.
+\item \textbf{Reference na objekt} - \texttt{\textbf{REF}}, ukazuje na objekty stejného typu nebo hodnota \texttt{NULL}, \textbf{nahrazuje FK (cizí klíč), asociace/vztahy}. Pokud tabulka obsahuje referenci na objekt jedné tabulky, lze využít \texttt{IO: SCOPE IS tabulka}.
+\item \textbf{Dereference} - \texttt{SELECT DEREF(e.manager) FROM emp\_person\_obj\_table e;}  \textbf{Implicitní dereference}: \texttt{SELECT e.name, e.manager.name FROM ...}.
+\end{itemize}
+
+\subsubsection{Kolekce a dědičnost}
+Používamé pro více hodnotové atributy nebo vazby M:N.
+\begin{itemize}
+\item \textbf{Pole} -- \texttt{VARRAY - variable-size array} - pole pevné délky s definovanou kapacitou aktuální velikostí. \texttt{DECLARE TYPE Calendar IS VARRAY(366) OF DATE}.
+\item \textbf{Zahnízděná (nested) tabulka} -- pole proměnné délky, záznamy ukládány bez ohledu na pořadí, ale po načtení z disku jsou záznamy očíslovány (nezachová hodnotu indexu, jen udrží pořadí).
+\item \textbf{Asociativní pole} -- jako hash table - obsahuje dvojice \texttt{<key, value>}, kde \texttt{key} = číslo/řetězec, klíče jsou indexovány (žádné sekvenční vyhledávání). Nelze uložit do tabulky, spíše pro malé množství záznamů.
+\item \textbf{Hierarchická dědičnost} -- v SŘBD můžeme vytvářet hierarchie typů pomocí dědičnosti. Tato vlastnost nám pak umožní využít všechny rysy objektově-orientovaných technologii, např. mnohotvárnost, polymorfismus.
+\end{itemize}
+
+\subsubsection{Typy metod}
+\begin{itemize}
+	\item \textbf{Členské}, \textbf{statické}, \textbf{konstruktor} (pro každý obj. typ definován implicitní).
+	\item \textbf{Volání:} \texttt{SELECT c.contact.getID() FROM contacts c;}
+\end{itemize}
+
+\begin{minted}{sql}
+-- Vytváření objektu s atributy a metodou
+CREATE TYPE person_type AS OBJECT (idno NUMBER, first_name VARCHAR2(20), 
+last_name VARCHAR2(25) , MAP MEMBER FUNCTION get_idno RETURN NUMBER);
+
+-- Definice těla metody
+CREATE TYPE BODY person_type AS MAP MEMBER FUNCTION get_idno RETURN 
+NUMBER IS BEGIN RETURN idno; -- vraci id END; END;
+
+-- Objektové datové typy lze používat při definici atributů podobně jako SQL datové typy
+CREATE TABLE contacts (contact person_type , contact_date DATE);
+
+-- Záznam vložíme pomocí SQL INSERT:
+INSERT INTO contacts VALUES (person_type (65, 'Verna' , 'Mills') , '24 Jun 2003') ;
+\end{minted}
+
+\subsection{XML (eXtensible Markup Language)}
+\begin{itemize}
+	\item Značkovací jazyk - W3C standard.
+	\item Data jsou uložena v xml souboru \textbf{formou stromu}.
+	\item \textbf{Logika} a \textbf{význam dat} je součástí xml souboru.
+	\item Skládá se z \textbf{hlavičky}, \textbf{kořenového elementu} (právě jeden), \textbf{vnořených elementů}, \textbf{atributů} a \textbf{textu} vnořeném uvnitř (ukládané informace).
+\end{itemize}
+
+\subsection{Dotazovací jazyky XML}
+Dotazovací jazyk XML by měl umět: vybrat požadované části dokumentů, transformovat je do požadované podoby, manipulovat s kolekcemi dokumentů a další vlastnosti specifické pro konkrétní problémovou doménu.
+
+\subsubsection{XPath}
+Jazyk používaný pro identifikaci uzlů v XML dokumentu. Pravděpodobně \textbf{nejdůležitějším rysem} jazyka XPath je \textbf{možnost vyjádření relativní cesty od uzlu k jinému uzlu či atributu}. Připomíná dotazovací jazyk SQL, zejména dík tomu, že na základě podmínky \textbf{vrátí jeden nebo množinu výrazů} (nebo žádný) odpovídající vstupní podmínce.
+
+\textbf{Příklad:} \texttt{//zbozi[@sleva >= @cena div 2]}, který najde všechny elementy zboží, jejichž atribut sleva má hodnotu nejméně poloviny hodnoty atributu cena
+
+\subsubsection{XQuery}
+Připravovaný standard W3C (verze 1.0). XQuery \textbf{je silně typovaný jazyk}. Vychází z jazyka Quilt, inspirace XPath 1.0 a pro výběr částí dokumentů používá XPath 2.0.
+\bigskip\\
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{itemize}
+		\item \texttt{\$} -- identifikuje proměnné,
+		\item \texttt{for} -- iterace přes něco,
+		\item \texttt{where} -- omezení výběru,
+		\item \texttt{order by} -- řadí,
+		\item \texttt{return} -- vrací výsledek,
+		\item \texttt{let} -- nastavuje hodnotu pro proměnnou.
+	\end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{minted}[tabsize=4,obeytabs]{xquery}
+for $x in doc("books.xml")/bookstore/book
+	where $x/price>30
+	order by $x/title
+	return $x/title
+	\end{minted}
+\end{minipage}
