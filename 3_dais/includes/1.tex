@@ -1,30 +1,76 @@
-\subsection*{Konceptuální model}
-Konceptuální model je jednoduchý popis entit a jejich vzájemných vztahů používaný v databázích. Jedná se o jakýsi prvotní jednoduchý návrh námi vytvářené databáze. Je kladen důraz na zobrazeních všech entit a jejich vztahů. Nezávislý na SŘBD.
+\subsection{Modelování databázových systémů}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{assets/modelovani.png}
+\end{figure}
 
-\subsubsection*{Základní pojmy}
+Databázový systém můžeme modelovat \textbf{třemi datovými modely}. Ve fázi analýzy se používá \textbf{konceptuální} \textbf{model}, který modeluje realitu na logickou úroveň databáze. Konceptuální model je výsledkem datové analýzy a je \textbf{nezávislý na konkrétní implementaci}. 
+
+V implementační fázi si pak pomáháme \textbf{databázovými} \textbf{modely}, kde modelujeme vazby a vztahy (realitu) na konkrétní tabulky (obecně SŘBD). Databázový model můžeme dále dělit na \textbf{relační} a \textbf{síťový} model. \textbf{Fyzickým uložením dat} na paměťové médium se zabývá \textbf{interní} \textbf{model}.
+
+\subsubsection{Základní pojmy}
 \begin{itemize}
-\item \textbf{Entita} - objekt reálného světa.
-\item \textbf{Atribut} - vlastnost entity (možné hodnoty jsou označeny jako doména atributu)
-\item \textbf{Entitní typ} - množina entit se stejnými atributy.
-\item \textbf{Vztah} - vztah mezi \textbf{2 entitními} typy.
-\item \textbf{Popis} entitních typů, jejich atributů a vztahů mezi nimi v rámci daného zadání.
-\item \textbf{E-R diagram} - grafické znázornění konceptuálního modelu, neexistuje standard (používá se např. crow foot notace).
-\item \textbf{Kardinalita vztahu} - Dělení vztahů podle počtu entit vstupujících do vztahu: 
-\begin{itemize}
-\item 1:1
-\item 1:N
-\item M:N
-\end{itemize}
+	\item \textbf{Entita} -- objekt reálného světa.
+	\item \textbf{Atribut} -- vlastnost entity (možné hodnoty jsou označeny jako doména atributu).
+	\item \textbf{Entitní typ} -- množina entit se stejnými atributy.
+	\item \textbf{Vztah} -- vztah mezi \textbf{dvěma entitními} typy.
+	\item \textbf{Kardinalita vztahu} -- dělení vztahů podle počtu entit vstupujících do vztahu -- 1:1, 1:N, M:N.
 \end{itemize}
 
-\subsection*{Funkční analýza}
+\subsection{Datová analýza a konceptuální model}
+Datová analýza \textbf{zkoumá objekty reálného světa, jejich vlastnosti a vztahy}. Zabývá se strukturou obsahové části systému (\textbf{strukturou databaze}). Výsledkem datové analýzy je \textbf{konceptuální model}. V rámci datové analýzy zpracováváme zadání (specifikaci požadavků na IS):
+
 \begin{itemize}
-\item Cílem je popsat vytvářený systém jako „černou skříňku“, definovat její \textbf{vnější chování} a strukturalizovat \textbf{okolí systému}, které se systémem komunikuje. \textbf{Popsat všechny funkce, které se budou s daty provádět.}
-\item \textbf{Vnitřní:} rozpracované algoritmy pro jednotlivé akce.
-\item \textbf{Vnější:} náhled na strukturu a hierarchii funkcí.
-\item Úkolem je získat od zadavatele\textbf{ seznam všech funkcí}, které bude od IS požadovat.
-\item Sestaví se tabulka se sloupci událost a reakce, do ní se formou krátkých textů zapisují všechny možné vnější události, podněty působící na systém a jim odpovídající reakce systému. 
+\item podtrhneme \textbf{podstatná jména} = identifikujeme \textbf{objekty},
+\item podtrhneme \textbf{slovesa} = identifikujeme \textbf{vazby} mezi objekty,
+\item najdeme \textbf{vlastnosti} a \textbf{stavy} nalezených objektu = identifikujeme \textbf{atributy}.
 \end{itemize}
+
+Z takto získaných informací sestavíme konceptuální model. \textbf{Konceptuální model} je jednoduchý \textbf{popis entit a jejich vzájemných vztahů}. Jedná se o jakýsi prvotní jednoduchý návrh námi vytvářené databáze. Je kladen důraz na zobrazeních všech entit, jejich vztahů a je \textbf{nezávislý} na SŘBD. Skládá z:
+\begin{itemize}
+\item \textbf{ER Diagram}, lineární zápis \textbf{entit}, lineární zápis \textbf{vztahů}, \textbf{datový slovník}, popis dalších IO (\textbf{integritních omezení}).
+\end{itemize}
+
+\subsubsection{ER (Entity-Relationship) Diagram}
+Grafické znázornění \textbf{konceptuálního modelu} (objektů a vztahů mezi nimi). Může mít několik podob v závislosti na používaném prostředí a detailnosti s jakou jej potřebujeme vypracovat. \textbf{Atributy} můžou být v grafu znázorněny \textbf{ovály} spojenými s \textbf{objekty} (\textbf{obdélníky}), \textbf{vazba} 1:N může být znázorněna ,,hráběmi'' místo N, či celý diagram se může podobat třídnímu diagramu s atributy vepsanými do objektu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{assets/erdiagram.png}
+\end{figure}
+
+\subsubsection{Lineární zápis entit a vztahů}
+Lineárním zápisem \textbf{popisujeme objekty}, jejich vlastnosti a vztahy \textbf{z pohledu implementačního}. Lineárním zápisem entit jsou v podstatě definovány \textbf{tabulky a jejich atributy} včetně \underline{\textbf{primárních}} a \textbf{\textit{cizích klíčů}}. 
+
+\begin{itemize}
+\item Příklad lineárního zápisu entity: \texttt{Pes (\underline{IDPes}, jmeno, pohlavi, vek, CRasa, \textit{IDUtulek})}.
+\item Příklad lineárního zápisu vztahů: \texttt{NABIZI (Útulek, Pes) 1:N}.
+\end{itemize}
+
+\subsubsection{Datový slovník}
+\textbf{Podrobný rozpis jednotlivých atributů}. Tabulka obsahuje typ atributů, velikost, integritní omezení, atd. 
+
+\textbf{Integritní omezení} obsahují další specifikace atributů, které nejsou dány typem a délkou. Nejčastěji se týkají formátu atributu (podmínka v jakém má být formátu) -- např: login se skládá z třech čísel a třech písmen, nebo rodné číslo je složeno z data narození, apod.
+
+\textbf{Další integritní omezení} -- konceptuální schéma obsahuje také soupis dalších IO, které se týkají entit (tabulek) a vazeb mezi nimi. Může jít například o omezení vícenásobné vazby, vyjádření hierarchie mezi entitama, apod. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		\textbf{Pes} & \textbf{Typ} & \textbf{Délka} & \textbf{Klíč} & \textbf{NOT NULL} & \textbf{IO}                      \\ \hline
+		IDPes        & int          & 8              & primarni      & ano               & pravidla pro tvar čipového čísla \\ \hline
+		jmeno        & varchar      & 50             &               &                   &                                  \\ \hline
+		vek          & int          & 2              &               &                   &                                  \\ \hline
+		CRasa        & int          & 2              & sekundarni    &                   &                                  \\ \hline
+	\end{tabular}
+\caption{Datový slovník pro tabulku Pes.}
+\end{table}
+
+\subsection{Funkční analýza}
+Zatímco datová analýza se zabývá strukturou obsahové části systému (strukturou databaze), \textbf{funkční analýza řeší funkce systému}. Funkční analýza tedy vyhodnocuje manipulaci s daty v systému. Skrze \textbf{DFD} (Data Flow Diagramy) \textbf{analyzuje toky dat}, \textbf{základní funkce systému a aktéry}, kteří se systémem pracují. Výstupem jsou pak \textbf{minispecifikace} -- podrobné analýzy elementárních funkcí systému. 
+
+Cílem je popsat vytvářený systém jako „černou skříňku“, definovat její \textbf{vnější chování} a strukturalizovat \textbf{okolí systému}, které se systémem komunikuje. \textbf{Popsat všechny funkce, které se budou s daty provádět.}
 
 \subsubsection*{Otázky na požadavky}
 \begin{itemize}
@@ -39,42 +85,42 @@ Konceptuální model je jednoduchý popis entit a jejich vzájemných vztahů po
 
 \subsubsection*{Nefunkční požadavky}
 \begin{itemize}
-\item Požadavky na \textbf{výsledný program}
+\item Požadavky na \textbf{výsledný program}.
 \item \textbf{Vnější požadavky}: ostatní nefunkční implementační požadavky, použití \textbf{standardů}, \textbf{cenová} omezení, \textbf{časové} požadavky.
 \end{itemize}
 
-\subsubsection*{Diagram datových toků (DFD)}
+\subsubsection{Diagram datových toků (DFD)}
+DFD je grafický nástroj pro \textbf{modelování funkcí a vztahů v systému}. Znázorňuje nejen procesy (funkce) a datové toky, ke kterým v systému dochází, ale definuje také hlavní aktéry a jejích omezení nad systémem. DFD diagram obsahuje tyto prvky: \textbf{aktér} (obdélník mimo systém), \textbf{proces} (kruh uvnitř systému), \textbf{datové toky} (šipky) a \textbf{paměť} (viz. obr. Akce a Člen).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{assets/dfd.png}
+\end{figure}
+
+DFD diagramy lze zakreslit v různých úrovních. Např. proces Evidence akcí na obrázku lze dále rozkreslit dalším DFD, obsahující procesy vytvoření a editace akce. DFD nejvyšší úrovně se nazývá \textbf{kontextový diagram}. Znázorňuje pouze práci aktérů se systémem jako celkem. Systém v kontextovém diagramu vystupuje jako černá skříňka a v diagramu tedy nejsou použity prvky procesu a paměti.\textbf{Hlavní znaky DFD:}
+
 \begin{itemize}
-\item Několik úrovní podrobnosti.
-\item Definuje\textbf{ hranici systému}.
+\item Má několik úrovní podrobnosti.
+\item Definuje \textbf{hranici systému}.
 \item Definuje \textbf{všechny akce}, které mezi systémem a jeho okolím probíhají.
 \end{itemize}
 
-\subsubsection*{Minispecifikace = algoritmy elementárních funkcí}
+\subsubsection{Minispecifikace = algoritmy elementárních funkcí}
 \begin{itemize}
-\item Pro každou nerozložitelnou funkci z DFD \textbf{existuje minispecifikace}.
-\item Popisuje postup, jak jsou vstupní \textbf{data transformována na výstupní}.
-\item Popisuje, co \textbf{funkce znamená} věcně, ne, jak se to spočítá.
-\item Používá se \textbf{přirozený jazyk} s omezeným množstvím jasně definovaných pojmů.
-\item Musí být \textbf{srozumitelná} analytikovi, uživateli i programátorovi.
+\item Popisuje logiku každé z funkcí \textbf{poslední úrovně DFD}.
+\item Každému \textbf{elementárnímu (nerozložitelnému) procesu} z poslední úrovně DFD odpovídá \textbf{jedna minispecifikace}.
+\item Popisuje postup, jak jsou \textbf{vstupní data transformována na výstupní}.
+\item Popisuje, co \textbf{funkce znamená}, ne jak se to spočítá.
+\item Používá se \textbf{přirozený jazyk} s omezeným množstvím jasně definovaných pojmů, aby byla \textbf{srozumitelná} jak pro analytika, tak i uživatele a programátorovi.
 \end{itemize}
 
-
-\subsection*{Datová analýza}
-\begin{itemize}
-\item Zabývá strukturou obsahové části systému (strukturou databaze).
-\item Datový model, obsahuje již samotné atributy - \textbf{Závislý na SŘBD.}
-\item \textbf{Popis struktury dat IS}, jejich \textbf{vazby}, uchovávané vlastnosti a možné hodnoty těchto vlastností.
-\item \textbf{Využívá se}: lineární zápis entit a atributů, ER diagram, {Konceptuální} schéma, {datový slovník} (tabulky atributů).
-\end{itemize}
-
-
-\subsection*{Problémy agendového zpracování}
-\begin{itemize}
-\item\textbf{Redundance}: některé informace ve více souborech opakují, jsou redundantní. Redundance je zdrojem mnoha dalších problémů.
-\item\textbf{Konzistence}: vzájemná \textbf{shoda údajů}. Postupem času - vlivem nedostatečné kontroly v programech se stejné hodnoty na různých místech v datových souborech, začnou rozcházet.
-\item\textbf{Integrita}: data aktuální, odrážejí skutečnost z reálného světa. Problémem tedy je zabezpečit, aby chybou či nedůsledností uživatele nebyla porušena integrita a konzistence dat.
-\item\textbf{Izolovanost dat}:  data roztroušena v různých souborech, soubory mohou být různě organizovány, data různě formátována. To komplikuje tvorbu nových aplikačních programů a možnost realizovat vazby mezi datovými strukturami.
-\item\textbf{Současný přístup více uživatelů}: větší systémy vyžadují současný přístup k datům více uživatelů. Pak je nutné, aby programy vzájemně spolupracovaly, jejich činnosti byly koordinovány.
-\item\textbf{Ochrana proti zneužití}: při zpracování důvěrných či tajných dat není přípustné, aby měl kdokoliv přístup ke všem informacím. Při klasickém zpracování však musí mít programátor aplikačních programů k dispozici tolik podrobností, že to ochranu dat prakticky znemožňuje.
-\end{itemize}
+\smallskip
+\begin{minted}[tabsize=4,obeytabs]{sql}
+IF všechny výrobky v objednávce jsou rezervovány,
+THEN pošli objednávku k dalšímu zpracování oddělení prodeje.
+OTHERWISE,
+	FOR EVERY nezarezervovaný výrobek v objednávce DO:
+		Zkus najít volný výrobek a rezervuj ho.
+		IF výrobek není na skladě,
+		THEN informuj správce.
+\end{minted}
