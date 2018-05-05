@@ -55,8 +55,8 @@ pro vstup a výstup. Rozdíl mezi znakově a bytově orientovanými datovými pr
 4. ~~Procedurální rozšíření SQL, PL/SQL, T-SQL, triggery, funkce, procedury, kurzory, hromadné operace.~~
 5. ~~Základní fyzická implementace databázových systémů: tabulky a indexy; plán vykonávání dotazů.~~
 6. ~~Objektově‐relační datový model a XML datový model: principy, dotazovací jazyky.~~
-7. Datová vrstva informačního systému; existující API, rámce a implementace, bezpečnost; objektově-relační mapování.
-8. Distribuované SŘBD, fragmentace a replikace.
+7. ~~Datová vrstva informačního systému; existující API, rámce a implementace, bezpečnost; objektově-relační mapování.~~
+8. ~~Distribuované SŘBD, fragmentace a replikace.~~
 
 ### IV. Počítače a sítě
 1. Architektura univerzálních procesorů. Principy urychlování činnosti procesorů.
