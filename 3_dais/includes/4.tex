@@ -1,0 +1,225 @@
+\subsection{Procedurální rozšíření SQL}
+Závislé na SŘBD:
+\begin{itemize}
+\item \textbf{Transact-SQL }pro Sybase a MSSQL
+\item \textbf{PL/pgSQL} pro PostgreSQL
+\item \textbf{PL/SQL} pro Oracle
+\item \textbf{SQL PL} pro DB2
+\end{itemize}
+
+\subsection{PL/SQL}
+\begin{itemize}
+\item Založeno na jazyku ADA.
+\item Kód uložen a \textbf{prováděn v SŘBD}, může být sdílen více aplikacemi.
+\item \textbf{Nezávislý na aplikační platformě} (pouze na SŘBD).
+\end{itemize}
+
+\subsubsection{Proměnné, procedury a funkce}
+\begin{itemize}
+\item \textbf{Proměnné}
+\begin{itemize}
+\item Proměnné můžeme rozdělit do několika skupin, dle různých kritérií, nejčastějším dělením je podle datového typu na číselné \textbf{číselné} (NUMBER), \textbf{stringové} (CHAR, VARCHAR2), \textbf{datumové} (DATE, TIMESTAMP).
+\item Definujeme proměnné \texttt{part\_no NUMBER(4); in\_stock BOOLEAN;}
+\item Přiřazení do proměnných je pomocí operátoru \textbf{\texttt{:=}}.
+\end{itemize}
+\textbf{Anonymní procedura}
+\begin{itemize}
+\item \textbf{Nepojmenované} procedury které \textbf{nejde volat}.
+\item Mohou být uloženy v souboru nebo spuštěny přímo z konzole.
+\item Jsou pomalejší než pojmenované procedury, protože \textbf{nemohou být předkompilovány}.
+\end{itemize}
+\textbf{Pojmenované procedury}
+\begin{itemize}
+\item Obsahují \textbf{hlavičku se jménem a parametry}. Díky tomu se dají volat z jiných procedur či triggrů nebo spuštěny příkazem \textbf{EXECUTE}.
+\item Jelikož jsou \textbf{kompilovány} jen jednou, jsou rychlejší než anonymní.
+\item \texttt{CREATE [OR REPLACE] PROCEDURE jmeno\_procedury [( jmeno\_parametru [mod] datovy\_typ , ... )] IS|AS definice lokálních proměnných BEGIN tělo procedury END [jmeno\_procedury]}
+\end{itemize}
+\item\textbf{Funkce}
+\begin{itemize}
+\item Na rozdíl od procedury \textbf{vrací hodnotu}. Kromě standardních funkcí (TO.CHAR, TO.DATE, SUBSTR, apod.) si můžeme definovat \textbf{vlastní funkce}.
+\item \texttt{CREATE [OR REPLACE] FUNCTION jmeno\_funkce [( jmeno\_parametru [mod] datovy\_typ , ... )] RETURN navratovy\_datovy\_typ IS |AS definice lokálních proměnných BEGIN tělo procedury END [jmeno\_procedury]}
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Dynamické statické SQL}
+\begin{itemize}
+\item \textbf{Statické PL/SQL} - klasické procedury, které mají vázané proměnné.
+\item \textbf{Dynamické PL/SQL} - kód SQL příkazu je vytvářen dynamicky za běhu - vytvoření textového řetězce a jeho spuštění příkazem \textbf{\texttt{EXECUTE IMMEDIATE}}.
+\item \textbf{Výjimky}
+\begin{itemize}
+\item Vznikají ručně i ze systému.
+\item Zpracování v bloku \texttt{\textbf{EXCEPTION}}
+\item Pro ruční vyvolání je nutné ji deklarovat (DECLARE vyjimka EXCEPTION;) a vyhodit (\textbf{\texttt{RAISE}} vyjimka)
+\end{itemize}
+\item \textbf{Podmínky} - \texttt{IF podminka1 THEN příkazy [ELSIF podminka2 THEN příkazy ] [ELSE příkazy ] END IF ;}
+\item \textbf{Cykly}
+\begin{itemize}
+\item \textbf{do while} - \texttt{LOOP příkazy cyklu [EXIT; | EXIT WHEN podminka ;] END LOOP;}
+\item \textbf{while do} - \texttt{WHILE podminka LOOP příkazy cyklu END LOOP;}
+\item \textbf{for} - \texttt{FOR jmeno\_promenne IN [REVERSE] value1 .. value2 LOOP příkazy cyklu END LOOP;}
+\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Kurzory, triggery, hromadné operace}
+\begin{itemize}
+\item\textbf{Triggery}
+\begin{itemize}
+\item Kód spouštěný v reakci na \textbf{událost} (DML, DDL, systémové eventy).
+\item Pokud se pokusíme v triggeru číst či modifikovat stejnou tabulku dostaneme \textbf{mutating table error}.
+\item \texttt{CREATE [OR REPLACE ] TRIGGER jmeno\_triggeru {BEFORE | AFTER | INSTEAD OF } {INSERT [OR] | UPDATE [OR] | DELETE} [OF jmeno\_sloupce] ON jmeno\_tabulky [REFERENCING OLD AS stara\_hodnota NEW AS nova\_hodnota] [FOR EACH ROW [WHEN (podminka )]] BEGIN příkazy END;}
+\end{itemize}
+\end{itemize}
+
+
+
+\begin{itemize}
+\item\textbf{Kurzory}
+\begin{itemize}
+\item Kurzor je ukazatel na řádek \textbf{víceřádkového výběru}. Je třeba jej v programu deklarovat pokud budeme zpracovávat víceřádkové výběry. Kurzorem mohu pohybovat a tak se dostanu na další řádky výběru. Jsou dva typy kurzoru:
+\begin{itemize}
+\item \textbf{implicitní} - vytváří se \textbf{automaticky} po provedení příkazu \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}.
+\item \textbf{explicitní} - \textbf{ručně vytvořený kurzor}. Vytváří se nejčastěji ve spojením s příkazem \texttt{SELECT}.
+\end{itemize}
+\item \textbf{Příkazy pro práci s kurzorem:}
+\begin{itemize}
+\item \texttt{CURSOR kurzor IS select;} - vytvoření kurzoru.
+\item \texttt{OPEN kurzor} - otevře kurzor, tedy nastaví ho na první řádek.
+\item \texttt{FETCH kurzor INTO promena} - příkaz pro pohyb kurzoru. Načte aktuální záznam do proměnné a posune se na další záznam.
+\item \texttt{CLOSE kurzor} - uzavře kurzor.
+\end{itemize}
+\end{itemize}
+
+
+\item\textbf{Vázané proměnné}
+\begin{itemize}
+\item SŘBD kontroluje \textbf{jedinečnost dotazu}, pokud už byl dotaz v minulosti proveden, použije se \textbf{dříve použitý plán} dotazu místo nového vytváření plánu.
+\item Vázané proměnné umožňují \textbf{parametrizaci hodnot v dotazu}, odpadá tedy opětovné vytváření plánu pro stejný dotaz s jinou hodnotou.
+\item Lze používat i v dynamickém PL/SQL (pomocí \textbf{USING}).
+\item Použití i při voláni z aplikace (podpora v C\# i Java).
+\end{itemize}
+
+
+
+\item\textbf{Hromadné operace}
+\begin{itemize}
+\item Snížení režie na zotavení (zápis do logu) a aktualizace DB (datových struktur). Výsledkem je rychlejší vkládání záznamů do DB.
+\item Lze použít pro statické i dynamické SQL.
+\item \textbf{\texttt{BULK COLLECT}}
+\begin{itemize}
+\item \textbf{Hromadné načtení} (navázání vstupní kolekce s PL/SQL enginem).
+\item \texttt{BULK COLLECT INTO collection\_name[, collection\_name]}
+\end{itemize}
+
+\item \textbf{\texttt{FORALL}}
+\begin{itemize}
+\item Hromadná \textbf{operace} (navázání vstupní kolekce před posláním do SQL enginu)
+\item \texttt{FORALL index IN lower\_bound..upper\_bound [INSERT, UPDATE nebo DELETE];}
+\end{itemize}
+\end{itemize}
+
+
+
+\item\textbf{Balíky}
+\begin{itemize}
+\item Obdoba kníhoven v programovacích jazycích.
+\item Specifikace balíku a následně tělo. 
+\end{itemize}
+
+
+\end{itemize}
+
+
+
+
+
+
+\subsection{T-SQL (Transact-SQL)}
+\subsubsection{Proměnné, procedury a funkce}
+\begin{itemize}
+\item \textbf{Proměnné}
+\begin{itemize}
+\item \textbf{Deklarace} pomocí \texttt{DECLARE @TMP INT}.
+\item \textbf{Inicializace} pomocí \texttt{SET} nebo \texttt{SELECT}.
+\end{itemize}
+
+\item \textbf{Podmínky}
+\begin{itemize}
+\item \texttt{IF <boolean condition > <statement> ELSE <statement>}
+\item Více příkazů v jedné větvi musíme obalit do \texttt{BEGIN/END}.
+\end{itemize}
+
+
+\item \textbf{Cykly}
+\begin{itemize}
+\item \texttt{WHILE <Boolean expression> <code block>}
+\end{itemize}
+
+
+\item \textbf{Transakce}
+\begin{itemize}
+\item \textbf{Začátek} - \texttt{BEGIN TRANSACTION <nazev\_transakce>}
+\item \textbf{Konec} - \texttt{ROLLBACK nebo COMMIT}
+\item \textbf{Nastavení úrovně izolace} - \texttt{SET TRANSACTION ISOLATION LEVEL <level>}
+\end{itemize}
+
+
+\item \textbf{Výjimky}
+\begin{itemize}
+\item Bloky try/catch (BEGIN TRY/END TRY a BEGIN CATCH/END CATCH).
+\end{itemize}
+
+
+\item \textbf{Uložené procedury}
+\begin{itemize}
+\item Uloženy v SŘBD.
+\item Předkompilovány, tudíž jsou rychlejší.
+\item \texttt{CREATE PROC[EDURE] procedure\_name [;number] [{ @parameter data\_type } [VARYING] [= default ] [OUTPUT] ] [ , . . . ] [ WITH { RECOMPILE | ENCRYPTION | RECOMPILE, ENCRYPTION } ] [FOR REPLICATION] AS sql\_statement}
+\end{itemize}
+
+
+\item \textbf{Uložené funkce}
+\begin{itemize}
+\item Není možné použít try/catch, DML atd.
+\item Musí vracet hodnotu.
+\item \texttt{CREATE FUNCTION [ schema\_name. ] function\_name ( [ { @parameter\_name [ AS ][ type\_schema\_name .] parameter\_data\_type [ = default ] [ READONLY ] } [ ,...n ] ] ) RETURNS return\_data\_type [ WITH <function\_option > [ ,...n ] ] [ AS ] BEGIN function\_body RETURN scalar\_expression END [ ; ]}
+\end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{Kurzory, triggery, dynamické SQL}
+\begin{itemize}
+\item \textbf{Kurzory}
+\begin{itemize}
+\item \texttt{DECLARE cursor\_name CURSOR FOR select\_statement }
+\item \textbf{Musíme použít}: \texttt{OPEN, FETCH, CLOSE, DEALLOCATE }
+\item Pro testování prázdného kurzoru používáme \texttt{@@FETCH\_STATUS}
+\end{itemize}
+
+\item \textbf{Trigger}
+\begin{itemize}
+\item \texttt{CREATE TRIGGER [ schema\_name . ] trigger\_name ON { table | view } [ WITH <dml\_trigger\_option > [ ,...n ] ] { FOR | AFTER | INSTEAD OF } { [ INSERT ] [ , ] [ UPDATE ] [ , ] [ DELETE ] } [ WITH APPEND ] [ NOT FOR REPLICATION ] AS { sql\_statement [ ; ] [ ,...n ] | EXTERNAL NAME <method specifier [ ; ] > }}
+\end{itemize}
+
+\item \textbf{Dynamické SQL}
+\begin{itemize}
+\item Podobné PL/SQL, pomocí příkazu \textbf{\texttt{sp\_executesql}}
+\item \texttt{sp\_executesql [@stmt =] stmt [ { , [@params =] N’@parameter\_name data\_type [ ,... n] ’ } { , [@param1 =] ’value1 ’ [ ,... n] } ]}
+\end{itemize}
+\end{itemize}
+
+
+
+\subsection{Rozdíly PL/SQL vs T-SQL}
+\begin{itemize}
+\item \textbf{T-SQL} \textbf{neposkytuje operátory} jako \texttt{\%TYPE} a \texttt{\%ROWTYPE} pro získání datových typů existujících záznamů.
+\item \textbf{T-SQL} \textbf{nepodporuje} \texttt{CREATE OR REPLACE PROCEDURE}, což nás nutí k tomuto zápisu: \texttt{/*CREATE*/ ALTER PROCEDURE}.
+\item \textbf{T-SQL} podstatně \textbf{omezuje konstrukce}, které můžeme využívat ve funkcích.
+\item V \textbf{T-SQL} musím při práci s kurzory používat \texttt{OPEN}, \texttt{FETCH}, \texttt{CLOSE}, \texttt{DEALLOCATE}.
+\item \textbf{T-SQL} nás nutí k dvojitému \texttt{FETCH} u kurzorů. 
+\item V \textbf{T-SQL} musíme definovat u parametrů procedur a funkcí \textbf{délku datového typu} (pokud se u datového typu udává).
+\item V \textbf{T-SQL} musíme více příkazů v jedné větvi obalit do \texttt{BEGIN/END}.
+\end{itemize}
+
+
