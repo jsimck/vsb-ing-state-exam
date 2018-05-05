@@ -1,3 +1,19 @@
+\subsection*{Model ISO/OSI}
+Počítačové sítě vyvíjelo více firem, zpočátku to byly uzavřené a nekompatibilní systémy. Hlavním účelem sítí je však vzájemné propojování, a tak vyvstala potřeba stanovit pravidla pro přenos dat v sítích a mezi nimi. \textbf{Mezinárodní ústav pro normalizaci ISO} (International Standards Organization) vypracoval tzv. referenční model \textbf{OSI (Open Systems Interconnection)}, který rozdělil práci v síti do \textbf{7 vzájemně spolupracujících vrstev}.
+\\\\
+Jak již bylo řečeno, model ISO/OSI rozděluje síťovou práci na vrstvy. Princip spočívá v tom, že vyšší vrstva převezme úkol od podřízené vrstvy, zpracuje jej a předá vrstvě nadřízené. Vertikální spolupráce mezi vrstvami (nadřízená s podřízenou) je \textbf{věcí výrobce} sítě. Model \textbf{ISO/OSI doporučuje}, jak mají vrstvy \textbf{spolupracovat horizontálně} – dvě stejné vrstvy modelu mezi různými sítěmi (či síťové prvky různých výrobců) musejí spolupracovat. Model je důležitý především pro výrobce síťových komponent. V praktické práci se sítí jej moc nevyužijeme. Umožňuje však pochopit principy práce síťových prvků a zároveň patří k základní terminologii sítí.
+
+\begin{itemize}
+\item\textbf{Aplikační vrstva }- Je \textbf{určitou aplikací} (např. oknem v programu) zpřístupňující uživatelům síťové služby. Nabízí a zajišťuje přístup k souborům (na jiných počítačích), vzdálený přístup k tiskárnám, správu sítě, elektronické zprávy (včetně e-mailu)…
+\item\textbf{Prezentační vrstva} - Má na starosti \textbf{konverzi dat}, přenášená data mohou totiž být v různých sítích různě kódována. Tato vrstva zajišťuje sjednocení formy vzájemně přenášených údajů. Dále data komprimuje, případně šifruje… V praxi často splývá s relační vrstvou.
+\item \textbf{Relační vrstva} - \textbf{Navazuje} a po skončení přenosu \textbf{ukončuje} \textbf{spojení}. Může provádět \textbf{ověřování} uživatelů, \textbf{zabezpečení} přístupu k zařízením…
+\item\textbf{Transportní vrstva} - Tato vrstva\textbf{ zajišťuje přenos dat mezi koncovými uzly}. Jejím účelem je poskytnout takovou kvalitu přenosu, jakou požadují vyšší vrstvy. Vrstva nabízí spojově (TCP) a nespojově orientované (UDP) protokoly. (Platí pouze pro \textbf{TCP/IP})
+\item\textbf{Síťová vrstva }- Je zodpovědná za spojení a \textbf{směrování mezi dvěma počítači nebo celými sítěmi} (tj. uzly), mezi nimiž neexistuje přímé spojení. Stará se o síťové adresování.
+\item \textbf{Linková (spojová) vrstva }- Poskytuje \textbf{spojení mezi dvěma sousedními systémy}. \textbf{Uspořádává data} z fyzické vrstvy do logických celků známých jako \textbf{rámce} (frames). Seřazuje přenášené rámce, stará se o nastavení parametrů přenosu linky, oznamuje neopravitelné chyby. Formátuje fyzické rámce, opatřuje je fyzickou adresou a poskytuje synchronizaci pro fyzickou vrstvu.
+\item\textbf{Fyzická vrstva }- Fyzická vrstva definuje všechny elektrické a fyzikální vlastnosti zařízení. Jakým signálem je reprezentována logická jednička, jak přijímací stanice rozezná začátek bitu, jaký je tvar konektoru, k čemu je který vodič v kabelu použit.
+\end{itemize}
+
+
 Rodina protokolů TCP/IP (Transmission Control Protocol/Internet Protocol) obsahuje \textbf{sadu protokolů} pro komunikaci v počítačové síti a je hlavním protokolem celosvětové sítě \textbf{Internet}. Komunikační protokol je množina pravidel, která určují syntaxi a význam jednotlivých zpráv při komunikaci. Architektura TCP/IP je členěna do čtyř vrstev (na rozdíl od referenčního modelu OSI se sedmi vrstvami):
 
 \begin{enumerate}
