@@ -1,27 +1,24 @@
 \subsection{Transakce}
+\textbf{Logická (nedělitelná, atomická) jednotka práce s databází}, která musí proběhnout buď celá, nebo (v případě že je přerušena) obnovit původní stav databáze a spustit se znovu. Začíná operací \textbf{BEGIN TRANSACTION} a končí provedením operací \textbf{COMMIT} nebo \textbf{ROLLBACK}.
 \begin{itemize}
-\item \textbf{Logická (nedělitelná, atomická) jednotka práce s databází}, která začíná operací \textbf{BEGIN TRANSACTION} a končí provedením operací \textbf{COMMIT} nebo \textbf{ROLLBACK}.
 \item Obecně zahrnuje posloupnost operací.
-\item Úkolem převést \textbf{korektní stav databáze} na jiný korektní stav.
+\item Jejím úkolem je převést \textbf{korektní stav databáze} na jiný korektní stav.
 \item O řízení se stará \textbf{manager transakcí} nebo \textbf{monitor transakčního zpracování}.
-\item \textbf{Commit:}
-\begin{itemize}
-\item Transakce doběhla úspěšně a změny mohou být \textbf{trvale uloženy}, zámky a adresace uvolněny (kromě WITH HOLD).
-\item Zavádí \textbf{potvrzovací bod}.
-\item Odpovídá úspěšnému ukončení logické jednotky práce a \textbf{označuje korektní stav DB}.
-\end{itemize}
-\item \textbf{Rollback:}
-\begin{itemize}
-\item Označuje, že databáze může být v \textbf{nekorektním stavu} a všechny změny transakce musí být \textbf{zrušeny}.
-\end{itemize}
 \item Operace transakce jsou nejprve zaznamenávány do\textbf{ logu}.
 \item Transakce nemohou být vnořovány.
-\item \textbf{Záchranné body:}
+\end{itemize}
+
+\subsubsection{COMMIT}
 \begin{itemize}
-\item Umožní \textbf{rollback} do zácharného bodu v rámci transakce. Nedochází ke zrušení celé transakce.
-\item Existuje pouze v kontextu transakce.
+	\item Transakce doběhla úspěšně a změny mohou být \textbf{trvale uloženy}, zámky a adresace uvolněny (kromě WITH HOLD).
+	\item Zavádí \textbf{potvrzovací bod}.
+	\item Odpovídá úspěšnému ukončení logické jednotky práce a \textbf{označuje korektní stav DB}.
 \end{itemize}
+\subsubsection{ROLLBACK}
+\begin{itemize}
+	\item Označuje, že databáze může být v \textbf{nekorektním stavu} a všechny změny transakce musí být \textbf{zrušeny}.
 \end{itemize}
+
 
 \subsection{Zotavení}
 \begin{itemize}
@@ -29,7 +26,7 @@
 \item Výsledkem musí být \textbf{korektní stav DB}.
 \item Využívají se\textbf{ skryté redundantní} informace.
 \item Jednotkou zotavení je \textbf{transakce}.
-\item Všechny změny jsou zapisovány do logu \textbf{před zápisem změn do DB} => \textbf{pravidlo dopředného zápisu do logu}.
+\item Všechny změny jsou zapisovány do logu před zápisem změn do DB => \textbf{pravidlo dopředného zápisu do logu}.
 \item Do logu se zapisuje \textbf{sekvenčně}, proto poskytuje \textbf{vyšší výkon} než přímý zápis dat.
 \end{itemize}
 
@@ -46,8 +43,7 @@
 \subsubsection{Průběh zotavení}
 Základním problémem vzniklým při systémové chybě je ztráta obsahu hlavní paměti, tedy ztráta obsahu vyrovnávací paměti SŘBD. Přesný stav transakce přerušené chybou není znám a transakce musí být \textbf{zrušena} (\textbf{UNDO}). Někdy je transakce úspěšně dokončena, ovšem změny, nejsou přeneseny z vyrovnávací paměti na disk. V tomto případě musí být transakce po restartu systému přepracována (\textbf{REDO}). \textbf{Typy zotavení}: 
 
-\begin{itemize}
-\item Zotavení \textbf{Odloženou aktualizací (deferred update, NO-UNDO/REDO)}
+\subsubsection*{Odloženou aktualizací (deferred update, NO-UNDO/REDO)}
 \begin{itemize}
 \item Neprovádí aktualizace databáze na disk dokud transakce nedosáhne\textbf{ potvrzovacího bodu}. Všechny změny jsou v paměťovém bufferu.
 \item Jakmile transakce dosáhne potvrzovacího bodu se \textbf{nejprve zapíše vše do logu} a pak do DB (\textbf{pravidlo dopředného zápisu do logu}).
@@ -56,7 +52,7 @@ Základním problémem vzniklým při systémové chybě je ztráta obsahu hlavn
 \item Do logu jsou v případě odložené aktualizace zapsány nové hodnoty (kvůli REDO).
 \item Minimální I/O operace, používá se pouze pro \textbf{krátké} a \textbf{nenáročné transakce} - \textbf{hrozí přetečení bufferu}.
 \end{itemize}
-\item\textbf{Okamžitou aktualizací (immediate update, UNDO/NO-REDO)}
+\subsubsection*{Okamžitou aktualizací (immediate update, UNDO/NO-REDO)}
 \begin{itemize}
 \item \textbf{Může provádět aktualizace DB} než transakce dosáhne potvrzovacího bodu.
 \item Operace jsou zapsány do logu a poté je aktualizována DB (pravidlo dopředného zápisu do logu).
@@ -64,7 +60,7 @@ Základním problémem vzniklým při systémové chybě je ztráta obsahu hlavn
 \item Do logu se zapisují \textbf{původní hodnoty}, což umožní systému provést UNDO.
 \item \textbf{Velká zátěž disku}.
 \end{itemize}
-\item\textbf{Kombinovanou aktualizací (UNDO/REDO)}
+\subsubsection*{Kombinovanou aktualizací (UNDO/REDO)}
 \begin{itemize}
 \item Používaná v praxi. Využívá obou operací v kombinaci s technikou kontrolních bodů.
 \item Nezapisuje všechny potvrzené operace na disk, místo toho vytváří \textbf{kontrolní body}.
@@ -74,12 +70,30 @@ Základním problémem vzniklým při systémové chybě je ztráta obsahu hlavn
 \end{itemize}
 \item Po restartu systému se provádí: \textbf{undo} na všechny transakce, které se \textbf{nestihly potvrdit} a \textbf{redo} na všechny transakce, které \textbf{se potvrdily} po vytvoření kontrolního bodu.
 \end{itemize}
+
+\subsection{Kontrolní body}
+Kontrolní body \textbf{jsou vytvářeny např. po určitém počtu záznamů}, které byly zapsány do logu a zahrnují:
+\begin{itemize}
+\item zápis obsahu vyrovnávací paměti na disk,
+\item zápis záznamu o kontrolním bodu do logu.
+\end{itemize}
+
+\noindent V případě následující situace musí být:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/kontrolni_body.png}
+\end{figure}
+
+\begin{itemize}
+\item Po restartu systému musí být transakce typu $ T_3 $ a $ T_5 $ zrušeny (undo).
+\item Transakce typu $T_2$ a $T_4$ musí být přepracovány (redo).
+\item Jelikož změny provedené transakcí $ T_1 $ byly provedeny p kontrolním bodem tc, tuto transakci při zotavení vůbec neuvažujeme.
 \end{itemize}
 
 \subsection{ACID}
 Každá transakce by měla splňovat následující vlastnosti:
 \begin{itemize}
-\item\textbf{Atomičnost (Atomicity)} – transakce musí být atomická: jsou provedeny všechny operace transakce nebo žádná.
+\item\textbf{Atomičnost (Atomicity)} -- transakce musí být atomická: jsou provedeny všechny operace transakce nebo žádná.
 \item\textbf{Korektnost (Correctness)} – transakce převádí korektní stav databáze do jiného korektního stavu databáze, mezi začátkem a koncem transakce nemusí být databáze v korektním stavu.
 \item\textbf{Izolovanost (Isolation)} – transakce jsou navzájem izolovány: změny provedené jednou transakcí jsou pro ostatní transakce viditelné až po provedení COMMIT. 
 \item\textbf{Trvalost (Durability)} – jakmile je transakce potvrzena, změny v databázi se stávají trvalými i po případném pádu systému.
@@ -87,21 +101,21 @@ Každá transakce by měla splňovat následující vlastnosti:
 
 \subsection{Problémy souběhu}
 \begin{itemize}
-\item Jednouživatelský/víceuživatelský DB systém (kolik současně)
+\item Jednouživatelský/víceuživatelský DB systém (kolik současně).
 \item Souběh umožňuje SŘBD \textbf{zpřístupnit databázi mnoha transakcím ve stejném čase}.
-\item Souběh také přináší mnoho \textbf{problémů} (nutné řešit i na \textbf{aplikační}) úrovni.
+\item Souběh také přináší mnoho \textbf{problémů}, které je nutné řešit i na \textbf{aplikační} úrovni.
 \end{itemize}
 
 \subsubsection{Plán provádění transakce a anomálie}
 Plán provádění transakce = posloupnost operací transakce, při souběžném provedení - \textbf{plán souběžný/paralelní}. Vznikají \textbf{3 problémy:}
 \begin{itemize}
-\item \textbf{Problém ztráty aktualizace} - jedna transakce \textbf{přepíše právě prováděnou hodnotu}. Časová posloupnost: \texttt{read\_A}, \texttt{read\_B}, \texttt{write\_A}, \texttt{write\_B}.
+\item \textbf{Problém ztráty aktualizace} -- jedna transakce \textbf{přepíše právě prováděnou hodnotu}. Časová posloupnost: \texttt{read\_A}, \texttt{read\_B}, \texttt{write\_A}, \texttt{write\_B}.
 \\\\
 \noindent\makebox[\textwidth]{\includegraphics[width=10cm]{assets/soubeha3}}
-\item \textbf{Problém nepotvrzené závislosti} - \textbf{A přečte nepotvrzená} (non-commited) data zapsaná B, B pak provede \textbf{callback}. A má \textbf{neplatná data}! Nebo B zapíše, A zapíše, B rollback - vrátí do stavu před 1. zápisem B.
+\item \textbf{Problém nepotvrzené závislosti} -- \textbf{A přečte nepotvrzená} (non-commited) data zapsaná B, B pak provede \textbf{callback}. A má \textbf{neplatná data}! Nebo B zapíše, A zapíše, B rollback - vrátí do stavu před 1. zápisem B.
 \\
 \noindent\makebox[\textwidth]{\includegraphics[width=10cm]{assets/soubeha2}}
-\item \textbf{Problém nekonzistentní analýzy} - A provádí součet na účtech, před dokončením B provede přesun z účtu na účet, přičemž 1 už byl započítán a druhý ne. \textbf{Špatný součet zůstatků!} A čte commited data (B provede commit, než si A vyžádá další účet), ale i tak to není správné.
+\item \textbf{Problém nekonzistentní analýzy} -- A provádí součet na účtech, před dokončením B provede přesun z účtu na účet, přičemž 1 už byl započítán a druhý ne. \textbf{Špatný součet zůstatků!} A čte commited data (B provede commit, než si A vyžádá další účet), ale i tak to není správné.
 \\\\
 \noindent\makebox[\textwidth]{\includegraphics[width=10cm]{assets/soubeha1}}
 \end{itemize}
@@ -109,10 +123,10 @@ Plán provádění transakce = posloupnost operací transakce, při souběžném
 \subsection{Konflikty čtení/zápis}
 A a B chtějí \textbf{číst/zapisovat stejnou entici} (záznam). Nastávají 4 možnosti konfliktu:
 \begin{itemize}
-\item \textbf{RR (READ-READ)} - negativně se neovlivní, není problém.
-\item \textbf{RW (READ-WRITE)} - \texttt{read\_A}, \texttt{write\_B} = A dále počítá s daty $\rightarrow$ RW zapříčiňuje \textbf{problém nekonzistentní analýzy}. \texttt{read\_A}, \texttt{write\_B}, \texttt{read\_A} $\rightarrow$ A načte odlišené hodnoty = \textbf{neopakovatelné čtení (non repeatable read)}
-\item \textbf{WR (WRITE-READ)} - \texttt{write\_A}, \texttt{read\_B}, \texttt{rollback\_A}? $\rightarrow$ \textbf{Problém nepotvrzené závislosti}. Pokud B přečte data $\rightarrow$ \textbf{Špinavé čtení (dirty read)} = čtení non-commited dat.
-\item \textbf{WW (WRITE-WRITE)} - \texttt{write\_A}, \texttt{write\_B}, \texttt{rollback\_A}? $\rightarrow$ \textbf{Ztráta aktualizace} (pro A) a \textbf{nepotvrzená závislost} pro B. \textbf{Špinavý zápis}\textbf{ (dirty write)} - přepisování non-commited dat.
+\item \textbf{RR (READ-READ)} -- negativně se neovlivní, není problém.
+\item \textbf{RW (READ-WRITE)} -- \texttt{read\_A}, \texttt{write\_B} = A dále počítá s daty $\rightarrow$ RW zapříčiňuje \textbf{problém nekonzistentní analýzy}. \texttt{read\_A}, \texttt{write\_B}, \texttt{read\_A} $\rightarrow$ A načte odlišené hodnoty = \textbf{neopakovatelné čtení (non repeatable read)}
+\item \textbf{WR (WRITE-READ)} -- \texttt{write\_A}, \texttt{read\_B}, \texttt{rollback\_A}? $\rightarrow$ \textbf{Problém nepotvrzené závislosti}. Pokud B přečte data $\rightarrow$ \textbf{Špinavé čtení (dirty read)} = čtení non-commited dat.
+\item \textbf{WW (WRITE-WRITE)} -- \texttt{write\_A}, \texttt{write\_B}, \texttt{rollback\_A}? $\rightarrow$ \textbf{Ztráta aktualizace} (pro A) a \textbf{nepotvrzená závislost} pro B. \textbf{Špinavý zápis}\textbf{ (dirty write)} - přepisování non-commited dat.
 \end{itemize}
 
 \subsection{Techniky řízení souběhu}
@@ -124,7 +138,11 @@ Předpokládáme, že se paralelní \textbf{transakce budou ovlivňovat}. Systé
 
 \begin{itemize}
 \item Chce-li transakce A provést čtení/zápis nějakého objektu v DB (nejčastěji n-tice), \textbf{požádá o zámek} na tento objekt. Žádná jiná paralelní transakce zámek získat nemůže, dokud jej A \textbf{neuvolní}.
-\item \textbf{2 typy zámků:} \textbf{výlučný} zámek (exclusive lock / write lock) \textbf{X}; \textbf{sdílený} zámek (shared lock / read lock) \textbf{S}; existuje jich i více.
+\item \textbf{2 typy zámků (existuje jich i více):} 
+\begin{itemize}
+\item \textbf{výlučný} zámek (exclusive lock / write lock) \textbf{X}.
+\item \textbf{sdílený} zámek (shared lock / read lock) \textbf{S}.
+\end{itemize}
 \item A má zámek X a B \textbf{nedostane žádný zámek} hned. A má zámek S, B \textbf{může hned dostat S}, X nikoliv.
 \item \textbf{Matice kompability} - vzájemné vztahy typů zámků, sloupce a řádky: X, S, -; A (okamžitě), N (ne)
 \begin{table}[H]
