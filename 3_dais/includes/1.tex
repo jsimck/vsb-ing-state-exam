@@ -1,0 +1,80 @@
+\subsection*{Konceptuální model}
+Konceptuální model je jednoduchý popis entit a jejich vzájemných vztahů používaný v databázích. Jedná se o jakýsi prvotní jednoduchý návrh námi vytvářené databáze. Je kladen důraz na zobrazeních všech entit a jejich vztahů. Nezávislý na SŘBD.
+
+\subsubsection*{Základní pojmy}
+\begin{itemize}
+\item \textbf{Entita} - objekt reálného světa.
+\item \textbf{Atribut} - vlastnost entity (možné hodnoty jsou označeny jako doména atributu)
+\item \textbf{Entitní typ} - množina entit se stejnými atributy.
+\item \textbf{Vztah} - vztah mezi \textbf{2 entitními} typy.
+\item \textbf{Popis} entitních typů, jejich atributů a vztahů mezi nimi v rámci daného zadání.
+\item \textbf{E-R diagram} - grafické znázornění konceptuálního modelu, neexistuje standard (používá se např. crow foot notace).
+\item \textbf{Kardinalita vztahu} - Dělení vztahů podle počtu entit vstupujících do vztahu: 
+\begin{itemize}
+\item 1:1
+\item 1:N
+\item M:N
+\end{itemize}
+\end{itemize}
+
+\subsection*{Funkční analýza}
+\begin{itemize}
+\item Cílem je popsat vytvářený systém jako „černou skříňku“, definovat její \textbf{vnější chování} a strukturalizovat \textbf{okolí systému}, které se systémem komunikuje. \textbf{Popsat všechny funkce, které se budou s daty provádět.}
+\item \textbf{Vnitřní:} rozpracované algoritmy pro jednotlivé akce.
+\item \textbf{Vnější:} náhled na strukturu a hierarchii funkcí.
+\item Úkolem je získat od zadavatele\textbf{ seznam všech funkcí}, které bude od IS požadovat.
+\item Sestaví se tabulka se sloupci událost a reakce, do ní se formou krátkých textů zapisují všechny možné vnější události, podněty působící na systém a jim odpovídající reakce systému. 
+\end{itemize}
+
+\subsubsection*{Otázky na požadavky}
+\begin{itemize}
+\item\textbf{PROČ} nový systém. 
+\item\textbf{ČEMU} má sloužit. 
+\item\textbf{KDO} s ním pracuje - běžně, příležitostně, pravidelně zřídka. 
+\item\textbf{VSTUPY} – objekty, atributy 
+\item\textbf{VÝSTUPY} – výstupní sestavy, požadované informace 
+\item\textbf{FUNKCE} – jaké výpočty, odvozování, výběry, třídění, \ldots
+\item\textbf{Vazby na OKOLÍ systému} – odkud data a kam.
+\end{itemize}
+
+\subsubsection*{Nefunkční požadavky}
+\begin{itemize}
+\item Požadavky na \textbf{výsledný program}
+\item \textbf{Vnější požadavky}: ostatní nefunkční implementační požadavky, použití \textbf{standardů}, \textbf{cenová} omezení, \textbf{časové} požadavky.
+\end{itemize}
+
+\subsubsection*{Diagram datových toků (DFD)}
+\begin{itemize}
+\item Několik úrovní podrobnosti.
+\item Definuje\textbf{ hranici systému}.
+\item Definuje \textbf{všechny akce}, které mezi systémem a jeho okolím probíhají.
+\end{itemize}
+
+\subsubsection*{Minispecifikace = algoritmy elementárních funkcí}
+\begin{itemize}
+\item Pro každou nerozložitelnou funkci z DFD \textbf{existuje minispecifikace}.
+\item Popisuje postup, jak jsou vstupní \textbf{data transformována na výstupní}.
+\item Popisuje, co \textbf{funkce znamená} věcně, ne, jak se to spočítá.
+\item Používá se \textbf{přirozený jazyk} s omezeným množstvím jasně definovaných pojmů.
+\item Musí být \textbf{srozumitelná} analytikovi, uživateli i programátorovi.
+\end{itemize}
+
+
+\subsection*{Datová analýza}
+\begin{itemize}
+\item Zabývá strukturou obsahové části systému (strukturou databaze).
+\item Datový model, obsahuje již samotné atributy - \textbf{Závislý na SŘBD.}
+\item \textbf{Popis struktury dat IS}, jejich \textbf{vazby}, uchovávané vlastnosti a možné hodnoty těchto vlastností.
+\item \textbf{Využívá se}: lineární zápis entit a atributů, ER diagram, {Konceptuální} schéma, {datový slovník} (tabulky atributů).
+\end{itemize}
+
+
+\subsection*{Problémy agendového zpracování}
+\begin{itemize}
+\item\textbf{Redundance}: některé informace ve více souborech opakují, jsou redundantní. Redundance je zdrojem mnoha dalších problémů.
+\item\textbf{Konzistence}: vzájemná \textbf{shoda údajů}. Postupem času - vlivem nedostatečné kontroly v programech se stejné hodnoty na různých místech v datových souborech, začnou rozcházet.
+\item\textbf{Integrita}: data aktuální, odrážejí skutečnost z reálného světa. Problémem tedy je zabezpečit, aby chybou či nedůsledností uživatele nebyla porušena integrita a konzistence dat.
+\item\textbf{Izolovanost dat}:  data roztroušena v různých souborech, soubory mohou být různě organizovány, data různě formátována. To komplikuje tvorbu nových aplikačních programů a možnost realizovat vazby mezi datovými strukturami.
+\item\textbf{Současný přístup více uživatelů}: větší systémy vyžadují současný přístup k datům více uživatelů. Pak je nutné, aby programy vzájemně spolupracovaly, jejich činnosti byly koordinovány.
+\item\textbf{Ochrana proti zneužití}: při zpracování důvěrných či tajných dat není přípustné, aby měl kdokoliv přístup ke všem informacím. Při klasickém zpracování však musí mít programátor aplikačních programů k dispozici tolik podrobností, že to ochranu dat prakticky znemožňuje.
+\end{itemize}

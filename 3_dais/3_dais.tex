@@ -13,19 +13,31 @@
 \usepackage{float}
 \usepackage{color}
 \usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{minted}
 
 % Config
-\setlength\parindent{0pt}
 \renewcommand{\baselinestretch}{1.2} 
 \setitemize{itemsep=0pt}
-
-\title{\textbf{III. Databázové a informační systémy}}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\title{\textbf{II. Softwarové inženýrství}}
 \date{\small\vspace{-9ex}Update: \today}
+\setminted{fontsize=\small,baselinestretch=1}
 
 \begin{document}
 \maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+\pagebreak
 
 \section{Modelování databázových systémů, konceptuální modelování, datová analýza, funkční analýza; nástroje a modely.}
+\input{includes/1.tex}
 
 \pagebreak
 \section{Relační datový model, SQL; funkční závislosti, dekompozice a normální formy.}
