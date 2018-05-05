@@ -2,26 +2,26 @@
 
 # Add to pre-commit git hooks
 cd 1_it_mpzz
-texfot pdflatex 1_it_mpzz.tex
+texfot pdflatex -shell-escape 1_it_mpzz.tex
 git add 1_it_mpzz.tex
 cd ..
 
 cd 2_swi
-texfot pdflatex 2_swi.tex
+texfot pdflatex -shell-escape 2_swi.tex
 git add 2_swi.tex
 cd ..
 
 cd 3_dais
-texfot pdflatex 3_dais.tex
+texfot pdflatex -shell-escape 3_dais.tex
 git add 3_dais.tex
 cd ..
 
 cd 4_ps
-texfot pdflatex 4_ps.tex
+texfot pdflatex -shell-escape 4_ps.tex
 git add 4_ps.tex
 cd ..
 
 cd 5_pgo
-texfot pdflatex 5_pgo.tex
+texfot pdflatex -shell-escape 5_pgo.tex
 git add 5_pgo.tex
 cd ..
