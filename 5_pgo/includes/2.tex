@@ -1,0 +1,404 @@
+\subsection{Afinní prostor - $A_n$}
+\begin{itemize}
+	\item je to prostor s body
+	\item dále obsahuje \textbf{přidružený vektorový prostor} (souřadný systém) pomocí kterého je možné jednotlivé body prostoru zaměřit
+	\item součásti afinního prostoru je také zobrazení, které přiřadí dvojici bodů vektor
+	\item dimenze vektorového prostoru určuje dimenzi afinního prostoru
+	\item ukázka afinného prostoru
+	\begin{itemize}
+		\item v trojrozměrném afinném prostoru $A_3$ máme bod $X$ se souřadnicemi $X=(x_1,x_2,x_3)$
+		\item vektor \textbf{x} je prvek onoho přidruženého vektorového prostoru
+	\end{itemize}
+\end{itemize}
+
+
+\subsection{Euklidovský prostor - $E_n$}
+\begin{itemize}
+	\item afinní prostor ve kterém je zaveden skalární součin\eqref{skalar} a norma\eqref{norma} (velikost vektoru), to umožnuje měřit délku vektorů a úhly mezi nimi
+	\item souřadný systím (kartézský, polární, válcový atd.)
+\end{itemize}
+\begin{equation}
+\begin{aligned}
+\label{skalar}
+Vektory  a = (a_1,a_2,a_3),  b = (b_1,b_2,b_3) \\
+ a \cdot b = |a| \cdot |b| \cos \alpha, \\
+ a \cdot b = a_1b_1 + a_2b_2 +a_3b_3 \\ 
+ \end{aligned}
+\end{equation}
+\begin{equation}
+\label{norma}
+ |a| = \sqrt{a_1^2 + a_2^2 + a_3^2} 
+\end{equation}
+
+\subsection{Kartézská souřadná soustava}
+\begin{itemize}
+	\item souřadné osy \textbf{vzájemně kolmé}
+	\item protínají se v jednom bodě -- \textbf{počátku soustavy souřadnic}
+	\item jednotka se obvykle volí na všech osách stejně velká
+	\item souřadnice polohy bodu je možno dostat jako kolmé průměty polohy bodu k jednotlivým osám
+\end{itemize}
+
+\subsection{Afinní transformace}
+\begin{itemize}
+	\item Afinné transformace je zobrazení bodů jednoho afinního prostoru do jiného afinního prostoru (speciální případ: zobrazení do téhož afinního prostoru (bijekce); tomu se říká afinita).
+	\item Afinní transformace souřadnic je geometrickou transformací bodu $P=[x,y]$, jehož obrazem je bod $Q=[x',y']$, které spočívá v \textbf{posunutí} (translation), \textbf{otáčení} (rotation), \textbf{změně měřítka} (scaling), \textbf{zkosení} (shearing) nebo operaci \textbf{vzniklé jejim skládáním}.
+	\item Afinní -- rovnoběžným přímkám odpovídají opět rovnoběžné přímky, které však nemusí být rovnoběžné s původními přímkami.
+	\item Geometrické transformace jsou jedněmi z nejčastěji používaných operací v PG.
+\end{itemize}
+Když zavedeme následující vektory a matici:
+\begin{equation*}
+\begin{aligned}
+ y = (y_1,y_2,y_3),  x = (x_1,x_2,x_3), t = (t_1,t_2,t_3),
+ \end{aligned}
+\end{equation*}
+\begin{equation*}
+ A = \begin{bmatrix}
+     a_{11} & a_{12}  & a_{13}      \\[0.3em]
+     a_{21} & a_{22}  & a_{23}      \\[0.3em]
+     a_{31} & a_{32}  & a_{33} 
+     \end{bmatrix}.
+\end{equation*}
+Můžeme afinní transformaci zapsat jako
+\begin{equation*}
+ y = xA + t.
+\end{equation*}
+\textbf{y} je bod, do něho je transformován bod \textbf{x} pomocí matice \textbf{A} a vektoru \textbf{t}. Vektor \textbf{t} slouží k posunutí středu souřadné soustavy, matice \textbf{A} mění osy souřadné soustavy. Známe--li \textbf{A} a vektor \textbf{t}, můžeme transformaci jednoduše provést. Jindy se musí určit ze zadání.
+
+\subsection{Ortonormalita afinní transformace}
+\begin{itemize}
+	\item jsou takové transformace, které \textbf{nemění délky} ani \textbf{úhly}
+	\item délky a úhly souvisejí se \textbf{skalárním součinem}, když se tento součin po transformaci \textbf{nezmění}, jsou zachovány délky i úhly
+	\item vlastnosti ortonormální transformace:
+		\begin{itemize}
+			\item afinní transformace bude zachovávat hodnotu prévě tehdy, když $AA^T=I$, kde $I$ je jednotková matice (\textbf{nutná a postačující podmínka ortonormality})
+			\item také když uvážíme, že $A^{-1} = A^T$, pak platí $A^{-1} A^T = I$
+			\item determinant matice $det A$ musí být roven $\pm 1$, protože $det AA^T = det I$ a $det I = 1$
+			%co to je determinant here https://cs.wikipedia.org/wiki/Determinant
+		\end{itemize}
+\end{itemize}
+
+\subsection{Afinní transformace (2D)}
+\begin{itemize}
+	\item \textbf{posunutí} (translation)
+	\begin{equation*}
+ \begin{bmatrix}     
+ x'   \\[0.3em]      
+ y'
+ \end{bmatrix} = 
+ \begin{bmatrix}
+     1 & 0     \\[0.3em]
+     0 & 1        
+  \end{bmatrix}
+  \begin{bmatrix}
+     x     \\[0.3em]
+     y        
+     \end{bmatrix} +
+      \begin{bmatrix}
+     b_x     \\[0.3em]
+     b_y        
+     \end{bmatrix}
+\end{equation*}
+	\item \textbf{otáčení} (rotation) --ve směru ručiček (naopak prohodíš $\sin$)
+					\begin{equation*}
+				 \begin{bmatrix}     
+				 x'   \\[0.3em]      
+				 y'
+				 \end{bmatrix} = 
+				 \begin{bmatrix}
+				     \cos{\alpha} & -\sin{\alpha}     \\[0.3em]
+				     \sin{\alpha} & \cos{\alpha}        
+				  \end{bmatrix}
+				  \begin{bmatrix}
+				     x     \\[0.3em]
+				     y        
+				     \end{bmatrix} +
+				      \begin{bmatrix}
+				     0     \\[0.3em]
+				     0        
+				     \end{bmatrix}
+					\end{equation*}
+	\item \textbf{změna měřítka} (scaling)
+				\begin{equation*}
+			 \begin{bmatrix}     
+			 x'   \\[0.3em]      
+			 y'
+			 \end{bmatrix} = 
+			 \begin{bmatrix}
+			     s_x & 0     \\[0.3em]
+			     0 & s_y        
+			  \end{bmatrix}
+			  \begin{bmatrix}
+			     x     \\[0.3em]
+			     y        
+			     \end{bmatrix} +
+			      \begin{bmatrix}
+			     0     \\[0.3em]
+			     0        
+			     \end{bmatrix}
+				\end{equation*}
+	\item \textbf{zkosení} (shearing)
+				\begin{equation*}
+			 \begin{bmatrix}     
+			 x'   \\[0.3em]      
+			 y'
+			 \end{bmatrix} = 
+			 \begin{bmatrix}
+			     1 & sh_y     \\[0.3em]
+			     sh_x & 1        
+			  \end{bmatrix}
+			  \begin{bmatrix}
+			     x     \\[0.3em]
+			     y        
+			     \end{bmatrix} +
+			      \begin{bmatrix}
+			     0     \\[0.3em]
+			     0        
+			     \end{bmatrix}
+				\end{equation*}
+\end{itemize}
+Skládání transformací(příklad):
+
+Transformujte bod $A[3,4]$ posunem o vektor $(-5,1)$ a rotací o úhel $\ang{90}$ stupňů
+	\begin{equation*}
+posun:
+ \begin{bmatrix}     
+ x'   \\[0.3em]      
+ y'
+ \end{bmatrix} = 
+ \begin{bmatrix}
+     1 & 0     \\[0.3em]
+     0 & 1        
+  \end{bmatrix}
+  \begin{bmatrix}
+     x     \\[0.3em]
+     y        
+     \end{bmatrix} +
+      \begin{bmatrix}
+     -5     \\[0.3em]
+     1        
+     \end{bmatrix} \qquad rotace:
+	 \begin{bmatrix}     
+	 x'   \\[0.3em]      
+	 y'
+	 \end{bmatrix} = 
+	 \begin{bmatrix}
+	     0 & -1     \\[0.3em]
+	     1 & 0        
+	  \end{bmatrix}
+	  \begin{bmatrix}
+	     x     \\[0.3em]
+	     y        
+	     \end{bmatrix} +
+	      \begin{bmatrix}
+	     0     \\[0.3em]
+	     0        
+	     \end{bmatrix}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{assets/2_skladani}
+\includegraphics[width=0.7\textwidth]{assets/2_skladani2}
+\end{figure}
+Obecná skládání transformací v kartézské souřadné soustavě 
+\begin{center}
+$[X'] = A_n ...(A_2(A_1 \cdot X + b_1) + b_2) ... + b_n$
+\end{center}
+
+\subsection{Homogenní souřadnice}
+\begin{itemize}
+	\item myšlenkou je reprezentace bodu ve vektorovém prostoru o jednu dimenzi větší
+	\item rozšíření o jednu dimenzi (expanze z 2D do 3D, popř. z 3D do 4D)
+	\item bod $(x,y)$ v homogenních souřadnicích $(wx,wy,w)$ kde $w \not= 0$
+	\item nejčastěji volíme homogenní souřadnici $w = 1$
+	\item bod se souřadnicemi $(X,Y,W)$ má kartézské souřadnice $x = X/W$ a $y = Y/W$
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{assets/2_homoprostor}
+\end{figure}
+\begin{itemize}
+	\item transformace se při použítí homogenních souřadnic omezí pouze na násobení matic (jednodušší)  $Q = M \cdot P$
+	\begin{equation*}
+			 \begin{bmatrix}     
+				 x'   \\[0.3em]      
+				 y'   \\[0.3em]      
+				 z'   \\[0.3em]      
+				 w'
+		\end{bmatrix} = 
+		\begin{bmatrix}
+			     a_{11} & a_{12}  & a_{13} & a_{14}     \\[0.3em]
+    			 a_{21} & a_{22}  & a_{23} & a_{24}     \\[0.3em]
+     			 a_{31} & a_{32}  & a_{33} & a_{34}     \\[0.3em] 
+     			 a_{41} & a_{42}  & a_{43} & a_{44}      
+		\end{bmatrix} \cdot
+		\begin{bmatrix}
+			     x     \\[0.3em]
+			     y     \\[0.3em]
+			     z     \\[0.3em]
+			     w        
+		\end{bmatrix}
+	\end{equation*}
+	\item umožnují použítí projektivním transformací (perspektivní promítání)
+\end{itemize}
+\begin{itemize}
+	\item \textbf{posunutí} (translation)
+		\begin{equation*}
+			 \begin{bmatrix}
+			     1 & 0 & 0 & a      \\[0.3em]
+    			 0 & 1 & 0 & b      \\[0.3em]
+    			 0 & 0 & 1 & c      \\[0.3em]
+     			 0 & 0 & 0 & 1      
+			  \end{bmatrix}
+		\end{equation*}
+	\item \textbf{otočení kolem osy x} (rotation)
+		\begin{equation*}
+			 \begin{bmatrix}
+     			 1 & 0 & 0 & 0        					\\[0.3em]
+			     0 & \cos{\theta} & -\sin{\theta} & 0    	\\[0.3em]
+    			 0 & \sin{\theta} & \cos{\theta} & 0       \\[0.3em]
+     			 0 & 0 & 0 & 1      
+			  \end{bmatrix}
+		\end{equation*}
+	\item \textbf{otočení kolem osy y} (rotation)
+		\begin{equation*}
+			 \begin{bmatrix}
+			     \cos{\theta} & 0 & \sin{\theta} &  0      	\\[0.3em]
+     			 0 & 1 & 0 & 0        						\\[0.3em]
+    			 -\sin{\theta} & 0 & \cos{\theta} & 0       \\[0.3em]
+     			 0 & 0 & 0 & 1      
+			  \end{bmatrix}
+		\end{equation*}
+	\item \textbf{otočení kolem osy z} (rotation)
+		\begin{equation*}
+			 \begin{bmatrix}
+			     \cos{\theta} & \sin{\theta} & 0  & 0      	\\[0.3em]
+    			 -\sin{\theta} & \cos{\theta} & 0 & 0       \\[0.3em]
+     			 0 & 0 & 1 & 0        						\\[0.3em]
+     			 0 & 0 & 0 & 1      
+			  \end{bmatrix}
+		\end{equation*}
+\item \textbf{změna měřítka} (scaling)
+		\begin{equation*}
+			 \begin{bmatrix}
+			     s_x & 0 & 0 & 0     	\\[0.3em]
+    			 0 & s_y & 0 & 0      	\\[0.3em]
+    			 0 & 0 & s_z & 0      	\\[0.3em]
+     			 0 & 0 & 0 & 1      
+			  \end{bmatrix}
+		\end{equation*}
+	\item \textbf{zkosení} (shearing)
+		\begin{equation*}
+			 \begin{bmatrix}
+			     1 & sh_y & 0 & 0       \\[0.3em]
+    			 sh_x & 1 & 0 & 0       \\[0.3em]
+     			 0 & 0 & 1 & 0       	\\[0.3em]
+     			 0 & 0 & 0 & 1       
+			  \end{bmatrix}
+		\end{equation*}
+\end{itemize}
+
+\subsection{Projektivní transformace - kolineace}
+\begin{itemize}
+	\item kolineace je zobrazení bodů jednoho prostoru na body stejného nebo jiného prostoru
+	\item matematický záps kolineace je $y = xT$
+	\item sehrává zásadní úlohu v grafických systémech
+\end{itemize}
+
+\subsection{Promítání}
+\begin{itemize}
+	\item v geometrii nejprve volíme promítací metodu a potom v této zobrazujeme objekty (v PG naopak)
+	\item nejprve vytvoříme objekt a následně volíme zobrazovací metodu vhodnou pro požadovaný účel
+	\item definice promítání:
+	\begin{itemize}
+		\item \textbf{promítací paprsky} -- polopřímka, vycházející z promítacího bodu, směr závisí na typu promítání
+		\item \textbf{průmětna} (viewing plane) -- plocha v prostoru, na kterou dopadají promítací paprsky (paprsky vytvářející průmět)
+		\item průmětnou nemusí být pouze rovina (polokoule, NURBS plocha...)
+	\end{itemize}
+\end{itemize}
+
+\subsection{Klasifikace promítacích metod}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{assets/2_klas_promitani}
+\end{figure}
+
+\subsubsection{Rovnoběžné promítání}
+Orthographic nebo orthogonal projection
+\begin{itemize}
+	\item Promítání je určeno průmětnou \textbf{a} a směrem \textbf{s}, který není rovnoběžný s průmětnou
+	\item z řeckého \uv{orthos} rovný a \uv{graphe} kreslení.
+\end{itemize}
+\begin{equation*}
+			 \begin{bmatrix}
+			     1 & 0 & -\frac{d_x}{d_z} & 0       \\[0.3em]
+    			 0 & 1 & -\frac{d_y}{d_z} & 0       \\[0.3em]
+     			 0 & 0 & 1 & 0 	\\[0.3em]
+     			 0 & 0 & 0 & 1       
+			  \end{bmatrix}
+		\end{equation*}
+Matice popisuje rovnoběžné promítání na rovinu $xy$. Směr promítacího paprsku je $d = (d_x, d_y, d_z)$(viz obr).
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{assets/2_overeni_rovnobezneho_promitani}
+\end{figure}
+Jednička na pozici $3,3$ v matici zajišťuje, že se transformací nezmění souřadnice z bodu. Toho opět využívá řešení viditelnosti.
+\subsection{Mongeova projekce}
+\begin{itemize}
+	\item nejprve promítáme kolmo na vodorovnou rovinu $\pi$ (půdorysnu) -- promítací přímky jsou svislé, jde tedy o pohled shora (půdorys)
+	\item poté promítáme kolmo na svislo rovinu $v$ (nárysnu) -- promítací přímky jsou kolmé, jde tedy o pohled zpředu (nárys)
+	\item pohledy kreslíme bez přihlížení k obsahu sklopené druhé průmětny, tudíž se obrazy v jednotlivých průmětnách prolínají a jejich polohu v souřadnicovém systému popisuje vzdálenost od základnice (osa $Y$) potažmo od nulového bodu
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/2_mongeova}
+\end{figure}
+Souřadnice bodů: $M(x, y, z)$... 1. průmět $M1 (x, y, 0)$ 2. průmět $M2 (x, 0, z)$\\
+V Mongeově projekci je těleso určeno svým nárysem a půdorysem
+\subsection{Kosoúhlé promítání}
+\begin{itemize}
+	\item je rovnoběžné promítání na jednu průmětnu směrem, který má odchulku $\varphi$ jinou než \ang{90} od průmětny, promítací paprsky $S$ jsou tak rovnoběžné a ne kolmé k průmětně $\pi$. Průmětna $\pi$ je rovnoběžná s některou hlavních rovin
+	\item výhodou tohoto způsobu je skutečnost, že předměty, které se nacházejí v nárysně jsou zobrazeny v reálné velikosti
+\end{itemize}
+\subsection{Axonometrie - rovnoběžné, pravoúhlé promítání}
+\begin{itemize}
+	\item axonometrie nebo axonometrické projekce je jednoduchý způsob promítání prostorových těles a trojrozměrných struktur do roviny
+	\item v rovině se nejprve zvolí tři osy $x, y, z$, jež spolu svírají stejné nebo nestejné úhly
+	\item rozměry těles se pak nanášejí v určitém měřítku rovnoběžně s těmito osami
+	\item hlavní výhoda axonometrie proti složitějším metodám promítáné je v tom, že průmět se snadno konstruuje, a že se z něho dají rozměry odečíst
+	\item nevýhoda může být v tom, že v axonometrické projekci se rovnoběžky nesbíhají a tak je perspektivní dojem nedokonalý (může působit vizuální paradox)
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{assets/2_axonometrie}
+\end{figure}
+
+\subsection{Ortogonální promítání}
+\begin{itemize}
+	\item směr promítání kolmý k průmětně (jedná se tedy o speciální případ rovnoběžného promítání)
+	\item zachovávají se všechny vlastnosti rovnoběžného promítání
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{assets/2_ortogonalni}
+\end{figure}
+\subsection{Perspektiva -- středové promítání}
+\begin{equation*}
+			 \begin{bmatrix}
+			     1 & 0 & 0 & 0       \\[0.3em]
+    			 0 & 1 & 0 & 0       \\[0.3em]
+     			 0 & 0 & 1 & 0 	\\[0.3em]
+     			 0 & 0 & \frac{-1}{f} & 1       
+			  \end{bmatrix}
+		\end{equation*}
+Matice popisuje projekci ze středu o souřadnicích $(0, 0, f)$ na rovinu $z = 0$ (tedy na rovinu  $xy$).
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.25\textwidth]{assets/2_stredove_promitani}
+\end{figure}
+Ačkoliv se očekává, že po transformaci bodu bude jeho z souřadnice rovna $0$, není to pravda. Tuto nenulovou hodnotu však lze využít například při řešení viditelnosti. Souřadnice $x$ a $y$ slouží k vykreslení na obrazovku.
+\subsection{Modelovací transformace}
+Jsou všechny transformace, pomocí nichž se vytváří scéna: posun, zkosení, rotace, změna velikosti.
+
+\subsection{Zobrazovací transformace}
+Transformace používané k zobrazení scény: středové a rovnoběžné zobrazení. Jsou dělány tak, aby výsledky padly do jednotkového zobrazovacího objemu - souřadnice z intervalu$ <-1, 1>$. 
