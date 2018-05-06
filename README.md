@@ -59,15 +59,14 @@ pro vstup a výstup. Rozdíl mezi znakově a bytově orientovanými datovými pr
 8. ~~Distribuované SŘBD, fragmentace a replikace.~~
 
 ### IV. Počítače a sítě
-1. Architektura univerzálních procesorů. Principy urychlování činnosti procesorů.
-2. Základní vlastnosti monolitických počítačů a jejich typické integrované periférie.
+1. ~~Architektura univerzálních procesorů. Principy urychlování činnosti procesorů.~~
+2. ~~Základní vlastnosti monolitických počítačů a jejich typické integrované periférie.~~
 Možnosti použití.
-3. Struktura OS a jeho návaznost na technické vybavení počítače.
-4. Protokolová rodina TCP/IP.
-5. Metody sdíleného přístupu ke společnému kanálu.
-6. Problémy směrování v počítačových sítích. Adresování v IP, překlad adres (NAT).
-7. Bezpečnost počítačových sítí s TCP/IP: útoky, paketové filtry, stavový firewall.
-Šifrování a autentizace, virtuální privátní sítě. 
+3. ~~Struktura OS a jeho návaznost na technické vybavení počítače.~~
+4. ~~Protokolová rodina TCP/IP.~~
+5. ~~Metody sdíleného přístupu ke společnému kanálu.~~
+6. ~~Problémy směrování v počítačových sítích. Adresování v IP, překlad adres (NAT).~~
+7. ~~Bezpečnost počítačových sítí s TCP/IP: útoky, paketové filtry, stavový firewall. Šifrování a autentizace, virtuální privátní sítě.~~
 
 ### V. Počítačová grafika a analýza obrazu (Uvedená témata jsou probírána v předmětech Počítačová grafika I, Digitální zpracování obrazu, Analýza obrazu)
 1. Osvětlovací modely a systémy barev v počítačové grafice.

@@ -1,69 +1,70 @@
-\subsection*{Monolitické počítače (mikroprocesory)}
+\subsection{Monolitické počítače (mikroprocesory)}
 \begin{itemize}
 \item Mikroprocesory, mikrokontroléry, minipočítače jsou další názvy pro monolitické počíače.
-\item Jsou to malé počítače integrované v jediném pouzdře (all in one).
+\item Jsou to \textbf{malé počítače integrované v jediném pouzdře} (all in one).
 \item Mají širokou oblast využití.
 \item Využívá se Harvardské koncepce, což umožňuje aplikovat paměti pro data a program různých technologií.
 \item Zjednodušené rysy architektury RISC.
-\item INTEL 8051 (standart), ATMEL, MICROCHIP PIC.
-\item V monolitických počítačích můžeme najít dva základní typy periférií (vstupní/výstupní).
-\item \textbf{Rozdělení pamětí}: 
-		\begin{itemize}
-				\item[$\circ$]\textbf{pro data} -- používáme většinou paměti energeticky závislé typu \textbf{RWM--RAM} (\textit{Read--Write Memory--Random Access Memory}), tedy paměť s libovolným přístupem pro čtení i zápis. Jsou vyráběny jako statické (uchování paměti po celou dobu napájení), jejich paměťové buňky jsou realizovány jako klopné obvod. 
-				\item[$\circ$]\textbf{pro program} -- se používají paměti typu \textbf{ROM} (\textit{Read--Only Memory}) určené především ke čtění (paměť je uchována i po odpojení napájení). Mezi nejčastěji používané paměti patří \textbf{EPROM}, \textbf{EEPROM} (\textit{Electrically Erasable Programmable Read-Only Memory}), \textbf{PROM} (\textit{Programmable Read Only Memory}) a \textbf{Flash}.
-		\end{itemize}
+\item INTEL 8051 (standard), ATMEL, MICROCHIP PIC.
+\item V monolitických počítačích můžeme najít dva základní typy periférií (\textbf{vstupní}/\textbf{výstupní}).
 \end{itemize}
-
-\subsection*{Organizace paměti}
+ 
+ \subsubsection{Rozdělení paměti}
 \begin{itemize}
-	\item \textbf{Střadačové (pracovní) registry }- ve struktuře procesoru jsou obvykle \textbf{1-8-16} základních pracovních registrů, jsou nejpoužívanější. Ukládají se do nich \textbf{aktuálně zpracovávaná data} a jsou nejčastějším operandem strojových instrukcí (to na co se instrukce v závorkách odkazují). A také se do nich nejčastěji ukládají výsledky operací. Nejsou určeny pro dlouhodobé ukládání dat. Nejrychlejší.
-	\item \textbf{Univerzální zápisníkové registry} – jsou jich desítky až stovky. Slouží pro ukládání \textbf{nejčastěji používaných dat}. Instrukční soubor obvykle dovoluje, aby se část strojových instrukcí prováděla přímo s těmito registry. Formát strojových instrukcí ovšem obvykle nedovoluje adresovat velký rozsah registru, proto se implementuje několik stejných skupin registru vedle sebe, s možností mezi skupinami přepínat - \textbf{registrové banky}.
-	\item \textbf{Paměť dat RWM }- slouží pro ukládání \textbf{rozsáhlejších} nebo \textbf{méně používaných dat} (z těch předešlých nejméně používaný). Instrukční soubor obvykle nedovoluje s obsahem této paměti přímo manipulovat, kromě instrukcí přesunových. Těmi se data přesunou např. do pracovního registru. Některé procesory dovolují, aby data z této paměti byla použita jako druhý operand strojové instrukce, výsledek ale nelze zpět do této paměti uložit přímo. Nejpomalejší.
+		\item \textbf{Pro data} -- používáme většinou paměti energeticky závislé typu \textbf{RWM--RAM} (\textit{Read--Write Memory--Random Access Memory}), tedy paměť s libovolným přístupem pro čtení i zápis. Jsou vyráběny jako statické (uchování paměti po celou dobu napájení), jejich paměťové buňky jsou realizovány jako klopné obvody. 
+		\item \textbf{Pro program} -- se používají paměti typu \textbf{ROM} (\textit{Read--Only Memory}) určené především ke čtění (paměť je uchována i po odpojení napájení). Mezi nejčastěji používané paměti patří \textbf{EPROM}, \textbf{EEPROM} (\textit{Electrically Erasable Programmable Read-Only Memory}), \textbf{PROM} (\textit{Programmable Read Only Memory}) a \textbf{Flash}.
 \end{itemize}
 
-\subsection*{Zdroje synchronizace}
+\subsection{Organizace paměti}
 \begin{itemize}
-	\item krystal (křemenný výbrus) – jsou drahé ale přesné
-	\item keramický rezonátor
-	\item obvod RC – snadno integrovatelný
-	\item obvod LC – méně časté
+	\item \textbf{Střadačové (pracovní) registry }-- ve struktuře procesoru jsou obvykle \textbf{1-8-16} základních pracovních registrů, jsou nejpoužívanější. Ukládají se do nich \textbf{aktuálně zpracovávaná data} a jsou nejčastějším operandem strojových instrukcí (to na co se instrukce v závorkách odkazují). A také se do nich nejčastěji ukládají výsledky operací. Nejsou určeny pro dlouhodobé ukládání dat. Nejrychlejší.
+	\item \textbf{Univerzální zápisníkové registry} -- jsou jich desítky až stovky. Slouží pro ukládání \textbf{nejčastěji používaných dat}. Instrukční soubor obvykle dovoluje, aby se část strojových instrukcí prováděla přímo s těmito registry. Formát strojových instrukcí ovšem obvykle nedovoluje adresovat velký rozsah registru, proto se implementuje několik stejných skupin registru vedle sebe, s možností mezi skupinami přepínat - \textbf{registrové banky}.
+	\item \textbf{Paměť dat RWM} -- slouží pro ukládání \textbf{rozsáhlejších} nebo \textbf{méně používaných dat} (z těch předešlých nejméně používaný). Instrukční soubor obvykle nedovoluje s obsahem této paměti přímo manipulovat, kromě instrukcí přesunových. Těmi se data přesunou např. do pracovního registru. Některé procesory dovolují, aby data z této paměti byla použita jako druhý operand strojové instrukce, výsledek ale nelze zpět do této paměti uložit přímo. Nejpomalejší.
 \end{itemize}
 
-\subsection*{Ochrana proti rušení}
-Na prvním místě jde o ochranu \textbf{mechanickou}. Odolávat náhodným nárazům, nebo i trvalým vibracím nebo elemtromagnetickým vlivům z okolí. Pro odstranění chyb, které nastanou působením vnějších vlivů nebo chyby programátora, je v mikropočítačích implementován speciální obvod nazývaný \textbf{WATCHDOG} $\,\to\,$ provede reinicializaci mikropočítače pomocí vnitřního RESETu, například při zacyklení. Watchod (WDT) se řadí mezi elektrické ochrany, mezi které můžeme zařenit \textbf{BROWN-OUT} -- ochrana proti podpěti.
+\subsection{Zdroje synchronizace}
+\begin{itemize}
+	\item \textbf{krystal} (křemenný výbrus) – jsou drahé ale přesné,
+	\item keramický rezonátor,
+	\item obvod RC -- snadno integrovatelný,
+	\item obvod LC -- méně časté.
+\end{itemize}
 
-\subsection*{Typické periferie}
+\subsection{Ochrana proti rušení}
+Na prvním místě jde o ochranu \textbf{mechanickou}. Odolávat náhodným nárazům, nebo i trvalým vibracím nebo \textbf{elemtromagnetickým} vlivům z okolí. Pro odstranění chyb, které nastanou působením vnějších vlivů nebo chyby programátora, je v mikropočítačích implementován speciální obvod nazývaný \textbf{WATCHDOG} $\,\to\,$ provede reinicializaci mikropočítače pomocí vnitřního RESETu, například při zacyklení. Watchod (WDT) se řadí mezi elektrické ochrany. Tam také můžeme zařadit \textbf{BROWN-OUT} -- ochrana proti podpěti.
+
+\subsection{Typické periferie}
 \textbf{Periferie} - obvody, které zajišťují komunikaci mikropočítace s okolím.
 
 \begin{enumerate}
-\item \textbf{Vstupní a výstupní brány} - Nejjednodušší a nejčastěji používané rozhraní pro vstup a výstup informací je u mikropočítačů \textbf{paralelní brána - port}. Bývá obvykle organizována jako \textbf{4} nebo \textbf{8 jednobitové vývody}, kde lze současně zapisovat i číst logické informace 0 a 1. U většiny bran lze jednotlivě \textbf{nastavit}, které bitové vývody budou sloužit jako \textbf{vstupní} a které jako \textbf{výstupní}. Na vstupu je \textbf{Schmittův klopný obvod}. U mnoha mikropočítačů jsou brány implementovány tak, že s nimi instrukční soubor může pracovat jako s množinou vývodu, nebo jako s jednotlivými bity.
+\item \textbf{Vstupní a výstupní brány} -- Nejjednodušší a nejčastěji používané rozhraní pro vstup a výstup informací je u mikropočítačů \textbf{paralelní brána - port}. Bývá obvykle organizována jako \textbf{4} nebo \textbf{8 jednobitové vývody}, kde lze současně zapisovat i číst logické informace 0 a 1. U většiny bran lze jednotlivě \textbf{nastavit}, které bitové vývody budou sloužit jako \textbf{vstupní} a které jako \textbf{výstupní}. Na vstupu je \textbf{Schmittův klopný obvod}. U mnoha mikropočítačů jsou brány implementovány tak, že s nimi instrukční soubor může pracovat jako s množinou vývodu, nebo jako s jednotlivými bity.
 
-\item \textbf{Čítace a časovače} - Do skupiny nejpoužívanějších periférií mikropočítače určitě patří čítače a časovače.
-\emph{Časovač} se od \textbf{čítače} příliš neliší. Není, ale \textbf{inkrementován vnějším signálem}, ale přímo \emph{vnitřním hodinovým signálem} používaným pro řízení samotného mikropočítače. Lze tak podle přesnosti zdroje hodinového signálu zajistit řízení událostí a chování v reálném čase. Při přetečení časovače se i zde může automaticky předávat signál do přerušovacího podsystému mikropočítače.
+\item \textbf{Čítace a časovače} -- Do skupiny nejpoužívanějších periférií mikropočítače určitě patří čítače a časovače.
+\emph{Časovač} se od \textbf{čítače} příliš neliší. Není, ale \textbf{inkrementován} vnějším signálem, ale \textbf{přímo vnitřním hodinovým signálem} používaným pro řízení samotného mikropočítače. Lze tak podle přesnosti zdroje hodinového signálu zajistit řízení událostí a chování v \textbf{reálném čase}. Při přetečení časovače se i zde může automaticky předávat signál do přerušovacího podsystému mikropočítače.
 
-\item \textbf{Sériové linky}: Sériový přenos dat je v praxi stále více používán. Dovoluje efektivním způsobem
-přenášet data na relativně velké vzdálenosti při použití minimálního počtu vodičů. Hlavní nevýhodou je však nižší přenosová rychlost, a to že se data musí kódovat a dekódovat.
+\item \textbf{Sériové linky} -- Sériový přenos dat je v praxi stále více používán. Dovoluje efektivním způsobem
+přenášet data na relativně velké vzdálenosti při použití minimálního počtu vodičů. Hlavní nevýhodou je však \textbf{nižší přenosová rychlost}, a to že se data musí kódovat a dekódovat.
 \begin{itemize}
-\item \textbf{USART} (\textbf{RS232}) +/-12V jet transformována na TTL /RS422/RS485
-\item \textbf{I2C} (Philips) komunikace mezi integrovanými obvody (přenos dat uvnitř elektronického zařízení)
+\item \textbf{USART} (\textbf{RS232}) +/-12V jet transformována na TTL/RS422/RS485.
+\item \textbf{I2C} (Philips) komunikace mezi integrovanými obvody (přenos dat uvnitř elektronického zařízení).
 \item \textbf{SPI}
 \end{itemize}
 
-\item \textbf{A/D a D/A převodníky} - Fyzikální veličiny, které vstupují do mikropočítače, jsou většinou reprezentovány
+\item \textbf{A/D a D/A převodníky} -- Fyzikální veličiny, které vstupují do mikropočítače, jsou většinou reprezentovány
 \textbf{analogovou formou} (napětím, proudem, nebo odporem).Pro zpracování počítačem však potřebujeme informaci v digitální (číselné) formě. K tomuto účelu slouží analogově–číslicové převodníky.
 \item \textbf{Obvody reálného času} (RTC - Reak Time Clock) - V mnoha aplikacích s použítím mikropočítačů je potřeba dodržovat přesnou časovou souvislost řízených událostí. Jde tedy o řízení v reálném čase. Ne vždy, ale taková posloupnost dostačuje a je nutno pro potřebu řízení udržovat skutečný čas, tedy hodiny, minuty, sekundy a případně i zlomky sekund. Pro tyto účely slouží obvody \textbf{RTC}. Při jejich použití je obvykle nutné vyřešit dva základní problémy:
 \begin{itemize}
-\item \textbf{záložní zdroj} - je třeba zajistit záložní zdroj pro udržení nepřetržité činnosti obvodu (může dojít k výpadku proudu a tak i k ztrátě skutečného času).
-\item \textbf{čtení dat} - čas je hodnota neustále se měnící. Např. pokud zahájíme čtení hodnoty v čase 10:59:59, může se stát, že po přečtění prvních dvou hodnot, v našem případě hodin, se čas posune na 11:00:00 a čtění dalších hodnot bude neplatné (řešení technicky pomocnými registry v RTC obvodu, nebo vhodným programovým řešením). 
+\item \textbf{záložní zdroj} -- je třeba zajistit záložní zdroj pro udržení nepřetržité činnosti obvodu (může dojít k výpadku proudu a tak i k ztrátě skutečného času).
+\item \textbf{čtení dat} -- čas je hodnota neustále se měnící. Např. pokud zahájíme čtení hodnoty v čase 10:59:59, může se stát, že po přečtění prvních dvou hodnot, v našem případě hodin, se čas posune na 11:00:00 a čtění dalších hodnot bude neplatné (řešení technicky pomocnými registry v RTC obvodu, nebo vhodným programovým řešením). 
 \end{itemize}
 \end{enumerate}
 
-
-\subsection*{I$_2$C}
+\subsection{I$^2$C}
+\textbf{Multi-masterová počítačová sériová sběrnice} vyvinutá firmou Philips, která je používána k připojování nízkorychlostních periferií k základní desce nebo vestavěnému systému.
 \begin{itemize}
 \item Dvoudrátová, dvouvodičová sběrnice se sériovým přenosem.
-\item Obsahuje slave a master obvody.
-\item Lze propojit až 128 zařízení. (Master, slave)
-\item \textbf{Adresa zařízení}: skládá se ze 7 bitů (horní 4 určuje výrobce, dolní 3 jdou nastavit libovolně)
-\item \textbf{Signály} - SCL (synchronous clock), SDA (synchronous data)
+\item Obsahuje \textbf{master} (zahajuje a ukončuje komunikaci; generuje hodinový signál SCL) a \textbf{slave} (zařízení adresované masterem) obvody.
+\item Lze propojit až 128 zařízení (Master, slave).
+\item \textbf{Adresa zařízení} -- skládá se ze 7 bitů (horní 4 určuje výrobce, dolní 3 jdou nastavit libovolně).
+\item \textbf{Signály} -- SCL (synchronous clock), SDA (synchronous data).
 \end{itemize}
