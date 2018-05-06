@@ -5,8 +5,8 @@
 ## Download
 - I. Matematické základy informatiky - https://github.com/R1crd/vsb-ing-state-exam/raw/master/1_it_mpzz/1_it_mpzz.pdf
 - II. Softwarové inženýrství - https://github.com/R1crd/vsb-ing-state-exam/raw/master/2_swi/2_swi.pdf
-- III. Databázové a informační systémy - https://github.com/R1crd/vsb-ing-state-exam/raw/master/4_ps/4_ps.pdf
-- IV. Počítače a sítě - https://github.com/R1crd/vsb-ing-state-exam/raw/master/3_dais/3_dais.pdf
+- III. Databázové a informační systémy - https://github.com/R1crd/vsb-ing-state-exam/raw/master/3_dais/3_dais.pdf
+- IV. Počítače a sítě - https://github.com/R1crd/vsb-ing-state-exam/raw/master/4_ps/4_ps.pdf
 - V. Počítačová grafika a analýza obrazu - https://github.com/R1crd/vsb-ing-state-exam/raw/master/5_pgo/5_pgo.pdf
 
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
