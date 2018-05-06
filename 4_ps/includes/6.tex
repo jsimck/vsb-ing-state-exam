@@ -104,6 +104,12 @@ Maska se v IPv4 zapisuje stejně jako IP adresa pomocí dot-decimal form s tím,
 
 Občas se používá speciální zápis, který se označuje jako \textbf{inverse mask} nebo \textbf{wildcard mask}. Jedná se o obrácenou masku, jednoduše řečeno tam, kde jsou v tradiční masce jedničky jsou nuly a naopak. Pro výpočet v dekadické formě můžeme použít pro každý oktet hodnota = 255 – hodnota oktetu. Například pro masku 255.255.255.240 je inversní maska 0.0.0.15.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{assets/ipv4-header}
+	\caption{Hlavička IPv4}
+\end{figure}
+
 \subsubsection{Veřejné a privátní adresy}
 Prvotní princip IP sítí byl takový, že IP adresa musela být unikátní v rámci celé sítě a jednotlivé uzly (stanice, servery a další zařízení s přiřazenou IP adresou) spolu mohli komunikovat. S rozvojem internetu se ukázalo, že \textbf{počet adres}, které je možno v IPv4 vytvořit, rozhodně \textbf{není dostatečný}. Začaly se tedy používat různé metody, jak se  s nedostatkem adres vypořádat. Nejrazantnější je nová verze IP protokolu IPv6, která obsahuje mnohem více adres, ale její nasazování není jednoduché. Dále se objevila technika CIDR (Classless Inter-Domain Routing, tj. „beztřídní směrování“ ) a také se IP adresy rozdělili na dva typy, na veřejné a neveřejné IP adresy.
 
