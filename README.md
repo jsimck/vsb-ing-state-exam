@@ -63,8 +63,8 @@ pro vstup a výstup. Rozdíl mezi znakově a bytově orientovanými datovými pr
 2. ~~Základní vlastnosti monolitických počítačů a jejich typické integrované periférie.~~
 Možnosti použití.
 3. ~~Struktura OS a jeho návaznost na technické vybavení počítače.~~
-4. Protokolová rodina TCP/IP.
-5. Metody sdíleného přístupu ke společnému kanálu.
+4. ~~Protokolová rodina TCP/IP.~~
+5. ~~Metody sdíleného přístupu ke společnému kanálu.~~
 6. Problémy směrování v počítačových sítích. Adresování v IP, překlad adres (NAT).
 7. Bezpečnost počítačových sítí s TCP/IP: útoky, paketové filtry, stavový firewall.
 Šifrování a autentizace, virtuální privátní sítě. 

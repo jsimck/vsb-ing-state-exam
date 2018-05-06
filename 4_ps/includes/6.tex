@@ -127,6 +127,51 @@ IP adresy se dělí na:
 \item \textbf{loopback} -- zpětnovazební adresa, pošle paket zpátky na vlastního počítač (127.0.0.1)
 \end{itemize}
 
+\subsection{IPv6}
+IPv6 \textbf{nahrazuje} dosluhující protokol IPv4. Přináší zejména \textbf{masivní rozšíření adresního prostoru} a zdokonalení schopnosti přenášet \textbf{vysokorychlostně data}. Starší protokol IPv4 poskytuje omezený adresní prostor – teoreticky $2^{32}$ adres. IPv6. Obsahuje celkem $2^{128}$ adres. Většina přenosových a aplikačních vrstev protokolů vyžaduje malé nebo žádné změny pro funkčnost s IPv6. Výjimkami jsou protokoly aplikací zahrnující adresy síťové vrstvy např.: FTP. \textbf{Multicast} je součástí základní specifikace IPv6 na rozdíl od IPv4, kde byl zaveden později. IPv6 nepoužívá \textbf{broadcast} na místní linku. Každá adresa má \textbf{128b}. \textbf{Odstraněna potřeba NAT}. Protokol pro IP vrstvu šifrování a autentizaci \textbf{IPsec} je integrální součástí souboru protokolů IPv6, na rozdíl od IPv4, kde je přítomen volitelně (obvykle ale implementován).
+
+IPv6 adresy se obvykle zapisují jako osm skupin čtyř hexadecimálních číslic: \textbf{2001:0db8::1428:57ab}. Vzhledem k zdlouhavému zápisu se může \textbf{nejdelší sekvence nul} nahradit \textbf{::}, \textbf{4 nuly můžeme nahradit jednou}.
+
+\subsubsection{IPv6 Packet}
+Paket IPv6 se skládá ze dvou hlavních částí: hlavičky a těla.
+\begin{itemize}
+	\item \textbf{Verzi} - 4 bity, verze 6
+	\item \textbf{Dopravní třídu} - 8 bitů na prioritu paketu. Úroveň priority se dělí na rozsahy: kde zdroj podporuje kontrolu přetížení a bez podpory kontroly přetížení.
+	\item \textbf{Pojmenování toku} - 20 bitů pro správu QoS. Původně určeno pro speciální obsluhu aplikací reálného času, nyní se nepoužívá.
+	\item \textbf{Délka těla} - 16 bitů pro délku těla paketu. Při vynulování se nastaví „jumbo“ tělo (skok za skokem).
+	\item \textbf{Následující hlavička} - 8 bitů, určuje další vnořený protokol. Hodnoty se shodují s hodnotami definovanými pro IPv4.
+	\item \textbf{Zdrojová a cílová adresa} - 128 bitů na každou adresu.
+	\item\textbf{Hop limit }- 8 bitů, číselně definuje počet povolených přechodů síťovými prvky. Každý přechod znamená snížení čísla o 1.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/4_ipv6}
+\end{figure}
+
+
+\subsection{Překlad síťových adres NAT}
+\textbf{NAT (Network address translation)} se většinou používá pro přístup více počítačů z \textbf{lokální sítě} na \textbf{Internet} pod \textbf{jedinou veřejnou adresou}. Překládá zdrojovou a cílovou IP adresu, je realizován na \textbf{routerech}, \textbf{firewallech} většinou zařízeních 3 vrstvy. Umožňuje připojit více počítačů na jednu veřejnou IP adresu - řeší se tak nedostatek přidělených veřejných IP adres. Využívá se \textbf{překladové tabulky}. 
+\\\\
+\textbf{Výhody:} 
+\begin{itemize}
+	\item Zvyšuje bezpečnost počítačů připojených za NATem (potenciální útočník nezná opravdovou IP adresu). 
+	\item Umožňuje připojit více počítačů na jednu veřejnou IP adresu, čímž se obchází nedostatek IPv4 adres
+\end{itemize}
+\textbf{Nevýhody:}
+\begin{itemize}
+	\item Zařízení za NATem nemají skutečné připojení k Internetu (není možné se snadno připojit na zařízení za NATem.)
+	\item NAT znemožňuje správnou funkcionalitu některých software
+\end{itemize}
+
+\subsubsection{Typy NATu}
+Typicky se využívá kombinace obou níže zmíněných řešení.
+\begin{itemize}
+	\item \textbf{Statický NAT} - Překladová tabulka je konfigurována manuálně administrátorem.
+	\item \textbf{Dynamický NAT} - Obsah překladové tabulky je vytvářen dynamicky v závislosti na síťovém provozu. Veřejné adresy sou alokovány jednotlivým spojením jejich vypůjčením z \textbf{NAT Poolu}.
+	\item \textbf{Network adress and port translation NAPT} - Několik uzlů využívá pouze jednu veřejnou IP adresu. Jednotlivé uzly jsou identifikovány pomocí různých čísel portů.
+\end{itemize}
+
 \subsection{Překlad Adres}
 \subsubsection{NAT (Network Address Translation)}
 Překlad adres je důležitou vlastností směrovačů. Používá se zejména ze dvou důvodů:
