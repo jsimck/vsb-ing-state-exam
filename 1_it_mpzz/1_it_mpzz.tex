@@ -15,6 +15,9 @@
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{minted}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\checkmark}{\ding{48}}%
+\newcommand{\xmark}{\ding{55}}%
 
 % Config
 \renewcommand{\baselinestretch}{1.2} 
@@ -38,6 +41,7 @@
 
 \pagebreak
 \section{Bezkontextové gramatiky a jazyky. Zásobníkové automaty, jejich vztah k bezkontextovým gramatikám.}
+\input{includes/2.tex}
 
 \pagebreak
 \section{Matematické modely algoritmů -Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.}
