@@ -13,19 +13,28 @@
 \usepackage{float}
 \usepackage{color}
 \usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{minted}
 
 % Config
-\setlength\parindent{0pt}
 \renewcommand{\baselinestretch}{1.2} 
 \setitemize{itemsep=0pt}
-
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
 \title{\textbf{I. Matematické základy informatiky}}
 \date{\small\vspace{-9ex}Update: \today}
+\setminted{fontsize=\small,baselinestretch=1}
 
 \begin{document}
 \maketitle
 
 \section{Konečné automaty, regulární výrazy, uzávěrové vlastnosti třídy regulárních jazyků.}
+\input{includes/1.tex}
 
 \pagebreak
 \section{Bezkontextové gramatiky a jazyky. Zásobníkové automaty, jejich vztah k bezkontextovým gramatikám.}
