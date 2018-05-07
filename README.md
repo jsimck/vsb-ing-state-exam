@@ -9,6 +9,13 @@
 - IV. Počítače a sítě - https://github.com/R1crd/vsb-ing-state-exam/raw/master/4_ps/4_ps.pdf
 - V. Počítačová grafika a analýza obrazu - https://github.com/R1crd/vsb-ing-state-exam/raw/master/5_pgo/5_pgo.pdf
 
+## Užitečné odkazy
+### Animace k TI - http://www.cs.vsb.cz/kot/animace.php
+- Redukce bezkontextové gramatiky - http://blog.kostecky.cz/2016/02/redukce-bezkontextove-gramatiky-postup.html
+- Nevypouštějící bezkontextová gramatika - http://www.cs.vsb.cz/kot/soubory_animaci/a-bg_nevypoustejici.pdf
+- Převod NKA na DKA - http://www.cs.vsb.cz/kot/soubory_animaci/a-nfa_na_dfa.pdf
+- Převod ZNKA na DKA - http://www.cs.vsb.cz/kot/soubory_animaci/a-znka_na_dka.pdf
+
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 
 ### I. Matematické základy informatiky

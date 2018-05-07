@@ -1,4 +1,4 @@
-\subsection{Konečné automaty}
+\subsection{Konečné automaty (KA)}
 \textbf{Konečný automat} (KA) tvoří množina stavů, vstupní abceda, přechodová funkce, počáteční a koncové stavy. Můžeme jej znázornit jako \textbf{tabulku}, \textbf{graf} či \textbf{strom}.
 
 Konečné automaty se dělí na \textbf{determistické} a \textbf{nedetermistické}. Deterministický konečný automat má pouze jeden počáteční stav a přechodová funkce vrací jeden stav. Zatímco nedeterministický KA může mít více počátečních stavů a přechodová funkce vrací množinu stavů.
@@ -30,10 +30,10 @@ Skládá se ze \textbf{stavů} a \textbf{přechodů}. Jeden ze stavů je označe
 	\includegraphics[width=0.2\textwidth]{assets/deter1}
 \end{figure}
 
-\subsubsection{Nedeterministický konečný automat (NDKA)}
-Formálně je NDKA definován jako pětice $A = (Q, \Sigma, \delta, I, F)$, s tím rozdílem, že oproti deterministickému KA má \textbf{více počátečních stavů} a \textbf{přechodová funkce vrací množinu} stavů:
+\subsubsection{(Zobecněný) Nedeterministický konečný automat ((Z)NKA)}
+Formálně je NKA definován jako pětice $A = (Q, \Sigma, \delta, I, F)$, s tím rozdílem, že oproti deterministickému KA má \textbf{více počátečních stavů} a \textbf{přechodová funkce vrací množinu} stavů. V případě ZNKA zde existují navíc \textbf{nulové epsilon} ($\epsilon$) přechody:
 \begin{itemize}
-	\item $\delta$ je přechodová funkce, vrací množinu stavů, $\delta: Q \times \Sigma \rightarrow P(Q)$.
+	\item $\delta$ je přechodová funkce, vrací množinu stavů, $\delta: Q \times \Sigma \rightarrow P(Q)$, v případě \textbf{ZNKA} $\delta: Q \times (\Sigma \cup \{\epsilon\}) \rightarrow P(Q)$.
 	\item $I$ je konečná množina počátečních stavů, $I \in Q$.
 \end{itemize}
 
@@ -44,11 +44,11 @@ Formálně je NDKA definován jako pětice $A = (Q, \Sigma, \delta, I, F)$, s t�
 
 \subsubsection*{Na rozdíl od deterministického automatu:}
 \begin{itemize}
-	\item Může z jednoho stavu vést \textbf{libovolný počet přechodů} označených stejným symbolem (i \textbf{nulové} $\epsilon$). 
+	\item Může z jednoho stavu vést \textbf{libovolný počet přechodů} označených stejným symbolem (i \textbf{nulové} $\epsilon$ v případě ZNKA). 
 	\item Není zde nutné, aby z každého stavu vystupovaly všechny symboly, které do něj vstoupily $\rightarrow$ \textbf{nemusí ošetřovat všechny varianty}, pouze odhadne, kterou cestou půjde.
 	\item Nedeterministický automat přijímá dané slovo, jestliže \textbf{existuje alespoň jeden jeho výpočet}, který vede k přijetí tohoto slova.
 	\item V automatu může být \textbf{víc než jeden počáteční stav}.
-	\item Lze ho \textbf{převést na deterministický}. Při převodu automatu, který má n stavů může mít výsledný nedeterministický až $2^n$ stavů.
+	\item Lze ho \textbf{převést na deterministický} (formou tabulky). Při převodu automatu, který má n stavů může mít výsledný nedeterministický až $2^n$ stavů.
 \end{itemize}
 
 
@@ -111,5 +111,5 @@ Ve  všech případech je $\Sigma = \{0, 1\}$:
 		\centering
 		\includegraphics[width=0.8\textwidth]{assets/ka_zrcd}
 	\end{figure}
-	\item \textbf{Doplněk} -- u DKA provedeme prohození označení příjmajících a ostatních stavů, u NDKA je nejprve nutné provézt převod na DKA.
+	\item \textbf{Doplněk} -- u DKA provedeme prohození označení příjmajících a ostatních stavů, u NKA je nejprve nutné provézt převod na DKA.
 \end{itemize}
