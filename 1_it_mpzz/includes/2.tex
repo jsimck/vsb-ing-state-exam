@@ -97,19 +97,19 @@ Využívá se tzv. metody shora-dolů, která obsahuje pouze \textbf{1 stav}:
 \end{enumerate}
 
 \subsubsection*{Příklad}
-\begin{minipage}[t]{0.3\textwidth}
+\begin{minipage}[t]{0.35\textwidth}
+\textbf{Vstupní gramatika:}\\
 $S \rightarrow A | B$\\
 $A \rightarrow a$\\
 $B \rightarrow (c)$\\\smallskip\\
 $\Sigma = \{A, B, S\}$\\
 $\Gamma = \{a, c, (, )\}$
 \end{minipage}
-\begin{minipage}[t]{0.4\textwidth}
+\begin{minipage}[t]{0.65\textwidth}
+\textbf{Instrukce, převedené dle výše uvedených pravidel:}\\
 $(Q, \epsilon, S) \rightarrow \{(q, A), (q, B)\}$\\
 $(Q, \epsilon, A) \rightarrow (q, a)$\\
-$(Q, \epsilon, B) \rightarrow (q, (c))$\\
-\end{minipage}
-\begin{minipage}[t]{0.3\textwidth}
+$(Q, \epsilon, B) \rightarrow (q, (c))$\\\smallskip\\
 $(Q, a, a) \rightarrow (q, \epsilon)$\\
 $(Q, (, () \rightarrow (q, \epsilon)$\\
 $(Q, c, c) \rightarrow (q, \epsilon)$\\
