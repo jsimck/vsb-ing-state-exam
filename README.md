@@ -13,7 +13,7 @@
 
 ### I. Matematické základy informatiky
 
-1. Konečné automaty, regulární výrazy, uzávěrové vlastnosti třídy regulárních jazyků.
+1. ~~Konečné automaty, regulární výrazy, uzávěrové vlastnosti třídy regulárních jazyků.~~
 2. Bezkontextové gramatiky a jazyky. Zásobníkové automaty, jejich vztah k bezkontextovým gramatikám.
 3. Matematické modely algoritmů -Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.
 4. Třídy složitosti problémů. Třída PTIME a NPTIME, NP-úplné problémy.
