@@ -13,7 +13,7 @@ V počítači jsou reprezentovány jako soustava parametrů nějaké rovnice, kt
 		\item Jednoduchý příklad křivky je například kružnice nebo přímka.
 \end{itemize}
 
-\subsection{Parametrické křivky}
+\subsubsection{Parametrické křivky}
 \begin{itemize}
 	\item Mějme interval $I = <a, b> \subseteq \mathbb{R}$.
 	\item Parametricky vyjádřenou (parametrizovanou) křivku $k$ v $\mathbb{R}^n$ nazýváme diferencovatelné zobrazení $\varphi$  :$I \rightarrow \mathbb{R}^n$
@@ -25,7 +25,7 @@ V počítači jsou reprezentovány jako soustava parametrů nějaké rovnice, kt
 	\item Polohový vektor \textbf{P} (vektor daný počátkem souřadné soustavy a souřadnicemi příslušného bodu $P$).
 \end{itemize}
 
-\subsection{Interpolační křivky}
+\subsubsection{Interpolační křivky}
 \begin{itemize}
 	\item V PG nám pro definování (kreslení) křivky slouží její interpolace.
 	\item Interpolační křivka k dané množině bodů je taková křivka, která jimi prochází.
@@ -43,7 +43,7 @@ V počítači jsou reprezentovány jako soustava parametrů nějaké rovnice, kt
 			\end{equation*}
 	\end{itemize}
 
-\subsection{Fergusonova křivka}
+\subsubsection{Fergusonova křivka}
 \begin{itemize}
 	\item Křivka je pojmenovaná po James C. Ferguson z The Boeing Company.
 	\item Je generování křivek \textbf{řízené dvěma body} a \textbf{vektory} v nich.
@@ -82,7 +82,7 @@ Velikost vektorů $v_0$ a $v_1$ významně ovlivňuje výsledný tvar křivky. �
 \end{figure}
 
 
-\subsection{Aproximační přímky}
+\subsubsection{Aproximační přímky}
 \begin{itemize}
 \item Někdy není možné body proložit funkcí a proto se využívá aproximačních křivek, které procházejí v blízkosti bodů.
 \item Je dáno $n$ bodů. Úlohou je nalézt aproximační funkci, která nemusí procházet danými body, ale která co nejlépe vystihuje funkční závislost. 
@@ -144,36 +144,8 @@ Velikost vektorů $v_0$ a $v_1$ významně ovlivňuje výsledný tvar křivky. �
 \item Bezierova -- pomocí algoritmu Casteljau (změna parametru $t$) , Kubický Coonsův B--spline, NURBS
 
 \end{itemize}
-\subsection{Plochy}
-\begin{itemize}
-	\item \textbf{Rozšířením křivek} se dostaneme k plochám, které mají však s křivkami hodně společného. Zejména některé vznikly rozšířením křivek (Bezier, NURBS).
-\end{itemize}
-Vyjádření ploch:
-\begin{itemize}
-	\item \textbf{explicitní} -- $z = f(x, y)$,
-	\item \textbf{implicitní} -- $F(x, y, z) = 0$,
-	\item \textbf{parametrické} -- 		
-	\begin{equation*}
-				x = f_x(u, v), y = f_y(u, v), z = f_z(u, v). .
-	\end{equation*}
-\end{itemize}
-\begin{itemize}
-	\item Z parametrického vyjádření je snadné získat jednotlivé body, z implicitního můžeme jednoduše testovat, zda bod patří do plochy nebo ne. 
-	\item \textbf{Nejvyužívanější} plochy jsou \textbf{parametrické}. 
-	\item Plochy mohou být zadány \textbf{analytickým předpisem}, \textbf{hraničními křivkami}, \textbf{sítí bodů} (NURBS, Bezier) nebo plochy vytvořené \textbf{kinematicky} (rotační plochy, plochy vzniklé skládáním pohybu).
-\end{itemize}
-Tečné vektory plochy:
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{assets/3_tecne_vektory_plochy}
-\end{figure}
-Tečná rovina:
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{assets/3_tecna_rovina}
-\end{figure}
 
-\subsection{Tečný a normálový vektor}
+\subsubsection{Tečný a normálový vektor křivky}
 \subsubsection*{Tečna a tečný vektor}
 \begin{itemize}
 	\item Parametricky vyjádřená přímka $P(t) = (x(t), y(t), z(t))$
@@ -184,7 +156,8 @@ Tečná rovina:
 \begin{itemize}
 	\item \textbf{Normálový vektor} je \textbf{kolmý} na tečný vektor. Skalární součin je tedy roven 0. Potřebujeme ho pro \textbf{obecnou rovnici} přímky/roviny. Získáme jej \textbf{prohozením souřadnic směrového vektoru} a u jedné souřadnice změníme znaménko.
 \end{itemize}
-\subsection{Křivosti}
+
+\subsection{Křivost křivky}
 Křivost křivky je jedna ze \textbf{základních vlastností}, které charakterizují křivky. Rozlišujeme dva typy křivostí:
 \begin{itemize}
 	\item \textbf{první křivost (flexe)} -- obvykle označována pojmem \uv{křivost} a udává velikost odchýlení od křivky $P(t)$ v daném bodě $P(t_0)$. V inflexních bodech je křivost nulová.
@@ -199,6 +172,44 @@ Křivost křivky je jedna ze \textbf{základních vlastností}, které charakter
 \subsubsection{Oskulační rovina}
 Každá rovina procházející tečnou křivky v bodě $P(t0)$ se nazývá \textbf{tečná rovina}. Oskulační rovina je \textbf{limitní rovinou} těchto rovin. Pomocí bodu $P(t0)$ a dvou vektorů $P'(t0)$ a$ P''(t0)$ zjistíme oskulační rovinu. Jsou--li tyto dva vektory lineárně nezávislé, existuje právě jedna oskulační rovina v daném bodě. V opačném případě je oskulační rovinou každá tečná rovina.
 
+
+\subsection{Plochy}
+\begin{itemize}
+	\item \textbf{Rozšířením křivek} se dostaneme k plochám, které mají však s křivkami hodně společného. Zejména některé vznikly rozšířením křivek (Bezier, NURBS).
+\end{itemize}
+\begin{itemize}
+	\item Z parametrického vyjádření je snadné získat jednotlivé body, z implicitního můžeme jednoduše testovat, zda bod patří do plochy nebo ne. 
+	\item \textbf{Nejvyužívanější} plochy jsou \textbf{parametrické}. 
+	\item Plochy mohou být zadány \textbf{analytickým předpisem}, \textbf{hraničními křivkami}, \textbf{sítí bodů} (NURBS, Bezier) nebo plochy vytvořené \textbf{kinematicky} (rotační plochy, plochy vzniklé skládáním pohybu).
+\end{itemize}
+Vyjádření ploch analytickým předpisem:
+\begin{itemize}
+	\item \textbf{explicitní} -- $z = f(x, y)$,
+	\item \textbf{implicitní} -- $F(x, y, z) = 0$,
+	\item \textbf{parametrické} -- 		
+	\begin{equation*}
+				x = f_x(u, v), y = f_y(u, v), z = f_z(u, v). .
+	\end{equation*}
+\end{itemize}
+Tečné vektory plochy:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/3_tecne_vektory_plochy}
+\end{figure}
+Tečná rovina:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{assets/3_tecna_rovina}
+\end{figure}
+Normála: Určíme jako vektorový součin tečných vektorů. Jednotkový normálový vektor  $= n / |n|$
+
+\subsubsection{Křivost plochy}
+\begin{itemize}
+	\item \textbf{Normálová křivost} křivky -- určuje se v regulárním bodě plochy pro konkrétní tečnu a křivku procházející tímto bodem $k_n = k_1(n_k \cdot n) = k_1 \cos{\gamma}$ \\ $\mathbf{k_1}$ -- první křivost křivky, $\mathbf{n_k}$ -- hlavní normála křivky, $\mathbf{n}$ -- normála plochy, $\mathbf{\gamma}$ -- úhel mezi $\mathbf{n}$ a $\mathbf{n_k}$.
+	\item \textbf{Gaussova křivost plochy} -- $k_G = k_{n,min} \cdot k_{n,max}$, min. normálová křivost($\mathbf{k_{n,min}}$), a max. normálová křivost($\mathbf{k_{n,max}}$).
+	\item \textbf{Střední křivost plochy} -- $k_H = \frac{k_{n,min} \cdot k_{n,max}}{2}$.
+	\item \textbf{Absolutní křivost plochy} -- $k_abs = |k_{n,min}| + |k_{n,max}|$.
+\end{itemize}
 \subsection{Cn a Gn Spojitost}
 \begin{itemize}
 \item Při navazování oblouků je významným faktorem spojitost křivek. 
