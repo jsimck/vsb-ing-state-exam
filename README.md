@@ -24,7 +24,7 @@
 1. ~~Konečné automaty, regulární výrazy, uzávěrové vlastnosti třídy regulárních jazyků.~~
 2. ~~Bezkontextové gramatiky a jazyky. Zásobníkové automaty, jejich vztah k bezkontextovým gramatikám.~~
 3. ~~Matematické modely algoritmů -Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.~~
-4. Třídy složitosti problémů. Třída PTIME a NPTIME, NP-úplné problémy.
+4. ~~Třídy složitosti problémů. Třída PTIME a NPTIME, NP-úplné problémy.~~
 5. Jazyk predikátové logiky prvního řádu. Práce s kvantifikátory a ekvivalentní transformace formulí.
 6. Pojem relace, operace s relacemi, vlastnosti relací. Typy binárních relací. Relace ekvivalence a relace uspořádání.
 7. Pojem operace a obecný pojem algebra. Algebry s jednou a dvěma binárními operacemi.

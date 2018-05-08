@@ -86,7 +86,8 @@ $*i$ & číslo v buňce s adresou $i + j$, kde $j$ je aktuální obsah indexové
 \centering
 \begin{tabular}{l|l}
 \textbf{Zápis} & \textbf{Význam} \\ \hhline	
-\texttt{READ} & do pracovního registru (PR) se \textbf{načte} vstup a hlava se posunedoprava \\
+\texttt{READ} & do pracovního registru (PR) se \textbf{načte} vstup a hlava se posune
+doprava \\
 \texttt{WRITE} & na výstup se \textbf{zapíše} hodnota PR \\
 \texttt{LOAD} $op$ & do PR se \textbf{načte} hodnota dána operátorem $op$  \\
 \texttt{STORE} $op$ & hodnota PR se \textbf{uloží} na do registru daného operátorem $op$ \\
@@ -103,7 +104,8 @@ $*i$ & číslo v buňce s adresou $i + j$, kde $j$ je aktuální obsah indexové
 \end{table}
 
 \subsection{Složitost algoritmů}
-Abychom mohli \textbf{porovnávat} různé algoritmy řešící stejný problém, zavádí se pojem složitost algoritmu. Složitost je jinak řečeno \textbf{náročnost algoritmu} -- čím menší složitost tím je algoritmus lepší.Přičemž nás může zajímat složitost z pohledu \textbf{času}, či \textbf{paměti}:
+Abychom mohli \textbf{porovnávat} různé algoritmy řešící stejný problém, zavádí se pojem složitost algoritmu. Složitost je jinak řečeno \textbf{náročnost algoritmu} -- čím menší složitost tím je algoritmus lepší.
+Přičemž nás může zajímat složitost z pohledu \textbf{času}, či \textbf{paměti}:
 \begin{itemize}
 \item \textbf{Časová složitost} -- sleduje jak závisí \textbf{doba} výpočtu alg. na množství vstupních dat.
 \item \textbf{Prostorová složitost} -- sleduje jak závisí \textbf{množství použité paměti} výpočtu alg. na množství vstupních dat.
@@ -134,8 +136,8 @@ Je \textbf{způsob klasifikace počítačových algoritmů}. Ve většině pří
 \item $f(n) \in \Omega(log n)$ -- logaritmická funkce (složitost),
 \item $f(n) \in \Omega(n)$ -- lineární funkce (složitost),
 \item $f(n) \in \Omega(n^2)$-- kvadratická funkce (složitost),
-\item $f(n) \in O(n^c)$ pro nějaké $c > 0$ -- polynomiální,
-\item $f(n) \in \Omega(c^n)$ pro nějaké $c > 1$ -- exponenciální.
+\item $f(n) \in O(n^k)$ pro nějaké $k > 0$ -- polynomiální,
+\item $f(n) \in \Omega(k^n)$ pro nějaké $k > 1$ -- exponenciální.
 \end{itemize}
 \end{minipage}
 
@@ -161,7 +163,8 @@ Problém je určen \textbf{trojicí} $(IN, OUT, p)$, kde:
 \end{itemize}
 
 \subsubsection{Ano/Ne problémy}
-Jsou to problémy, jejichž \textbf{výstupní množina obsahuje dva prvky} $OUT=\{\rm ano, ne\}$. Na ano/ne problémy se dají převést ostatní problémy nepotřebujeme-li znát přesný výsledek:
+Jsou to problémy, jejichž \textbf{výstupní množina obsahuje dva prvky} $OUT=\{\rm ano, ne\}$.
+ Na ano/ne problémy se dají převést ostatní problémy nepotřebujeme-li znát přesný výsledek:
 \begin{itemize}
 \item Nepotřebuji najít v poli nejmenší číslo, stačí mi vědět \textbf{zda pole obsahuje číslo menší než nula}.
 \item Nepotřebuji znát nejkratší cestu grafem, stačí mi najít cestu, \textbf{která je kratší než 8}.
@@ -195,21 +198,28 @@ Důkaz neřešitelnosti lze provést skrze jiné, \textbf{už dokázané}, probl
 Optimalizační problémy \textbf{hledají nejlepší řešení} v množině různých řešení. Příkladem je například: hledání nejkratší cesty, nejmenší kostry, apod.
 
 \subsubsection{Příklady nerozhodnutelných problémů}
-\noindent\textbf{\textsc{Název}}: Hledání nejkratší cesty v grafu.\\
-\textbf{\textsc{Vstup}}: Orientovaný graf $G = (V, E)$ a dvojice vrcholů $u, v \in V$.\\
-\textbf{\textsc{Výstup}}: Nejkratší cesta z $u$ do $v$.\medskip\\
-
-\noindent\textbf{\textsc{Název}}: Hledání minimální kostry v grafu.\\
-\textbf{\textsc{Vstup}}: Neorientovaný souvislý graf $G = (V_G,E_G)$ s ohodnocenými hranami. \\
-\textbf{\textsc{Výstup}}: Souvislý graf $H = (V_H,E_H)$, kde $V_H = V_G$ a $E_H \subseteq E_G$, který má součet hodnot všech hran minimální.\medskip\\
-
-\noindent\textbf{\textsc{Název}}: Eq-CFG (Ekvivalence bezkontextových gramatik).\\
-\textbf{\textsc{Vstup}}: Dvě bezkontextové gramatiky $G1, G2$.\\
-\textbf{\textsc{Otázka}}: Platí $L(G1) = L(G2)$? Generují obě gramatiky stejný jazyk? \medskip\\
-
-\noindent\textbf{\textsc{Název}}: HP (Problém zastavení [Halting Problem]).\\
-\textbf{\textsc{Vstup}}: Turingův stroj $M$ a jeho vstup $w$.\\
-\textbf{\textsc{Otázka}}: Zastaví se $M$ na $w$ (tzn. je výpočet stroje M pro vstupní slovo $w$ konečný)?\\
+\begin{enumerate}
+\item \textbf{Hledání nejkratší cesty v grafu}
+\begin{itemize}
+	\item \textbf{\textsc{Vstup}}: Orientovaný graf $G = (V, E)$ a dvojice vrcholů $u, v \in V$.
+	\item \textbf{\textsc{Výstup}}: Nejkratší cesta z $u$ do $v$.
+\end{itemize}
+\item \textbf{Hledání minimální kostry v grafu}
+\begin{itemize}
+\item \textbf{\textsc{Vstup}}: Neorientovaný souvislý graf $G = (V_G,E_G)$ s ohodnocenými hranami. 
+\item \textbf{\textsc{Výstup}}: Souvislý graf $H = (V_H,E_H)$, kde $V_H = V_G$ a $E_H \subseteq E_G$, který má součet hodnot všech hran minimální.
+\end{itemize}
+\item \textbf{Eq-CFG (Ekvivalence bezkontextových gramatik)}
+\begin{itemize}
+\item \textbf{\textsc{Vstup}}: Dvě bezkontextové gramatiky $G1, G2$.
+\item \textbf{\textsc{Otázka}}: Platí $L(G1) = L(G2)$? Generují obě gramatiky stejný jazyk?
+\end{itemize}
+\item \textbf{HP (Problém zastavení [Halting Problem])}
+\begin{itemize}
+\item \textbf{\textsc{Vstup}}: Turingův stroj $M$ a jeho vstup $w$.
+\item \textbf{\textsc{Otázka}}: Zastaví se $M$ na $w$ (tzn. je výpočet stroje M pro vstupní slovo $w$ konečný)?
+\end{itemize}
+\end{enumerate}
 
 
 \begin{figure}[H]
