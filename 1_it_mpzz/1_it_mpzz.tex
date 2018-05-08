@@ -13,15 +13,17 @@
 \usepackage{float}
 \usepackage{color}
 \usepackage{enumitem}
+\usepackage{latexsym}
 \usepackage{hyperref}
 \usepackage{minted}
-\usepackage{pifont}% http://ctan.org/pkg/pifont
-\newcommand{\checkmark}{\ding{48}}%
-\newcommand{\xmark}{\ding{55}}%
+\usepackage{caption}
+\usepackage{amsfonts}
+\usepackage{makecell}
 
 % Config
 \renewcommand{\baselinestretch}{1.2} 
 \setitemize{itemsep=0pt}
+\setenumerate{itemsep=0pt}
 \hypersetup{
 	colorlinks,
 	citecolor=black,
@@ -32,6 +34,7 @@
 \title{\textbf{I. Matematické základy informatiky}}
 \date{\small\vspace{-9ex}Update: \today}
 \setminted{fontsize=\small,baselinestretch=1}
+\newcommand{\hhline}{\Xhline{2\arrayrulewidth}}
 
 \begin{document}
 \maketitle
@@ -44,10 +47,12 @@
 \input{includes/2.tex}
 
 \pagebreak
-\section{Matematické modely algoritmů -Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.}
+\section{Matematické modely algoritmů - Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.}
+\input{includes/3.tex}
 
 \pagebreak
 \section{Třídy složitosti problémů. Třída PTIME a NPTIME, NP-úplné problémy.}
+\input{includes/4.tex}
 
 \pagebreak
 \section{Jazyk predikátové logiky prvního řádu. Práce s kvantifikátory a ekvivalentní transformace formulí.}

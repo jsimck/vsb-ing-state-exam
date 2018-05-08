@@ -15,6 +15,7 @@
 - Nevypouštějící bezkontextová gramatika - http://www.cs.vsb.cz/kot/soubory_animaci/a-bg_nevypoustejici.pdf
 - Převod NKA na DKA - http://www.cs.vsb.cz/kot/soubory_animaci/a-nfa_na_dfa.pdf
 - Převod ZNKA na DKA - http://www.cs.vsb.cz/kot/soubory_animaci/a-znka_na_dka.pdf
+- Riceova věta - http://blog.kostecky.cz/2016/02/riceova-veta-trivialnost-vstupne.html
 
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 
@@ -22,7 +23,7 @@
 
 1. ~~Konečné automaty, regulární výrazy, uzávěrové vlastnosti třídy regulárních jazyků.~~
 2. ~~Bezkontextové gramatiky a jazyky. Zásobníkové automaty, jejich vztah k bezkontextovým gramatikám.~~
-3. Matematické modely algoritmů -Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.
+3. ~~Matematické modely algoritmů -Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.~~
 4. Třídy složitosti problémů. Třída PTIME a NPTIME, NP-úplné problémy.
 5. Jazyk predikátové logiky prvního řádu. Práce s kvantifikátory a ekvivalentní transformace formulí.
 6. Pojem relace, operace s relacemi, vlastnosti relací. Typy binárních relací. Relace ekvivalence a relace uspořádání.

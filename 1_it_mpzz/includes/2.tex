@@ -42,6 +42,7 @@ Slouží k \textbf{rozpoznání bezkontextových jazyků}. S využitím zásobn�
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.30\textwidth]{assets/za}
+	\includegraphics[width=0.30\textwidth]{assets/cfl}
 \end{figure}
 
 \begin{itemize}
@@ -78,14 +79,13 @@ Tato instrukce je aplikovatelná jen v situaci (neboli konfiguraci), kdy \textbf
 \begin{table}[H]
 	\vspace{-2mm}
 	\centering
-	\begin{tabular}{|l|l|p{6.5cm}|}
-		\hline
-		\textbf{Pravidlo} & \textbf{Akce (Z = zásobník)} & \textbf{Význam} \\ \hline
-		$ \delta(q_1, a, X) \rightarrow (q_1, YX) $ 	&                 \textbf{přidání} prvku do Z & na začátek zásobníku se vloží $Y$ \\ \hline
-		$ \delta(q_1, a, X) \rightarrow (q_1, Y) $	&                  \textbf{přepsání} prvku v Z & první prvek zásobníku se přepíše na $Y$ \\ \hline
-		$ \delta(q_1, a, X) \rightarrow (q_1, \epsilon) $	&                  \textbf{smazání} prvku ze Z & první prvek zásobníku se smaže neboli nahradí prázdným slovem $\epsilon$ \\ \hline
-		$ \delta(q_1, a, X)\rightarrow(q_2, X) $	&                  \textbf{změna stavu}& stav $ q_1 $ se změní na stav $ q_2 $ \\ \hline
-		$\delta(q_1, a, X)\rightarrow\emptyset$	&                  \textbf{pád} automatu & ukončení výpočtu, slovo nebylo přijato \\ \hline
+	\begin{tabular}{l|l|p{6.5cm}}
+		\textbf{Pravidlo} & \textbf{Akce (Z = zásobník)} & \textbf{Význam} \\\hhline
+		$ \delta(q_1, a, X) \rightarrow (q_1, YX) $ 	&                 \textbf{přidání} prvku do Z & na začátek zásobníku se vloží $Y$ \\ 
+		$ \delta(q_1, a, X) \rightarrow (q_1, Y) $	&                  \textbf{přepsání} prvku v Z & první prvek zásobníku se přepíše na $Y$ \\ 
+		$ \delta(q_1, a, X) \rightarrow (q_1, \epsilon) $	&                  \textbf{smazání} prvku ze Z & první prvek zásobníku se smaže neboli nahradí prázdným slovem $\epsilon$ \\ 
+		$ \delta(q_1, a, X)\rightarrow(q_2, X) $	&                  \textbf{změna stavu}& stav $ q_1 $ se změní na stav $ q_2 $ \\ 
+		$\delta(q_1, a, X)\rightarrow\emptyset$	&                  \textbf{pád} automatu & ukončení výpočtu, slovo nebylo přijato \\ 
 	\end{tabular}
 \end{table}
 
