@@ -1,7 +1,8 @@
 \textbf{Softwarové inženýrství} je inženýrská disciplína zabývající se praktickými problémy vývoje rozsáhlých softwarových systémů.
 
 \subsection{Softwarový proces}
-\textbf{Softwarový proces} je po částech uspořádaná množina kroků směřujících k vytvoření nebo úpravě softwarového díla.
+\textbf{Softwarový proces} je po částech uspořádaná množina kroků směřujících k vytvoření nebo úpravě softwarového díla. Cílem je spojit požadavky a vyjadřování uživatelů s postupy, algoritmy a technikami používaných při programování.
+
 \begin{itemize}
 \item Krokem může být \textbf{aktivita} nebo opět \textbf{podproces} (hierarchická dekompozice procesu). 
 \item Aktivity a podprocesy mohou \textbf{probíhat v čase souběžně}, tudíž je vyžadována jejich koordinace. 
@@ -35,6 +36,7 @@ Model je možno v \textbf{různých modifikacích} a \textbf{rozšířeních} na
 \begin{itemize}
 \item \textbf{Inkrementální} -- \textbf{postupné vytváření verzí} softwaru zahrnující postupně širší spektrum funkcí definovaných v průběhu jeho vytváření. V podstatě se jedná o \textbf{více menších vodopádů provedených za sebou} tak, aby každý z nich odpovídal nové sadě doplněných požadavků.
 \item \textbf{Spirálový} -- zahrnuje do svého \textbf{životního cyklu další fáze} jako je vytvoření a hodnocení \textbf{prototypu} ověřující funkcionalitu cílového systému, přičemž \textbf{každý cyklus nabaluje další požadavky} specifikované zadavatelem.
+\item \textbf{V-mode} -- Podobně jako vodopádový, v každém kroku ale probíhá testování ( https://en.wikipedia.org/wiki/V-Model_(software_development) )
 \end{itemize}
 
 
@@ -45,10 +47,13 @@ Rational Unified Process (RUP) je \textbf{metodika vývoje softwaru} vytvořená
 \item softwarový produkt je vyvíjen \textbf{iteračním způsobem},
 \item jsou \textbf{spravovány požadavky} na něj kladené,
 \item využívá se \textbf{již existujících softwarových komponent},
+\item na konci každé \textbf{iterace} je spustitelný kód,
 \item model softwarového systému je \textbf{vizualizován} (\textbf{UML}),
 \item průběžně je \textbf{ověřována} \textbf{kvalita} produktu,
 \item \textbf{změny} systému\textbf{ jsou řízeny} (každá změna je přijatelná a změny jsou sledovatelné).
 \end{itemize}
+
+\paragraph*{Zkrácená definice} -- Každý cyklus vede k vytvoření takové verze systému, kterou lze předat uživatelům a implementuje jimi specifikované požadavky. RUP cyklus má 4 \textbf{fáze}: Zahájení, Rozpracování, Tvorba, Předání. \textbf{Iterace} je úplná vývojová smyčka vedoucí k vytvoření spustitelné verze systému reprezentující podmnožinu vyvíjeného cílového produktu a která je postupně rozšiřována každou iterací až do výsledné podoby.
 
 \subsubsection{Vývoj software iteračním způsobem}
 V současné době, kdy se předmětem vývoje staly softwarové systémy vysoké úrovně, je \textbf{nemožné nejprve specifikovat celé zadání}, následně navrhnout jeho řešení, vytvořit softwarový produkt implementující toto zadání, vše otestovat a předat zadavateli k užívání. Jediné možné řešení takového problému je přístup postavený na \textbf{iteracích}, umožňující \textbf{postupně upřesňovat cílový produkt} cestou jeho \textbf{inkrementálního rozšiřovaní} z původní hrubé formy do výsledné podoby.  Softwarový systém je tak \textbf{vyvíjen ve verzích}, které lze průběžně ověřovat se zadavatelem a případně jej pozměnit pro následující iteraci. \textbf{Každá iterace končí vytvořením spustitelného kódu}.

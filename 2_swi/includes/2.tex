@@ -50,9 +50,10 @@ Diagram případu užití popisuje \textbf{vztahy} mezi \textbf{aktéry} a jedno
 	\includegraphics[width=0.7\textwidth]{assets/usecase.png}
 \end{figure}
 
-\noindent Pro složitější a obsáhlejší diagramy případů užití se zavadí \textbf{tři typy vztahů}:
+\noindent Pro složitější a obsáhlejší diagramy případů užití se zavadí \textbf{tři (+1) typy vztahů}:
 \begin{itemize}
-\item \textbf{Include} – případ užití může \textbf{obsahovat} jiný (UC s include se vždy provede před samotným UC).
+    \item \textbf{Relace} - bez typu (jen čára) značí přístup k UC, nejčastěji mezi aktéri a UC
+\item \textbf{Include} – případ užití musí \textbf{obsahovat} jiný (UC s include se vždy provede před samotným UC).
 \item \textbf{Extend} – případ užití může \textbf{rozšiřovat} jiný (UC s extend se může nebo nemusí provést).
 \item \textbf{Generalizace} – případ užití může být \textbf{speciálním případem} jiného (dědičnost).
 \end{itemize}
@@ -77,9 +78,13 @@ Tento diagram popisuje jaké \textbf{zprávy} (\textbf{požadavky}) \textbf{jsou
 
 \pagebreak
 \subsection{Diagram aktivit}
-Diagram aktivit popisuje jednotlivé procesy pomocí aktivit reprezentující jeho (akční) \textbf{stavy} a \textbf{přechody mezi nimi}.
+Diagram aktivit popisuje jednotlivé procesy pomocí aktivit reprezentující jeho (akční) \textbf{stavy} a \textbf{přechody mezi nimi}. Pokud aktivita "přetéká" v jednotlivých stavech mezi uživateli, mohou být tyto stavy naznačeny pomocí tzv \textbf{swimlines}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/diag_aktivit.png}
+\end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{assets/diag_aktivit.png}
+	\includegraphics[width=1\textwidth]{assets/diag_aktivit_swimlines.gif}
 \end{figure}

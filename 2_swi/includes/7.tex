@@ -22,6 +22,8 @@ Výjimky fungují stejně jako v Javě, v případě neošetřené chyby dojde k
 \subsection{try-catch-finally}
 Zpracování výjimky se vždy vztahuje k bloku programu vymezeného příkazem \texttt{try} následovaném \textbf{jedním nebo více} bloky \texttt{catch} popisujícími způsob ošetření jednotlivých výjimek a volitelným blokem \texttt{finally}, který se vykoná vždy na konci bloku (vhodné místo pro uvolnění zdrojů.).
 
+V C++ neexistuje blok \textbf{finally}. Díky technice RAII blok finally není potřeba, proto asi nikdy v C++ obsažen ani nebude.
+
 \begin{minted}[tabsize=4,obeytabs]{java}
 class MojeVyjimka extends Exception { 
 	MojeVyjimka(String msg) { super(msg); } 
@@ -84,7 +86,7 @@ Binární proudy umožňují přenést \textbf{libovolná data}. Základní oper
 Třídy \textbf{BufferedInputStream} a \textbf{BufferedOutputStream} (\textbf{v Javě}) za nás tento nedostatek řeší. Tyto proudy obsahují \textbf{pole, které slouží jako vyrovnávací paměť}. V případě čtení z disku bufferovaný proud načte celý blok dat a uloží jej do pole, ze kterého data dále posílá našemu programu. V okamžiku, kdy se pole vyprázdní, učiní dotaz na další blok. Tímto způsobem dochází k eliminaci velkého množství zbytečných a drahých volání. (V .NET existuje třída \textbf{BufferedStream}.)
 
 \subsubsection{Textový}
-Znakové proudy fungují stejným způsobem jako ty binární, pouze \textbf{operují s textem}. Poměrně důležitou poznámkou je, že \textbf{Java} interně uchovává řetězce ve znakové sadě \textbf{Unicode}. Z toho plyne, že při každém zápisu a čtení ze znakového proudu dochází k překódování daného řetězce (znaků). \texttt{BufferedReader}/\texttt{BufferedWriter}.
+Znakové proudy fungují stejným způsobem jako ty binární, pouze \textbf{operují s textem}. Poměrně důležitou poznámkou je, že \textbf{Java} interně uchovává řetězce ve znakové sadě \textbf{Unicode}, C\# využívá také Unicode, konkrétně UTF-16. Z toho plyne, že při každém zápisu a čtení ze znakového proudu dochází k překódování daného řetězce (znaků). \texttt{BufferedReader}/\texttt{BufferedWriter}.
 
 \subsubsection{Datové proudy}
 Java obsahuje třídy pro \textbf{pohodlné čtení a zápis primitivních datových typů} a typu \textbf{String}. Nejrozšířenější třídy jsou \texttt{DataInputStream} a \texttt{DataOutputStream}. String je ukládán v kódování UTF-8. Údaje takto uložené např. do souboru nejsou uživatelsky přívětivé a s výjimkou řetězců čitelné. Metody pro čtení jsou \texttt{readDouble}, \texttt{readInt}, \texttt{readUTF}. Obdobně metody pro zápis mají předponu \texttt{write}.
