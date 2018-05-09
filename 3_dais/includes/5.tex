@@ -22,11 +22,9 @@ Fyzická implementace tedy \textbf{řeší uložení dat na nejnižší úrovni 
 \end{itemize}
 
 \subsection{Datové struktury}
-Datové struktury \textbf{se skládají} buďto ze \textbf{stránek}, nebo z \textbf{uzlů} v případě stromové struktury. Jsou realizovány tak aby \textbf{operace} vyhledávání, vkládání, editace a mazání \textbf{byly co nejefektivnější}. 
+Datové struktury \textbf{se skládají} buďto ze \textbf{stránek}, nebo z \textbf{uzlů} v případě stromové struktury. Jejich realizace přímo ovlivňuje efektivitu \textbf{operací} vyhledávání, vkládání, editace a mazání. Konkrétní realizace je závislá na použitém typu tabulky (halda, halda+index, shlukování záznamů).
 
-Pro rychlé vyhledávání, které předchází i editaci a mazání je \textbf{nutné udržovat datovou strukturu setříděnou}. To však může zpomalit operaci vkládání (např. zařazením nového záznamu doprostřed tabulky musím posunout milion záznamů).
 Základní datové struktury:
-
 \begin{itemize}
 \item \textbf{Blok} (alokační jednotka) -- je nejmenší jednotka, se kterou SŘBD manipuluje při zápisu a čtení dat z disku (obvykle 4KB nebo 8KB).
 \item \textbf{Stránka} -- nejmenší jednotka s kterou pracuje správce paměti. \texttt{Stranka.velikost = X * Blok.velikost} (je-li velikost bloku = 4KB je odpovídá velikost stránky násobkům 4KB).
@@ -37,20 +35,25 @@ Základní datové struktury:
 \subsection{Typy tabulek}
 \subsubsection{Heap Table}
 \begin{itemize}
-\item Implicitní pro \texttt{CREATE TABLE} (v MSSQL), záznamy nejsou nijak uspořádány.
+\item Implicitní pro \texttt{CREATE TABLE} téměř všude, kromě MS-SQL. Záznamy nejsou nijak uspořádány.
 \item \textbf{Stránkové perzistentní pole} s velikostí \textbf{bloku} nejčastěji \textbf{8kB}.
 \item Záznamy pouze \textbf{označovány jako smazané}, pro fyzické smazání slouží speciální operace \textbf{shrinking}.
+\item Obsahuje všechny záznamy a jejich atributy pokupě
 \item Při vkládání záznam uložen na \textbf{první volnou pozici v tabulce} nebo na \textbf{konec pole}.
 \item Složitost operací: neefektivní vyhledávání $O(n)$, velmi \textbf{efektivní vkládání} $O(1)$ i \textbf{využití místa}.
 \end{itemize}
 \subsubsection{Shlukování záznamů (Data Clustering)}
 \begin{itemize}
+\item Implicitní pro MS-SQL při \texttt{CREATE TABLE}
 \item Záznamy v \textbf{datovém souboru jsou seřazeny podle zvoleného klíče}, pro implementaci nejčastěji využita nějaká \textbf{varianta B-stromu}.
-\item Listové uzly stromu (bloky) obsahují \textbf{kromě klíče i další záznamy} tabulky.
-\item Používá se všude, kde potřebujeme \textbf{získat i hodnoty ostatních atributů} (kromě klíče - např. \texttt{SELECT} neklíčových atributů).
+\item Listové uzly stromu (bloky) obsahují \textbf{kromě klíče i další atributy} tabulky.
+\item V pokročilejších DBMS lze zvolit, které atributy leží přímo v B+ stromu a které leží na haldě. Lze tak kombinovat shlukování s heap table. Pro získání dat uložených přímo v listu není přístup na haldu poté nutný
+\item Používá se všude, kde potřebujeme \textbf{získat i hodnoty ostatních atributů} (kromě klíče - např. \texttt{SELECT} neklíčových atributů) - vyšší výkon
 \item \textbf{Zhoršený výkon} \texttt{INSERT} (data se musí zatřizovat).
 \item \textbf{Oracle:} Index Organized Table (IOT), \textbf{SQL Server:} Clustered Index.
 \end{itemize}
+
+\paragraph{Eliminace náhdoných přístupů přes ROWID} Tabulka se shlukováním záznamů může ušetřit náhodný přístup oproti heap table a indexu. Po vyhledání ve stromě není nutné další náhodný přístup na haldu, protože vše potřebné je v listu. Kvůli více datům v listech může ale být celková výška stromu ve shlukované tabulce mnohem větší. To způsobí více náhodných přístupů při průchodu stromem než  v případě heap table a indexu. Co je lepší nelze určit předem ale pouze testem na reálných nebo pseudoreálných datech.
 
 \subsubsection{Hašovaná tabulka (Hash Table)}
 \begin{itemize}
@@ -66,12 +69,20 @@ Základní datové struktury:
 \end{itemize}
 
 \subsection{Indexy}
-Indexové soubory slouží k \textbf{seřazení tabulky podle jiných atributů než je samotná tabulka defaultně seřazená}. Index je tedy vázaný ke konkrétní tabulce a konkrétnímu atributu podle kterého data řadí. Index umožňuje \textbf{rychlé vyhledávání} dle klíče, \textbf{ROWID pak odkazuje na kompletní záznam v heap tabulce}. \texttt{CREATE [BITMAP] INDEX login ON Student;}. 
+Indexové soubory slouží k možnosti \textbf{rychlého vyhledávání a seřazení tabulky} podle různých atributů. Tabulka je jinak seřazena úplně náhodně (heap table), nebo podle primárního klíče (data-clustering). Index je tedy vázaný ke konkrétní tabulce a konkrétnímu atributu. Index umožňuje \textbf{rychlé vyhledávání} dle klíče, \textbf{ROWID pak odkazuje na kompletní záznam v heap tabulce}. \texttt{CREATE [BITMAP] INDEX login ON Student;}. Protože ale následný počet náhodných přístupů pomocí ROWID může být mnoho, někdy DB raději provede sekvenční prohledání celé tabulky. Rozhoduje se individuálně na základě statistik o atributech a jejich velikostech.
 \begin{itemize}
 \item \textbf{Primární index (PRIMARY)} -- automatický index, který se váže k primárnímu klíči, zajišťuje jedinečnost údajů.
-\item \textbf{Unikátní index (UNIQUE)} -- stejně jako primární index zajišťuje jedinečnost údajů v atributu, ale neváže se pouze ke klíči.
+\item \textbf{Unikátní index (UNIQUE)} -- stejně jako primární index zajišťuje jedinečnost údajů v atributu, ale neváže se k primárnímu klíči.
 \item \textbf{Vedlejší index (INDEX)} -- klasické index popsány níže.
 \item \textbf{Fulltextový index} -- používá se pro optimalizaci fulltextového vyhledávání v daném sloupci.
+\item \textbf{Složený index} -- Může být kterýkoli výše. Obsahuje více atributů v jednom klíči. Pokud je dotaz jen na druhý či další atribut v indexu, nelze index použít.
+\end{itemize}
+
+\subsubsection{Nevýhody indexů}
+\begin{itemize}
+	\item Při velkém množství různých indexů mohou soubory s index zabírat mnohem více než samotná tabulka
+	\item Pro získání dalších dat je nutné hodně náhodných přístupů přes ROWID
+	\item Každý záznam v indexu musí být shodné délku. Tj například stringy nejsou vhodné pro index, protože každý záznam v indexu bude tak dlouhý, jaký je nejdelší možný string daného atributu. Pokud je string kratší, je záznam v indexu vyplněn \texttt{\\0}.
 \end{itemize}
 
 \subsubsection{Bitmapový index}
@@ -98,40 +109,48 @@ Pokud se pro dvě tabulky často používá operace spojeni (JOIN) pro jeden atr
 \textbf{Ovlivnění času vykonávání dotazu} - parametrizované dotazy, hromadné operace, nastavení transakcí. Na úrovni DB můžeme ovlivnit výběr efektivnějšího plánu vykonávání dotazu, případně dobu vykonávání operací -> \textbf{fyzický návrh DB}. Identifikujeme \textbf{4 fáze vykonávání dotazu}:
 
 \begin{enumerate}
-	\item \textbf{Převod dotazu do interní formy}
+	\item \textbf{Parsování dorazu}
 	\begin{itemize}
 		\item Převod původního dotazu do zvolené \textbf{interní formy}.
 		\item \textbf{Eliminujeme syntaxi jazyka dotazu} (např. SQL).
 		\item Zpracování pohledů, které probíhá v této fázi, znamená, že \textbf{nahradíme pohled jeho definicí} (materializované pohledy -- fragmenty/výsledky dotazů).
 		\item Interní forma je nejčastěji \textbf{nějaký druh dotazovacího strom}u (angl. query tree).
 	\end{itemize}
-	\item \textbf{Převod do kanonické formy}
+	\item \textbf{Výběr logického plánu}
 	\begin{itemize}
-		\item V této fázi optimalizátor provádí celou řadu \textbf{optimalizací}.
-		\item Převodem do kanonické formy dochází k \textbf{odstranění} různých povrchních \textbf{rozdílů} a především nalezení \textbf{efektivnějšího} \textbf{tvaru} než nabízel původní dotaz.
+		\item při převodu do formy relační algebry dochází také k \textbf{odstranění} různých povrchních \textbf{rozdílů} a především nalezení \textbf{efektivnějšího} \textbf{tvaru} než nabízel původní dotaz.
 		\item \textbf{Optimalizátor} – transformační pravidla (převádí výraz na ekvivalentní). Fáze transformace/přepsání dotazu (query rewite). Dotaz tedy není ve skutečnosti vykonán přesně tak, jak byl zadán! 
 	\end{itemize}
-	\item \textbf{Výběr nízkoúrovňových procedur}
+	\item \textbf{Výběr fyzického plánu}
 	\begin{itemize}
 		\item V této fázi se optimalizátor rozhoduje jak bude transformovaný dotaz vykonán.
-		\item Nyní optimalizátor uvažuje: \textbf{existenci indexů}, \textbf{distribuci hodnot}, \textbf{shlukování uložených dat}.
+		\item Jsou vybírány konkrétní agoritmy a pořadí jejich vykonávání
+		\item Při výběru se již uvažuje: \textbf{existenci indexů}, \textbf{distribuci hodnot}, \textbf{shlukování uložených dat}.
+		\item Každé operaci je přiřazena výsledná \textbf{cena = IO cost + CPU cost}, která bude potřebá k celkovému vykonání
 	\end{itemize}
-	\item \textbf{Vygenerování plánů dotazu a výběr nejlevnějšího plánu}
-	\begin{itemize}
-		\item Cena procedury je závislá na aktuální \textbf{mohutnosti vstupních relací} a na mohutnosti \textbf{mezivýsledků jednotlivých procedur}.
-		\item Odhad velikosti mezivýsledků je však často problematický jelikož velmi ovlivňuje cenu operace, jedná se o jeden z \textbf{nejřešenějších problémů}.
-		\item Z množiny dotazovacích plánů pak \textbf{optimalizátor} vybírá ten \textbf{nejlepší}, tedy \textbf{nejlevnější}.
+	\item \textbf{Výběr nejlevnějšího plánu a jeho vykonání}
+	\begin{itemize}		
+		\item Z množiny dotazovacích plánů pak \textbf{optimalizátor} vybírá ten \textbf{nejlepší}, tedy \textbf{nejlevnější} plán.
+		\item Následně je vykonán a hodnoty vráceny
 	\end{itemize}
 \end{enumerate}
 
-\subsection{Ladění dotazů}
+\begin{figure}[H]
+	\includegraphics{assets/zpracovani_dotazu.png}
+\end{figure}
+
+\subsection{Optimalizátor a ladění dotazů}
 \begin{itemize}
-	\item Po vybrání nejlevnějšího plánu je \textbf{dotaz proveden} a uživateli vrácen výsledek.
+	\item \textbf{Optimalizátor} pro nalezení nejlepšího plánu využívá systémový katalog, který obsahuje statistiky o uložených datech. Systémový katalog je aktualizován v době nejnižší zátěže serveru, nikoli po každé CRUD operaci. Orientační obsah katalogu:
+	\begin{itemize}
+		\item \textbf{Tabulka} - kardinalita (mohutnost, počet záznamů), počet diskových stránek
+		\item \textbf{Sloupec} - počet stejných hodnot ve sloupci, minimální a maximální hodnoty, null hodnoty, $X$ nejfrekventovanějších hodnot
+		\item \textbf{Index} - Počet listových stránek, výška stromu
+	\end{itemize}
 	\item \textbf{Plán} lze v SŘBD většinou \textbf{zobrazit} - operace jako průchod tabulkou, přístup k indexu, třídění spojení atd. To lze využít pro \textbf{odladění dotazu} - např. uvidíme, že musíme použít index na neindexovaný atribut.
 	\item Dvěma či více \textbf{různými dotazy} je možno obdržet \textbf{stejná data}. 
 	\item \textbf{Rychlost} různých dotazů ovšem\textbf{ nemusí být stejná }i přesto, že vracejí stejná data.
 	\item Snažíme dosáhnout \textbf{maximálního} \textbf{výkonu} se \textbf{stávajícími prostředky}.
-	\item Plán vykonávání dotazu vybírá \textbf{optimalizátor}.
 	\item Snažíme se vytvořit dotaz, který\textbf{ bude načítat z úložiště pouze to, co potřebuje}.
 \end{itemize}
 
@@ -147,3 +166,19 @@ Pokud se pro dvě tabulky často používá operace spojeni (JOIN) pro jeden atr
 	\item \textbf{Parametry SŘBD} -- Velikosti \textbf{cache}, maximum zámků, atd. Nutné optimalizovat na určité použití.
 	\item \textbf{ORM} -- Minimum SQL příkazů a objemu přenášených dat. Úroveň izolace transakce.
 \end{itemize}
+
+\subsubsection{Plán vykonání dotazu}
+V plánu lze získat informace:
+\begin{itemize}
+	\item \textbf{consisteng gets}  - logické přístupy + počet záznamů výsledků/velikost pole záznamů
+	\item \textbf{physical reads} - fyzické čtení
+	\item \textbf{sorts(memory)} - počet operací třízení, bez přístupu na disk
+	\item \textbf{sorts(disk)} - počet operací s nejměně jedním přístupem na disk
+	\item pokud pro logický přístup neexistuje fyzický => \textbf{cache hit} (cache hit rate = (cache hit / počet logických čtení) * 100 [\%]
+	\item opačný případ \textbf{cache miss}
+	\item vhodné sledovat i další parametry \textbf{Bytes received from server}, \textbf{Total execution time}
+\end{itemize}
+
+\begin{figure}[H]
+	\includegraphics{assets/plan_vykonani_dotazu_oracle.png}
+\end{figure}
