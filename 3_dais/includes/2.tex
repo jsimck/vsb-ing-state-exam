@@ -91,7 +91,7 @@ SQL (Structured Query Language) \textbf{je relační jazyk založen na predikát
 \begin{itemize}
 	\item \texttt{COMMIT} - úspěšně provedená transakce, vše se uloží
 	\item \texttt{ROLLBACK} - zrušení všech změn celé transakce
-	\item \texttt{SAVEPOINT} - uložení bodu, ke kterému se lze pomocí \texttt{ROLLBACK} vrátit. Lze tak transakce dělit na menší atomické části
+	\item \texttt{SAVEPOINT} - uložení bodu, ke kterému lze provést \texttt{ROLLBACK}. Tj zruší se jen část transakce a může se pokračovat jinou větví celé transakce dále. Lze tak transakce dělit na menší atomické části
 \end{itemize}
 
 \subsection{Relační jazyky}
