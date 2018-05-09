@@ -17,8 +17,10 @@
 - Převod ZNKA na DKA - http://www.cs.vsb.cz/kot/soubory_animaci/a-znka_na_dka.pdf
 - Riceova věta - http://blog.kostecky.cz/2016/02/riceova-veta-trivialnost-vstupne.html
 
-### Geometrie pro počítačovou grafiku
-- Průsečíky, kvaterniony, kvadriky, křivky, příklady https://www.dropbox.com/s/m42vdg6zzml4mct/geometrie-pro-pocitacovou.pdf?dl=0
+### Počítačová grafika
+- Průsečíky, kvaterniony, kvadriky, křivky, příklady - https://www.dropbox.com/s/m42vdg6zzml4mct/geometrie-pro-pocitacovou.pdf?dl=0
+- Phongův osvětlovací model, vysvětlení - https://www.youtube.com/watch?v=L4oAQL_Mv5w
+
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 
 ### I. Matematické základy informatiky
