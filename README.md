@@ -49,8 +49,8 @@ kvantitativních proměnných.
 Aplikace v počítačové grafice. Modelovací a zobrazovací transformace.~~
 3. ~~Křivky a plochy: teoretické základy (definice, rovnice, tečný a normálový vektor, křivosti,
 Cn a Gn spojitost), použití (Bézier, Coons~~, NURBS~~).~~
-4. Geometrické a objemové modelování. Hraniční metoda, metoda CSG, výčet prostoru,
-oktantové stromy.
+4. ~~Geometrické a objemové modelování. Hraniční metoda, metoda CSG~~, výčet prostoru,
+~~oktantové stromy.~~
 5. ~~Standardní zobrazovací řetězec a realizace jeho jednotlivých kroků. Gouraudovo a
 Phongovo stínování. Řešení viditelnosti. Grafický standard OpenGL: stručná
 charakteristika.~~
