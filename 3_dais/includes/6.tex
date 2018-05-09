@@ -77,19 +77,49 @@ CREATE TABLE contacts (contact person_type , contact_date DATE);
 INSERT INTO contacts VALUES (person_type (65, 'Verna' , 'Mills') , '24 Jun 2003') ;
 \end{minted}
 
-\subsection{XML (eXtensible Markup Language)}
+\subsection{XML Model a XML (eXtensible Markup Language)}
 \begin{itemize}
-	\item Značkovací jazyk - W3C standard.
-	\item Data jsou uložena v xml souboru \textbf{formou stromu}.
+	\item Značkovací jazyk - W3C standard pro popis slabě strukturovaných dat
+	\item Data jsou uložena v xml souboru \textbf{formou stromu}. (Ve skutečnosti je to graf, ale pro zjednodušení se značí jen jako strom)
 	\item \textbf{Logika} a \textbf{význam dat} je součástí xml souboru.
 	\item Skládá se z \textbf{hlavičky}, \textbf{kořenového elementu} (právě jeden), \textbf{vnořených elementů}, \textbf{atributů} a \textbf{textu} vnořeném uvnitř (ukládané informace).
+	\item Soubor může obshovat také tzv \textbf{XML Schema}, viz níže. To může určovat i datový typ a integritní omezení buněk, což je vhodné pro XML databáze.
 \end{itemize}
+
+XML databáze jsou složitější oproti relačním databázím. SQL pracuje s 2 rozměrnými tabulkami, zatímco XML model obsahuje i zanořené atributy. Proto se využívá dotazovací jazyk X-Path. Největší výhodou nativní XML databází je dynamická zména schémat uložených dokumentů, která je u relačních databází velmi komplikovaná.
+
+\begin{minted}{XML}
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="books">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="book" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="title" type="xsd:string"/>
+                            <xsd:element name="author" type="xsd:string"/>
+                        </xsd:sequence>
+                        <xsd:attribute name="id" type="IdType" use="required"/>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:simpleType name="IdType">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="9"/>
+            <xsd:pattern value="[0-1]+-[0-1]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
+\end{minted}
 
 \subsection{Dotazovací jazyky XML}
 Dotazovací jazyk XML by měl umět: vybrat požadované části dokumentů, transformovat je do požadované podoby, manipulovat s kolekcemi dokumentů a další vlastnosti specifické pro konkrétní problémovou doménu.
 
 \subsubsection{XPath}
-Jazyk používaný pro identifikaci uzlů v XML dokumentu. Pravděpodobně \textbf{nejdůležitějším rysem} jazyka XPath je \textbf{možnost vyjádření relativní cesty od uzlu k jinému uzlu či atributu}. Připomíná dotazovací jazyk SQL, zejména dík tomu, že na základě podmínky \textbf{vrátí jeden nebo množinu výrazů} (nebo žádný) odpovídající vstupní podmínce.
+Jazyk používaný pro identifikaci uzlů v XML dokumentu. Pravděpodobně \textbf{nejdůležitějším rysem} jazyka XPath je \textbf{možnost vyjádření relativní cesty od uzlu k jinému uzlu či atributu}. Od jazyka SQL je značně odlišný. Určuje cestu s dodatečnými podmínkami na názvy uzlů, hodnoty atributů, hloubky zanoření a mnoho dalšího.
 
 \textbf{Příklad:} \texttt{//zbozi[@sleva >= @cena div 2]}, který najde všechny elementy zboží, jejichž atribut sleva má hodnotu nejméně poloviny hodnoty atributu cena
 
