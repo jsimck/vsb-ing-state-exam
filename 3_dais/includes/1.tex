@@ -10,11 +10,13 @@ V implementační fázi si pak pomáháme \textbf{databázovými} \textbf{modely
 
 \subsubsection{Základní pojmy}
 \begin{itemize}
-	\item \textbf{Entita} -- objekt reálného světa.
-	\item \textbf{Atribut} -- vlastnost entity (možné hodnoty jsou označeny jako doména atributu).
-	\item \textbf{Entitní typ} -- množina entit se stejnými atributy.
-	\item \textbf{Vztah} -- vztah mezi \textbf{dvěma entitními} typy.
+	\item \textbf{Entita} -- objekt reálného světa, konkrétní výskyt instance entitního typu
+	\item \textbf{Entitní typ} -- něco jako třída, je popsán jménem a množinou atribitů.
+	\item \textbf{Atribut} -- vlastnost entity (možné hodnoty jsou označeny jako \textbf{doména atributu}).
+	\item \textbf{Klíč} -- množina atributů, která jednoznačne určuje \textbf{entitu}.
+	\item \textbf{Vztah/vazba} -- definován názvem a vztahem mezi \textbf{dvěma entitními} typy.
 	\item \textbf{Kardinalita vztahu} -- dělení vztahů podle počtu entit vstupujících do vztahu -- 1:1, 1:N, M:N.
+	\item \textbf{Povinnost v členství} -- musí li vztah mezi dvěma entitami existovat, či nemusí.
 \end{itemize}
 
 \subsection{Datová analýza a konceptuální model}
@@ -26,7 +28,7 @@ Datová analýza \textbf{zkoumá objekty reálného světa, jejich vlastnosti a 
 \item najdeme \textbf{vlastnosti} a \textbf{stavy} nalezených objektu = identifikujeme \textbf{atributy}.
 \end{itemize}
 
-Z takto získaných informací sestavíme konceptuální model. \textbf{Konceptuální model} je jednoduchý \textbf{popis entit a jejich vzájemných vztahů}. Jedná se o jakýsi prvotní jednoduchý návrh námi vytvářené databáze. Je kladen důraz na zobrazeních všech entit, jejich vztahů a je \textbf{nezávislý} na SŘBD. Skládá z:
+Z takto získaných informací sestavíme konceptuální model. \textbf{Konceptuální model} je jednoduchý \textbf{popis entit a jejich vzájemných vztahů}. Jedná se o jakýsi prvotní jednoduchý návrh námi vytvářené databáze. Je kladen důraz na zobrazení všech entit, jejich vztahů a je \textbf{nezávislý} na SŘBD. Skládá z:
 \begin{itemize}
 \item \textbf{ER Diagram}, lineární zápis \textbf{entit}, lineární zápis \textbf{vztahů}, \textbf{datový slovník}, popis dalších IO (\textbf{integritních omezení}).
 \end{itemize}
@@ -37,6 +39,13 @@ Grafické znázornění \textbf{konceptuálního modelu} (objektů a vztahů mez
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{assets/erdiagram.png}
+\end{figure}
+
+\textbf{Slabý entitní typ} je označení entity, která není jednoznačně definována jen svými atributy, ale i jinou entitou, se kterou je ve vztahu. Tj bez tohoto vztahu by nedávala smysl. Nejčastěji implementováno pomocí složeného primárního klíče ve slabém entitním typu, kde jeden atribut PK je rovněž cizí klíč druhé entity. V příkladu je to položka objednávky, která bez znalostí informací o objednávce nemá žádnou vypovídací schopnost.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{assets/erdiagram_slaby_entitni_typ.png}
 \end{figure}
 
 \subsubsection{Lineární zápis entit a vztahů}
@@ -61,7 +70,7 @@ Lineárním zápisem \textbf{popisujeme objekty}, jejich vlastnosti a vztahy \te
 		\textbf{Pes} & \textbf{Typ} & \textbf{Délka} & \textbf{Klíč} & \textbf{NOT NULL} & \textbf{IO}                      \\ \hline
 		IDPes        & int          & 8              & primarni      & ano               & pravidla pro tvar čipového čísla \\ \hline
 		jmeno        & varchar      & 50             &               &                   &                                  \\ \hline
-		vek          & int          & 2              &               &                   &                                  \\ \hline
+		rok_narozeni & int          & 4              &               &                   & Validní rok                      \\ \hline
 		CRasa        & int          & 2              & sekundarni    &                   &                                  \\ \hline
 	\end{tabular}
 \caption{Datový slovník pro tabulku Pes.}
@@ -97,7 +106,8 @@ DFD je grafický nástroj pro \textbf{modelování funkcí a vztahů v systému}
 	\includegraphics[width=0.4\textwidth]{assets/dfd.png}
 \end{figure}
 
-DFD diagramy lze zakreslit v různých úrovních. Např. proces Evidence akcí na obrázku lze dále rozkreslit dalším DFD, obsahující procesy vytvoření a editace akce. DFD nejvyšší úrovně se nazývá \textbf{kontextový diagram}. Znázorňuje pouze práci aktérů se systémem jako celkem. Systém v kontextovém diagramu vystupuje jako černá skříňka a v diagramu tedy nejsou použity prvky procesu a paměti.\textbf{Hlavní znaky DFD:}
+DFD diagramy lze zakreslit v různých úrovních. Např. proces Evidence akcí na obrázku lze dále rozkreslit dalším DFD, obsahující procesy vytvoření a editace akce. DFD nejvyšší úrovně se nazývá \textbf{kontextový diagram}. Znázorňuje pouze práci aktérů se systémem jako celkem. Systém v kontextovém diagramu vystupuje jako černá skříňka a v diagramu tedy nejsou použity prvky procesu a paměti.
+\textbf{Hlavní znaky DFD:}
 
 \begin{itemize}
 \item Má několik úrovní podrobnosti.
