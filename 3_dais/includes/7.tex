@@ -87,3 +87,11 @@ Programovací technika \textbf{zpřístupňující relační či objektově-rela
 \item Ošetření vstupů (\texttt{htmlspecialchars}, \texttt{mysql\_read\_escape\_string}) - zneužití např. pomocí jiného kódování!
 \item Uživatel musí zadávat komplikovaná (neslovníková) hesla, \textbf{časové omezení počtu} pokusů. Logování neúspěšných pokusů o autentizaci.
 \end{itemize}
+
+\subsection{Způsoby doménově-relačního chování}
+\begin{itemize}
+    \item \textbf{Table data gateway} - Vrací Dataset DTO bez znalosti domény. Dataset obsahuje pole řádků, i když je navrácen pouze 1. Jediná instance drží i více řádků tabulky. Protože nezná doménu, každá funkce obsahuje tolik parametrů, kolik je sloupců. 
+    \item \textbf{Row data gateway} - Každý řádek je 1 objekt. Obsahuje funkce pro \texttt{update} \texttt{delete}. Je potřebná nějaká statická třída \texttt{Finder} pro vytváření nových instancí, protože pokud nejsou data, neexistuje ani objekt.
+    \item \textbf{Active record} - Každá instance je 1 řádek. Obsahuje i funkce \texttt{insert} a \texttt{update} atd. Ale také metody pro práci v programu, různé výpočetní apod.
+    \item \textbf{Data mapper} - Mapper třída mapuje z DB data na objekty a zpět. Každý objekt obsahuje veškeré parametry a také funkce pro práci s nimi na úrovni programu. Do mapperu se nevkládají jednotlivá data jako parametry ale vždy daný objekt, který samotný funkce pro práci s DB postrádá.
+\end{itemize}
