@@ -1,5 +1,5 @@
 \subsection{Procedurální rozšíření SQL}
-Kromě základních příkazu pro vytváření a modifikací dat obsahuje PSQL triggery, funkce, procedury, kurzory. To umožňuje přenést část aplikační logiky přímo do databází. Je \textbf{závislé na SŘBD} a její různé implementace se mnohdy velice liší:
+Kromě základních příkazu pro vytváření a modifikací dat obsahuje SQL triggery, funkce, procedury, kurzory. To umožňuje přenést část aplikační logiky přímo do databází, čímž se ušetří hodně I/O operací při přenosu dat mezi systémem a DB. Je \textbf{závislé na SŘBD} a její různé implementace se mnohdy velice liší:
 \begin{itemize}
 \item \textbf{PL/SQL} pro Oracle
 \item \textbf{Transact-SQL} (T-SQL) pro Sybase a MSSQL
@@ -25,7 +25,7 @@ Kromě základních příkazu pro vytváření a modifikací dat obsahuje PSQL t
 
 \item \textbf{Anonymní procedury}
 \begin{itemize}
-\item \textbf{Nepojmenované} procedury které \textbf{nejde volat}.
+\item \textbf{Nepojmenované} procedury které \textbf{nejde volat}, jsou spuštěny a zahozeny.
 \item Mohou být uloženy v souboru nebo spuštěny přímo z konzole.
 \item Jsou pomalejší než pojmenované procedury, protože \textbf{nemohou být předkompilovány}.
 \end{itemize}
@@ -40,6 +40,7 @@ Kromě základních příkazu pro vytváření a modifikací dat obsahuje PSQL t
 \item \textbf{Funkce}
 \begin{itemize}
 \item Na rozdíl od procedury \textbf{vrací hodnotu}. Kromě standardních funkcí (\texttt{TO.CHAR, TO.DATE, SUBSTR}, apod.) si můžeme definovat \textbf{vlastní funkce}.
+\item Lze následně používat v SQL dotazech jako je SELECT apod.
 \item \texttt{CREATE [OR REPLACE] FUNCTION jmeno\_funkce [( jmeno\_parametru [mod] datovy\_typ , ... )] RETURN navratovy\_datovy\_typ IS |AS definice lokálních proměnných BEGIN tělo procedury END [jmeno\_procedury]}
 \end{itemize}
 \end{itemize}
@@ -76,6 +77,10 @@ Kromě základních příkazu pro vytváření a modifikací dat obsahuje PSQL t
 \item\textbf{Triggery}
 \begin{itemize}
 \item Kód spouštěný v reakci na \textbf{událost} (DML, DDL, systémové eventy).
+\item Lze určit kdy se má spouštět - \texttt{BEFORE, AFTER, INSTEAD OF}
+\item Při jaké události se má spustit - \texttt{INSERT, UPDATE, DELETE} - lze specifikovat i více akcí najednou
+\item V PL/SQL \texttt{FOR EACH ROW} - Tělo triggeru se bude volat pro každý řáděk zvlášť, nikoli najednou
+\item Lze používat speciální proměnné obsahující starou a novou hodnotu \texttt{:OLD, :NEW}
 \item Pokud se pokusíme v triggeru číst či modifikovat stejnou tabulku dostaneme \textbf{mutating table error}.
 \item \texttt{CREATE [OR REPLACE ] TRIGGER jmeno\_triggeru {BEFORE | AFTER | INSTEAD OF } {INSERT [OR] | UPDATE [OR] | DELETE} [OF jmeno\_sloupce] ON jmeno\_tabulky [REFERENCING OLD AS stara\_hodnota NEW AS nova\_hodnota] [FOR EACH ROW [WHEN (podminka )]] BEGIN příkazy END;}
 \end{itemize}
@@ -86,7 +91,7 @@ Kromě základních příkazu pro vytváření a modifikací dat obsahuje PSQL t
 \begin{itemize}
 \item\textbf{Kurzory}
 \begin{itemize}
-\item Kurzor je ukazatel na řádek \textbf{víceřádkového výběru}. Je třeba jej v programu deklarovat pokud budeme zpracovávat víceřádkové výběry. Kurzorem mohu pohybovat a tak se dostanu na další řádky výběru. Jsou dva typy kurzoru:
+\item Kurzor je ukazatel na řádek \textbf{víceřádkového výběru}. Je třeba jej v programu deklarovat pokud budeme zpracovávat víceřádkové výběry. Kurzorem mohu pohybovat a tak se dostanu na další řádky výběru. Zdrojem kurzoru je vždy SQL dotaz a jsou dva typy:
 \begin{itemize}
 \item \textbf{implicitní} - vytváří se \textbf{automaticky} po provedení příkazu \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}.
 \item \textbf{explicitní} - \textbf{ručně vytvořený kurzor}. Vytváří se nejčastěji ve spojením s příkazem \texttt{SELECT}.
