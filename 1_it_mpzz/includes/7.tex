@@ -1,0 +1,69 @@
+\subsection{Algebra}
+Algebra je naukou o \textbf{algebraických strukturách}, tedy \textbf{množinách}, na nichž jsou zavedeny nějaké \textbf{operace}. Slouží pro popis objektů reálného světa a operací prováděných s těmito objekty. Příklady algeber:
+\begin{itemize}
+\item $( \mathbb{N} , \{+^2\} )$ - sčítání nad množinou přirozených čísel,
+\item $ ( 2^M , \{\cup, \cap\} ) $ - množina všech podmnožin $ M $ s operací průnik a sjednocení.
+\end{itemize}
+
+\subsubsection{Definice}
+Každý objekt algebry je reprezentován \textbf{datovým nosičem} (množina popisující data, se kterými pracujeme). A \textbf{operacemi} -- nejjednoduššími transformacemi, které nad daty můžeme realizovat. \textbf{Algebraická struktura} je definována jako $(A, \circ)$, kde:
+\begin{itemize}
+\item $A$ -- nosič algebry (množina objektů -- čísel, proměnných, \ldots),
+\item $\circ$ -- množina operací nad nosičem $ X $.
+\end{itemize}
+
+\subsection{Operace}
+Operace na množině $A$ je definována jako zobrazení 
+\begin{equation}
+f: A^n \rightarrow A,
+\end{equation}
+tedy zobrazení, které každé n-tici prvků množiny $A$, jednoznačně přiřazuje prvek z množiny $A$.Číslo n nazýváme \textbf{arita operace} a podle něj operace označujeme jako \textbf{nulární} (n = 0), \textbf{unární} (n = 1), \textbf{binární} (n = 2), \textbf{ternární} (n = 3).
+
+\subsection{Algebraické struktury s jednou binární operací}
+Definována jako $(A, \circ)$ s jedním nosičem ($ A $) a jednou homogenní binární operací ($ \circ $). Nejprve je nutné zmínit \textbf{vlastnosti binárních operací}: 
+\begin{itemize}
+\item \textbf{asociativita}: $a * (b * c) = (a * b) * c$,
+\item \textbf{komutativita}: $a * b = b * a$.
+\end{itemize}
+Kromě již zmíněné asociativity a komutativity algebraické struktury také zavádí existenci:
+\begin{itemize}
+\item \textbf{Jednotkového prvku}: $e$ takové, že $\forall x \in X: x \circ e = e \circ x = x$. Tedy prvek, který nezmění výsledek (1 u násobení, 0 u sčítání).
+\item \textbf{Inverzního prvku}: $\overline{x}$ takové, že $\forall x \in X: x \circ \overline{x} = \overline{x} \circ x = e$. Tedy prvek, který převede výsledek na jednotkový prvek.
+\end{itemize}
+\textbf{neutrálního} či \textbf{inverzního prvku}, a další charakteristiky.
+
+\subsubsection{Klasifikace algebraických struktur}
+Všechny níže uvedené klasifikace algebraické struktury $(A, \circ)$ zahrnují i ty co jsou pod nimi. Tedy pokud je nějaká algebraická struktura (AS) Monoid, je i Pologrupa a Grupoid.
+\begin{enumerate}
+\item \textbf{Grupoid} -- \textbf{uzavřenost} (univerzalita) na nosiči (po výpočtu je výsledek stále v množině $A$).
+\item \textbf{Pologrupa} -- splňuje vlastnost \textbf{asociativity}.
+\item \textbf{Monoid} -- existence \textbf{jednotkového prvku}.
+\item \textbf{Grupa} -- existence \textbf{inverzního prvku}.
+\item \textbf{Abelova grupa} -- splňuje vlastnost \textbf{komutativity} (symetrická podle diagonály).
+\end{enumerate}
+
+\noindent \textbf{Kongruence} -- označuje ekvivalenci na algebře, která je slučitelná se všemi operacemi na algebře.
+
+\subsubsection{Morfismy}
+\begin{itemize}
+\item \textbf{Homomorfismus} -- zobrazení, které převádí jednu algebraickou strukturu na jinou: $f(a_1 \cdot a_2) \rightarrow f(a_1) \circ f(a_2)$.
+\item \textbf{Izomorfismus} -- bijektivní homomorfismus.
+\item \textbf{Epimorfismus} -- subjektivní homomorfismus.
+\item \textbf{Monomorfismus} -- injektivní homomorfismus.
+\item \textbf{Endomorfismus} -- homomorfismus z objektu do sebe sama (stejná množina).
+\item \textbf{Automorfismus} -- endorfismus, který je izomorfní.
+\end{itemize}
+
+\subsection{Okruhy (Algebraické struktury s dvěma binárními operací)}
+\textbf{Okruh} je algebraický systém $(A, +, \cdot)$ se dvěma základními binárními operacemi, kde první $(A, +)$ je \textbf{abelova grupa} a druhá $(A, \cdot)$ je alespoň \textbf{pologrupa}. Podobně jako u předchozí AS, i zde se zavádí nový pojem:
+\begin{itemize}
+\item \textbf{Existence dělitele nuly} -- říká, že ve struktuře existují 2 nenulové prvky, pro něž platí $a \circ b = 0$.
+\end{itemize}
+U všech typů okruhů musí být splněna podmínka první struktury, která musí být \textbf{abelova grupa}, a druhá musí být:
+\begin{itemize}
+\item \textbf{Okruh} - uzavřená ({U}), asociativní ({A}) [pologrupa].
+\item \textbf{Unitární okruh} - {U}, {A}, existence jednotkového prvku (J) [monoid].
+\item \textbf{Obor Integrity} - {U}, {A}, {J} [monoid] + \textbf{nesmí} obsahovat dělitele nuly.
+\item \textbf{Těleso} - {U}, {A}, {J} a existence inverzního prvku (I) [grupa] + \textbf{nesmí} obsahovat dělitele nuly.
+\item \textbf{Pole} - {U}, {A}, {J}, {I} a komutativita [grupa] + \textbf{nesmí} obsahovat dělitele nuly.
+\end{itemize} 
