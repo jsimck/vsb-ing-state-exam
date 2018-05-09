@@ -305,6 +305,21 @@ Fergusonovu křivku lze převést na Beziérovu křivku, pokud se budeme při v�
 \subsection{NURBS}
 \begin{itemize}
 	\item Non-uniform rational basis spline (NURBS)
+	\item Racionalita je již popsána v racionálním beziérovi
+	\item Neuniformnost znamená, že parametry $t$ můžou nabývat různých hodnot i mimo interval $<0,1>$ a pro každou část můžou být jinak \uv{rychlé}
+			\begin{equation*} 
+		\begin{array}{c}
+			C(t) = \frac{\sum\limits_{i=0}^m w_i P_n N_i^n (t) }{\sum\limits_{i=0}^m w_i N_i^n (t)} \\ kde: t \in <t_n, t_{m+1}>
+		\end{array}		
+		\end{equation*}
+	\item Bázová funkce $N_i^n$ je definována rekurentně:
+	\begin{itemize}
+		\item Nechť $t = (t_0, t_1 ..t_s)$ je uzlový vektor. B-spline funkce stupně $n$ je definována jako
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{assets/3_nurbs}
+		\end{figure}
+	\end{itemize}
 	%našel jsem toto, ale jak jsem viděl ty vzorce, meh, nechtělo se mi to ani dělat :D
 	% https://www.root.cz/clanky/krivky-nurbs-1/
 \end{itemize}
