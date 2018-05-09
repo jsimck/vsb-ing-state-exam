@@ -57,14 +57,25 @@ Největším problémem je hledání průsečíků paprsků s objekty scény.
 	\item plochu musí být možné pro jednotlivé objekty dostatečně jednoduše nalézt.
 \end{itemize}
 Je možné použít \textbf{kulovou plochu} (ne moc vhodné, objekty můžou být protáhlé a tato plocha by je neobepínala dostatešně těšně). Další variantou plochy je \textbf{kvádr} (taky sice není moc vhodný, protože těleso může být našikmo a taky by jej neobepínal moc natěsno, nicméně nalezení ohraničující plochy je snadné -- minimální a maximální hodnoty obepínaného tělesa).
-
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.2\textwidth]{assets/6_boudingbox}
+\end{figure}
 Princip ohranučujících ploch spočívá v tom, že pokud paprsek neprotne ohraničující plochu, pak neprotne ani těleso uvnitř (velmi časté). Odhalením této situace dojde ke značnému zrychlení. Pokud je to naopak, hledají se průsečíky s ohraničeným tělesem.
-\item Rozšířením předchozího je \textbf{oraganizování ohraničujících ploch do hierarchických struktur}. Princip je stejný, pokud se neprotne rodičovská plocha, nehledají se dále ani průsečíky s potomky. Nevýhodou je, že nelze jednoduše takovouto strukturu automatizovaně nalézt.
+\item Rozšířením předchozího je \textbf{organizování ohraničujících ploch do hierarchických struktur}. Princip je stejný, pokud se neprotne rodičovská plocha, nehledají se dále ani průsečíky s potomky. Nevýhodou je, že nelze jednoduše takovouto strukturu automatizovaně nalézt.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/6_organizovani_do_struktur}
+\end{figure}
 \item Další metodou je \textbf{Dělení prostoru scény na podprostory}. Obykle se dělí rovinami souřadné soustavy $xy, xz, yz \,\to\,$ vznikají tak velké kvádry (stejně velké / různě velké). Princip metody:
 \begin{itemize}
 	\item u neurychlené metody byly všechny objekty organizovány v 1 velkém seznamu,
 	\item nyní je zřízeno tolik seznamů, kolik je objemových elementů vzniklých dělením prostoru, každý element bude mít svůj seznam objektů, které do něj aspoň z části zasahují (pokud objekt zasehuje do více elemntů, bude v seznamu každého z nich) -- hledání průsečíků začíná v tom elementu, kde je počátek paprsku, při opouštění elementu lze zjistit, do kterého elementu vstupuje, paprsek kontroluje pouze průsečíky s objekty, které jsou v seznamu daného elementu.
 \end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{assets/6_deleni_podprostor}
+\end{figure}
 \item Dalším etodou je \textbf{Adaptivní hloubka rekurze}. Odhaduje se, zda je paprsek pro stanovení intenzity ve zkoumaném obrazovém bodě dostatečně užitečný. Pokud ne, tak se nevyšle. (např. u odrazů či průchodů tělesy).
 % \item Protože je ray tracing výpočetně náročný, je vhodné jej urychlit.
 % \item Nejjednodušší způsob je použití obalových struktur – bounding boxů.
@@ -90,10 +101,57 @@ Na rozdíl od předchozí metody rekurzivního sledování paprsku (dobře zobra
 	\textbf{PROBLÉM:} osvětlení bylo spočítáno v prostoru scény a tam by se měla provádět i interpolace, ale Gouraudovo stínování interpoluje v prostoru obrazu. Problém je, že při středové projekci se nezachovává dělící poměr a proto budou výsledky v prostoru obrazu rozdílné od výsledků z prostoru scény. Nicméně Gouraudovo stínování se používá, protože je rychlé.\\
 	Vytváření sítě probíhá v několika iteracích: nejdřív se hustota odhadne, pak se spočítá osvětlení a dle výsledků se síť dohustí tam, kde je třeba.\\
 	Základní myšlenou je, že na všech ploškách ustanov energetická rovnováha : \\
-	\textbf{ výkon vyzařovaný + výkon absorvovaný = výkon na plošku dopadající od jiných ploch + výkon, který ploška sama vyzařuje} 
+	\textbf{ výkon vyzařovaný + výkon absorvovaný = výkon na plošku dopadající od jiných ploch + výkon, který ploška sama vyzařuje} \\
 \end{itemize}
+\begin{equation*}
+	B_i = E_i + p_i \sum\limits_{i=i}^n B_j F_{j \,\to\, i} \frac{A_j}{A_i}.
+\end{equation*}
+kde: 
+\begin{itemize}
+\item[] $B_j$ výkon vyzářený ploškou $j$,
+\item[] $p_i$ míra odrazu (optické vlastnosti materiálu),
+\item[] $E_i$ hodnota výkonu vlastního vyzařování plošky,
+\item[] $A_i$,$A_j$ velikost plošek (plošný obsah),
+\item[] $F_{j \,\to\, i}$ konfigurační koeficient říká, jaká část výkonu vyzařeného ploškou $j$ dopadne na plošku $i$ (jedná se o $int <0,1>$, záleží na pořadí indexů)
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{assets/6_vyzarovaci_metoda}
+\end{figure}
 
+\subsection{BRDF (Bidirectional Reflectance Distribution Function)}
+\begin{itemize}
+	\item Charakterizuje \textbf{odrazové schopnosti povrchu materiálu} v určitém bodě $\mathbf{x}$.
+	\item Jedná se o \textbf{poměr odraženého zářezí} ke vstupnímu diferenciálnímu zařízení, promítnutému na kolmou plochu.
+	\item BRDF v daném bodě zůstává stejná i když změníme směr paprsku.
+	\item \textbf{Pozitivita BRDF}: funkce není nikdy záporná.
+	\item \textbf{Zákon zachování energie}: plocha nemůže odrazit víc než je celková přijatá energie
+	\item \textbf{Odrazivost} $p(x) = \frac{d\Phi_r(x)}{d\Phi_i(x)}; d\Phi_r(x)$ je odražený světelný tok, $d\Phi_i(x)$ je dopadající světelný tok.
+	\item Obor hodnot odrazivosti je na intervalu $<0,1>, 1=$ plný odraz 
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{assets/6_brdf}
+\end{figure}
+\subsection{BTDF (Bidirectional Transmittance Distribution Function)}
+Dvousměrná distribuční fuknce lomu. Popisuje průchod světla povrchem.
 
+\subsection{BSDF (Bidirectional Scattering Distribution Function)}
+\begin{itemize}
+	\item Obousměrná distribuční funkce \textbf{rozptylu}.
+	\item Je to souhrn dvou distribučních fukncí, a to funkce odrazu (BRDF) a lomu (BTDF).
+	\item \textbf{BSDF + BTDF + BRDF}
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{assets/6_bsdf}
+\end{figure}
 
 
 \subsection{Renderovací rovnice}
+Rekurzivní diferenciální rovnice
+\begin{equation*}
+	L(x, \omega_0) = L_e(x,\omega_0) + \int_{\Omega} L(r(x,\omega_i) - \omega_i) \cdot BRDF(\omega_i,x,\omega_0) \cos{\theta_id\omega_i}
+\end{equation*}
+Zjednodušeně: \\
+\textbf{osvětlení povrchu = samovolně vyzařované světlo + součet příchozího osvěrlení ze všech směrů krát BRDF}
