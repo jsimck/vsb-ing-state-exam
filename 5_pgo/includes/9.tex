@@ -34,7 +34,7 @@ Nechť $v$ je nenormalizovaný vektor obsahující všechny histogramy v~daném 
 \subsection{SIFT/SURF - detektory a popisovače klíčových bodů}
 Využívá se stejný princip tvoření histogramu jako u metody HOG
 \begin{itemize}
-\item klíčové body jsou nezávislé na osvětlení, velikosti, orientaci, pozici
+\item klíčové body jsou \textbf{nezávislé} na osvětlení, velikosti, orientaci, pozici
 \item Octave - úroveň skálování
       \begin{itemize}
           \item 4 oktávy a 5 rozmazání “ideál” dle prezentace, každá oktáva se 5x rozmaže
@@ -106,7 +106,7 @@ Sada Haarových vlnek je na obrázku \ref{fig:basichaarfeatures}, jedná se pouz
 \label{fig:basichaarfeatures}
 \end{figure}
 
-Pro identifikaci lidských postav se používá rozšířená sada vlnek, tzv. Haar--like příznaky. Klasifikační systém založený na těchto Haar--like příznacích dosahuje nižší falešně pozitivní detekce než původní Haar příznaky. Na obrázku \ref{fig:haarlike} je příklad detekce pomocí Haar--like vlnek. Hodnota příznaku je rozdíl mezi sumou hodnot pixelů v~bílé a~černé oblasti Haarových vlnek.
+Pro identifikaci lidských postav se používá rozšířená sada vlnek, tzv. Haar--like příznaky. Klasifikační systém založený na těchto Haar--like příznacích dosahuje nižší falešně pozitivní detekce než původní Haar příznaky. Na obrázku \ref{fig:haarlike} je příklad detekce pomocí Haar--like vlnek. \textbf{Hodnota příznaku je rozdíl mezi sumou hodnot pixelů v~bílé a~černé oblasti} Haarových vlnek.
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{assets/9_haar-like}
@@ -115,7 +115,7 @@ Pro identifikaci lidských postav se používá rozšířená sada vlnek, tzv. H
 \end{figure}
 
 \subsection{LBP Lokální binární vzor}
-Hlavní myšlenkou LBP je, že struktury obrazu mohou být efektivně zakódovány porovnáním hodnot jednotlivých pixelů a~jejich okolí. Tato metoda je odolná vůči jasovým změnám obrazu.
+Hlavní myšlenkou LBP je, že struktury obrazu mohou být efektivně zakódovány \textbf{porovnáním hodnot jednotlivých pixelů a~jejich okolí}. Tato metoda je odolná vůči jasovým změnám obrazu.
 \begin{enumerate}
   \item převod obrazu do stupňů šedi a~jeho rozdělení do buněk
   \item okolní hodnoty pixelů jsou porovnávány se středovým pixelem, pokud je jejich hodnota rovna nebo větší zapíše se na tuto pozici jednička v~opačném případě nula
@@ -134,7 +134,7 @@ s(x) =
 \end{equation*}
 kde: $P$ je počet bodů v~okolí, $R$ vyjadřuje vzdálenost bodů od středového pixelu, $g_c$ je středový pixel, $g_p$ je aktuální pixel. 
 
-Následující příklad se vztahuje k~obrázku \ref{fig:lbpsum}. Po porovnání pixelů se středovým pixelem jsme získali vzor $11110001$. Tento vzor převedeme do dekadické soustavy a~sečteme, $ 1+16+32+64+128 = 241$. Získali jsme hodnotu této buňky do vektoru příznaků.
+Následující příklad se vztahuje k~obrázku \ref{fig:lbpsum}. Po porovnání pixelů se středovým pixelem jsme získali vzor $11110001$. Tento vzor převedeme do dekadické soustavy a~sečteme, $ 1+16+32+64+128 = 241$. \textbf{Získali jsme hodnotu této buňky do vektoru příznaků}.
 
 \begin{figure}[H]
 \centering
@@ -279,8 +279,7 @@ Toto jádro je také známé jako \textit{Min Kernel}, jedná se o~nejnovější
 \subsubsection{KNN - K-nearest neighbours}
 \begin{itemize}
 \item velmi rychlý, jednoduchý
-\item pomocí k sousedů určíme label dotazovaného 
-\item pokud bereme v potaz jejich vzdálenosti jedná se o modifikované KNN
+\item pomocí \textbf{k nejbližších sousedů} určíme label dotazovaného 
 \item učení je velmi rychlé (jen se uloží data do struktur)
 \item určení se zpomaluje se zvyšujícím se k
 \end{itemize}
@@ -316,7 +315,7 @@ V~kombinaci více klasifikátorů s~výběrem trénovací sady v~každé iteraci
 Jednoznačnou výhodou tohoto přístupu je snadná implementace, ukázalo se však, že pro detekci obličejů není vhodná zdůvodů nízké odolnosti proti variabilitě
 Změna velikosti, pozice nebo tvaru objektu významně ovlivňuje výsledky metody. 
 
-Druhy metod:
+\subsubsection{Druhy metod}
 \begin{itemize}
 \item \textbf{SAD} suma absolutních rozdílů (Sum of Absolute Difference) --  lze vypočítat získáním absolutních rozdílů napříč všemi pixely mezi vstupním obrazem S a odpovídající pozicí pixelu v templatu T. Sumu těchto hodnot lze následně použít jako koeficient míry podobnosti mezi obrázkem S a templatem T, kdy čím menší tato hodnota je, tím více se jednotlivé pixely na daných pozicích shodují. Tudíž lze předpokládat, že se zde nachází hledaný objekt. 
 \begin{figure}[H]
@@ -344,7 +343,8 @@ V reálných aplikacích se však tato metoda většinou nepoužívá. Přestož
 \end{figure}
 V porovnání s metodami SAD, SSD a CC je NCC ve většině situací nejpřesnější, avšak výpočetně mnohem náročnější. Při jejím použití je, pro urychlení výpočtu koeficientů, doporučeno provést jednoduché předfiltrování zpracovávaných oken např. aplikací kontroly salience.
 \end{itemize}
-Všechny výše zmíněné metody bohužel trpí stejnými nedostatky. Při vyhledávání jsou výskyty vzorků ve vstupním obraze nuceny zachovat orientaci referenčního obrázku. Zároveň je velice neefektivní a časově náročné počítat korelaci mezi templatem a vstupním obrazem pro obrazy středních avyšších rozlišení.
+
+Všechny výše zmíněné metody bohužel trpí stejnými nedostatky. Při vyhledávání jsou výskyty vzorků ve vstupním obraze nuceny zachovat orientaci referenčního obrázku. Zároveň je velice neefektivní a časově náročné počítat korelaci mezi templatem a vstupním obrazem pro obrazy středních a vyšších rozlišení.
 
 \subsection{Deep learning}
 \begin{itemize}
@@ -365,8 +365,8 @@ Odstraňuje také ruční identifikaci příznaků (obrázek \ref{fig:ml_vs_ann}
 \begin{figure}[H]
 \centering
 \includegraphics[width=.85\linewidth]{assets/9_ml_vs_ann}
-\caption{Hlavním rozdílem mezi strojovým a~hlubokým učením je ten, že u~strojového se příznaky musí extrahovat manuálně. \cite{fig:mlvsann}}
-\label{fig:ml_vs_ann}
+\caption{Hlavním rozdílem mezi strojovým a~hlubokým učením je ten, že u~strojového se příznaky musí extrahovat manuálně.}
+	\label{fig:ml_vs_ann}
 \end{figure}
 
 \subsubsection{Neuronové sítě \textit{ANN} - Artificial Neural Network}
@@ -409,7 +409,7 @@ Hlavní kroky LeNet sítě jsou:
 \begin{itemize}
   \item{\textbf{Konvoluce} - tyto vrstvy provádějí konvoluci nad vstupy do neuronové sítě.}
   \item{\textbf{Nelinearita (ReLU)} - tato vrstva je použita po každé konvoluční vrstvě a~jejím cílem je nahrazení všech negativních pixelů nulou ve výstupu této vrstvy (příznaková mapa).}
-  \item{\textbf{Pooling/sub sampling} - ze vstupního obrazu vyextrahuje pouze zajímavé části pomocí některých matematických operací (max, avg, sum), a~tím se redukuje jeho dimenzionalita.}
+  \item{\textbf{Pooling/sub sampling} - ze vstupního obrazu vyextrahuje pouze zajímavé části pomocí některých matematických operací (max, avg, sum), a~tím se \textbf{redukuje jeho dimenzionalita}.}
   \item{\textbf{Fully connected layer/klasifikace} - tato vrstva vychází z~původních umělých neuronových sítí, konkrétně z~vícevrstvého perceptronu. Tato vrstva je typicky umístěna na konci sítě a~je propojena s~klasifikační vrstvou pro predikci.}
 \end{itemize}
 \begin{figure}[H]
