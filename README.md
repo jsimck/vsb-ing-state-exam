@@ -20,6 +20,7 @@
 ### Počítačová grafika
 - Průsečíky, kvaterniony, kvadriky, křivky, příklady - https://www.dropbox.com/s/m42vdg6zzml4mct/geometrie-pro-pocitacovou.pdf?dl=0
 - Phongův osvětlovací model, vysvětlení - https://www.youtube.com/watch?v=L4oAQL_Mv5w
+- Hezká přednáška o OpenGL - http://slideplayer.com/slide/8789082/
 
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 

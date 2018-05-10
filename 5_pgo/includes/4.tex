@@ -3,13 +3,19 @@
 \subsection{Geometrické a objemové modelování}
 \begin{itemize}
 	\item Geometrické modelování \textbf{zkoumá reálné objekty z hlediska geometrických vlastností}.
-	\item Je to soubor metod k popisu těles. Rozlišujeme \textbf{3 základní typy modelů} (příklady jsou uvedeny pro \textit{trojboký hranol}):
+	\item Je to \textbf{soubor metod k popisu těles}. Rozlišujeme \textbf{3 základní typy modelů} (příklady jsou uvedeny pro \textit{trojboký hranol}):
 	\begin{enumerate}
 		\item \textbf{Drátěný model} --  je určen seznamem devíti \textbf{hran}.
 		\item \textbf{Hraniční model} -- je určen seznamem pěti \textbf{stěn}.
-		\item \textbf{Objemový model} -- je určen \textbf{velikostí stran podstavy} a \textbf{výškou} (CSG, ).
+		\item \textbf{Objemový model} -- je určen \textbf{velikostí stran podstavy} a \textbf{výškou} (CSG).
 	\end{enumerate}
+\item \textbf{Objemové reprezentace} těles nesou přímé informace o vnitřních objemech těles a používají se i jako pomocné datové struktury vzhledem k rychlému zpracování. Oproti tomu povrchové reprezentace těles nesou přímé informace o povrchu tělesa (např. hrany, stěny) a poměrně snadno se zobrazují.
 \end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{assets/4_modely}
+\end{figure}
 
 \subsection{N-maniflod}
 N-manifold v topologii představuje topologický prostor, který lokálně připomíná reálný n-dimenzionální prostor. N-manifold je takový topologický manifold, jehož \textbf{každý bod} má okolí homeomorfní s $\mathbb{R}^n$. V podstatě definuje hranice (\textbf{povrch}) tělesa.
