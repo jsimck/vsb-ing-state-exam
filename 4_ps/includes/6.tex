@@ -1,5 +1,5 @@
 \subsection{Směrování} 
-Směrování (routování) označuje v informatice určování cest datagramů v prostředí počítačových sítí. Směrování zajišťují nejen routery, ale i koncové stanice (při vysílání) a jeho úkolem je doručit datagram (resp. paket) adresátovi, pokud možno co \textbf{nejefektivnější cestou}. Směrování zajišťuje \textbf{síťová vrstva} modelu ISO/OSI a je využíváno v lokálních sítích LAN i na Internetu, kde jsou dnes směrovány zejména \textbf{IP packety}.
+Směrování (routování) označuje v informatice určování cest datagramů v prostředí počítačových sítí. Směrování zajišťují nejen routery, ale i koncové stanice (při vysílání) a jejich úkolem je doručit datagram (resp. paket) adresátovi, pokud možno co \textbf{nejefektivnější cestou}. Směrování zajišťuje \textbf{síťová vrstva} modelu ISO/OSI a je využíváno v lokálních sítích LAN i na Internetu, kde jsou dnes směrovány zejména \textbf{IP packety}.
 
 Síťová infrastruktura mezi odesílatelem a adresátem paketu může být velmi složitá, a proto se směrování zpravidla nezabývá celou cestou paketu, ale řeší vždy \textbf{jen jeden krok}, tj. komu datagram předat jako dalšímu. Hledání cesty v síti:
 
@@ -15,7 +15,7 @@ Síťová infrastruktura mezi odesílatelem a adresátem paketu může být velm
 \subsubsection{Směrování v počítačových sítích a v Internetu}
 Abychom mohli paketovou sítí směrovat pakety od zdroje k cíli, potřebujeme správným způsobem naplnit \textbf{směrovací tabulky} všech směrovačů na trase. V malých sítích nebo v sítích, z nichž veškerý provoz ven odchází po jediné implicitní (default) cestě, toto lze vyřešit manuálním vložením potřebných informací, tj. \textbf{statickým směrováním}. V rozlehlejších sítích s měnící se topologií (z nichž největší je bezesporu Internet) jsou však nutné \textbf{dynamické směrovací protokoly}, které zajistí správné naplnění směrovacích tabulek automaticky na základě výměny informací mezi směrovači.
 
-\subsubsection{Statické směrování}
+\subsubsection{Neadaptivní -- Statické směrování}
 \begin{itemize}
 \item \textbf{Směrovací tabulky} v jednotlivých směrovačích \textbf{konfigurovány "ručně"} - pracnější.
 \item Odpadá \textbf{režie směrovacích protokolů} (zabraná šířka pásma, čas na zpracování).
@@ -25,11 +25,11 @@ Abychom mohli paketovou sítí směrovat pakety od zdroje k cíli, potřebujeme 
 \item V intranetech používáno až překvapivě často.
 \end{itemize}
 
-\subsubsection{Dynamické směrování}
+\subsubsection{Adaptivní -- Dynamické směrování}
 \begin{itemize}
 \item \textbf{Automaticky reaguje} na poměry v síti (topologie, zátěž, ...).
 \item Nutnost\textbf{ provozu směrovacích protokolů}.
-\item Užitečné \textbf{při častých změnách} (příp. i obecně neznámé) topologie sítě (typicky v Internetu).
+\item Užitečné \textbf{při častých změnách} (příp. i obecně neznámé) topologie sítě (typicky v Internetu). Algoritmy DVA a LSA
 \item V praxi často používána \textbf{kombinace statického a dynamického směrování}, staticky nakonfigurované cesty mají obvykle přednost.
 \end{itemize}
 
@@ -111,7 +111,7 @@ Občas se používá speciální zápis, který se označuje jako \textbf{invers
 \end{figure}
 
 \subsubsection{Veřejné a privátní adresy}
-Prvotní princip IP sítí byl takový, že IP adresa musela být unikátní v rámci celé sítě a jednotlivé uzly (stanice, servery a další zařízení s přiřazenou IP adresou) spolu mohli komunikovat. S rozvojem internetu se ukázalo, že \textbf{počet adres}, které je možno v IPv4 vytvořit, rozhodně \textbf{není dostatečný}. Začaly se tedy používat různé metody, jak se  s nedostatkem adres vypořádat. Nejrazantnější je nová verze IP protokolu IPv6, která obsahuje mnohem více adres, ale její nasazování není jednoduché. Dále se objevila technika CIDR (Classless Inter-Domain Routing, tj. „beztřídní směrování“ ) a také se IP adresy rozdělili na dva typy, na veřejné a neveřejné IP adresy.
+Prvotní princip IP sítí byl takový, že IP adresa musela být unikátní v rámci celé sítě a jednotlivé uzly (stanice, servery a další zařízení s přiřazenou IP adresou) spolu mohly komunikovat. S rozvojem internetu se ukázalo, že \textbf{počet adres}, které je možno v IPv4 vytvořit, rozhodně \textbf{není dostatečný}. Začaly se tedy používat různé metody, jak se  s nedostatkem adres vypořádat. Nejrazantnější je nová verze IP protokolu IPv6, která obsahuje mnohem více adres, ale její nasazování není jednoduché. Dále se objevila technika CIDR (Classless Inter-Domain Routing, tj. „beztřídní směrování“ ) a také se IP adresy rozdělili na dva typy, na veřejné a neveřejné IP adresy.
 
 Veřejné IP adresy (public address) tvoří hlavní část adresního rozsahu internetu a tyto adresy jsou routovatelné v rámci celého internetu. Jednoduše řečeno počítač s veřejnou adresou může být dostupný z celého internetu. Tyto adresy musí být unikátní v celé síti (internetu).
 
@@ -170,7 +170,7 @@ Paket IPv6 se skládá ze dvou hlavních částí: hlavičky a těla.
 Typicky se využívá kombinace obou níže zmíněných řešení.
 \begin{itemize}
 	\item \textbf{Statický NAT} - Překladová tabulka je konfigurována manuálně administrátorem.
-	\item \textbf{Dynamický NAT} - Obsah překladové tabulky je vytvářen dynamicky v závislosti na síťovém provozu. Veřejné adresy sou alokovány jednotlivým spojením jejich vypůjčením z \textbf{NAT Poolu}.
+	\item \textbf{Dynamický NAT} - Obsah překladové tabulky je vytvářen dynamicky v závislosti na síťovém provozu. Veřejné adresy jsou alokovány jednotlivým spojením jejich vypůjčením z \textbf{NAT Poolu}.
 	\item \textbf{Network adress and port translation NAPT} - Několik uzlů využívá pouze jednu veřejnou IP adresu. Jednotlivé uzly jsou identifikovány pomocí různých čísel portů.
 \end{itemize}
 
