@@ -6,6 +6,8 @@
 \item O řízení se stará \textbf{manager transakcí} nebo \textbf{monitor transakčního zpracování}.
 \item Operace transakce jsou nejprve zaznamenávány do\textbf{ logu}.
 \item Transakce nemohou být vnořovány.
+\item Všechny SQL příkazy v transakci jsou atomické.
+\item Nepoužití transakcí může dojít k nekonzistenci databáze.
 \end{itemize}
 
 \subsubsection{COMMIT}
@@ -19,6 +21,21 @@
 	\item Označuje, že databáze může být v \textbf{nekorektním stavu} a všechny změny transakce musí být \textbf{zrušeny}.
 \end{itemize}
 
+\subsubsection{SAVEPOINT}
+\begin{itemize}
+	\item Rozdělení transakcí na menší části.
+	\item \texttt{ROLLBACK} lze provést pouze částečně, pouze do předem vytvořeného \texttt{SAVEPOINT}u, co bylo před zůstane zachováno. Tím není zrušená celá transakce, ale může klidně pokračovat i nadále dalšími SQL příkazy až do závěrečného \texttt{COMMIT}u.
+	\item Po ukončení transakce je savepoint zahozen.
+\end{itemize}
+
+\subsubsection{ACID}
+Každá transakce by měla splňovat následující vlastnosti:
+\begin{itemize}
+\item\textbf{Atomičnost (Atomicity)} -- transakce musí být atomická: jsou provedeny všechny operace transakce nebo žádná.
+\item\textbf{Korektnost (Correctness)} – transakce převádí korektní stav databáze do jiného korektního stavu databáze, mezi začátkem a koncem transakce nemusí být databáze v korektním stavu.
+\item\textbf{Izolovanost (Isolation)} – transakce jsou navzájem izolovány: změny provedené jednou transakcí jsou pro ostatní transakce viditelné až po provedení COMMIT. 
+\item\textbf{Trvalost (Durability)} – jakmile je transakce potvrzena, změny v databázi se stávají trvalými i po případném pádu systému.
+\end{itemize}
 
 \subsection{Zotavení}
 \begin{itemize}
@@ -32,11 +49,11 @@
 
 \subsubsection{Chyby zotavení}
 \begin{itemize}
-\item\textbf{Lokální} - pouze v rámci jedné transakce (chyba v dotazu, přetečení hodnoty atributu).
+\item\textbf{Lokální} - pouze v rámci jedné transakce (chyba v dotazu, přetečení hodnoty atributu). Vyskytuje se \textbf{10-100x/min} a čas pro zotavení je shodný, jako čas provedení transakce.
 \item\textbf{Globální} - ovlivňují více transakcí najednou:
 \begin{itemize}
-\item\textbf{Systémové (soft crash)} (výpadek proudu, pád systému).
-\item\textbf{Chyby média (hard crash)} - chyba disku (zotavení probíhá ze záložní kopie a z logu jsou obnoveny potvrzené transakce po vytvoření zálohy).
+\item\textbf{Systémové (soft crash)} (výpadek proudu, pád systému). Může se vyskytovat i několikrát do roka. Čas potřebný k obnově je několik minut.
+\item\textbf{Chyby média (hard crash)} - chyba disku (zotavení probíhá ze záložní kopie a z logu jsou obnoveny potvrzené transakce po vytvoření zálohy). Vyskytuje se zřídka a obnova může trvat i hodiny.
 \end{itemize}
 \end{itemize}
 
@@ -46,7 +63,7 @@ Základním problémem vzniklým při systémové chybě je ztráta obsahu hlavn
 \subsubsection*{Odloženou aktualizací (deferred update, NO-UNDO/REDO)}
 \begin{itemize}
 \item Neprovádí aktualizace databáze na disk dokud transakce nedosáhne\textbf{ potvrzovacího bodu}. Všechny změny jsou v paměťovém bufferu.
-\item Jakmile transakce dosáhne potvrzovacího bodu se \textbf{nejprve zapíše vše do logu} a pak do DB (\textbf{pravidlo dopředného zápisu do logu}).
+\item Jakmile transakce dosáhne potvrzovacího bodu, tak se \textbf{nejprve vše zapíše do REDO logu} a pak do DB (\textbf{pravidlo dopředného zápisu do logu}).
 \item Při selhání transakce není nutné provádět \textbf{undo}, změny jsou ztraceny spolu s vyrovnávací pamětí.
 \item \textbf{Redo} se provádí při chybě během zápisu do DB.
 \item Do logu jsou v případě odložené aktualizace zapsány nové hodnoty (kvůli REDO).
@@ -54,11 +71,11 @@ Základním problémem vzniklým při systémové chybě je ztráta obsahu hlavn
 \end{itemize}
 \subsubsection*{Okamžitou aktualizací (immediate update, UNDO/NO-REDO)}
 \begin{itemize}
-\item \textbf{Může provádět aktualizace DB} než transakce dosáhne potvrzovacího bodu.
-\item Operace jsou zapsány do logu a poté je aktualizována DB (pravidlo dopředného zápisu do logu).
+\item \textbf{Provádí aktualizaci DB} než transakce dosáhne potvrzovacího bodu.
+\item Operace jsou zapsány do UNDO logu a zároveň je aktualizována DB (pravidlo dopředného zápisu do logu).
 \item Při chybě je nutné provést \textbf{undo}, protože \textbf{došlo k aktualizaci DB}.
 \item Do logu se zapisují \textbf{původní hodnoty}, což umožní systému provést UNDO.
-\item \textbf{Velká zátěž disku}.
+\item \textbf{Velká zátěž disku / nízký výkon}.
 \end{itemize}
 \subsubsection*{Kombinovanou aktualizací (UNDO/REDO)}
 \begin{itemize}
@@ -78,7 +95,7 @@ Kontrolní body \textbf{jsou vytvářeny např. po určitém počtu záznamů}, 
 \item zápis záznamu o kontrolním bodu do logu.
 \end{itemize}
 
-\noindent V případě následující situace musí být:
+\noindent \textbf{\noindent V případě následující situace musí být:}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{assets/kontrolni_body.png}
@@ -90,18 +107,19 @@ Kontrolní body \textbf{jsou vytvářeny např. po určitém počtu záznamů}, 
 \item Jelikož změny provedené transakcí $ T_1 $ byly provedeny p kontrolním bodem tc, tuto transakci při zotavení vůbec neuvažujeme.
 \end{itemize}
 
-\subsection{ACID}
-Každá transakce by měla splňovat následující vlastnosti:
-\begin{itemize}
-\item\textbf{Atomičnost (Atomicity)} -- transakce musí být atomická: jsou provedeny všechny operace transakce nebo žádná.
-\item\textbf{Korektnost (Correctness)} – transakce převádí korektní stav databáze do jiného korektního stavu databáze, mezi začátkem a koncem transakce nemusí být databáze v korektním stavu.
-\item\textbf{Izolovanost (Isolation)} – transakce jsou navzájem izolovány: změny provedené jednou transakcí jsou pro ostatní transakce viditelné až po provedení COMMIT. 
-\item\textbf{Trvalost (Durability)} – jakmile je transakce potvrzena, změny v databázi se stávají trvalými i po případném pádu systému.
-\end{itemize}
+\noindent \textbf{Postup zotavení systému:}
+\begin{enumerate}
+	\item Vytvoří se seznamy UNDO a REDO.
+	\item UNDO se naplní všemi neuloženými transakcemi (vše kromě T1 na obrázku výše).
+	\item Procházíme všechny transakce - je v logu COMMIT pro danou transakci -> přesuň transakci do REDO.
+	\item Všechny transakce z UNDO jsou postupně zrušeny.
+	\item Všechny transakce z REDO jsou přepracovány a uloženy.
+	\item Nyní je systém použitelný
+\end{enumerate}
 
 \subsection{Problémy souběhu}
 \begin{itemize}
-\item Jednouživatelský/víceuživatelský DB systém (kolik současně).
+\item Pro víceuživatelský DB systém (kolik současně). Pro jednouživatelský přístup (SQLite) se toto vůbec neřeší.
 \item Souběh umožňuje SŘBD \textbf{zpřístupnit databázi mnoha transakcím ve stejném čase}.
 \item Souběh také přináší mnoho \textbf{problémů}, které je nutné řešit i na \textbf{aplikační} úrovni.
 \end{itemize}
@@ -112,8 +130,11 @@ Plán provádění transakce = posloupnost operací transakce, při souběžném
 \item \textbf{Problém ztráty aktualizace} -- jedna transakce \textbf{přepíše právě prováděnou hodnotu}. Časová posloupnost: \texttt{read\_A}, \texttt{read\_B}, \texttt{write\_A}, \texttt{write\_B}.
 \\\\
 \noindent\makebox[\textwidth]{\includegraphics[width=10cm]{assets/soubeha3}}
-\item \textbf{Problém nepotvrzené závislosti} -- \textbf{A přečte nepotvrzená} (non-commited) data zapsaná B, B pak provede \textbf{callback}. A má \textbf{neplatná data}! Nebo B zapíše, A zapíše, B rollback - vrátí do stavu před 1. zápisem B.
-\\
+\item \textbf{Problém nepotvrzené závislosti}
+	\begin{itemize}
+		\item \textbf{Scénař 1} -- \textbf{tr. A pracuje se špatnými daty} - Transakce B zapíše X, transakce A přečte X, transakce B provede ROLLBACK.
+		\item \textbf{Scénař 2} -- \textbf{změna tr. A je ztracena} - Transakce B zapíše X, transakce A zapíše X, transakce B provede ROLLBACK.
+	\end{itemize}
 \noindent\makebox[\textwidth]{\includegraphics[width=10cm]{assets/soubeha2}}
 \item \textbf{Problém nekonzistentní analýzy} -- A provádí součet na účtech, před dokončením B provede přesun z účtu na účet, přičemž 1 už byl započítán a druhý ne. \textbf{Špatný součet zůstatků!} A čte commited data (B provede commit, než si A vyžádá další účet), ale i tak to není správné.
 \\\\
@@ -130,11 +151,11 @@ A a B chtějí \textbf{číst/zapisovat stejnou entici} (záznam). Nastávají 4
 \end{itemize}
 
 \subsection{Techniky řízení souběhu}
-\subsubsection{Správa verzí}
+\subsubsection{Správa verzí - optimistický přístup}
 Předpoklad, že se paralelní \textbf{transakce ovlivňovat nebudou}. Systém \textbf{vytváří} při aktualizaci\textbf{ kopie dat }a sleduje, která z verzí má být viditelná pro ostatní transakce (podle úrovně izolace).
 
-\subsubsection{Zamykání}
-Předpokládáme, že se paralelní \textbf{transakce budou ovlivňovat}. Systém spravuje jednu kopii dat a jednotlivým transakcím přiděluje \textbf{zámky}.
+\subsubsection{Zamykání - pesimistický přístup}
+Předpokládáme, že se paralelní \textbf{transakce budou ovlivňovat}. Systém spravuje jednu kopii dat a jednotlivým transakcím přiděluje \textbf{zámky}. Používá se nejčastěji.
 
 \begin{itemize}
 \item Chce-li transakce A provést čtení/zápis nějakého objektu v DB (nejčastěji n-tice), \textbf{požádá o zámek} na tento objekt. Žádná jiná paralelní transakce zámek získat nemůže, dokud jej A \textbf{neuvolní}.
@@ -175,11 +196,26 @@ Předpokládáme, že se paralelní \textbf{transakce budou ovlivňovat}. Systé
 
 \subsection{Sériový a serializovatelný plán}
 \begin{itemize}
+\item \textbf{Ekvivalentní plán} - 2 plány jsou ekvivalentní, pokud dávají shodné výsledky.
 \item \textbf{Sériový plán} - n-tice uspořádaná dle \textbf{pořadí vykonávání} jednotlivých transakcí. (transakce jsou provedeny zasebou).
 \item \textbf{Serializovatelný plán} - \textbf{plán vykonávání dvou transakcí} je korektní jen tehdy, pokud je serializovatelný $\rightarrow$ plán ekvivalentní s výsledkem libovolného sériového plánu.
 \end{itemize}
 
+\subsubsection{Dvoufázové uzamykání}
+Transakce které dodržují protokol dvoufázového uzamykání \textbf{jsou vždy serializovatelné}.
+\begin{enumerate}
+	\item Transakce musí požádat o zámek, než začne pracovat s nějakou enticí.
+	\item Po uvolnění jakéhokoli zámku nesmí žádat jiný zámek. Všechny držené zámky musí uvolnit.
+\end{enumerate}
+
+
 \subsection{Úroveň izolace transakce}
 Serializovatelnost garantuje izolaci transakcí ve smyslu podmínky \textbf{ACID}. Je-li plán transakcí serializovalný, neprojeví se negativní vlivy souběhu. Za izolovanost transakcí se platí \textbf{menším výkonem} souběhu $\rightarrow$ \textbf{nižší propustností}. SŘBD umožňuje nastavit úroveň izolace - ta \textbf{sníží míru izolace} transakce a \textbf{zvýší propustnost}.
 \\\\
+\noindent Pod pojem špinavé čtení spadá i špinavý zápis. \textbf{Výskyt fantomů} nastane v případě:
+\begin{itemize}
+	\item Zámek probíhá jen nad existujícími enticemi.
+	\item Pokud provedeme \texttt{SELECT .. WHERE xxx BETWEEN 1 AND 10} -- dostaneme zámek na všechny entice, které jsou v rozsahu.
+	\item Při vložení nového záznamu s xxx mezi 1 a 10 nebo úpravě jiného kde za xxx bude dosazeno číslo mezi 1 a 10, se při opakovaném čtení objeví fantom. Protože i přes zámek stále dostáváme jiné výsledky, protože dané nové/upravené entice zámek nemají, ale již spadají do podmínky výše.
+\end{itemize}
 \noindent\makebox[\textwidth]{\includegraphics[width=11cm]{assets/izolace}}
