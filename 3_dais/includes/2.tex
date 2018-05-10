@@ -13,8 +13,7 @@ Relační datový model představuje \textbf{způsob uchování dat v tabulkách
 Na rozdíl od matematické relace se ta databázová \textbf{mění v čase} (přidáváním a odebíráním prvků relace). Kromě základních \textbf{množinových operací} se u databázové relace setkáme s operaci \textbf{selekce} -- výběr řádků a \textbf{projekce} -- výběr sloupců.
 
 \begin{itemize}
-\item \textbf{Doména} je \textbf{množina všech hodnot, kterých může daný atribut nabývat} (obor hodnot atributu). V praxi je doména dána\textbf{ integritním omezením} (IO).
-Doména atributu Přijmení z obrázků je množina \{Dudak, Novák, Dvořák\}.
+\item \textbf{Doména} je \textbf{množina všech hodnot, kterých může daný atribut nabývat} (obor hodnot atributu). V praxi je doména dána\textbf{ integritním omezením} (IO). Doména atributu Přijmení z obrázků je množina \{Dudak, Novák, Dvořák\}.
 \item \textbf{Atribut} je vlastnost entity (z pohledu tabulky jde o sloupec).
 \item \textbf{Relační schéma} můžeme chápat jako strukturu tabulky (atributy a domény).
 Relační schéma R je výraz tvaru R(A, f),  kde  R  je jméno schématu, A = {A1, A2,..., An} je \textbf{konečná množina jmen atributů}, f je zobrazení přiřazující každému jménu atributu Ai neprázdnou množinu (obor hodnot atributu), kterou nazýváme \textbf{doménou atributu} Di, tedy \textbf{f(Ai) = Di}.
@@ -72,9 +71,9 @@ SQL (Structured Query Language) \textbf{je relační jazyk založen na predikát
 
 \subsubsection{DML - Data manipulation language}
 \begin{itemize}
-	\item \textbf{Modifikací} dat -  \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE} = vlož, uprav, smaž.
-	\item \textbf{Vyhledávání} v relacích -  \texttt{SELECT}, \texttt{ORDER BY},  \texttt{GROUP BY}, \texttt{JOIN} = vyhledej, seřaď, shlukuj, spoj.	
-	\item Další, pro podmínky, logické operatory,... (\texttt{WHERE, LIKE, BETWEEN, IN, IS NULL, DISTINCT/UNIQUE, JOIN, INNER JOIN, OUTER JOIN, EXISTS, HAVING, COUNT, VIEW, INDEX},...).
+	\item \textbf{Modifikací} dat --  \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE} = vlož, uprav, smaž.
+	\item \textbf{Vyhledávání} v relacích --  \texttt{SELECT}, \texttt{ORDER BY},  \texttt{GROUP BY}, \texttt{JOIN} = vyhledej, seřaď, shlukuj, spoj.	
+	\item Další, pro podmínky, logické operatory, ... (\texttt{WHERE, LIKE, BETWEEN, IN, IS NULL, DISTINCT/UNIQUE, JOIN, INNER JOIN, OUTER JOIN, EXISTS, HAVING, COUNT, VIEW, INDEX}, ...).
 \end{itemize}
 
 \subsubsection{DDL - Data definition language}
@@ -84,14 +83,14 @@ SQL (Structured Query Language) \textbf{je relační jazyk založen na predikát
 
 \subsubsection{DCL - Data control language}
 \begin{itemize}
-	\item \textbf{Správa práv} - příkazy jako \texttt{GRANT}, \texttt{REVOKE}
+	\item \textbf{Správa práv} - příkazy jako \texttt{GRANT}, \texttt{REVOKE}.
 \end{itemize}
 
 \subsubsection{TCL - Transaction control language - transakce}
 \begin{itemize}
-	\item \texttt{COMMIT} - úspěšně provedená transakce, vše se uloží
-	\item \texttt{ROLLBACK} - zrušení všech změn celé transakce
-	\item \texttt{SAVEPOINT} - uložení bodu, ke kterému lze provést \texttt{ROLLBACK}. Tj zruší se jen část transakce a může se pokračovat jinou větví celé transakce dále. Lze tak transakce dělit na menší atomické části
+	\item \texttt{COMMIT} - úspěšně provedená transakce, vše se uloží.
+	\item \texttt{ROLLBACK} - zrušení všech změn celé transakce.
+	\item \texttt{SAVEPOINT} - uložení bodu, ke kterému lze provést \texttt{ROLLBACK}. Tj zruší se jen část transakce a může se pokračovat jinou větví celé transakce dále. Lze tak transakce dělit na menší atomické části.
 \end{itemize}
 
 \subsection{Relační jazyky}
@@ -125,7 +124,7 @@ Jsou dány relace \textbf{R} a \textbf{S}. \textbf{Množinové operace:}
 \item \textbf{Spojení} relací R s atributy A  a  S  s atributy  B (join).  Značí se $R \bowtie S$, výsledkem je množina všech kombinací prvků relace \textbf{R} a \textbf{S}. Takto definovaný join se nazývá Přirozené spojení (natural join). Exsitují i další (outer, inner, left, right \ldots).
 \end{itemize}
 
-Příklad: $\Pi_\text{název} \sigma_{\varphi(\text{pohlaví=žena})} (\text{Úkol}\bowtie\text{Pracuje}\bowtie\text{Zaměstnanec})$
+Příklad: $\Pi_\textrm{název} \sigma_{\varphi(\textrm{pohlaví=žena})} (\textrm{Úkol}\bowtie\textrm{Pracuje}\bowtie\textrm{Zaměstnanec})$
 
 
 \subsection{N-ticový relační kalkul}
@@ -222,7 +221,7 @@ Normální formy relací (NF) prozrazují jak dobře je databáze navržena (č�
 	\centering
 	\includegraphics[width=0.4\textwidth]{assets/3nf.png}
 \end{figure}
-\item \textbf{BCNF} (Boyce-Coddova normální forma) -- 3NF + je-li funkční závislost (X → Y) $\in$ F+ a Y $\notin$ X, pak X obsahuje klíč schématu. \textbf{Musí být závislost sekundárních atributů na primárních nikoli naopak}. Když AB → CD, pak nesmí C  → A  
+\item \textbf{BCNF} (Boyce-Coddova normální forma) -- 3NF + je-li funkční závislost (X → Y) $\in$ F+ a Y $\notin$ X, pak X obsahuje klíč schématu. \textbf{Musí být závislost sekundárních atributů na primárních nikoli naopak}. Když AB → CD, pak nesmí C  → A.
 
 Často pokud je splněna 3NF je zároveň splněna i BCNF. Pro nesplnění BCNF je nutné: Aby relace měla více kandidátních klíčů, alespoň 2 z nich musí být složené z více atributů a některé složené klíče musí mít společný atribut.
 

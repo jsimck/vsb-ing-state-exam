@@ -79,14 +79,14 @@ INSERT INTO contacts VALUES (person_type (65, 'Verna' , 'Mills') , '24 Jun 2003'
 
 \subsection{XML Model a XML (eXtensible Markup Language)}
 \begin{itemize}
-	\item Značkovací jazyk - W3C standard pro popis slabě strukturovaných dat
+	\item Značkovací jazyk - W3C standard pro popis slabě strukturovaných dat.
 	\item Data jsou uložena v xml souboru \textbf{formou stromu}. (Ve skutečnosti je to graf, ale pro zjednodušení se značí jen jako strom)
 	\item \textbf{Logika} a \textbf{význam dat} je součástí xml souboru.
 	\item Skládá se z \textbf{hlavičky}, \textbf{kořenového elementu} (právě jeden), \textbf{vnořených elementů}, \textbf{atributů} a \textbf{textu} vnořeném uvnitř (ukládané informace).
 	\item Soubor může obshovat také tzv \textbf{XML Schema}, viz níže. To může určovat i datový typ a integritní omezení buněk, což je vhodné pro XML databáze.
 \end{itemize}
 
-XML databáze jsou složitější oproti relačním databázím. SQL pracuje s 2 rozměrnými tabulkami, zatímco XML model obsahuje i zanořené atributy. Proto se využívá dotazovací jazyk X-Path. Největší výhodou nativní XML databází je dynamická zména schémat uložených dokumentů, která je u relačních databází velmi komplikovaná.
+XML databáze jsou složitější oproti relačním databázím. SQL pracuje s 2 rozměrnými tabulkami, zatímco XML model obsahuje i zanořené atributy. Proto se využívá dotazovací jazyk X-Path. Největší výhodou nativní XML databází je \textbf{dynamická změna schémat} uložených dokumentů, která je u relačních databází velmi komplikovaná.
 
 \begin{minted}{XML}
 <?xml version="1.0"?>

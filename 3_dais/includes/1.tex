@@ -10,10 +10,10 @@ V implementační fázi si pak pomáháme \textbf{databázovými} \textbf{modely
 
 \subsubsection{Základní pojmy}
 \begin{itemize}
-	\item \textbf{Entita} -- objekt reálného světa, konkrétní výskyt instance entitního typu
-	\item \textbf{Entitní typ} -- něco jako třída, je popsán jménem a množinou atribitů.
+	\item \textbf{Entita} -- objekt reálného světa, konkrétní výskyt instance entitního typu.
+	\item \textbf{Entitní typ} -- něco jako třída, je popsán jménem a množinou atributů (množina entit se stejnými atributy).
 	\item \textbf{Atribut} -- vlastnost entity (možné hodnoty jsou označeny jako \textbf{doména atributu}).
-	\item \textbf{Klíč} -- množina atributů, která jednoznačne určuje \textbf{entitu}.
+	\item \textbf{Klíč} -- množina atributů, která jednoznačne \textbf{určuje entitu}.
 	\item \textbf{Vztah/vazba} -- definován názvem a vztahem mezi \textbf{dvěma entitními} typy.
 	\item \textbf{Kardinalita vztahu} -- dělení vztahů podle počtu entit vstupujících do vztahu -- 1:1, 1:N, M:N.
 	\item \textbf{Povinnost v členství} -- musí li vztah mezi dvěma entitami existovat, či nemusí.
@@ -41,7 +41,7 @@ Grafické znázornění \textbf{konceptuálního modelu} (objektů a vztahů mez
 	\includegraphics[width=0.7\textwidth]{assets/erdiagram.png}
 \end{figure}
 
-\textbf{Slabý entitní typ} je označení entity, která není jednoznačně definována jen svými atributy, ale i jinou entitou, se kterou je ve vztahu. Tj bez tohoto vztahu by nedávala smysl. Nejčastěji implementováno pomocí složeného primárního klíče ve slabém entitním typu, kde jeden atribut PK je rovněž cizí klíč druhé entity. V příkladu je to položka objednávky, která bez znalostí informací o objednávce nemá žádnou vypovídací schopnost.
+\textbf{Slabý entitní typ} je označení entity, která \textbf{není jednoznačně definována jen svými atributy}, ale i jinou entitou, se kterou je ve vztahu. Tj bez tohoto vztahu by nedávala smysl. Nejčastěji implementováno pomocí složeného primárního klíče ve slabém entitním typu, kde jeden atribut PK je rovněž cizí klíč druhé entity. V příkladu je to položka objednávky, která bez znalostí informací o objednávce nemá žádnou vypovídací schopnost.
 
 \begin{figure}[H]
 	\centering
@@ -70,7 +70,7 @@ Lineárním zápisem \textbf{popisujeme objekty}, jejich vlastnosti a vztahy \te
 		\textbf{Pes} & \textbf{Typ} & \textbf{Délka} & \textbf{Klíč} & \textbf{NOT NULL} & \textbf{IO}                      \\ \hline
 		IDPes        & int          & 8              & primarni      & ano               & pravidla pro tvar čipového čísla \\ \hline
 		jmeno        & varchar      & 50             &               &                   &                                  \\ \hline
-		rok_narozeni & int          & 4              &               &                   & Validní rok                      \\ \hline
+		rokNarozeni & int          & 4              &               &                   & Validní rok                      \\ \hline
 		CRasa        & int          & 2              & sekundarni    &                   &                                  \\ \hline
 	\end{tabular}
 \caption{Datový slovník pro tabulku Pes.}

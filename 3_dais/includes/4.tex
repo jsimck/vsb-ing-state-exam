@@ -77,12 +77,12 @@ Kromě základních příkazu pro vytváření a modifikací dat obsahuje SQL tr
 \item\textbf{Triggery}
 \begin{itemize}
 \item Kód spouštěný v reakci na \textbf{událost} (DML, DDL, systémové eventy).
-\item Lze určit kdy se má spouštět - \texttt{BEFORE, AFTER, INSTEAD OF}
-\item Při jaké události se má spustit - \texttt{INSERT, UPDATE, DELETE} - lze specifikovat i více akcí najednou
-\item V PL/SQL \texttt{FOR EACH ROW} - Tělo triggeru se bude volat pro každý řáděk zvlášť, nikoli najednou
-\item Lze používat speciální proměnné obsahující starou a novou hodnotu \texttt{:OLD, :NEW}
+\item Lze určit kdy se má spouštět - \texttt{BEFORE, AFTER, INSTEAD OF}.
+\item Při jaké události se má spustit - \texttt{INSERT, UPDATE, DELETE} - lze specifikovat i více akcí najednou.
+\item V PL/SQL \texttt{FOR EACH ROW} - Tělo triggeru se bude volat pro každý řáděk zvlášť, nikoli najednou.
+\item Lze používat speciální proměnné obsahující starou a novou hodnotu \texttt{:OLD, :NEW}.
 \item Pokud se pokusíme v triggeru číst či modifikovat stejnou tabulku dostaneme \textbf{mutating table error}.
-\item \texttt{CREATE [OR REPLACE ] TRIGGER jmeno\_triggeru {BEFORE | AFTER | INSTEAD OF } {INSERT [OR] | UPDATE [OR] | DELETE} [OF jmeno\_sloupce] ON jmeno\_tabulky [REFERENCING OLD AS stara\_hodnota NEW AS nova\_hodnota] [FOR EACH ROW [WHEN (podminka )]] BEGIN příkazy END;}
+\item \texttt{CREATE [OR REPLACE ] TRIGGER jmeno\_triggeru {BEFORE | AFTER | INSTEAD OF } {INSERT [OR] | UPDATE [OR] | DELETE} [OF jmeno\_sloupce] ON jmeno\_tabulky [REFERENCING OLD AS stara\_hodnota NEW AS nova\_hodnota] [FOR EACH ROW [WHEN (podminka )]] BEGIN příkazy END;}.
 \end{itemize}
 \end{itemize}
 

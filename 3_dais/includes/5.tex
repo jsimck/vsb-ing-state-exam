@@ -35,10 +35,10 @@ Základní datové struktury:
 \subsection{Typy tabulek}
 \subsubsection{Heap Table}
 \begin{itemize}
-\item Implicitní pro \texttt{CREATE TABLE} téměř všude, kromě MS-SQL. Záznamy nejsou nijak uspořádány.
+\item Implicitní pro \texttt{CREATE TABLE} téměř všude, pokud tabulka nemá žádné indexy (ani PK). Záznamy nejsou nijak uspořádány.
 \item \textbf{Stránkové perzistentní pole} s velikostí \textbf{bloku} nejčastěji \textbf{8kB}.
 \item Záznamy pouze \textbf{označovány jako smazané}, pro fyzické smazání slouží speciální operace \textbf{shrinking}.
-\item Obsahuje všechny záznamy a jejich atributy pokupě
+\item Obsahuje všechny záznamy a jejich atributy pokupě.
 \item Při vkládání záznam uložen na \textbf{první volnou pozici v tabulce} nebo na \textbf{konec pole}.
 \item Složitost operací: neefektivní vyhledávání $O(n)$, velmi \textbf{efektivní vkládání} $O(1)$ i \textbf{využití místa}.
 \end{itemize}
@@ -53,7 +53,7 @@ Základní datové struktury:
 \item \textbf{Oracle:} Index Organized Table (IOT), \textbf{SQL Server:} Clustered Index.
 \end{itemize}
 
-\paragraph{Eliminace náhdoných přístupů přes ROWID} Tabulka se shlukováním záznamů může ušetřit náhodný přístup oproti heap table a indexu. Po vyhledání ve stromě není nutné další náhodný přístup na haldu, protože vše potřebné je v listu. Kvůli více datům v listech může ale být celková výška stromu ve shlukované tabulce mnohem větší. To způsobí více náhodných přístupů při průchodu stromem než  v případě heap table a indexu. Co je lepší nelze určit předem ale pouze testem na reálných nebo pseudoreálných datech.
+\paragraph{Eliminace náhodných přístupů přes ROWID} Tabulka se shlukováním záznamů může ušetřit náhodný přístup oproti heap table a indexu. Po vyhledání ve stromě není nutné další náhodný přístup na haldu, protože vše potřebné je v listu. Kvůli více datům v listech může ale být celková výška stromu ve shlukované tabulce mnohem větší. To způsobí více náhodných přístupů při průchodu stromem než  v případě heap table a indexu. Co je lepší nelze určit předem ale pouze testem na reálných nebo pseudoreálných datech.
 
 \subsubsection{Hašovaná tabulka (Hash Table)}
 \begin{itemize}
@@ -114,7 +114,7 @@ Pokud se pro dvě tabulky často používá operace spojeni (JOIN) pro jeden atr
 		\item Převod původního dotazu do zvolené \textbf{interní formy}.
 		\item \textbf{Eliminujeme syntaxi jazyka dotazu} (např. SQL).
 		\item Zpracování pohledů, které probíhá v této fázi, znamená, že \textbf{nahradíme pohled jeho definicí} (materializované pohledy -- fragmenty/výsledky dotazů).
-		\item Interní forma je nejčastěji \textbf{nějaký druh dotazovacího strom}u (angl. query tree).
+		\item Interní forma je nejčastěji \textbf{nějaký druh dotazovacího stromu} (angl. query tree).
 	\end{itemize}
 	\item \textbf{Výběr logického plánu}
 	\begin{itemize}
@@ -124,19 +124,20 @@ Pokud se pro dvě tabulky často používá operace spojeni (JOIN) pro jeden atr
 	\item \textbf{Výběr fyzického plánu}
 	\begin{itemize}
 		\item V této fázi se optimalizátor rozhoduje jak bude transformovaný dotaz vykonán.
-		\item Jsou vybírány konkrétní agoritmy a pořadí jejich vykonávání
+		\item Jsou vybírány konkrétní algoritmy a pořadí jejich vykonávání.
 		\item Při výběru se již uvažuje: \textbf{existenci indexů}, \textbf{distribuci hodnot}, \textbf{shlukování uložených dat}.
-		\item Každé operaci je přiřazena výsledná \textbf{cena = IO cost + CPU cost}, která bude potřebá k celkovému vykonání
+		\item Každé operaci je přiřazena výsledná \textbf{cena = IO cost + CPU cost}, která bude potřebná k celkovému vykonání.
 	\end{itemize}
 	\item \textbf{Výběr nejlevnějšího plánu a jeho vykonání}
 	\begin{itemize}		
 		\item Z množiny dotazovacích plánů pak \textbf{optimalizátor} vybírá ten \textbf{nejlepší}, tedy \textbf{nejlevnější} plán.
-		\item Následně je vykonán a hodnoty vráceny
+		\item Následně je vykonán a hodnoty vráceny.
 	\end{itemize}
 \end{enumerate}
 
 \begin{figure}[H]
-	\includegraphics{assets/zpracovani_dotazu.png}
+	\centering
+	\includegraphics[width=0.6\textwidth]{assets/zpracovani_dotazu.png}
 \end{figure}
 
 \subsection{Optimalizátor a ladění dotazů}
@@ -167,16 +168,16 @@ Pokud se pro dvě tabulky často používá operace spojeni (JOIN) pro jeden atr
 	\item \textbf{ORM} -- Minimum SQL příkazů a objemu přenášených dat. Úroveň izolace transakce.
 \end{itemize}
 
-\subsubsection{Plán vykonání dotazu}
+\subsubsection{Obsah plánu vykonání dotazu}
 V plánu lze získat informace:
 \begin{itemize}
-	\item \textbf{consisteng gets}  - logické přístupy + počet záznamů výsledků/velikost pole záznamů
-	\item \textbf{physical reads} - fyzické čtení
-	\item \textbf{sorts(memory)} - počet operací třízení, bez přístupu na disk
-	\item \textbf{sorts(disk)} - počet operací s nejměně jedním přístupem na disk
+	\item \textbf{consisteng gets}  - logické přístupy + počet záznamů výsledků/velikost pole záznamů,
+	\item \textbf{physical reads} - fyzické čtení,
+	\item \textbf{sorts(memory)} - počet operací třízení, bez přístupu na disk,
+	\item \textbf{sorts(disk)} - počet operací s nejměně jedním přístupem na disk,
 	\item pokud pro logický přístup neexistuje fyzický => \textbf{cache hit} (cache hit rate = (cache hit / počet logických čtení) * 100 [\%]
-	\item opačný případ \textbf{cache miss}
-	\item vhodné sledovat i další parametry \textbf{Bytes received from server}, \textbf{Total execution time}
+	\item opačný případ \textbf{cache miss},
+	\item vhodné sledovat i další parametry \textbf{Bytes received from server}, \textbf{Total execution time}.
 \end{itemize}
 
 \begin{figure}[H]

@@ -1,5 +1,5 @@
 \subsection{Datová vrstva IS}
-Datová vrstva informačního systému \textbf{odděluje aplikaci od databáze}. Jde o třídy a funkce zajišťující komunikaci s databázi. \textbf{Překonává propast mezi SŘBD a programovacím jazykem}. Nazývá se také perzistentní a je 3. (nebo 1. záleží na úhlu pohledu) vrstvou třívrstvé architektury IS.
+Datová vrstva informačního systému \textbf{odděluje aplikaci od databáze}. Jde o třídy a funkce zajišťující komunikaci s databázi. \textbf{Překonává propast mezi SŘBD a programovacím jazykem}. Nazývá se také perzistentní a je 3. (nebo 1. záleží na úhlu pohledu) vrstvou \textbf{třívrstvé architektury} IS.
 
 Jedná se třídy a funkce, které se starají o persistentní ukládání dat, odtud také název. Datová vrstva nemusí nutně ukládat data do databáze, ale klidně do JSONu, XML, nebo přes API na jiných serverech. Proto je oddělená, aby bylo možné měnit \uv{poskytovatele} dat. Proto se programátor nemusí starat o fyzické uložení dat, pouze o práci s nimi.
 
@@ -51,7 +51,7 @@ Programovací technika \textbf{zpřístupňující relační či objektově-rela
 \item Nemusí využívat všechny vlastnosti SŘBD (efektivita, bezpečnost apod.). Záleží na komplexnosti a kvalitě knihovny ORM.
 \item Typová kontrola (nevznikají chyby v SQL).
 \item Jednodušší testování.
-\item Může využívate existující API jako JDBC, ADO.NET apod
+\item Může využívate existující API jako JDBC, ADO.NET apod.
 \item Měly by se používat pouze metody a parametry ORM, nikoli přímo SQL dotazy.
 \item Využívá známé návrhové vzory \textbf{Table data gateway}, \textbf{Row data gateway}, \textbf{Active record}, \textbf{Data mapper}.
 \item Dobré ORM si dokáže poradit i s dědičností pomocí návrhových vzorů \textbf{Single--table inheritance}, \textbf{Class table inheritance} a \textbf{Concrete table inheritance}.
@@ -79,7 +79,8 @@ Programovací technika \textbf{zpřístupňující relační či objektově-rela
 \end{itemize}
 
 \subsection{Bezpečnost}
-\textbf{(Ne)Omezení práv} - uživatel může destruktivně vymazat celou DB, nebo číst data, která nemá. \textbf{Řešením} je omezení práv na jednotlivé akce, či úplné zamezení viditelnosti tabulek. Pro zobrazení jejich částí lze využít pohledy.
+\textbf{(Ne)Omezení práv} - uživatel může destruktivně vymazat celou DB, nebo číst data, která nemá. \textbf{Řešením} je omezení práv na jednotlivé akce, či úplné zamezení viditelnosti tabulek. Pro zobrazení jejich částí lze využít pohledy. 
+
 \textbf{SQL Injection} - zranitelnost vznikající při nedostatečném \textbf{ošetření vstupů užívaných} v SQL dotazech. Např.: při přihlašování na webových stránkách zadá útoční příkaz SQL, které změní funkčnost dotazovaného příkazu. \textbf{Řešení:}
 \begin{itemize}
 \item \textbf{Parametrizované dotazy} (hodnoty jsou předány zvlášť, nemůže dojít k úpravě).
