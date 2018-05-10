@@ -1,12 +1,13 @@
 \subsection{Monolitické počítače (mikroprocesory)}
 \begin{itemize}
 \item Mikroprocesory, mikrokontroléry, minipočítače jsou další názvy pro monolitické počíače.
-\item Jsou to \textbf{malé počítače integrované v jediném pouzdře} (all in one).
+\item Jsou to \textbf{malé počítače integrované v jediném pouzdře} (all in one) s nízkým výkonem (oproti běžným CPU).
 \item Mají širokou oblast využití.
 \item Využívá se Harvardské koncepce, což umožňuje aplikovat paměti pro data a program různých technologií.
 \item Zjednodušené rysy architektury RISC.
 \item INTEL 8051 (standard), ATMEL, MICROCHIP PIC.
 \item V monolitických počítačích můžeme najít dva základní typy periférií (\textbf{vstupní}/\textbf{výstupní}).
+\item Často umožňují se přepnout celý MCU do režimu spánku, a tím výrazně snížit svou spotřebu. Poté běží pouze malá část periferií a ostatní jsou odpojeny.
 \end{itemize}
  
  \subsubsection{Rozdělení paměti}
@@ -23,6 +24,7 @@
 \end{itemize}
 
 \subsection{Zdroje synchronizace}
+MCU umožňuje využít interní oscilátory nebo na jeden vstup přivést externí oscilátor a tím tak určit přesný takt procesoru. Možnosti zdrojů jsou:
 \begin{itemize}
 	\item \textbf{krystal} (křemenný výbrus) – jsou drahé ale přesné,
 	\item keramický rezonátor,
@@ -31,16 +33,18 @@
 \end{itemize}
 
 \subsection{Ochrana proti rušení}
-Na prvním místě jde o ochranu \textbf{mechanickou}. Odolávat náhodným nárazům, nebo i trvalým vibracím nebo \textbf{elemtromagnetickým} vlivům z okolí. Pro odstranění chyb, které nastanou působením vnějších vlivů nebo chyby programátora, je v mikropočítačích implementován speciální obvod nazývaný \textbf{WATCHDOG} $\,\to\,$ provede reinicializaci mikropočítače pomocí vnitřního RESETu, například při zacyklení. Watchod (WDT) se řadí mezi elektrické ochrany. Tam také můžeme zařadit \textbf{BROWN-OUT} -- ochrana proti podpěti.
+Na prvním místě jde o ochranu \textbf{mechanickou}. Odolávat náhodným nárazům, nebo i trvalým vibracím nebo \textbf{elemtromagnetickým} vlivům z okolí. Pro odstranění chyb, které nastanou působením vnějších vlivů nebo chyby programátora, je v mikropočítačích implementován speciální obvod nazývaný \textbf{WATCHDOG} $\,\to\,$. Jedná se o interní čítač, který musí být programem pravidelně resetován. Pokud nedojde k resetu watchdogu a ten přeteče, je celý MCU RESETován. Nastává nejčastěji při zacyklení. Watchod (WDT) se řadí mezi elektrické ochrany. Tam také můžeme zařadit \textbf{BROWN-OUT} -- ochrana proti podpěti.
 
 \subsection{Typické periferie}
 \textbf{Periferie} - obvody, které zajišťují komunikaci mikropočítace s okolím.
 
 \begin{enumerate}
-\item \textbf{Vstupní a výstupní brány} -- Nejjednodušší a nejčastěji používané rozhraní pro vstup a výstup informací je u mikropočítačů \textbf{paralelní brána - port}. Bývá obvykle organizována jako \textbf{4} nebo \textbf{8 jednobitové vývody}, kde lze současně zapisovat i číst logické informace 0 a 1. U většiny bran lze jednotlivě \textbf{nastavit}, které bitové vývody budou sloužit jako \textbf{vstupní} a které jako \textbf{výstupní}. Na vstupu je \textbf{Schmittův klopný obvod}. U mnoha mikropočítačů jsou brány implementovány tak, že s nimi instrukční soubor může pracovat jako s množinou vývodu, nebo jako s jednotlivými bity.
+\item \textbf{Vstupní a výstupní brány} -- Nejjednodušší a nejčastěji používané rozhraní pro vstup a výstup informací je u mikropočítačů \textbf{paralelní brána - port}. Bývá obvykle organizována jako  \textbf{x jednobitových vývodů}, kde lze současně zapisovat i číst logické informace 0 a 1. Nejčastější jsou 8 bitové porty, existují ale také 4, 6, 7 bitové i další. U většiny bran lze jednotlivě \textbf{nastavit}, které bitové vývody budou sloužit jako \textbf{vstupní} a které jako \textbf{výstupní} a v průběhu programu tyto vlastnosti měnit. Na vstupu je \textbf{Schmittův klopný obvod}. U mnoha mikropočítačů jsou brány implementovány tak, že s nimi instrukční soubor může pracovat jako s množinou vývodu, nebo jako s jednotlivými bity.
 
 \item \textbf{Čítace a časovače} -- Do skupiny nejpoužívanějších periférií mikropočítače určitě patří čítače a časovače.
 \emph{Časovač} se od \textbf{čítače} příliš neliší. Není, ale \textbf{inkrementován} vnějším signálem, ale \textbf{přímo vnitřním hodinovým signálem} používaným pro řízení samotného mikropočítače. Lze tak podle přesnosti zdroje hodinového signálu zajistit řízení událostí a chování v \textbf{reálném čase}. Při přetečení časovače se i zde může automaticky předávat signál do přerušovacího podsystému mikropočítače.
+
+Ve většině MCU je čítač i časovač implementován jako 1 periferie a lze programově nastavit, je li řízena vnějším či vnitřním hodinovým signálem. Navíc lze také programově zařazovat děličky, čímž lze snížit celkovou frekvenci inkrementace.
 
 \item \textbf{Sériové linky} -- Sériový přenos dat je v praxi stále více používán. Dovoluje efektivním způsobem
 přenášet data na relativně velké vzdálenosti při použití minimálního počtu vodičů. Hlavní nevýhodou je však \textbf{nižší přenosová rychlost}, a to že se data musí kódovat a dekódovat.
@@ -52,7 +56,12 @@ přenášet data na relativně velké vzdálenosti při použití minimálního 
 
 \item \textbf{A/D a D/A převodníky} -- Fyzikální veličiny, které vstupují do mikropočítače, jsou většinou reprezentovány
 \textbf{analogovou formou} (napětím, proudem, nebo odporem).Pro zpracování počítačem však potřebujeme informaci v digitální (číselné) formě. K tomuto účelu slouží analogově–číslicové převodníky.
-\item \textbf{Obvody reálného času} (RTC - Reak Time Clock) - V mnoha aplikacích s použítím mikropočítačů je potřeba dodržovat přesnou časovou souvislost řízených událostí. Jde tedy o řízení v reálném čase. Ne vždy, ale taková posloupnost dostačuje a je nutno pro potřebu řízení udržovat skutečný čas, tedy hodiny, minuty, sekundy a případně i zlomky sekund. Pro tyto účely slouží obvody \textbf{RTC}. Při jejich použití je obvykle nutné vyřešit dva základní problémy:
+
+A/D převodník je nejčastěji realizován komparátorem, kde se postupně zvyšuje napětí a porovnává se se vstupní hodnotou. Tím se určí výsledná úroveň, která má ale určité rozlišení. Je omezený počet kroků, ve kterých se hodnota porovnává. Tento převod ale trvá nějakou dobu a nelze tak meřit velmi rychle se měnící signál.
+
+D/A převodník většinou v MCU neexistuje. Pro převod digitálního signálu na analogový se používá PWM (pulsně šířková modulace). Tedy velmi rychle se měnící signál plného a žádného napětí, který je následně kondenzátorem vyhlazen.
+
+\item \textbf{Obvody reálného času} (RTC - Real Time Clock) - V mnoha aplikacích s použítím mikropočítačů je potřeba dodržovat přesnou časovou souvislost řízených událostí. Jde tedy o řízení v reálném čase. Ne vždy, ale taková posloupnost dostačuje a je nutno pro potřebu řízení udržovat skutečný čas, tedy hodiny, minuty, sekundy a případně i zlomky sekund. Pro tyto účely slouží obvody \textbf{RTC}. Při jejich použití je obvykle nutné vyřešit dva základní problémy:
 \begin{itemize}
 \item \textbf{záložní zdroj} -- je třeba zajistit záložní zdroj pro udržení nepřetržité činnosti obvodu (může dojít k výpadku proudu a tak i k ztrátě skutečného času).
 \item \textbf{čtení dat} -- čas je hodnota neustále se měnící. Např. pokud zahájíme čtení hodnoty v čase 10:59:59, může se stát, že po přečtění prvních dvou hodnot, v našem případě hodin, se čas posune na 11:00:00 a čtění dalších hodnot bude neplatné (řešení technicky pomocnými registry v RTC obvodu, nebo vhodným programovým řešením). 
