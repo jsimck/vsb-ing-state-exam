@@ -2,10 +2,10 @@
 
 \subsection{Prahování}
 \begin{itemize}
-	\item Cílem práhování je oddělit pozadí od popředí na základně stanoveného prahu (nějaká realná hodnota). Výsledkem binární obraz (1 = objekt, 0 = pozadí).
+	\item Cílem práhování je \textbf{oddělit pozadí od popředí} na základně stanoveného prahu (nějaká realná hodnota). Výsledkem binární obraz (1 = objekt, 0 = pozadí).
 	\item Práh může být buď \textbf{stejný} pro celý obrázek, anebo \textbf{adaptivní} pro jednotlivé části obrazu. Další možností je stanovit práh v \textbf{intervalu} $<a, b>$. Úspěšnost detekci oblastí závisí na správné hodnotě prahu.
-	\item Pokud neznáme hodnotu prahu, snažíme se jí stanovit na základně informací získaných z obrazu, který má být segmentovaný.
-	\item Bimodální histogram (dva kopce), multimodální histogram -- práh určit jako \textbf{minimum histogramu} mezi vysokými hodnotami, pak lze dále rekurzivně dělit (předpokládáme, že v obraze jsou převážně dva a více druhů pixelů).
+	\item Pokud neznáme hodnotu prahu, snažíme se jí stanovit na základně informací získaných z obrazu, který má být \textbf{segmentovaný}.
+	\item \textbf{Bimodální histogra}m (dva kopce), \textbf{multimodální histogram }-- práh určit jako \textbf{minimum histogramu} mezi vysokými hodnotami, pak lze dále rekurzivně dělit (předpokládáme, že v obraze jsou převážně dva a více druhů pixelů).
 	\item \textbf{Obraz lze rekurzivně dělit} na menší části, ve kterých se vypočte histogram a dle něho určí práh pro konkrétní část (pokud nelze práh určit, lze ho interpolovat pomocí sousedních prahů).
 	\item \textbf{Minimalizace rizika chyby}:
 	\begin{itemize}
@@ -28,23 +28,21 @@
 	\item Hranice se skládá z hran (případně také z jediné zakřivené hrany).
 
 	\item Hrana se skládá z jednotlivých hranových bodů.
-	\item Většinou se postupuje tak, že se obraz převede do stupni šedi a následně se naleznou jednotlivé body hran.
+	\item Většinou se postupuje tak, že se obraz převede do stupně šedi a následně se naleznou jednotlivé body hran.
 	\item Za bod hrany se často považuje místo, kde průběh jasu \textbf{vykazuje náhlou změnu}, případně \textbf{inflexní bod}.
 	\item Po nalezení jsou jednotlivé nalezené body hran spojovány různými technikami do hran a celých hranic.
 \end{itemize}
 \subsubsection{Detekce hran s využitím gradientu}
 \begin{itemize}
- 	\item Hrana je v obrazu zastoupena (prudkou) změnou jasu, lze ji tedy najít zkoumáním síly a směru gradientu v jednotlivých bodech.
+ 	\item Hrana je v obrazu zastoupeny (prudkou) \textbf{změnou jasu}, lze ji tedy najít zkoumáním síly a směru gradientu v jednotlivých bodech.
  	\item Pro určení směru gradientu či hrany (​\textbf{směr gradientu je kolmý ke směru hrany​}) je třeba provést ​ \textbf{derivaci​} (nejlépe v x i y), která je při výpočtu nahrazena diferencí.
- 	\item Diference může být buď středová nebo dopředná/zpětná.
+ 	\item Diference může být buď \textbf{centrální} nebo \textbf{dopředná}/\textbf{zpětná}.
  	\begin{equation*}
- 		\begin{array}{c}
- 		dx = (f(x+1) - f(x - 1) \cdot 0.5) (Prewittove / Sobel, prvni derivace) \\
- 		dx = f(x+1) - f(x) \\
- 		dx = (f(x-1) - 2f(x) + f(x+1) \cdot 0.5) (Laplacian, druha derivace)
- 		\end{array}
+ 		\begin{split}
+ 		d_x = \dfrac{I(x - 1, y) - I(x + 1, y)}{2} \, , \quad 		d_y= \dfrac{I(x, y - 1) - I(x, y + 1)}{2} \, .
+ 		\end{split}
  	\end{equation*}
- 	 \item Velikost hrany lze určit velikostí gradientu (norma), hrana je tam, kde $e > práh$. \\
+ 	 \item Velikost hrany lze určit velikostí gradientu (norma), hrana je tam, kde $e > \textrm{práh}$. (hrana je kolmá k gradientu) \\
  	 $ e(x, y) = \sqrt{(f_x(x,y)^2+ f_y(x,y)^2})$
  	 \item Směr hrany a gradientu lze určit (kde $\varphi$ -- směr gradientu, $\psi$ -- směr hrany) 
  	  	\begin{equation*}
@@ -99,19 +97,23 @@
 \begin{itemize}
 	\item První derivace obrazové funkce nabývá svého maxima v místě hrany.
 	\item \textbf{Druhá derivace protíná} v místě hrany \textbf{nulovou hodnotu}.
-	\item Spolehlivější metoda, než hledání maxima v první derivaci.
+	\item Spolehlivější metoda, než hledání maxima v první derivaci. \textbf{NE} v případě, že je obraz postižen šumem. V tomto případě selhává, jelikož druhá derivace ještě více zesílí šum.
 \end{itemize}
-\subsubsection*{Laplaceův operátor} (druhá derivace gradientu)
+\subsubsection*{Laplaceův operátor (druhá derivace gradientu)}
 \begin{itemize}
-	\item Pro výpočet se používá symetrická diference nebo konvoluční masky (na krajích je maska ořezaná)\\
-	$f_{xx}(x,y) = f(x-1,y) - 2f(x,y) + f(x+1,y)$
-	$f_{yy}(x,y) = f(x,y-1) - 2f(x,y) + f(x,y+1)$
+	\item Pro výpočet se používá symetrická diference nebo konvoluční masky (na krajích je maska ořezaná)
+	\begin{equation*}
+	\begin{split}
+	d_x &= I(x - 1, y) - 2I(x, y) + I(x + 1, y) \, ,\\
+	d_y&= I(x, y - 1) - 2I(x, y) + I(x, y + 1) \, .
+	\end{split}
+	\end{equation*}
 	 		\begin{figure}[H]
  	\begin{center}
-	\includegraphics[width=0.25\textwidth]{assets/8_priklady_laplace}
+	\includegraphics[width=0.5\textwidth]{assets/8_priklady_laplace}
 	\end{center}
 	\end{figure}
-	\item Hrana je detekována jako změna znaménka v průchodu mezi dvěma extrémy.
+	\item Hrana je detekována jako \textbf{změna znaménka v průchodu mezi dvěma extrémy}.
 	\item Je \textbf{více citlivý na šum než první derivace} (i při malém šumu je detekováno množství falešných hran).
 	\item Pro redukci šumu a zahlazení vysokých frekvencí lze použít \textbf{Gaussův operátor}:
 			\begin{equation*}
@@ -126,21 +128,21 @@
 Canny první stanovil požadavky, které by měl detektor splňovat a následně navrhl detektor. %zabili kennyho, parchanti
 Požadavky:
 \begin{itemize}
-	\item \textbf{Minimalizovat} pravděpodobnost \textbf{chybné detekce}
-	\item Najít polohu hrany, co \textbf{nejpřesněji}
-	\item Bod hrany identifikovat \textbf{jednoznačně}
+	\item \textbf{Minimalizovat} pravděpodobnost \textbf{chybné detekce}.
+	\item Najít polohu hrany, co \textbf{nejpřesněji}.
+	\item Bod hrany identifikovat \textbf{jednoznačně}.
 \end{itemize}
-Postup:
-\begin{itemize}
+\textbf{Postup:}
+\begin{enumerate}
 	\item Eliminace šumu Gaussovým filtrem.
-	\item Velikost a směr gradientu -- nejčastěji Sobelův operátor.
-	\item Nalezení lokálních maxim a stanovení interpolace v osmi okolí.
-	\item Eliminace nevýznamných hran (thresholding) -- proces, který lze opakovat i vícekrát
+	\item Velikost a směr gradientu -- nejčastěji Sobelův operátor (nebo centrální derivace).
+	\item Nalezení lokálních maxim a stanovení interpolace v osmi okolí. \textbf{Redukce na hranu velikosti 1 px}.
+	\item Eliminace nevýznamných hran (\textbf{double thresholding})
 	\begin{itemize}
 		\item Všechny body, kde je velikost hrany $\leq t_{high}$ -- \uv{jistá} hrana
 		\item Pak ty, které jsou $ > t_{low}$ a sousedí s hranou -- \uv{jistá} hrana
 	\end{itemize}
-\end{itemize}
+\end{enumerate}
 
 %\subsection{Filtrace}
 %\begin{itemize}
