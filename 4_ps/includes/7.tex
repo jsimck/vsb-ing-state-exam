@@ -23,7 +23,7 @@ Cílem všech typů útoků je nějakým způsobem ublížit uživateli, často 
 
 \subsection{Filtrování provozu}
 \subsubsection{Paketové filtry (nestavové)}
-\textbf{Filtrování probíhá dle informací v hlavičce 3 a 4 vrstvy}. Pravidla udávají, ze které adresy a portu na kterou adresu a port může být paket procházející rozhraním routeru propuštěn. Na routerech CISCO je realizován jako \textbf{Access Control List (ACL)} prostřednictvím sekvence záznamu, které povolují/zakazují přenos paketu, které odpovídají daným kritériím. Samotný paketový filtr je rychlý, nenáročný na systémové zdroje, ale úroveň kontroly je relativně malá.
+\textbf{Filtrování probíhá dle informací v hlavičce 3 a 4 vrstvy}. Pravidla udávají, ze které adresy a portu na kterou adresu a port může být paket procházející rozhraním routeru propuštěn. Na routerech CISCO je realizován jako \textbf{Access Control List (ACL)} prostřednictvím sekvence záznamu, které povolují/zakazují přenos paketu, které odpovídají daným kritériím. Samotný paketový filtr je rychlý, nenáročný na systémové zdroje, ale úroveň kontroly je relativně malá. \textbf{Reflexivní ACL} - automaticky propouští vstupní provoz, který odpovídá povolenému provozu výstupnímu.
 
 \subsubsection{Stavový firewall}
 (též stavový paketový filtr, anglicky stateful firewall) odděluje důvěryhodnou (interní) síť od nedůvěryhodné (externí) sítě. Funguje stejně jako jednoduchý paketový filtr, ukládá \textbf{navíc ale i informace o povolených spojeních}, podle kterých pak může rozhodovat, zda procházející pakety patří do již povoleného spojení a mohou být propuštěny nebo zda musí znovu projít kontrolou. Firewall je \textbf{velmi rychlý}, poskytuje slušnou úroveň zabezpečení a snazší konfiguraci.  Poskytuje urychlené zpracování paketu již povoleného spojení. Obdobou stavového firewallu je \textbf{nestavový firewall}, který se rozhoduje pouze na základě informací obsažených v konkrétním paketu (pracuje na nižší síťové vrstvě ISO/OSI modelu) a aplikační firewall, který pracuje naopak na vyšší síťové vrstvě. 
@@ -78,8 +78,8 @@ Existuje \textbf{několika stupňové ověření}, například kombinací PIN a 
 \end{itemize}
 
 
-\subsubsection{SSL}
-Secure Sockets Layer, SSL (doslova vrstva bezpečných socketů) je protokol, resp. \textbf{vrstva vložená mezi vrstvu transportní} (např. TCP/IP) a \textbf{aplikační} (např. HTTP), která \textbf{poskytuje zabezpečení komunikace} šifrováním a autentizaci komunikujících stran.
+\subsubsection{SSL/TLS}
+Secure Sockets Layer, SSL (doslova vrstva bezpečných socketů) je protokol, resp. \textbf{vrstva vložená mezi vrstvu transportní} (např. TCP/IP) a \textbf{aplikační} (např. HTTP), která \textbf{poskytuje zabezpečení komunikace} šifrováním a autentizaci komunikujících stran. Protože SSL již je ve všech verzích \textbf{deprecated}, mělo by se používat pouze \textbf{TLS} neboli Transport layer security.
 
 Protokol SSL se nejčastěji využívá pro bezpečnou komunikaci s internetovými servery pomocí HTTPS, což je zabezpečená verze protokolu HTTP. Po vytvoření SSL spojení (session) je komunikace mezi serverem a klientem šifrovaná a tedy zabezpečená.
 
