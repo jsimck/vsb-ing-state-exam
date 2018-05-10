@@ -15,7 +15,10 @@
 \usepackage{enumitem}
 \usepackage{latexsym}
 \usepackage{hyperref}
-\usepackage{minted}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{minted}
 \usepackage{caption}
 \usepackage{amsfonts}
 \usepackage{makecell}
@@ -34,10 +37,10 @@
 }
 \title{\vspace{-10ex}\textbf{I. Matematické základy informatiky}}
 \date{\small\vspace{-9ex}Update: \today}
-\setminted{fontsize=\small,baselinestretch=1}
+%\setminted{fontsize=\small,baselinestretch=1}
 \newcommand{\hhline}{\Xhline{2\arrayrulewidth}}
 \newcommand{\resline}{\vspace{1.5mm}\hrule\vspace{1.5mm}}
-
+\DeclareUnicodeCharacter{2212}{-}
 \begin{document}
 \maketitle
 \setcounter{tocdepth}{1}
@@ -48,7 +51,7 @@
 
 \pagebreak
 \section{Bezkontextové gramatiky a jazyky. Zásobníkové automaty, jejich vztah k bezkontextovým gramatikám.}
-\input{includes/2.tex}
+%\input{includes/2.tex}
 
 \pagebreak
 \section{Matematické modely algoritmů - Turingovy stroje a stroje RAM. Složitost algoritmu, asymptotické odhady. Algoritmicky nerozhodnutelné problémy.}
@@ -92,5 +95,6 @@
 
 \pagebreak
 \section{Metody statistické indukce. Intervalové odhady. Princip testování hypotéz.}
+\input{includes/14.tex}
 
 \end{document}
