@@ -33,16 +33,18 @@ V dnešní době se ustálilo dělení počítačů do dvou základních kategor
 \begin{itemize}
 \item {\textbf{Počet instrukcí a způsobů adresování je malý, ale zůstává úplný}, aby bylo možno provést vše $\,\to\,$ v tomhle se liší od CISC}.
 \item {Instrukce jsou vytvořeny pomocí obvodu $\,\to\,$ jednodušší na výrobu než CISC}.
-\item {Širší sběrnice, rychlejší tok instrukcí a dat do procesoru}.
+\item Je menší počet instrukcí, takže složitější instrukce se nahradí větším počtem jednodušších.
+\item To způsobuje nárust kódu. Zároveň ale vznikly rychlejší sběrnice, tj rychlejší proud dat do procesoru.
+\item {Používá se \textbf{zřetězené zpracování instrukcí} (Blíže popsáno níže)}. 
 \item {Instrukce se provádějí jen nad registry}.
 \item {Navýšený počet registrů $\,\to\,$ delší program}.
 \item {Instrukce mají \textbf{jednotný formát} -- délku i obsah}.
-\item {Komunikace s pamětí pouze pomocí instrukcí \textbf{LOAD / STORE}}.
+\item {Komunikace s pamětí pouze pomocí instrukcí \textbf{LOAD / STORE}, adresování i práce je celkově rychlejší}.
+\item V návaznosti je využívaná cache pro co nejrychlejší přístup dat.
+\item Využívá se \textbf{predikce skoků}, takže se začnou načítat data, která pravděpodobně budou v další instrukci potřeba.
 \item {\textbf{Každý strojový cyklus znamená dokončení jedné instrukce}}.
-\item {Používá se \textbf{zřetězené zpracování instrukcí}}.
 \item {Řešení problémů s frontou instrukcí}.
 \item {Mikroprogramový řadič může být nahrazen rychlejším obvodem}.
-\item {Přenášejí složitost technologického řešení do programu (překladače)}.
 \item {Představitelé \textbf{ARM, MOTOROLA 6800, INTEL i960, MIPS R6000}}.
 \end{itemize}
 \begin{figure}[H]
@@ -125,6 +127,8 @@ Několik let po von Neumannovi, přišel vývojový tým odborníků z Harvardsk
 	\item{Speciální výpočetní jednotky dle potřeby dané úlohy (FFT -- rychlá fourierova transformace)}.
 	\item{Paralelní zpracování (násobné výpočetní jednotky)}.
 	\item{\textbf{Zřetězové zpracování instrukcí} (pipelining)}.
+	\item{Využití cache pamětí (L1, L2, L3)}.
+	\item{Predikce skoků}
 \end{itemize}
 \subsubsection{Paralelní zpracování}
 Zpracování více elementárních úloh běží součastně.
@@ -143,7 +147,7 @@ Princip zřetězení se značně překrývá s principy procesorů RISC.
 \end{itemize}
 Zřetězení se stále vylepšuje a u novějších procesorů se již můžeme setkat stále s více řetězci rozpracovaných informací (více pipelines), dnes je standardem 5 pipelines.
 
-\subsubsection{Problém}
+\subsubsection{Problém a predikce skoků}
 Největší problém spočívá v \textbf{plnění zřetězené jednotky}, hlavně při provádění \textbf{podmíněných skoků}, kdy během stejného počtu cyklů se vykoná více instrukcí. U pipelingu se instrukce následující po skoku vyzvedává dřív, než je skok dokončen. \textbf{Primitivní implementace} vyzvedává vždy \textbf{následující instrukci}, což vede k tomu, že se vždy mýlí, pokud je skok nepodmíněný. Pozdější implementace mají \textbf{jednotku předpovídání skoku (1bit)}, která vždy správně \textbf{předpoví nepodmíněný skok} a s použitím cache se záznamem předchozího chování programu se pokusí předpovědět i cíl podmíněných skoků nebo skoků s adresou v registru nebo paměť. V případě, že se predikce nepovede, bývá nutné vyprázdnit celou pipeline a začít vyzvedávat instrukce ze správné adresy, což znamená relativně \textbf{velké zdržení}. Související problémem je přerušení.
 
 \subsubsection{Plnění fronty instrukcí}
