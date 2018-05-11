@@ -33,7 +33,7 @@ MCU umožňuje využít interní oscilátory nebo na jeden vstup přivést exter
 \end{itemize}
 
 \subsection{Ochrana proti rušení}
-Na prvním místě jde o ochranu \textbf{mechanickou}. Odolávat náhodným nárazům, nebo i trvalým vibracím nebo \textbf{elemtromagnetickým} vlivům z okolí. Pro odstranění chyb, které nastanou působením vnějších vlivů nebo chyby programátora, je v mikropočítačích implementován speciální obvod nazývaný \textbf{WATCHDOG} $\,\to\,$. Jedná se o interní čítač, který musí být programem pravidelně resetován. Pokud nedojde k resetu watchdogu a ten přeteče, je celý MCU RESETován. Nastává nejčastěji při zacyklení. Watchod (WDT) se řadí mezi elektrické ochrany. Tam také můžeme zařadit \textbf{BROWN-OUT} -- ochrana proti podpěti.
+Na prvním místě jde o ochranu \textbf{mechanickou}. Odolávat náhodným nárazům, nebo i trvalým vibracím nebo \textbf{elemtromagnetickým} vlivům z okolí. Pro odstranění chyb, které nastanou působením vnějších vlivů nebo chyby programátora, je v mikropočítačích implementován speciální obvod nazývaný \textbf{WATCHDOG} $\,\to\,$. Jedná se o interní čítač, který musí být programem pravidelně resetován. Pokud nedojde k resetu watchdogu a ten přeteče, je celý MCU RESETován. Nastává nejčastěji při zacyklení. Watchdog (WDT) se řadí mezi elektrické ochrany. Tam také můžeme zařadit \textbf{BROWN-OUT} -- ochrana proti podpěti.
 
 \subsection{Typické periferie}
 \textbf{Periferie} - obvody, které zajišťují komunikaci mikropočítace s okolím.
@@ -57,9 +57,9 @@ přenášet data na relativně velké vzdálenosti při použití minimálního 
 \item \textbf{A/D a D/A převodníky} -- Fyzikální veličiny, které vstupují do mikropočítače, jsou většinou reprezentovány
 \textbf{analogovou formou} (napětím, proudem, nebo odporem).Pro zpracování počítačem však potřebujeme informaci v digitální (číselné) formě. K tomuto účelu slouží analogově–číslicové převodníky.
 
-A/D převodník je nejčastěji realizován komparátorem, kde se postupně zvyšuje napětí a porovnává se se vstupní hodnotou. Tím se určí výsledná úroveň, která má ale určité rozlišení. Je omezený počet kroků, ve kterých se hodnota porovnává. Tento převod ale trvá nějakou dobu a nelze tak meřit velmi rychle se měnící signál.
+A/D převodník je nejčastěji realizován \textbf{komparátorem}, kde se postupně zvyšuje napětí a porovnává se se vstupní hodnotou. Tím se určí výsledná úroveň, která má ale určité rozlišení. Je omezený počet kroků, ve kterých se hodnota porovnává. Tento převod ale trvá nějakou dobu a nelze tak meřit velmi rychle se měnící signál.
 
-D/A převodník většinou v MCU neexistuje. Pro převod digitálního signálu na analogový se používá PWM (pulsně šířková modulace). Tedy velmi rychle se měnící signál plného a žádného napětí, který je následně kondenzátorem vyhlazen.
+D/A převodník většinou v MCU neexistuje. Pro převod digitálního signálu na analogový se používá \textbf{PWM} (pulsně šířková modulace). Tedy velmi rychle se měnící signál plného a žádného napětí, který je následně kondenzátorem vyhlazen.
 
 \item \textbf{Obvody reálného času} (RTC - Real Time Clock) - V mnoha aplikacích s použítím mikropočítačů je potřeba dodržovat přesnou časovou souvislost řízených událostí. Jde tedy o řízení v reálném čase. Ne vždy, ale taková posloupnost dostačuje a je nutno pro potřebu řízení udržovat skutečný čas, tedy hodiny, minuty, sekundy a případně i zlomky sekund. Pro tyto účely slouží obvody \textbf{RTC}. Při jejich použití je obvykle nutné vyřešit dva základní problémy:
 \begin{itemize}
