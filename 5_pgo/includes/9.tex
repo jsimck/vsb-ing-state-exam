@@ -1,5 +1,150 @@
-\subsection{Histogram orientovaných gradientů HOG}
+\subsection{Příznakové rozpoznávání}
+\begin{itemize}
+\item Založeno na tom, že každý objekt lze popsat množinou vhodných číselných hodnot = \textbf{příznaků}. Těch může být i více a potom tvoří \textbf{vektor příznaků}.
+\item Vektor příznaků nese všechny podstatné informace o objektu a je\textbf{ jedinou informací} pro následné \textbf{rozpoznání}.
+\item Počet příznaků a jejich typy bývá \textbf{obtížné} určit, je nutné provést experimenty. \textbf{Velikost} vektoru příznaků by měla být rozumná (ne příliš velká).
+\item Obecně by zvolené příznaky měli \textbf{splňovat} následující:
+\begin{itemize}
+\item hodnoty příznaků jsou podobné pro objekty stejných tříd a odlišné pro objekty jiných tříd,
+\item měly by být pokud možno nezávislé na hodnotách jiných příznaků.
+\end{itemize}
+\end{itemize}
 
+\subsubsection{Momenty}
+Momenty \textbf{různého stupně} patří k často používaným příznakům. Důvodem je, že jejich schopnost od sebe rozlišit objekty různých tříd často vyhovuje a jejich \textbf{výpočet je snadný}. Moment vztažený k souřadné soustavě obrazu:
+\begin{equation*}
+m_{p, q} = \int{}\int_\Omega x^p y ^q f(x, y)dx dy,
+\end{equation*}
+kde $f(x, y)$ je obrazová funkce, $p, q$ udávají \textbf{stupeň} momentu a $\Omega$ je ta část obrazu, kterou považujeme za rozpoznávaný objekt. U diskrétních obrazů se nahrazuje \textbf{sumou}. Hodnoty $p, q$ lze zvolit $p \geq 0, q \geq 0$, přičemž: $m_{0,0}$ -- \textbf{plocha objektu} vážená hodnotou jasu. Máme 3 základní typy momentů:
+\begin{itemize}
+\item \textbf{invariantní vůči posunu} (nezávislá na poloze objektu) - $m_{p, q} \rightarrow \mu_{p, q}$,
+\item \textbf{invariantní vůči měřítku} (nezávislá na velikosti objektu, normalizace) - $m_{p, q} \rightarrow \upsilon_{p, q}$,
+\item \textbf{invariantní vůči rotaci} dána momentovými invarianty - sestavení $\theta_n$,
+\end{itemize}
+
+\subsubsection*{Výpočet polohy těžiště (nezávislost na poloze)}
+K výpočtu polohy těžiště objektů lze použít momentů $m_{0,0}, m_{1,0}, m_{0,1}$, což dává:
+\begin{equation*}
+x_t = \frac{m_{1,0}}{m_{0,0}}, \quad y_t = \frac{m_{0,1}}{m_{0,0}}.
+\end{equation*}
+Také \textbf{poloha objektu} reprezentována jeho těžištěm může být sama o sobě použita jako \textbf{příznak} ($x_t, y_t$). Momenty vztažené vzhledem k těžišti, které je činí \textbf{nezávislé na poloze objektu} avšak stále závislé na \textbf{velikosti} a \textbf{rotaci} objektu, lze vypočítat:
+\begin{equation*}
+\mu_{p, q} = \int{}\int_\Omega (x - x_t)^p (y - y_t)^q f(x, y)dx dy.
+\end{equation*}
+
+\subsubsection*{Momenty nezávislé na velikosti}
+Pokud není pro rozpoznání důležitá velikost objektu, je možné použít \textbf{normalizovaných momentů $\upsilon_{p, q}$} (normalizace pomocí součtu jasových hodnot objektu):
+\begin{equation*}
+\upsilon_{p, q} = \frac{\mu_{p, q}}{(m_{0, 0})^\gamma}, \quad \textrm{kde } \gamma = \frac{p + q}{2} + 1.
+\end{equation*}
+
+\subsubsection*{Momenty nezávislé na natočení}
+Pokud nemá rozpoznání záležet ani na orientaci (natočení), je nutné momenty počítat k hlavním osám objektu. Hlavní osy vytvářejí souřadnou soustavu, která má počátek v těžišti rozpoznávaného objektu a vzhledem k souřadné soustavě obrazu je pootočena o úhel $\Theta$. Pootočení $\theta$ je dáno podmínkou, aby momenty $\mu'_{2, 0}$ a $ \mu'_{0, 2}$ vypočítány k hlavním osám byly extrémy. Opět lze použít i samotný úhel pootočení jako \textbf{příznak}.
+
+\subsubsection{Pravoúhlost a podlouhlost}
+Hranici objektu \textbf{postupně rotujeme} v rozsahu $0 - 90^\circ$. Krok úhlu rotace zvolíme v jednotkách stupňů (např. $5^\circ$). Po provedení rotace opíšeme kolem objektu pravoúhelník, jehož strany jsou rovnoběžné se stranami obrazu (po provedení rotace stačí nalézt extrémy hranice). Ze všech pravoúhelníků vybereme ten, který má \textbf{nejmenší plochu} $A_O$, a délky jeho stran značíme postupně $A_R$, $a$, $b$. Pravoúhlost ($R$) a podlouhlost ($S$) je definována následovně:
+\begin{equation*}
+R = \frac{A_O}{A_R}, \quad S = \frac{a}{b}.
+\end{equation*}
+
+\subsubsection{Kruhovost}
+Nechť $ P $, $ A  $označují délku hranice objektu a jeho plochu, kruhovost je pak definována vztahem:
+\begin{equation*}
+C = \frac{P^2}{A}.
+\end{equation*}
+Pro kruh je $C = 4 \pi$, pro čtverec $C = 16$, pro objekty nepravidelného tvaru jsou hodnoty vyšší. Tyto hodnoty jsou však teoretické a skutečná hodnota se může lišit (viz obr).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{assets/9_kruhovost}
+\end{figure}
+
+\subsubsection{Průměrná vzdálenost pixelu od hranice}
+Nechť $d_i$ je vzdálenost í-tého pixelu od hranice objektu, jehož plocha je $A$ (vzdáleností rozumíme, kvůli rychlosti, pouze počet řad pixelů, které leží mezi pixelem a hranicí). Průměrnou vzdálenost $\mu_d$ a koncentrovanou informaci o tvaru objektu $S$ získáme jako:
+\begin{equation*}
+\mu_d = \frac{1}{N} \Sigma^N_{i = 0}d_i, \quad S = \frac{A}{\mu_d^2}.
+\end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{assets/9_px_vzdalenost}
+	\includegraphics[width=0.68\textwidth]{assets/9_stanoveni_hranice}
+\end{figure}
+
+\subsubsection{Průběh křivosti hranice objektu}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{assets/9_krivost}
+\end{figure}
+
+\subsubsection{Eulerovo číslo}
+Nechť $C$ je počet navzájem nesouvislých částí rozpoznávaného objektu a $H$ je počet děr v objektu pak Eulerovo číslo je rozdíl $C - H$, jelikož však většinou detekujeme jeden souvislý objekt, rovnice bude rovna $1 - H$.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{assets/9_euler}
+\end{figure}
+
+\subsubsection{Atributy odvozené z histogramu jasu}
+Možné použití, pokud rozpoznáváme objekty, pro něž je charakteristické jisté rozložení jasu po ploše objektu, nebo pro objekty pokryté texturou. Pokud je $N$ počet pixelů plochy objektu, potom normalizovaný histogram (vydělíme počtem pixelů plochy), v podstatě představuje \textbf{pravděpodobnost} toho, že se na daném místě nachází pixel s danou hodnotou. S využitím pozorování, že funkci $p(b)$ (pravděpodobnost, že tam bude pixel) lze interpretovat jako hustotu pravděpodobnosti, lze jako \textbf{příznaky} využít \textbf{střední hodnotu}, \textbf{varianci}, \textbf{šikmost}, \textbf{energie}, \textbf{entropie}.
+
+\subsubsection{Atributy odvozené z frekvenčního spektra jasu}
+Hodí se např. když má objekt nějakou \textbf{texturu}. Provede se furierova transformace nad oblastí, kterou objekt zaujímá (pokud je objekt třeba kulatý, vyplníme jej menšími obdelníky a na každý uděláme furiera). Jednotlivá data frekvenčního spektra mohou sloužit jako příznaky, je však žádoucí je nějakým způsobem redukovat -- zapisujeme počet frekvencí, která se nachází v nějakém definovaném \textbf{rozsahu}.
+
+\subsection{Příznakové metody analýzy obrazu (klasifikátory)}
+\textbf{Klasifikátor} nazveme zobrazení $d: X \rightarrow \Omega$, která každému vektoru příznaků ($ X $) přiřadí identifikátor třídy, do které dané objekt náleží. Rozlišujeme několik základních druhů klasifikace:
+\begin{enumerate}
+\item \textbf{Klasifikace pomocí diskriminačních funkcí} -- předpokládáme že existuje $n$ reálných diskriminačních funkcí $g_1(x), g_2(x), ...$ definovaných nad $X$. Rozpoznání je v tomto případě založeno na stanovení funkce dávající pro zadaný vektor příznaků \textbf{maximální hodnotu}. \textbf{Problém}: nalezení těchto funkcí $\rightarrow$, lze pomocí rozdělení hustoty pravděpodobnosti.
+
+Nejjednodušším tvarem diskriminační funkce je funkce lineární, která definuje váhy ($a$) pro každý příznak:
+\begin{equation*}
+g_r(x) = a_{r,0} + a_{r,1} x_1 + a_{r,2} x_2 + \ldots + a_{r,m}x_m
+\end{equation*}
+\item \textbf{Klasifikace pomocí minimální vzdálenosti (etanoly)} -- etanol $e_r$ je vektor, který reprezentuje nějakou třídu příznaků. Tento vektor lze nejjednodušeji získat jako \textbf{průměr} všech ostatních příznaků dané třídy trénovací množiny. Klasifikaci objektu do dané třídy pak lze získat vypočítáním a nalezením \textbf{nejmenší Euklidovské vzdálenosti} mezi vektorem příznaků objektu a jednotlivými etanoly.
+\end{enumerate}
+
+\subsubsection{KNN - K-nearest neighbours}
+\begin{itemize}
+	\item velmi rychlý, jednoduchý (lze použít i jiné shlukovací algoritmy pro vytváření jednotlivých \textbf{etanolů}),
+	\item pomocí \textbf{k nejbližších sousedů} určíme label dotazovaného ,
+	\item učení je velmi rychlé (jen se uloží data do struktur),
+	\item určení se zpomaluje se zvyšujícím se k.
+\end{itemize}
+
+\subsubsection{Neuronové sítě \textit{ANN} - Artificial Neural Network}
+\begin{itemize}
+	\item Inspirované \textbf{lidským mozkem}, který je složený z~různých vzájemně propojených vrstev neuronů, kde každý z~nich přijímá informaci z~předchozího, zpracovává tuto informaci a~odesílá jí do dalšího neuronu, dokud není přijat konečný výstup.
+	\item Může se jednat o~výstup \textbf{s~danou třídou}, jestliže se jedná o~kontrolované učení nebo \textbf{o~určitá kritéria} v~případě nekontrolovaného učení.
+	\item Umožňuje klasifikovat více tříd.
+\end{itemize}
+Příklad topologie neuronové sítě je na obrázku \ref{fig:ann}. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{assets/9_ann.pdf}
+	\caption{Neuronová síť je propojená skupinou uzlů, podobná síti neuronů v~mozku.}
+	\label{fig:ann}
+\end{figure}
+
+Typickým příkladem neuronové sítě je \textbf{vícevrstvý perceptron} (ANN--MLP). Tato neuronová síť se skládá minimálně ze tří vrstev uzlů (vstupní, výstupní a~skrytou). Každý z~uzlů je \textbf{neuron}, který využívá nelineární aktivační funkci s~výjimkou vstupních uzlů:
+\begin{itemize}
+	\item{\textbf{Vstupní vrstva} - jedná se o~pasivní vrstvu, která nemodifikuje data, pouze je získává z~okolního světa a~pošle je dál do sítě. Počet uzlů v~této vrstvě závisí na \textbf{množství příznaků} nebo deskriptivních informací, které chceme extrahovat z~obrázku.}
+	\item{\textbf{Skrytá vrstva} - v~této vrstvě probíhá transformace vstupů do něčeho, co může výstupní nebo jiná skrytá vrstva využít (za předpokladu, že existuje více skrytých vrstev). Počet uzlů je určen složitostí problému a~přesnosti, které chceme přidat do sítě.}
+	\item{\textbf{Výstupní vrstva} - tato vrstva musí také vždy existovat v~topologii sítě, ovšem počet uzlů v~tomto případě bude definován vybranou neuronovou sítí. Pokud detekujeme na obrázku pouze jeden objekt, bude mít vrstva jen jeden uzel (lineární regrese) a~bude vracet hodnotu definující pravděpodobnost konkrétního objektu v~rozmezí $[-1,1]$.}
+\end{itemize} 
+
+\textbf{Učení:}
+\begin{enumerate}
+\item Jednotlivé neurony jsou navzájem propojeny synapsemi (\textbf{váhami}), které na začátku náhodně nastřelíme (v intervalu $\angle -0.5, 0.5 \rangle$).
+\item Poté neuronové síti podáváme trénovací data (vstupní příznaky a odpovídající výstup), která postupně \textbf{upravuje váhy} jednotlivých synapsí, aby dávala správný výsledek a minimalizovala chybu.
+\item Jednou z metod minimalizace chyby je učení ,,\textbf{back propagation}", což představuje hledání minima \textbf{gradientní metodou}.
+\end{enumerate}
+
+\textbf{Další vlastnosti:}
+\begin{itemize}
+	\item Vysoká dimenze vstupního vektoru zvyšuje přesnost výsledků (ovšem zvyšuje výpočetní náklady)
+	\item Aktivační funkce pro skrytou vrstvu, která umožnuje přizpůsobit nelineární hypotézy a~získat lepší detekci vzoru v~závislosti na poskytnutých datech (Sigmoid, tanh, ReLU).
+	\item Hodnoty jsou získávány z~předchozí vrstvy, sečteny s~určitými váhami a~hodnotou zkreslení. (Suma těchto hodnot je transformována pomocí aktivační funkce, může se lišit pro různé neurony)
+\end{itemize}
+
+\subsection{Histogram orientovaných gradientů HOG}
 Základní myšlenkou je, že objekt v obraze může být pomocí vzhledu a tvaru charakterizován pomocí intenzity gradientů, i přestože neznáme jejich přesnou polohu v obraze. Autoři jsou N. Dalal a B. Triggs (2005).
 \begin{enumerate}
   \item před započetím výpočtů je třeba normalizovat, například normalizaci barev a~gamy, v~případě černobílých obrázků k~normalizaci kontrastu (tento krok může být přeskočen,dle Dalal a~Triggs $\,\to\,$ předzpracování má malý vliv na výkon)
@@ -276,14 +421,6 @@ Toto jádro je také známé jako \textit{Min Kernel}, jedná se o~nejnovější
 \end{equation*}
 \end{itemize}
 
-\subsubsection{KNN - K-nearest neighbours}
-\begin{itemize}
-\item velmi rychlý, jednoduchý
-\item pomocí \textbf{k nejbližších sousedů} určíme label dotazovaného 
-\item učení je velmi rychlé (jen se uloží data do struktur)
-\item určení se zpomaluje se zvyšujícím se k
-\end{itemize}
-
 \subsubsection{Kaskádové klasifikátory} % @TODO
 \begin{itemize}
   \item Skládá \textbf{z~více slabších} klasifikátorů umístěných v~\textbf{kaskádách} za sebou.
@@ -368,34 +505,6 @@ Odstraňuje také ruční identifikaci příznaků (obrázek \ref{fig:ml_vs_ann}
 \caption{Hlavním rozdílem mezi strojovým a~hlubokým učením je ten, že u~strojového se příznaky musí extrahovat manuálně.}
 	\label{fig:ml_vs_ann}
 \end{figure}
-
-\subsubsection{Neuronové sítě \textit{ANN} - Artificial Neural Network}
-\begin{itemize}
-  \item Inspirované \textbf{lidským mozkem}, který je složený z~různých vzájemně propojených vrstev neuronů, kde každý z~nich přijímá informaci z~předchozího, zpracovává tuto informaci a~odesílá jí do dalšího neuronu, dokud není přijat konečný výstup.
-  \item Může se jednat o~výstup \textbf{s~danou kategorií}, jestliže se jedná o~kontrolované učení nebo \textbf{o~určitá kritéria} v~případě nekontrolovaného učení.
-  \item Umožňuje klasifikovat více tříd.
-\end{itemize}
-Příklad topologie neuronové sítě je na obrázku \ref{fig:ann}. 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.6\linewidth]{assets/9_ann.pdf}
-\caption{Neuronová síť je propojená skupinou uzlů, podobná síti neuronů v~mozku.}
-\label{fig:ann}
-\end{figure}
-
-Typickým příkladem neuronové sítě je \textbf{vícevrstvý perceptron} (ANN--MLP). Tato neuronová síť se skládá minimálně ze tří vrstev uzlů (vstupní, výstupní a~skrytou). Každý z~uzlů je \textbf{neuron}, který využívá nelineární aktivační funkci s~výjimkou vstupních uzlů:
-\begin{itemize}
-  \item{\textbf{Vstupní vrstva} - jedná se o~pasivní vrstvu, která nemodifikuje data, pouze je získává z~okolního světa a~pošle je dál do sítě. Počet uzlů v~této vrstvě závisí na množství příznaků nebo deskriptivních informací, které chceme extrahovat z~obrázku.}
-  \item{\textbf{Skrytá vrstva} - v~této vrstvě probíhá transformace vstupů do něčeho, co může výstupní nebo jiná skrytá vrstva využít (za předpokladu, že existuje více skrytých vrstev). Počet uzlů je určen složitostí problému a~přesnosti, které chceme přidat do sítě.}
-  \item{\textbf{Výstupní vrstva} - tato vrstva musí také vždy existovat v~topologii sítě, ovšem počet uzlů v~tomto případě bude definován vybranou neuronovou sítí. Pokud detekujeme na obrázku pouze jeden objekt, bude mít vrstva jen jeden uzel (lineární regrese) a~bude vracet hodnotu definující pravděpodobnost konkrétního objektu v~rozmezí $[-1,1]$.}
-\end{itemize} 
-
-
-\begin{itemize}
-  \item Vysoká dimenze vstupního vektoru zvyšuje přesnost výsledků (ovšem zvyšuje výpočetní náklady)
-  \item Aktivační funkce pro skrytou vrstvu, která umožnuje přizpůsobit nelineární hypotézy a~získat lepší detekci vzoru v~závislosti na poskytnutých datech (Sigmoid, tanh, ReLU).
-  \item Hodnoty jsou získávány z~předchozí vrstvy, sečteny s~určitými váhami a~hodnotou zkreslení. (Suma těchto hodnot je transformována pomocí aktivační funkce, může se lišit pro různé neurony)
-\end{itemize}
 
 \subsubsection{Konvoluční neuronové sítě \textit{CNN} - Convolution neural network}
 \begin{itemize}
