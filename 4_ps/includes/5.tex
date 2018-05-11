@@ -1,13 +1,13 @@
 Metody sdílení přenosového kanálu se dělí na:
 \begin{itemize}
 	\item \textbf{deterministické} (bezkolizní) -- řídí se algoritmem, který přesně definuje kdo, kdy bude vysílat a ke kolizím nedochází.
-	\item \textbf{nedeterministické} (kolizní) -- algoritmus je založen na náhodě (náhodné časové prodlevy) a musí řešit kolize (situace, kdy chce naráz na kanálu vysílat více stanic)
+	\item \textbf{nedeterministické} (kolizní) -- algoritmus je založen na náhodě (náhodné časové prodlevy) a musí řešit kolize (situace, kdy chce naráz na kanálu vysílat více stanic). \textbf{Kolizní slot} udává, kolik se nejvýše času ztratí na nevyužití kanálu vlivem kolize.
 \end{itemize}
 
 \subsection{Bezkolizní (deterministické) metody sdílení média}
-Deterministické metody se dělí na -- \textbf{Centralizované řízení} a \textbf{Distribuované řízení}
+Definován jednoznačný algoritmus určující, v jakém pořadí mohou stanice na kanál přistupovat. Díky tomu na kanál nebude nikdy přistupovat více stanic současně. Deterministické metody se dělí na -- \textbf{Centralizované řízení} a \textbf{Distribuované řízení}
 
-\subsubsection{Centralizované řízení}
+\subsubsection{Centralizované řízení - pooling}
 Jedna ze stanic je \textbf{master} a přiděluje ostatním právo vysílat. \textbf{Efektivní}, ale část kanálu použita pro komunikaci s masterem.
 \begin{itemize}
 	\item \textbf{Přidělování na výzvu} - nejstarší, původně v terminálových systémech nad protokoly BSC a HDLC. Stanice smí vysílat jen, když je k tomu vyzvána masterem.
@@ -84,7 +84,7 @@ Skupina metod \textbf{náhodného přístupu s příposlechem nosné}, tj. využ
 \item \textbf{Okamžité ukončení vysílání po detekci kolize} - kanál se zbytečně nezaplňuje rámcem, který je stejně zkolidován.
 \item Závislost maximální délky segmentu na \textbf{rychlosti šíření signálu} (vztah s dobou vysílání rámce a minimální délkou rámce)
 \item Nutnost kódování, které \textbf{umožňují detekci kolize} (otevřený kolektor, měření napětí na médiu generovaného proudovými zdroji vysílačů).
-\item Při \textbf{detekci kolize stanice }vysílá kolizní signál [\textbf{jam}], aby kolizi rozpoznaly všechny kolidující stanice. O opakování se stanice pokusí až po náhodné časové prodlevě, stabilitu metody nutno zajistit řízením intenzity opakování.
+\item Při \textbf{detekci kolize stanice }vysílá kolizní signál [\textbf{jam}], aby kolizi rozpoznaly všechny kolidující stanice. O opakování se stanice pokusí až po \textbf{náhodné časové prodlevě}, stabilitu metody nutno zajistit řízením intenzity opakování.
 \end{itemize}
 
 \begin{figure}[H]
