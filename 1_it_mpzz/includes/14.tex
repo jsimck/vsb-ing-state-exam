@@ -29,7 +29,15 @@ Statistická indukce je metoda, která dovoluje stanovit vlastnost celku (\textb
 	\item Jak roste velikost výběru, výběrová chyba a směrodatná chyba se zmenšují.
 	\item Směrodatná chyba se používá k získání intervalového odhadu parametrů i k testování hypotéz o parametrech rozdělení.
 \end{enumerate}
-
+\subsection{Základy metody statistické indukce}
+\begin{itemize}
+	\item \textbf{Intervalové odhady} (confidence intervals) -- umožnují odhadnout nejistotu v odhadu parametru náhodné veličiny 
+	\item \textbf{Testování hypotéz}(hypothesis testing) -- umožnuje posoudit, zda experimentálně získaná data nepopírají předpoklad, který jsem \textbf{před} provedením testování učinili.
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/14_metody_stat_ind}
+\end{figure}
 \subsubsection{Intervalové odhady}
 \begin{itemize}
 \item V praktických aplikacích často určujeme \textbf{odhad příslušného parametru} pomocí intervalového odhadu.
@@ -84,3 +92,107 @@ Statistická indukce je metoda, která dovoluje stanovit vlastnost celku (\textb
 			\end{split}
 		\end{equation*}
 \end{enumerate}
+
+\subsection{Testování hypotéz}
+\begin{itemize}
+	\item \textbf{Statistická hypotéza} -- předpoklad (tvrzení) o rozdělení náhodné veličiny
+	\item Zdrojem statistických hypotéz jsou například předchozí zkušenosti, teorie, kterou je třeba doložit, požadavky na kvalitu produktu, dohady založené na náhodném pozorování.
+	\item Příklady statistických hypotéz:
+	\begin{itemize}
+		\item Střední životnost žárovek Ed je nižší než výrobcem udávaných 5 let.
+		\item Mortalita je u laparoskopických operací nižší než u operací konvenčních.
+		\item Průměrné výsledky srovnávacích testů závisí na typu absolvované střední školy.
+		\item Pořízený datový soubor je výběrem z populace mající normální rozdělení.
+	\end{itemize}
+	\item \textbf{Parametrická statistická hypotéza} -- tvrzení ohledně efektu
+	\begin{itemize}
+		\item Hypotézy o parametru jedné populace (o střední hodnotě, rozptylu, mediánu, parametru binomického rozdělení,...)
+		\item Hypotézy o parametrech dvou populací (srovnávací testy)
+		\item Hypotézy o parametrech více než dvou populací (ANOVA, Kruskalův--Wallisův test,...)
+	\end{itemize}
+	\item \textbf{Neparametrická statistická hypotéza} -- tvrzení o jiné vlastnosti rozdělení náhodné veličiny než o jejím parametru (např. hypotézy o typu rozdělení NV, hypotézy o závislosti NV,...)
+\end{itemize}
+\textbf{Příklad, ověření, zda statistická hypotéza je pravdivá}: Domníváme se, že střední hodnota obsahu cholesterolu v krvu je u české populace 4,7 mmol/l.
+	\begin{equation*}
+		\begin{split}
+			H_0 : \mu = 4.7	 \\
+			H_A : \mu \not = 4.7 
+		\end{split}
+	\end{equation*}
+\subsubsection*{Jak tento předpoklad ověřit?}
+\begin{itemize}
+	\item Zjistíme údaje o obsahu cholesterolu v krvi u 100 náhodně vybraných Čechů.
+	\item Průměrný obsah cholesterolu v krvi probandů (tj. jedinců, kteří jsou předmětem zkoumání) byl 5,4 mmol/l.
+\end{itemize}
+\subsubsection*{Jsou tyto výsledky v souladu s naší hypotézou?}
+\begin{itemize}
+	\item[$\circ$] I kdyby byla testovaná hypotéza pravdivá, nelze očekávat, že průměrná hodnota pozorovaná ve výběru bude přesně 4,7 mmol/l.
+	\item[$\circ$] \textbf{Nulovou hypotézu zamítneme, pokud získané uspořádání výberu bude za předpokladu platnosti nulové hypotézy velmi nepravděpodobné}.
+\end{itemize}
+\begin{itemize}
+	\item Rozhodovací proces, v němž proti sobě stojí nulová a alternativní hypotéza.
+	\item \textbf{Nulová hypotéza $\mathbf{H_0}$} -- tvrzení, že efekt je nulový, resp. že neexistuje závislost, že data mají určitý typ rozdělení,...
+	\item \textbf{Alternativní hypotéza $\mathbf{H_A}$ ($\mathbf{H_1}$)} -- tvrzení, popírající hypotézu nulovou (obvykle to, co chceme dokázat)
+\end{itemize}
+
+\subsubsection{Klasický přístup při testování hypotéz}
+\begin{enumerate}
+	\item Formulujeme \textbf{nulovou a alternativní hypotézu}.
+	\item Zvolíme tzv. \textbf{testovací statistiku}, tj. výběrovou charakteristiku, jejíž rozdělení závisí na testovaném parametru $\theta$. (Rozdělení testované statistiky za předpokladu platnosti nulové analýzy nazýváme \textbf{nulové rozdělení}.)
+	\item Ověříme předpoklady testu ! %Hanzi, to musíš zařvat na Edu!
+	\item Určíme \textbf{kritický obor} $W^*$, tj. množinu, v níž se, za předpokladu platnosti $H_0$, hodnoty testované statistiky vyskytují s velmi malou pravděpodností.
+	\begin{itemize}
+		\item Doplňkem k $W^*$ je tzv. \textbf{obor přijetí} $V^*$.
+		\item Hranici mezi kritickým oborem a oborem přijetí označujeme jako \textbf{kritická hodnota testu} $t_{krit}$.
+	\end{itemize}
+	\item Na základě konkrétní realizace výběru určímě \textbf{pozorovanou hodnotu} $X_{OBS}$ testované statistiky. 
+	\item Na základě vztahu mezi $X_{OBS}$ a $t_{krit}$ rozhodneme o výsledku testu (\uv{Zamítáme $H_0$.} nebo \uv{Nezamítáme $H_0$.})
+\end{enumerate}
+
+\subsubsection{Chyba I. a II. druhu}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/14_chyba_tab}
+\end{figure}
+Jestliže nulová hypotéza je ve skutečnosti platná a my ji přesto zamítneme, dopouštíme se chyby, označované jako chyba \textbf{I. druhu}. Pravděpodobnost, že k takovémuto pochybení dojde, nazýváme \textbf{hladina významnosti} a označujeme ji $\alpha$. Platí-li nulová hypotéza a my jsme ji nezamítli, rozhodli jsme správně. Pravděpodobnost tohoto rozhodnutí označujeme $1 − \alpha$ a nazýváme ji \textbf{spolehlivost testu}. Správným rozhodnutím je rovněž zamítnutí nulové hypotézy v případě, že je platná hypotéza alternativní. Tohoto rozhodnutí se dopouštíme s pravděpodobností $1 − \beta$, což bývá označováno jako síla testu. \textbf{Chybou II. druhu} je nezamítnutí nulové hypotézy v případě, že je platná hypotéza alternativní. Pravděpodobnost této chyby označujeme $\beta$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/14_chyba_graf}
+\caption{Demonstrace pravděpodobností chyb I. a II. druhu}
+\end{figure}
+Při testování hypotéz se samozřejmě snažíme postupovat tak, abychom minimalizovali obě chyby, tj. dosáhnout vysoké síly testu (nízkého $\beta$) při co nejnižší hladině významnosti $\alpha$. To však není možné, neboť snížením $\beta$ se zvýší hladina významnosti $\alpha$ a naopak. Proto je třeba najít kompromis mezi požadavky na $\alpha$ a $\beta$.
+
+
+\subsubsection*{Parametrická statistická hypotéza}
+Jednovýběrové testy
+\begin{itemize}
+	\item Test o střední hodnotě (z--test, t--test).
+	\item Test o rozptylu.
+	\item Test o parametru binomického rozdělení.
+	\item Test o mediánu (Wilcoxonův test, Mediánový test).
+\end{itemize}
+Dvouvýběrové testy
+\begin{itemize}
+	\item Test o shodě dvou středních hodnot (t--test, Aspinové--Welchův test).
+	\item Test o shodě rozptylů (F--test).
+	\item Test o shodě parametrů dvou binomických rozdělení (test homogenity dvou binomických rozdělení).
+	\item Test o shodě mediánů (Mannův--Whitneyův test).
+	\item Párové testy (párový t--test, párový znaménkový test).
+\end{itemize}
+Vícevýběrové testy
+\begin{itemize}
+	\item Testy shody rozptylů (Bartletův test, Hartleyův test, Cochranův test, Leveneův test).
+	\item Analýza rozptylu (tzv. ANOVA, tj. shody středních hodnot) -- post hoc analýza pro analýzu rozptylu
+	\item Kruskalův--Wallisův test (test shody mediánů) -- post hoc analýza Kruskal--Wallisův test
+\end{itemize}
+ANOVA
+\begin{itemize}
+	\item Test umožnující srovnání průměrů více než dvou výběrových souborů
+	\item Můžeme například zkoumat, zda
+	\begin{itemize}
+		\item typ absolvované střední školy ovlivňuje počet bodů dosažených studenty u přijímací zkoušky z matematiky,
+		\item použitá medikace ovlivňuje krevní tlak pacientů,
+		\item typ použitého hnojiva ovlivňuje výnosy určité plodiny,
+		\item pracovní výkon dělníka závisí na umístění stroje, apod.
+	\end{itemize}
+\end{itemize}
