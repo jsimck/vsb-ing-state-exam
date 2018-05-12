@@ -25,6 +25,7 @@
 - Phongův osvětlovací model, vysvětlení - https://www.youtube.com/watch?v=L4oAQL_Mv5w
 - Hezká přednáška o OpenGL - http://slideplayer.com/slide/8789082/
 - Harris corner detektor (detektor rohů) - https://www.youtube.com/watch?v=vkWdzWeRfC4
+- Filtrace obrazu ve frekvenční doméně - https://blogs.mathworks.com/steve/2009/12/04/fourier-transform-visualization-using-windowing/
 
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 
@@ -47,20 +48,3 @@ normální rozdělení.
 13. Popisná statistika. Číselné charakteristiky a vizualizace kategoriálních a
 kvantitativních proměnných.
 14. Metody statistické indukce. Intervalové odhady. Princip testování hypotéz.
-
-### V. Počítačová grafika a analýza obrazu (Uvedená témata jsou probírána v předmětech Počítačová grafika I, Digitální zpracování obrazu, Analýza obrazu)
-1. ~~Osvětlovací modely a systémy barev v počítačové grafice.~~
-2. ~~Afinní a projektivní prostor. Afinní a projektivní transformace a jejich matematický zápis.
-Aplikace v počítačové grafice. Modelovací a zobrazovací transformace.~~
-3. ~~Křivky a plochy: teoretické základy (definice, rovnice, tečný a normálový vektor, křivosti,
-Cn a Gn spojitost), použití (Bézier, Coons~~, NURBS~~).~~
-4. ~~Geometrické a objemové modelování. Hraniční metoda, metoda CSG~~, výčet prostoru,
-~~oktantové stromy.~~
-5. ~~Standardní zobrazovací řetězec a realizace jeho jednotlivých kroků. Gouraudovo a
-Phongovo stínování. Řešení viditelnosti. Grafický standard OpenGL: stručná
-charakteristika.~~
-6. ~~Metody získávání fotorealistických obrázků (rekurzivní sledování paprsku, vyzařovací
-metoda, renderovací rovnice).~~
-7. Komprese obrazu a videa; principy úprav obrazu v prostorové a frekvenční doméně.
-8. ~~Základní metody úpravy a segmentace obrazu~~ (filtrace, ~~prahování, hrany)~~.
-9. ~~Základní metody rozpoznávání objektů (příznakové rozpoznávání).~~

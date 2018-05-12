@@ -99,8 +99,99 @@ Kódování složek vektorů se provádí \textbf{inkrementálně vzhledem k př
 \end{figure}
 
 \subsection{Principy úprav obrazu v prostorové a frekvenční doméně}
+Úpravy nad obrazy lze provádět v \textbf{prostorové} (obraz je reprezentován souřadnicemi x, y a hodnotou pixelu) nebo \textbf{frekvenční} (snímek je popsán harmonickými funkcemi (sin a cos) různé amplitudy, frekvence a fáze) doméně. Většina operací nad prostorem signálů je popsána \textbf{operátorem}, pro převod do frekvenční domény se poté používá \textbf{(Diskrétní) Fourierova transformace}.
 
-% Furier a úpravy + konvoluce
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{assets/7_signaly}
+\end{figure}
 
+\subsection{Operace nad prostorem signálů}
+\begin{itemize}
+\item \textbf{Lineární operace} -- úprava signálu je popsána operátorem $\mathcal{O}$, velmi často předpokládáme, že operátor $\mathcal{O}$ má nějaké speciální vlastnosti. Platí: $\mathcal{O}\{af(x, y) + bg(x, y)\} = a\mathcal{O}\{f(x, y)\} + b\mathcal{O}\{g(x, y)\}$.
+\item \textbf{Operace invariantní vůči posuvu} -- považujeme aby měl operátor kromě linearity ještě další vlastnosti (invarianci vůči posuvu). Operátor $\mathcal{O}$ je invariantní vůči posuvu, pokud pro všechna $f(x, y)$ platí: $g(x - a, y -b) = \mathcal{O}\{f(x-a, y-b)\}$. Méně formálně: pokud provedeme operátor na dva vzájemně posunuté ale jinak shodné signály, jejich výsledek bude také vzájemně posunutý ale jinak \textbf{stejný}.
+\item \textbf{Dirakův impulz} -- je impulzová funkce $\delta(x, y) = 0$, v bodě (0, 0) je hodnota \textbf{nekonečno}, všude jinde nulovou, přičemž platí $\delta(-x, -y) = \delta(x, y)$, a \textbf{integrál} přes celou funkci je roven 1. JInak řečeno se jedná o funkci, která je nekonečně vysoká a nekonečně úzká v bodě (0, 0).
+\end{itemize}
 
+\subsection{Konvoluce (lineární sumace bodových zdrojů)}
+Konvoluce představuje základní matematický \textbf{operátor}, který pracuje s dvěma funkcemi (značí se $*$). Umožňuje zpracování obrazových signálů jak v prostorové tak frekvenční doméně (konvoluční teorém). Spojitá konvoluce je definována takto:
+\begin{equation*}
+f(x, y) * h(x, y) = \int_{-\infty}{\infty}^{-\infty}{\infty} h(a, b) f(x - , y - b)dadb,
+\end{equation*}
+kde funkci $h$ nazýváme \textbf{konvoluční jádro} (filtr), přesně řečeno se jedná o impulzovou charakteristiku filtru. Při výpočtu se funkce $h$ v rovině $x, y$ otočí o $180^\circ$ (důsledek členů se zápornými znaménky). Konvoluční operátor má tyto \textbf{vlastnosti}:
+\begin{itemize}
+\item \textbf{Komutativní} -- $f * g = g * f$.
+\item \textbf{Asociativní} -- $f * (g * h) = (f * g) * h$.
+\item \textbf{Distributivní} -- $f * (g + h) = (f * g) + (f * h)$.
+\item \textbf{Existence jednotky} -- $f * \delta = \delta * f = f$, kde $\delta$ je dirakův impulz a $\delta(x) = 0, x \neq 0$.
+\item \textbf{Asociativita při násobení skalárem} -- $a(f * g) = (af) * g = f * (ag)$
+\item \textbf{Konvoluční teorém} -- $\mathcal{F}(f * g) = [\mathcal{F}(f)] \cdot [\mathcal{F}(g)] = F \cdot G$, kde $\mathcal{F}[f(x)]$ značí Fourierovu transformaci. Jinými slovy: Fourierovým obrazem konvoluce funkcí $f, g$ je součin jejich Fourierových obrazů $F$ a $G$.
+\end{itemize}
 
+\subsubsection{Diskrétní konvoluce}
+V počítačové grafice využíváme často pro zpracování dvourozměrného diskrétního signálu, je popsaná tímto vzorcem:
+\begin{equation*}
+(f*h)(x,y)=\sum _{{i=-k}}^{k}\sum _{{j=-k}}^{k}f(x-i,y-j)\cdot h(i,j)
+\end{equation*}
+
+V případě diskrétní konvoluce lze jádro chápat jako \textbf{tabulku} (konvoluční masku), kterou přiložíme na příslušné místo obrazu. Každý pixel překrytý tabulkou vynásobíme koeficientem v příslušné buňce a hodnoty sečteme, ty uložíme na pozici středového pixelu. V případě, že koeficienty již nejsou normalizované, je nutné je \textbf{normalizovat} (zprůměrovat), např.: maska $3 \times 3$ pokud je všude 1 (uniformní filtr) tak výsledek je nutné vydělit $9$.
+
+Hodnoty konvoluční masky mají vliv na výsledek operace, používají se masky pro: \textbf{rozostření}, \textbf{zostření}, \textbf{detekci hran}, atd.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{assets/7_konvoluce}
+\end{figure}
+
+\subsection{Fourierova transformace}
+Slouží pro převod obrazových signálů z prostorové do \textbf{frekvenční domény} (na komponenty složené ze sínů a cosínů). Pro analýzu \textbf{diskrétního} obrazu se využívá DFT, která je dána vztahem:
+\begin{equation*}
+F(k, l) = \sum_{m = 0}^{M - 1}\sum_{n = 0}^{N - 1} f(m, n) \frac{1}{\sqrt{MN}} \exp \left[ -j2\pi \left( \frac{mk}{M} + \frac{nl}{N} \right) \right],
+\end{equation*}
+
+kde $k = 0, \ldots M - 1$, $l = 0, \ldots N - 1$. Symbol $F(k, l)$ značí frekvenční spektrum obrazu s souřadnicemi $(k, l)$, které nabývá hodnot od 0 - $(M, N)$. Frekvenční spektrum obsahuje \textbf{komplexní čísla}, proto se pro zpracování obrazového signálu ve frekvenční oblasti používají \textbf{amplitudy} komplexních čísel (amplitudová frekvenční charakteristika) nebo výkonová spektrální hustota (koeficienty násobené komplexně sdruženým číslem). Příklad amplitudové charakteristiky je na následujícím obrázku.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{assets/7_amp_ftt}
+\end{figure}
+
+Tato frekvenční charakteristika obsahuje \textbf{koeficienty odpovídající různým frekvenčním složkám}. Analýzou a operacemi s koeficienty ve frekvenční oblasti lze \textbf{modifikovat obraz v prostorové oblasti} např. realizovat filtr typu \textbf{dolní propust pro vyhlazení obrazu}. Pro získání modifikovaného obrazu je třeba převést koeficienty zpět do prostorové oblasti. Tomuto procesu se říká zpětná nebo někdy \textbf{inverzní Fouriérova transformace} IFT, jejíž diskrétní varianta IDFT je dána následujícím definičním vztahem:
+\begin{equation*}
+f(m, n) = \sum_{m = 0}^{M - 1}\sum_{n = 0}^{N - 1} F(k, l) \frac{1}{\sqrt{MN}} \exp \left[ j2\pi \left( \frac{mk}{M} + \frac{nl}{N} \right) \right].
+\end{equation*}
+
+\subsection{Filtrace ve frekvenční oblasti}
+\textbf{Postup filtrace} obrazů ve frekvenční doméně je následující:
+\begin{enumerate}
+\item aplikace diskrétní Fourierovy transformace (DFT) $f(x, y) \rightarrow F(u, v)$,
+\item aplikace filtru $G(u, v) = H(u, v) F(u, v)$, kde:
+\begin{itemize}
+\item $G(u, v)$ \ldots výslední snímek
+\item $H(u, v)$ \ldots funkce filtrace (konvoluční maska?)
+\item $F(u, v)$ \ldots původní snímek
+\end{itemize}
+inverzní Fourierova transformace (IDFT) $G(u, v) \rightarrow g(x, y)$.
+\end{enumerate}
+
+\subsubsection{Nízkofrekvenční, pásmový, vysokofrekvenční filtr}
+Bázové funkce jsou síny a cosíny s rostoucí frekvencí. Tedy $ F(0, 0) $ (\textbf{střed obrázku}) reprezentuje DC složku, tedy \textbf{průměrný jas} napříč obrazem a $F(M -1, N - 1)$ reprezentuje \textbf{nejvyšší frekvenci}, to lze pozorovat na amplitudové charakteristice výše. 
+
+Tedy \textbf{čím dále od středu, tím je frekvence vyšší}. Zároveň můžeme vidět, že \textbf{amplituda je menší pro vyšší frekvence}, nízké frekvence tedy obsahují více informací o obraze než ty vyšší a obecně se jich ve většině obrazů nachází více (čím rychlejší změna jasu/gradient tím vyšší frekvence). Všech těchto znalostí můžeme využít k návrhu požadovaného filtru:
+\begin{itemize}
+\item \textbf{Nízkofrekvenční} (lowpass) filtr může například propouštět pouze frekvence kolem středu (tedy ty nízké) a ostatní vynulujem, tento filtr lze navrhnout pomocí binární masky (bílý kruh ve středu) $\rightarrow$ \textbf{minimalizujeme ostré hrany}.
+\item \textbf{Vysokofrekvenční} (highpass) filtr, postup je analogický k předchozímu, pouze tentokrát vynulujeme frekvence na středu a ty na krajích (vysoké) propustíme $\rightarrow$ \textbf{zvýrazníme hrany}.
+\item \textbf{Pásmový} filtr propouští pouze předem definované pásmo.
+\end{itemize}
+
+\subsubsection{Butterworthův filtr}
+Často se pro filtraci ve frekvenční oblasti využívá Butterworthův filtr, který má ze všech běžných filtrů (Gaussian, Chebyshev, Bessel) \textbf{nejméně zvlněné frekvenční spektrum} a konverguje k nule u maximální frekvence. Je dán vztahem:
+\begin{equation*}
+H(u, v) = \frac{1}{1 + \left( \frac{D(u, v)}{D_0} \right)^{\frac{2}{n}}}, \quad \textrm{kde } D(u, v)=\sqrt{(u - u_c)^2 + (v - v_c)^2}
+\end{equation*}
+kde $d(x, y)$ představuje běženě používanou L2-normu a $n$ je řád filtru (nejčastěji 1 nebo 2).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{assets/7_ftt_filtery}
+\end{figure}
