@@ -189,3 +189,63 @@ Při hledání kombinací délky $ k $, které mají vysokou četnost se využí
 
 Jde tedy o \textbf{generování kombinací ,,do šířky''}. Přitom pro vytvoření jedné kombinace délky $ k $ požadujeme, aby všechny její podkombinace délky $ k-1 $ \textbf{splňovaly požadavek na četnosti}. Tedy např. ze tříčlenných kombinací $\{A_1A_2A_3,  \,A_1A_2A_4, \, A_1A_3A_4, \,A_1A_3A_5,  \,A_2A_3A_4\}$ dosahujících požadované četnosti vytvoříme \textbf{pouze jedinou čtyřčlennou} kombinaci $ A_1A_2A_3A_4 $. Kombinaci $ A_1A_3A_4A_5 $ sice lze vytvořit spojením $ A_1A_3A_4 $ a
 $ A_1A_3A_5 $, ale mezi tříčlennými kombinacemi chybí $ A_1A_4A_5 $ i $ A_3A_4A_5 $.
+
+\subsubsection{Algoritmus Next Closure}
+Slouží k vytváření formálních kontextů, \textbf{vyhledáváním nejmenších intentů}, postup:
+\begin{enumerate}
+\item Začnu s následující tabulkou:
+\begin{table}[H]
+	\centering
+	\label{my-label}
+	\begin{tabular}{l|l|l|l|l|p{6cm}}
+		\multirow{2}{*}{$ A $} & \multirow{2}{*}{$ i $} & \multirow{2}{*}{$ A \cap \{1 \ldots i - 1\} \cup \{i\} = B' $ } & \multirow{2}{*}{$ cl(B') = B $ } & \multirow{2}{*}{$B \setminus A $  } & je-li $B \setminus A = \{i\}$ nebo větší $\rightarrow$ ANO  \\
+		&                   &                   &                   &                   & je-li $B \setminus A = \{j\}$, kde $j < i$ $\rightarrow$ NE \\\hhline
+		$\emptyset$ & 5  &  &  &  & 
+	\end{tabular}
+\end{table}
+\item Do $A$ vložím prázdnou množinu a $i$ nastavím na nejvyšší intent (pořadí).
+\item Udělám průnik s $A \cap \{1 \ldots i - 1\} \cup \{i\} = B'$ $\rightarrow$ průnik Ačka s intenty od $ 1 $ do $ i-1 $, k tomu přidám $i$. Př.: $A = \{1, 3, 4\}, i = \{3\} \Rightarrow B' = \{1, 3\}$.
+\item Udělám closure ($B'$) $\rightarrow$ intent na extent $\rightarrow$ extent na intent $\Rightarrow B'^{\downarrow \uparrow}$.
+\item Od $B$ odečtu $A$.
+\item Je-li:
+\begin{itemize}
+\item $B \setminus A = \{i\}$ a větší tak ANO [je-li nejmenší prvek z $B \setminus A$ roven nebo větší než $\{i\}$],
+\item $B \setminus A = \{j\}$ kde $j < i$ tak NE [je-li nejmenší prvek z $B \setminus A$ menší než i pak NE].
+\end{itemize}
+\item Pokud:
+\begin{itemize}
+\item ANO $\rightarrow$ do $A$ dosadíme $cl(B') = B$ a $i$ nastavíme na nejvyšší intent,
+\item NE $\rightarrow$ do $A$ neměním a snížíme $i$ o $-1$.
+\end{itemize}
+\item Skončím když je $A$ rovno celé množině extentů.
+\end{enumerate}
+
+\paragraph{DÚLEŽITÉ} V $i$ přeskakuju hodnoty, které jsou v $A$ [výjde pro ně $\emptyset \rightarrow$ neřeším].
+
+\subsubsection*{Příklad}
+\begin{table}[H]
+	\centering
+	\label{my-label}
+	\begin{tabular}{l|lllll}
+		 &  $y_1$& $y_2$ & $y_3$& $y_4$& $y_5$ \\\hhline
+		$x_1$ &  0& 1 & 0 &  1& 1 \\
+		$x_2$& 0 & 1 & 1 & 0 & 0 \\
+		$x_3$& 1 & 1 &  0& 1 & 1 \\
+		$x_4$& 1 & 1 & 1 & 0 & 0 \\
+		$x_5$& 1 & 0 & 1 & 1 & 0 \\
+		$x_6$& 1 & 0 & 0 &  1& 0
+	\end{tabular}
+\end{table}
+
+
+\begin{tabular}{l|l|l|l|l|p{3cm}}
+\multirow{2}{*}{$ A $} & \multirow{2}{*}{$ i $} & \multirow{2}{*}{$ A \cap \{1 \ldots i - 1\} \cup \{i\} = B' $ } & \multirow{2}{*}{$ cl(B') = B $ } & \multirow{2}{*}{$B \setminus A $  } & \multirow{2}{*}{ANO / NE }  \\
+&&&&&\\ \hhline
+$\emptyset$ & 5  & 5 &  2, 4, 5&  2, 4, 5&  N [2 < 5] \\
+$\emptyset$ & 4  & 4 &  4&  4&  A [4 $\geq$ 4] $\leftarrow$ $i_n$ \\
+4 & 5  & 4, 5 &  2, 4, 5&  2, 5&  N [2 < 5] \\
+4 & 3 [skip $i$]  & 3 &  3&  3&  A [3$\geq$ 3] $\leftarrow$ $i_{n - 1}$ \\
+3 & 5  & 3, 5 &  1, 2, 3, 4, 5&  1, 2, 4, 5&  N [1 < 5] \\
+&&\vdots&&& \\
+1, 2, 3, 4, 5&&KONEC&&&A $i_{1}$
+\end{tabular}
