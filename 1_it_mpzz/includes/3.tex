@@ -194,6 +194,20 @@ Tato věta ukazuje nerozhodnutelnost celé třídy problémů, její znění je 
 \subsubsection{Převeditelnost mezi nerozhodnutelnými problémy}
 Důkaz neřešitelnosti lze provést skrze jiné, \textbf{už dokázané}, problémy. Řekneme, že problém $P_1$ je převeditelný na problém $P_2$ (značíme $P_1 \rightsquigarrow P_2$), jestliže alg., který k instanci $I_1$ problému $P_1$ sestrojí instanci $I_2$ problému $P_2$ tak, \textbf{že odpověď $P_1, I_1$ je stejná jako $P_2, I_2$}. Např.: DHP je převeditelný na HP.  Z toho vyplývá, že pokud $P_1$ je nerozhodnutelný tak i $P_2$ je \textbf{nerozhodnutelný}.
 
+\subsubsection{Příklady nerozhodnutelných problémů}
+\begin{enumerate}
+\item \textbf{Eq-CFG (Ekvivalence bezkontextových gramatik)}
+\begin{itemize}
+\item \textbf{\textsc{Vstup}}: Dvě bezkontextové gramatiky $G1, G2$.
+\item \textbf{\textsc{Otázka}}: Platí $L(G1) = L(G2)$? Generují obě gramatiky stejný jazyk?
+\end{itemize}
+\item \textbf{HP (Problém zastavení [Halting Problem])}
+\begin{itemize}
+\item \textbf{\textsc{Vstup}}: Turingův stroj $M$ a jeho vstup $w$.
+\item \textbf{\textsc{Otázka}}: Zastaví se $M$ na $w$ (tzn. je výpočet stroje M pro vstupní slovo $w$ konečný)?
+\end{itemize}
+\end{enumerate}
+
 \subsubsection{Optimalizační problémy}
 Optimalizační problémy \textbf{hledají nejlepší řešení} v množině různých řešení. Příkladem je například: hledání nejkratší cesty, nejmenší kostry, apod.
 
@@ -209,17 +223,9 @@ Optimalizační problémy \textbf{hledají nejlepší řešení} v množině rů
 \item \textbf{\textsc{Vstup}}: Neorientovaný souvislý graf $G = (V_G,E_G)$ s ohodnocenými hranami. 
 \item \textbf{\textsc{Výstup}}: Souvislý graf $H = (V_H,E_H)$, kde $V_H = V_G$ a $E_H \subseteq E_G$, který má součet hodnot všech hran minimální.
 \end{itemize}
-\item \textbf{Eq-CFG (Ekvivalence bezkontextových gramatik)}
-\begin{itemize}
-\item \textbf{\textsc{Vstup}}: Dvě bezkontextové gramatiky $G1, G2$.
-\item \textbf{\textsc{Otázka}}: Platí $L(G1) = L(G2)$? Generují obě gramatiky stejný jazyk?
-\end{itemize}
-\item \textbf{HP (Problém zastavení [Halting Problem])}
-\begin{itemize}
-\item \textbf{\textsc{Vstup}}: Turingův stroj $M$ a jeho vstup $w$.
-\item \textbf{\textsc{Otázka}}: Zastaví se $M$ na $w$ (tzn. je výpočet stroje M pro vstupní slovo $w$ konečný)?
-\end{itemize}
 \end{enumerate}
+
+
 
 
 \begin{figure}[H]
