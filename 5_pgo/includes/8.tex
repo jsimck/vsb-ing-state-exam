@@ -144,7 +144,66 @@ Požadavky:
 	\end{itemize}
 \end{enumerate}
 
-%\subsection{Filtrace}
-%\begin{itemize}
-%	\item nic pořádného k segmentaci - filtraci jsem nenašel
-%\end{itemize}
+\subsection{Filtrace}
+Rozlišujeme 2 základní druhy filtrů \textbf{rekurzivní} a nerekurzivní. Nerekurzivní i rekurzivní filtrace obrazu je lineární filtrace.
+
+\subsubsection{Nerekurzivní filtry}
+\begin{itemize}
+\item Vytváří výstupní signál v každém bodě jako \textbf{lineární kombinaci} vzorků vstupního signálu.
+\item Jsou to vlastně \textbf{konvoluční filtry}. Jedná se o úpravu signálu (prostorová doména) pomocí předpisu:
+\begin{equation*}
+g(m , n) = f(m, n) * h(m ,n),
+\end{equation*}
+kde $ f(m,n) $ je původní signál a $ h(m,n) $ je \textbf{impulsová charakteristika filtru}.
+\item Přepis při Fourierové transformaci -- \textbf{frekvenční doména}: $G(k ,l)=F(k ,l) \cdot H (k ,l)$.
+\item Tyto filtrace obrazu jsou \textbf{stabilní}.
+\item Gaussův filtr, uniformní, atd.
+\end{itemize}
+
+\subsubsection{Rekurzivní filtry}
+\begin{itemize}
+\item U rekurzivní filtrace je výstupní signál $ g $ \textbf{svázán se vstupním signálem} $ f $ prostřednictvím vztahu:
+\begin{equation*}
+ b(m,n)*g(m,n)=a(m ,n)*f (m,n),
+\end{equation*}
+kde $ a(m,n) $ a $ b(m,n) $ jsou \textbf{diskrétní funkce}, které popisují rekurzivní filtr.
+\item U rekurzivní filtrace obrazu \textbf{bývá nižší časová náročnost} než u nerekurzivní filtrace, ale \textbf{nebývá vždy stabilní}, proto je potřeba stabilitu sledovat. 
+\item Když je filtr nestabilní, mohou se šířit čím dál vyšší zaokrouhlovací \textbf{chyby} a \textbf{šumy}.
+\item S iteračním výpočtem můžeme využít následujícího předpisu:
+\begin{equation*}
+ gi (m,n)=a(m,n)*f (m ,n)+c(m,n)*gi−1 (m ,n),
+\end{equation*}
+kde: $ c (0,0)=0 $ a $ c (m ,n)=−b(m ,n) $.
+\end{itemize}
+
+\subsubsection{Inverzní filtr}
+\begin{itemize}
+\item Jedná se prakticky o pouhou \textbf{dekonvoluci}. Máme-li rozmazaný (symetricky, v daném směru, \ldots) obraz bez šumu, pak lze obraz rekonstruovat zpět do podoby před rozmazáním. 
+\item Nevhodné pokud byl obraz postižen šumem, \textbf{šum se inverzním filtrem zvýrazní}.
+\item Inverzní filtr \textbf{lze použít i pro detekci šumu}. Pracuje ve \textbf{frekvenční doméně} (po DFT).
+\item Pokud je signál zkreslen signálem $ H(x) $ pak stačí jen hodnotu převrátit a získáme původní hodnotu $ F(x): F (x)= \frac{1}{H(x)} $.
+\item Obnovený obraz inverzním filtrem má rozmazané původně ostré hrany.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{assets/8_inv_filtr}
+\end{figure}
+
+\subsubsection{Wienerův filtr}
+\begin{itemize}
+\item Jedná se v podstatě o inverzní filtr, který lze použít i na \textbf{zašumělý obraz}.
+\item Slouží pro rekonstrukci/opravu obrazu, který je poničen šumem, který \textbf{má odhadnutelné statistické vlastnosti} (tedy známe přibližně šum nebo konvoluci, kterou byl obraz poničen).
+\item Většinou neznáme cílový obraz abychom si mohli stanovit střední hodnotu.
+\item Úloha se vyjádří jako \textbf{optimalizace řešením předurčené soustavy lineárních stochastických rovnic} $\rightarrow$ \textbf{minimalizace chyby}.
+\begin{equation*}
+e^2 = \epsilon \{(f(i, j) - \hat{f}(i, j)^2 )\},
+\end{equation*}
+kde $\epsilon$ označuje operátor střední hodnoty.
+\item \textbf{Praktické použití}: Hubbelův teleskop (v době kdy měl poškozené zrcadlo), Rozpoznání automobilových značek (rozmazání pohybu -- známá rychlost).
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{assets/8_wiener}
+\end{figure}
