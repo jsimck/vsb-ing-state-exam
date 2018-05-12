@@ -149,6 +149,20 @@ Statistická indukce je metoda, která dovoluje stanovit vlastnost celku (\textb
 	\item Na základě vztahu mezi $X_{OBS}$ a $t_{krit}$ rozhodneme o výsledku testu (\uv{Zamítáme $H_0$.} nebo \uv{Nezamítáme $H_0$.})
 \end{enumerate}
 
+\subsubsection{Chyba I. a II. druhu}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/14_chyba_tab}
+\end{figure}
+Jestliže nulová hypotéza je ve skutečnosti platná a my ji přesto zamítneme, dopouštíme se chyby, označované jako chyba \textbf{I. druhu}. Pravděpodobnost, že k takovémuto pochybení dojde, nazýváme \textbf{hladina významnosti} a označujeme ji $\alpha$. Platí-li nulová hypotéza a my jsme ji nezamítli, rozhodli jsme správně. Pravděpodobnost tohoto rozhodnutí označujeme $1 − \alpha$ a nazýváme ji \textbf{spolehlivost testu}. Správným rozhodnutím je rovněž zamítnutí nulové hypotézy v případě, že je platná hypotéza alternativní. Tohoto rozhodnutí se dopouštíme s pravděpodobností $1 − \beta$, což bývá označováno jako síla testu. \textbf{Chybou II. druhu} je nezamítnutí nulové hypotézy v případě, že je platná hypotéza alternativní. Pravděpodobnost této chyby označujeme $\beta$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{assets/14_chyba_graf}
+\caption{Demonstrace pravděpodobností chyb I. a II. druhu}
+\end{figure}
+Při testování hypotéz se samozřejmě snažíme postupovat tak, abychom minimalizovali obě chyby, tj. dosáhnout vysoké síly testu (nízkého $\beta$) při co nejnižší hladině významnosti $\alpha$. To však není možné, neboť snížením $\beta$ se zvýší hladina významnosti $\alpha$ a naopak. Proto je třeba najít kompromis mezi požadavky na $\alpha$ a $\beta$.
+
+
 \subsubsection*{Parametrická statistická hypotéza}
 Jednovýběrové testy
 \begin{itemize}
