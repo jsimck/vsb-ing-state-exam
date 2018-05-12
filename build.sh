@@ -24,4 +24,6 @@ cd ..
 cd 5_pgo
 texfot pdflatex -shell-escape 5_pgo.tex
 git add 5_pgo.tex
+texfot pdflatex -shell-escape 5_pgo_reduced.tex
+git add 5_pgo_reduced.tex
 cd ..

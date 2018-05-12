@@ -8,6 +8,7 @@
 - III. Databázové a informační systémy - https://github.com/R1crd/vsb-ing-state-exam/raw/master/3_dais/3_dais.pdf
 - IV. Počítače a sítě - https://github.com/R1crd/vsb-ing-state-exam/raw/master/4_ps/4_ps.pdf
 - V. Počítačová grafika a analýza obrazu - https://github.com/R1crd/vsb-ing-state-exam/raw/master/5_pgo/5_pgo.pdf
+- V. Počítačová grafika a analýza obrazu **REDUCED** - https://github.com/R1crd/vsb-ing-state-exam/raw/master/5_pgo/5_pgo_reduced.pdf
 
 ## Užitečné odkazy
 ### Animace k TI - http://www.cs.vsb.cz/kot/animace.php
@@ -26,6 +27,7 @@
 - Hezká přednáška o OpenGL - http://slideplayer.com/slide/8789082/
 - Harris corner detektor (detektor rohů) - https://www.youtube.com/watch?v=vkWdzWeRfC4
 - Filtrace obrazu ve frekvenční doméně - https://blogs.mathworks.com/steve/2009/12/04/fourier-transform-visualization-using-windowing/
+- Moje GPG https://www.dropbox.com/s/coawtm1ljnzaecn/sim0178_gpg.pdf?dl=0
 
 ## Tematické okruhy k magisterské státní zkoušce z předmětu
 
@@ -39,7 +41,7 @@
 6. ~~Pojem relace, operace s relacemi, vlastnosti relací. Typy binárních relací. Relace ekvivalence a relace uspořádání.~~
 7. ~~Pojem operace a obecný pojem algebra. Algebry s jednou a dvěma binárními operacemi.~~
 8. ~~FCA – formální kontext, formální koncept, konceptuální svazy. Asociační pravidla, hledání často se opakujících množin položek.~~
-9. Metrické a topologické prostory – metriky a podobnosti.
+9. ~~Metrické a topologické prostory – metriky a podobnosti.~~
 10. Shlukování.
 11. Náhodná veličina. Základní typy náhodných veličin. Funkce určující rozdělení náhodných veličin.
 12. Vybraná rozdělení diskrétní a spojité náhodné veličiny - binomické,

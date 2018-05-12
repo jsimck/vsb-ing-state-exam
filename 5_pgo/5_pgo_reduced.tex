@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[useregional]{datetime2}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, total={15.24cm, 23.32cm}]{geometry}
+\usepackage[thinlines]{easytable}
+\usepackage{graphicx}
+\usepackage[ampersand]{easylist}
+\usepackage{changepage}
+\usepackage{float}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{calc}
+\usepackage{wrapfig}
+\usepackage{minted}
+
+\newif\ifnotinclude
+\notincludefalse
+
+% Config
+%\setlength\parindent{0pt}
+\renewcommand{\baselinestretch}{1.2} 
+\setitemize{itemsep=0pt}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\title{\textbf{V. Počítačová grafika a analýza obrazu}}
+\date{\small\vspace{-9ex}Update: \today}
+\setminted{fontsize=\small,baselinestretch=1}
+\DeclareUnicodeCharacter{2212}{-}
+\DeclareUnicodeCharacter{200B}{ }
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+\pagebreak
+
+\section{Osvětlovací modely a systémy barev v počítačové grafice.}
+\input{includes/1.tex}
+\pagebreak	
+\section{Afinní a projektivní prostor. Afinní a projektivní transformace a jejich matematický zápis. Aplikace v počítačové grafice. Modelovací a zobrazovací transformace.}
+\input{includes/2.tex}
+\pagebreak
+\section{Křivky a plochy: teoretické základy (definice, rovnice, tečný a normálový vektor, křivosti, Cn a Gn spojitost), použití (Bézier, Coons, NURBS).}
+\input{includes/3.tex}
+\pagebreak
+\section{Geometrické a objemové modelování. Hraniční metoda, metoda CSG, výčet prostoru, oktantové stromy.}
+\input{includes/4.tex}
+\pagebreak
+\section{Standardní zobrazovací řetězec a realizace jeho jednotlivých kroků. Gouraudovo a Phongovo stínování. Řešení viditelnosti. Grafický standard OpenGL: stručná charakteristika.}
+\input{includes/5.tex}
+\pagebreak
+\section{Metody získávání fotorealistických obrázků (rekurzivní sledování paprsku, vyzařovací metoda, renderovací rovnice).}
+\input{includes/6.tex}
+\pagebreak
+\section{Komprese obrazu a videa; principy úprav obrazu v prostorové a frekvenční doméně.}
+\input{includes/7.tex}
+\pagebreak
+\section{Základní metody úpravy a segmentace obrazu (filtrace, prahování, hrany).}
+\input{includes/8.tex}
+\pagebreak
+\section{Základní metody rozpoznávání objektů (příznakové rozpoznávání).}
+\input{includes/9.tex}
+\end{document}
