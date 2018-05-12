@@ -33,7 +33,7 @@
 \begin{itemize}
 	\item Empirická distribuční funkce
 	\item Krabicový graf (box plot)
-	\item Číslicový histgram (lodyha s listy, steam and leaf)
+	\item Číslicový histogram (lodyha s listy, steam and leaf)
 \end{itemize}
 
  \subsection{Kvalitativní --Kategoriální proměnná}
@@ -219,4 +219,47 @@ Snad nejpoužívanějšími mírami polohy jsou průměry proměnných. Průměr
 		\end{itemize}
 	\end{itemize}
 \end{itemize}
-% 		Popisná statistika. Číselné charakteristiky a vizualizace kategoriálních a kvantitativních proměnných.
+
+\subsection{Statistické charakteristiky kvalitativních proměnných}
+\subsubsection{Nominální proměnná}
+Nominální proměnná nabývá v rámci souboru různých, avšak rovnocenných kategorií. Počet těchto kategorií nebývá příliš vysoký, a proto první statistickou charakteristikou, kterou k popisu proměnné použijeme je četnost.
+\begin{itemize}
+	\item \textbf{Četnost} $\mathbf{n_i}$ (absolutní četnost, \uv{frequency}) --  je definována jako počet výskytu dané varianty kvalitativní proměnné. V případě, že kvalitativní proměnná ve statistickém souboru o rozsahu $n$ hodnot  nabývá $k$ různých variant, jejichž četnosti označíme $n_1, n_2, ... , n_k$, musí zřejmě platit $n_1 + n_2 + ... + n_k = \sum\limits_{i=1}^k n_i = n$. \\
+	Chceme-li vyjádřit, jakou část souboru tvoří proměnné s některou variantou, použijeme pro popis proměnné relativní četnost.
+
+	\item \textbf{Relativní četnost} $\mathbf{p_i}$ (\uv{relative frequency}) je definována jako $p_i = \frac{n_i}{n}$, popř. $p_i = \frac{n_i}{n} \cdot 100 [\%]$. Pro relativní četnosti musí platit $p_1 + p_2 + ... + p_k = \sum\limits_{i=1}^k p_i = p$. \\
+	Při zpracování kvalitativní proměnné je vhodné četnosti i relativní četnosti uspořádat do tzv. \textbf{tabulky rozdělení četnosti} (\uv{frequency table})
+				\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.6\textwidth]{assets/13_tabl_cetnost}
+				\end{figure}
+	\item \textbf{Modus} -- s definujeme jako název varianty proměnné vykazující nejvyšší četnost.\\
+	\item \textbf{Grafické znázornění nominální proměnné} 
+	\begin{itemize}
+		\item \textbf{Histogram} -- je klasickým grafem, v němž na jednu osu vynášíme varianty proměnné a na druhou osu jejich četnosti. Jednotlivé hodnoty četností jsou pak zobrazeny jako výšky sloupců (obdélníků, popř. hranolů, kuželů...)
+		\item \textbf{Výsečový graf} -- prezentuje relativní četnosti jednotlivých variant proměnné, přičemž jednotlivé relativní četnosti jsou úměrně reprezentovány plochami příslušných kruhových výsečí. (Změnou kruhu na elipsu dojde k trojrozměrnému efektu.)
+	\end{itemize}
+\end{itemize}
+\subsubsection{Ordinální proměnná}
+Ordinální proměnná, stejně jako proměnná nominální, nabývá v rámci souboru různých slovních variant, avšak tyto varianty mají přirozené uspořádání, tj. můžeme určit, která je \uv{menší} a která \uv{větší}. 
+\begin{itemize}
+	\item \textbf{Kumulativní četnost} $\mathbf{m_i}$ i (\uv{cumulative frequency}) -- definujeme jako počet hodnot proměnné, které nabývají varianty nižší nebo rovné i-té variantě. \\ 
+	\textit{Uvažte např. proměnnou \uv{známka ze statistiky}, která nabývá variant: \uv{výborně}, \uv{velmi dobře}, \uv{prospěl}, \uv{neprospěl}, pak např. kumulativní četnost pro variantu \uv{prospěl} bude rovna počtu studentů, kteří ze statistiky získali známku \uv{prospěl} nebo lepší.} \\
+	Jsou-li jednotlivé varianty uspořádány podle své \uv{velikosti}(\uv{$x_1 < x_2 < ... < x_k$}), platí $m_i = \sum\limits_{i=1}^i n_j$, Je tedy zřejmé, že kumulativní četnost $k$--té (\uv{nejvyšší}) varianty je rovna rozsahu proměnné $– mk = n$.
+
+	\item \textbf{Kumulativní relativní četnost} $\mathbf{F_i}$ (\uv{cumulative relative frequency}) -- vyjadřuje jakou část souboru tvoří hodnoty nabývající i-té a nižší varianty. $F_i = \sum\limits_{j=1}^i p_j,$ což není nic jiného než relativní vyjádření kumulativní četnosti: $F_i = \frac{m_i}{n}$. \\ 
+	Obdobně jako pro nominální proměnné, můžeme i pro proměnné ordinální prezentovat statistické charakteristiky pomocí tabulky rozdělení četnosti. Ta obsahuje ve srovnání s tabulkou rozdělení četností pro nominální proměnnou navíc hodnoty kumulativních a kumulativních relativních četností.\\
+				\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{assets/13_tabl_cetnost_ord}
+				\end{figure}
+	\item \textbf{Grafické znázornění ordinální proměnné}
+	\begin{itemize}
+		\item \textbf{Lorenzova křivka} ((polygon kumulativních četností, Galtonova ogiva, S křivka) -- S křivka) je spojnicovým grafem, který získáme tak, že na vodorovnou osu vynášíme jednotlivé varianty proměnné v pořadí od \uv{nejmenší} do \uv{největší} a na svislou osu příslušné hodnoty kumulativních četností. Znázorněné body spojíme úsečkami.
+				\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\textwidth]{assets/13_lorenzo}
+				\end{figure}
+		\item \textbf{Paretova analýza} -- lze formulovat tak, že 80\% následků pramení z 20\% příčin (20\% lidí vlastní 80\% celkového bohatství). V praxi pak bývá snahou nalézt toto malé spektrum příčin (životně důležitá menšina), které tak významně ovlivňuje výsledek.
+	\end{itemize}
+\end{itemize}
