@@ -211,8 +211,8 @@ $\Rightarrow F(x_p) = p \Rightarrow x_p = F^{-1}(p)$ \\
 
 \subsubsection{Modus}
 \textbf{Modus} $\mathbf{\hat{x}}$ -- typická hodnota náhodné veličiny \\ 
-\textbf{pro diskrétní NV}: $x_i: P(X = \hat{x}) \geq P(X = x_i)$ (tzn. modus je taková hodnota DNV, v níž $P(x_i)$ nabývá svého maxima) \\
-\textbf{pro spojité NV}: $ x_i: f(\hat{x}) \geq f(x)$ (tzn. modus je taková hodnota SNV, v níž $f(x)$ nabývá svého maxima)
+\textbf{pro diskrétní NV}: $\forall x_i: P(X = \hat{x}) \geq P(X = x_i)$ (tzn. modus je taková hodnota DNV, v níž $P(x_i)$ nabývá svého maxima) \\
+\textbf{pro spojité NV}: $\forall  x_i: f(\hat{x}) \geq f(x)$ (tzn. modus je taková hodnota SNV, v níž $f(x)$ nabývá svého maxima)
 \begin{itemize}
 	\item Modus není těmito podmínkami určen jednoznačně, tzn. náhodná veličina může mít několik modů (např. výsledek hodu kostkou). Má-li NV právě jeden modus, mluvíme o unimodálním rozdělení NV.
 	\item Má-li NV unimodální symetrické rozdělení, pak $E(X) = x_{0,5} = \hat{x}$.
@@ -234,7 +234,9 @@ $\Rightarrow F(x_p) = p \Rightarrow x_p = F^{-1}(p)$ \\
 \subsubsection{Směrodatná odchylka}
 \textbf{Směrodatná odychylka} $\mathbf{\sigma}$ $$\sigma(Y) = \sqrt{D(X)}$$
 Směrodatná odchylka neumožňuje srovnávat variabilitu náhodných veličin měřených v různých jednotkách! 
-
+\begin{center}
+ $\forall k >0 \colon P (\mu - k\sigma < X < \mu + k\sigma) > 1 - \frac{1}{k^2}$ (Čebyšova nerovnost)
+ \end{center}
 \subsubsection{Variační koeficient}
 \textbf{Variační koeficient} $\mathbf{\gamma}$ je definován pouze pro nezáporné náhodné veličiny. $$\gamma = \frac{\sigma}{\mu'}, resp. \frac{\sigma}{\mu'} \cdot 100 [\%]$$
 \begin{itemize}
