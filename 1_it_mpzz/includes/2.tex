@@ -58,7 +58,7 @@ Zásobníkový automat $M$ je definován jako šestice $M = (Q, \Sigma, \Gamma, 
 \item $Q$ je konečná neprázdná množina \textbf{stavů}.
 \item $\Sigma$ je konečná neprázdná množina \textbf{vstupních symbolů} (vstupní abeceda).
 \item $\Gamma$ (\textit{velká gamma}) je konečná neprázdná množina \textbf{zásobníkových symbolů}.
-\item $\delta$ je \textbf{přechodová funkce} (konečná množina instrukcí), $\delta: Q \times (\Sigma \cup {\epsilon}) \times \Gamma → P_{\rm fin}(Q \times \Gamma^*)$.
+\item $\delta$ je \textbf{přechodová funkce} (konečná množina instrukcí), $\delta: Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma \rightarrow P_{\rm fin}(Q \times \Gamma^*)$.
 \item $q_0$ je \textbf{počáteční stav}, $q_0 \in Q$.
 \item $Z_0$ je \textbf{počáteční zásobníkový symbol}, $Z_0 \in \Gamma$.
 \end{itemize}
@@ -96,8 +96,7 @@ Využívá se tzv. metody shora-dolů, která obsahuje pouze \textbf{1 stav}:
 \item všechny \textbf{terminály} přepíšu na pravidla typu: $(q, a, a) \rightarrow (q, \epsilon)$.
 \end{enumerate}
 
-\subsubsection*{Příklad}
-\begin{minipage}[t]{0.35\textwidth}
+\noindent\\\begin{minipage}[t]{0.35\textwidth}
 \textbf{Vstupní gramatika:}\\
 $S \rightarrow A | B$\\
 $A \rightarrow a$\\
