@@ -21,6 +21,11 @@
 ### Statistika
 - Základní metody statistické indukce - http://am-nas.vsb.cz/lit40/PRASTA/Statisticka_indukce.pdf
 
+### MPZZ
+- Shlukování - https://cw.fel.cvut.cz/old/_media/courses/a6m33dvz/09-shlukovani.pdf
+- Dendrogramy - https://media.ed.ac.uk/media/Agglomerative+clustering+-+dendrogram/1_62ddbwo7
+- Shlukování a dendrogramy - https://www.slideshare.net/ChaToX/hierarchical-clustering-56364612
+
 ### Počítačová grafika
 - Průsečíky, kvaterniony, kvadriky, křivky, příklady - https://www.dropbox.com/s/m42vdg6zzml4mct/geometrie-pro-pocitacovou.pdf?dl=0
 - Phongův osvětlovací model, vysvětlení - https://www.youtube.com/watch?v=L4oAQL_Mv5w
@@ -42,7 +47,7 @@
 7. ~~Pojem operace a obecný pojem algebra. Algebry s jednou a dvěma binárními operacemi.~~
 8. ~~FCA – formální kontext, formální koncept, konceptuální svazy. Asociační pravidla, hledání často se opakujících množin položek.~~
 9. ~~Metrické a topologické prostory – metriky a podobnosti.~~
-10. Shlukování.
+10. ~~Shlukování.~~
 11. Náhodná veličina. Základní typy náhodných veličin. Funkce určující rozdělení náhodných veličin.
 12. Vybraná rozdělení diskrétní a spojité náhodné veličiny - binomické,
 hypergeometrické, negativně binomické, Poissonovo, exponenciální, Weibullovo,
