@@ -1,33 +1,34 @@
-\textbf{Náhodný pokus} -- Děj, jehož výsledek není předem jednoznačně určen podmínkami, za nichž probíhá.\\
-\textbf{Náhodný jev} -- Tvrzení o výsledku náhodného pokusu, přičemž o pravdivosti tohoto tvrzení lze po ukončení pokusu rozhodnout.
-Náhodná veličina \uv{NV} -- \textbf{číselné} vyjádření výsledku náhodného pokusu.\\
 \begin{itemize}
-	\item NV je funkce, která každému elementárnímu jevu $\omega \in \Omega$ přiřadí reálné číslo.
-	\item NV obvykle značíme velkými písmeny.
-	\item NV přiřadí každému elementárnímu jevu $\omega$ reálné číslo (převádí elementární jevy (abstraktní objekty) na čísla).
-	\item Hodnota $X(\omega)$ NV X závisí na tom, který elementární jev $\omega$ nastal.
-	\item Víme--li, který elementární jev $\omega$ nastal, známe hodnotu $X(\omega)$ NV X.
-	\item Příklady:
-	\begin{itemize}
-		\item[]	\begin{center}
-			$X$... číselný výsledek hodu kostkou\\
-			\end{center}
-			\textbf{Náhodný pokus}: Hod kostkou. \\
-			\textbf{Náhodný jev}: Padne sudé číslo. ($X \in \{2;4;6\}$) \\\\
-			
-		\item[]	\begin{center}
-			$X$... rychlost připojení k internetu (Mb/s) \\
-			\end{center}
-			\textbf{Náhodný pokus}: Měření rychlosti připojení k internetu (download). \\
-			\textbf{Náhodný jev}: Rychlost připojení k internetu je vyšší než 20 Mb/s.  ($X > 20$)\\\\
-			
-		\item[]	\begin{center}
-			$X$... počet dívek mezi 1 000 náhodně vybranými dětmi \\
-			\end{center}
-			\textbf{Náhodný pokus}: Náhodný výběr 1 000 dětí a zjištění počtu dívek mezi nimi. \\
-			\textbf{Náhodný jev}: Mezi 1 000 náhodně vybranými dětmi bude více než 500 dívek. ($X > 500$)
-	\end{itemize}
+\item \textbf{Náhodný pokus} -- děj, jehož výsledek není předem jednoznačně určen podmínkami, za nichž probíhá.
+\item \textbf{Náhodný jev} -- tvrzení o výsledku náhodného pokusu, přičemž o pravdivosti tohoto tvrzení lze po ukončení pokusu rozhodnout.
+Náhodná veličina \uv{NV} -- \textbf{číselné} vyjádření výsledku náhodného pokusu.
+\end{itemize}
 
+\subsection{Náhodná veličina}
+\begin{itemize}
+	\item \textbf{Funkce}, která \textbf{každému elementárnímu jevu} $\omega \in \Omega$ \textbf{přiřadí reálné číslo} (převádí elementární jevy (abstraktní objekty) na čísla).
+	\item Obvykle značíme velkými písmeny.
+	\item \textbf{Hodnota} $X(\omega)$ \textbf{NV X závisí} na tom, který \textbf{elementární jev} $\omega$ \textbf{nastal} $\rightarrow$ víme-li, který elementární jev $\omega$ nastal, známe hodnotu $X(\omega)$ NV X.
+\end{itemize}
+\subsubsection*{Příklady}
+\begin{itemize}
+	\item[]	\begin{center}
+		$X$... číselný výsledek hodu kostkou\\
+		\end{center}
+		\textbf{Náhodný pokus}: Hod kostkou. \\
+		\textbf{Náhodný jev}: Padne sudé číslo. ($X \in \{2;4;6\}$) \\\\
+		
+	\item[]	\begin{center}
+		$X$... rychlost připojení k internetu (Mb/s) \\
+		\end{center}
+		\textbf{Náhodný pokus}: Měření rychlosti připojení k internetu (download). \\
+		\textbf{Náhodný jev}: Rychlost připojení k internetu je vyšší než 20 Mb/s.  ($X > 20$)\\\\
+		
+	\item[]	\begin{center}
+		$X$... počet dívek mezi 1 000 náhodně vybranými dětmi \\
+		\end{center}
+		\textbf{Náhodný pokus}: Náhodný výběr 1 000 dětí a zjištění počtu dívek mezi nimi. \\
+		\textbf{Náhodný jev}: Mezi 1 000 náhodně vybranými dětmi bude více než 500 dívek. ($X > 500$)
 \end{itemize}
 
 
@@ -47,19 +48,19 @@ Náhodná veličina \uv{NV} -- \textbf{číselné} vyjádření výsledku náhod
 
 \subsection{Základní typy náhodných veličin}
 \begin{itemize}
-	\item \textbf{Diskrétní NV} 
-	\item \textbf{Spojité NV} 
+	\item \textbf{Diskrétní NV} (nabývá spočetně mnoha hodnot)
+	\item \textbf{Spojité NV} (jakákoliv hodnota na daném intervalu)
 \end{itemize}
 
-\subsubsection{Diskrétní náhodná veličina (\uv{DNV})}
+\subsection{Diskrétní náhodná veličina (\uv{DNV})}
 \begin{itemize}
-		\item mohou nabývat spočetně mnoha hodnot (počet dní hospitalizace, počet dní nemocenské, počet zákazníků v lékarně během jednoho dne..) 
+		\item Může \textbf{nabývat spočetně mnoha hodnot} (počet dní hospitalizace, počet dní nemocenské, počet zákazníků v lékárně během jednoho dne..).
 		\item DNV X s distribuční funkcí $F_x(t)$ je charakterizována \textbf{Pravděpodobnostní funkcí} $P(X = x_i)$, tj. funkcí pro níž platí:
 				\begin{equation*}
 					F_x(t) = \sum_{x_i<t}P(X = x_i)= \sum_{x_i<t}P(x_i).
 				\end{equation*}
-
-		\item \textbf{Pravděpodobnostní funkce} 
+\end{itemize}
+\subsubsection{Pravděpodobnostní funkce}
 			\begin{itemize}
 				\item $P(x_i) \geq 0$
 				\item $\sum_i P(X = x_i) = 1$
@@ -83,10 +84,10 @@ Náhodná veličina \uv{NV} -- \textbf{číselné} vyjádření výsledku náhod
 					\centering
 					\includegraphics[width=0.75\textwidth]{assets/11_vztah_prav_dist_dnv}
 				\end{figure}
-				\item Body nespojitosti distribuční f--ce jsou body, v nichž je pravděpodobnostní f--ce nenulová.
+				\item \textbf{Body nespojitosti} distribuční funkce jsou body, v nichž je pravděpodobnostní funkce nenulová.
 				\item $P (X= a) = \lim_{x\to a+} F(x) - F(a)$ , tj. velikost \uv{skoku} distribuční funkce v bodech nespojitosti je rovna příslušným hodnotám pravděpodobnostní funkce.
 			\end{itemize}
-		\item \textbf{Distribuční funkce}
+\subsubsection{Distribuční funkce}
 				\begin{itemize}
 					\item $F(t) = \sum_{x_i < t} P(x_i)$
 					\item Lze zadat předpisem, tabulkou, grafem.
@@ -94,62 +95,60 @@ Náhodná veličina \uv{NV} -- \textbf{číselné} vyjádření výsledku náhod
 					\centering
 					\includegraphics[width=0.6\textwidth]{assets/11_dnv_dist}
 				\end{figure}
-				\item Distribuční funkce $F(t)$ udává pravděpodobnost, že náhodná veličina $X$ bude \textbf{menší než} dané reálné číslo $t$. $$F(t) = P(X < t)$$
-				\item Vlastnosti distribuční funkce:
+				\item Distribuční funkce $F(t)$ \textbf{udává pravděpodobnost}, že náhodná veličina $X$ bude \textbf{menší než} dané reálné číslo $t$. $$F(t) = P(X < t)$$
+			\end{itemize}
+\subsubsection*{Vlastnosti distribuční funkce}
 				\begin{itemize}
-					\item[$\circ$] $0 \leq F(t) \leq 1$,
-					\item[$\circ$] je neklesající,
-					\item[$\circ$] je zleva spojitá,
-					\item[$\circ$] má nejvýše spočetně mnoho bodů nespojitosti,
-					\item[$\circ$] $F(t) \rightarrow 0 $ pro $ t \rightarrow -\infty $ (\uv{začíná} v 0),
-					\item[$\circ$] $F(t) \rightarrow 1 $ pro $ t \rightarrow \infty $ (\uv{končí} v 1).
+					\item $0 \leq F(t) \leq 1$,
+					\item je neklesající,
+					\item je zleva spojitá,
+					\item má nejvýše spočetně mnoho bodů nespojitosti,
+					\item $F(t) \rightarrow 0 $ pro $ t \rightarrow -\infty $ (\uv{začíná} v 0),
+					\item $F(t) \rightarrow 1 $ pro $ t \rightarrow \infty $ (\uv{končí} v 1).
 				\end{itemize}
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=0.75\textwidth]{assets/11_vztah_prav_dist_dnv2}
 				\end{figure}
 				$$P(X = a) \lim_{x \to a+} F(x) - F(a)$$
-			\end{itemize}
-	\end{itemize}
 
-\subsubsection{Spojitá náhodná veličina (\uv{SNV})}
+\subsection{Spojitá náhodná veličina (\uv{SNV})}
 
 \begin{itemize}
 		\item Náhodná veličina $X$ má spojité rozdělení pravděpodobnosti (zkráceně \uv{je spojitá}) právě když má spojitou distribuční funkci.
-		\item Mohou nabývat všech hodnot na nějakém intervalu (mají spojitou distribuční funkci) (doba do remise onemocnění, výška, váha, BMO, IQ, vitální kapacita plic, chyba měření...).
+		\item Mohou \textbf{nabývat všech hodnot na nějakém intervalu} (mají spojitou distribuční funkci) (doba do remise onemocnění, výška, váha, BMO, IQ, vitální kapacita plic, chyba měření...).
 		\item SNV X s distribuční funkcí $F_x(t)$ je charakterizována \textbf{hustotou pravděpodobností} $f(x)$, tj. funkcí pro níž platí:
 		\begin{equation*}
 				F_x(t) = \int_{-\infty}^{t} f(x) dx.
 		\end{equation*}
-		\item \textbf{Hustota pravděpodobnosti f(x)}
-		\begin{itemize}
-			\item $F(x) = \int_{-\infty}^{t} f(x) dx \Rightarrow f(x) = \frac{dF}{dx}$
-			\item Vlastnosti hustoty pravděpodobnosti:
-			\begin{itemize}
-				\item[] $f(x)$ je reálná nezáporná funkce,
-				\item[] $\int_{-\infty}{\infty} f(x) = 1$ (plocha pod křivkou hustoty je 1), 
-				\item[] $\lim_{x \to -\infty} f(x) = 0$ (\uv{začíná v 0}),
-				\item[] $\lim_{x \to \infty} f(x) = 0$ (\uv{končí v 0}).
-				\begin{figure}[H]
-					\centering
-					\includegraphics[width=0.4\textwidth]{assets/11_snv_muze}
-					\caption{$f(x)$ může nabývat hodnot vyšších než 1}
-				\end{figure}
-			\end{itemize}
-		\end{itemize}
-		\item \textbf{Distribuční funkce}
-		$$F_x(t) = \int_{-\infty}^{t} f(x) dx$$
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.5\textwidth]{assets/11_dist_fce_snv}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.6\textwidth]{assets/11_vztah_prav_dist_snv}
-			\caption{Vztah mezi pravděpodobností a distribuční funkcí}
-		\end{figure}
-		$$P(X = a) = 0$$
 	\end{itemize}
+\subsubsection{Hustota pravděpodobnosti f(x)}
+\begin{equation*}
+F(x) = \int_{-\infty}^{t} f(x) dx \Rightarrow f(x) = \frac{dF}{dx}
+\end{equation*}
+\subsubsection*{Vlastnosti hustoty pravděpodobnosti}
+\begin{itemize}
+	\item $f(x)$ je reálná nezáporná funkce,
+	\item $\int_{-\infty}{\infty} f(x) = 1$ (plocha pod křivkou hustoty je 1), 
+	\item $\lim_{x \to -\infty} f(x) = 0$ (\uv{začíná v 0}),
+	\item $\lim_{x \to \infty} f(x) = 0$ (\uv{končí v 0}).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.35\textwidth]{assets/11_snv_muze}
+		\caption{$f(x)$ může nabývat hodnot vyšších než 1}
+	\end{figure}
+\end{itemize}
+\subsubsection{Distribuční funkce}
+$$F_x(t) = \int_{-\infty}^{t} f(x) dx\, \quad P(X = a) = 0$$
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{assets/11_dist_fce_snv}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{assets/11_vztah_prav_dist_snv}
+	\caption{Vztah mezi pravděpodobností a distribuční funkcí}
+\end{figure}
 
 \subsection{Číselné charakteristiky NV}
 \begin{itemize}
@@ -164,8 +163,8 @@ Náhodná veličina \uv{NV} -- \textbf{číselné} vyjádření výsledku náhod
 
 		\item \textbf{Obecný moment r--tého řádu} (značí se $\mu_r$ nebo $E(X^r)$, pro r=1,2...) \\pro diskrétní NV: $\qquad \mu_r = \sum_{(i)}x_i^r \cdot P(x_i)$ \\pro spojitou NV: $\qquad \mu_r = \int_{-\infty}^{\infty} x^r \cdot f(x) dx$
 		\item \textbf{Střední hodnota} (expected value, mean, značí se jako $\mathbf{E(X)}$ nebo $\mu$) \\pro diskrétní NV: $\qquad E(X) = \mu = \sum_{(i)}x_i \cdot P(x_i)$\\pro spojitou NV: $\qquad E(X) = \mu = \int_{-\infty}^{\infty} x \cdot f(x)dx$
-		\item \textbf{Centrální moment r--tého řádu} $\mathbf{\mu_r}$' (značíme $\mu_r$' $= E[(X - EX)]^r$) \\pro diskrétní NV: $\qquad \mu_r' = \sum_{(i)}(x_i -EX)^r \cdot P(x_i)$\\pro spojitou NV: $\qquad \mu_r' = \int_{-\infty}^{\infty} (x - EX)^r \cdot f(x)dx$
-		\item \textbf{Rozptyl} (dispersion, variance; značí se $\mu_2'$ nebo $DX$ nebo $\sigma^2$) \\pro diskrétní NV: $\qquad D(X) = \mu_2' = \sum_{(i)}(x_i -EX)^2 \cdot P(x_i)$\\pro spojitou NV: $\qquad D(X) = \mu_2' = \int_{-\infty}^{\infty} (x - EX)^2 \cdot f(x)dx$
+		\item \textbf{Centrální moment r--tého řádu} $\mathbf{\mu_r}$' (značíme $\mu_r$' $= E[(X - E(X))]^r$) \\pro diskrétní NV: $\qquad \mu_r' = \sum_{(i)}(x_i -E(X))^r \cdot P(x_i)$\\pro spojitou NV: $\qquad \mu_r' = \int_{-\infty}^{\infty} (x - E(X))^r \cdot f(x)dx$
+		\item \textbf{Rozptyl} (dispersion, variance; značí se $\mu_2'$ nebo $DX$ nebo $\sigma^2$) \\pro diskrétní NV: $\qquad D(X) = \mu_2' = \sum_{(i)}(x_i -E(X))^2 \cdot P(x_i)$\\pro spojitou NV: $\qquad D(X) = \mu_2' = \int_{-\infty}^{\infty} (x - E(X))^2 \cdot f(x)dx$
 	\end{itemize}
 \end{itemize}
 
@@ -193,34 +192,31 @@ $\Rightarrow F(x_p) = p \Rightarrow x_p = F^{-1}(p)$ \\
 	\end{figure}
 \end{center}
 
+\noindent Kvantily obvykle určujeme \textbf{pouze pro SNV}. \textbf{Význačné kvantily}:
 \begin{itemize}
-	\item Kvantily obvykle určujeme pouze pro SNV.
-	\item Význačné kvantily
+	\item \textbf{Kvartily}
 	\begin{itemize}
-		\item \textbf{Kvartily}
-		\begin{itemize}
-			\item[] Dolní kvartil $x_{0,25}$
-			\item[] Medián $x_{0,5}$
-			\item[] Horní kvartil $x_{0,75}$
-		\end{itemize}
-		\item \textbf{Decily} -- $x_{0,1}; x_{0,2}; ... ;x_{0,9}$
-		\item \textbf{Percentily} -- $x_{0,01}; x_{0,02}; ... ;x_{0,99}$
-		\item \textbf{Minimum} $x_{min}$ a \textbf{Maximum} $x_{max}$
+		\item[] Dolní kvartil $x_{0,25}$
+		\item[] Medián $x_{0,5}$
+		\item[] Horní kvartil $x_{0,75}$
 	\end{itemize}
+	\item \textbf{Decily} -- $x_{0,1}; x_{0,2}; ... ;x_{0,9}$
+	\item \textbf{Percentily} -- $x_{0,01}; x_{0,02}; ... ;x_{0,99}$
+	\item \textbf{Minimum} $x_{min}$ a \textbf{Maximum} $x_{max}$
 \end{itemize}
 
 \subsubsection{Modus}
-\textbf{Modus} $\mathbf{\hat{x}}$ -- typická hodnota náhodné veličiny \\ 
-\textbf{pro diskrétní NV}: $x_i: P(X = \hat{x}) \geq P(X = x_i)$ (tzn. modus je taková hodnota DNV, v níž $P(x_i)$ nabývá svého maxima) \\
-\textbf{pro spojité NV}: $ x_i: f(\hat{x}) \geq f(x)$ (tzn. modus je taková hodnota SNV, v níž $f(x)$ nabývá svého maxima)
+\textbf{Modus} $\mathbf{\hat{x}}$ -- typická hodnota náhodné veličiny
 \begin{itemize}
-	\item Modus není těmito podmínkami určen jednoznačně, tzn. náhodná veličina může mít několik modů (např. výsledek hodu kostkou). Má-li NV právě jeden modus, mluvíme o unimodálním rozdělení NV.
+\item \textbf{pro diskrétní NV} -- $x_i: P(X = \hat{x}) \geq P(X = x_i)$ (tzn. modus je taková hodnota DNV, v níž $P(x_i)$ nabývá svého maxima).
+\item \textbf{pro spojité NV} -- $ x_i: f(\hat{x}) \geq f(x)$ (tzn. modus je taková hodnota SNV, v níž $f(x)$ nabývá svého maxima).
+	\item Modus není těmito podmínkami určen jednoznačně, tzn. náhodná veličina může mít několik modů (např. výsledek hodu kostkou). Má-li NV právě jeden modus, mluvíme o \textbf{unimodálním rozdělení NV}.
 	\item Má-li NV unimodální symetrické rozdělení, pak $E(X) = x_{0,5} = \hat{x}$.
 \end{itemize}
 
 \subsubsection{Význam rozptylu}
 \begin{itemize}
-	\item Míra variability dat kolem střední hodnoty.
+	\item \textbf{Míra variability dat kolem střední hodnoty}.
 	\item Střední kvadratická odchylka od střední hodnoty ($D(X) = E(X - E(X))^2$).
 	\item Malý rozptyl $\approx$ hodnoty NV se s vysokou pravděpodobností objevují blízko $E(X)$.
 	\item Velký rozptyl $\approx$ hodnoty NV se často objevují ve velké vzdálenosti od $E(X)$.
@@ -231,14 +227,14 @@ $\Rightarrow F(x_p) = p \Rightarrow x_p = F^{-1}(p)$ \\
 	\end{figure}
 \end{itemize}
 
-\subsubsection{Směrodatná odchylka}
-\textbf{Směrodatná odychylka} $\mathbf{\sigma}$ $$\sigma(Y) = \sqrt{D(X)}$$
-Směrodatná odchylka neumožňuje srovnávat variabilitu náhodných veličin měřených v různých jednotkách! 
+\subsubsection{Směrodatná odchylka $\mathbf{\sigma}$}
+$$\sigma(Y) = \sqrt{D(X)}$$
+Jendá se o odmocninu rozptylu náhodné veličiny. Směrodatná odchylka \textbf{neumožňuje} srovnávat variabilitu náhodných veličin \textbf{měřených v různých jednotkách}! 
 
 \subsubsection{Variační koeficient}
-\textbf{Variační koeficient} $\mathbf{\gamma}$ je definován pouze pro nezáporné náhodné veličiny. $$\gamma = \frac{\sigma}{\mu'}, resp. \frac{\sigma}{\mu'} \cdot 100 [\%]$$
+\textbf{Variační koeficient} $\mathbf{\gamma}$ je definován pouze pro \textbf{nezáporné} náhodné veličiny. $$\gamma = \frac{\sigma}{\mu'}, \textrm{ resp. } \frac{\sigma}{\mu'} \cdot 100 [\%]$$
 \begin{itemize}
-	\item Variační koeficient –- směrodatná odchylka v procentech střední hodnoty
-	\item Čím nižší var. koeficient, tím homogennější soubor.
+	\item Variační koeficient -- \textbf{směrodatná odchylka v procentech} střední hodnoty.
+	\item Čím nižší var. koeficient, tím \textbf{homogennější} soubor.
 	\item $V_X > 50\%$ značí silně rozptýlený soubor.
 \end{itemize}
