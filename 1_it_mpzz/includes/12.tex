@@ -1,11 +1,15 @@
 \newcommand{\pointing}{\includegraphics[width=1em]{assets/point.png}}
 \begin{itemize}
-	\item[\pointing] Náhodná veličina -- číselné vyjádření výsledku náhodného pokusu.
-	\item[\pointing] Základní typy NV -- diskrétní NV, spojitá NV.
-	\item[\pointing] Rozdělení pravděpodobnosti -- Předpis, který jednoznačně určuje všechny pravděpodobnosti typu $P(X \in M)$, kde $M \subset \mathbb{R}$ \\(tj. $P (X = a), P (X < a), P(X > a), P(a < X < b), ...,$ kde $a, b \in \mathbb{R}$).
-	\item[\pointing] Rozdělení pravděpodobnosti DNV -- distribuční funkcí $F(x) = P(X < x),$ resp. pravěpodobnostní funkcí $P(x_i)$.
-	\item[\pointing] Rozdělení pravděpodobnosti SNV -- distribuční funkcí $F(x) = P(X < x),$ resp. hustotou pravěpodobnostní $f(x)$.
-	\item[\pointing] Číselné charakteristiky pro popis NV -- střední hodnota $\mathbf{E(X)}$, rozptyl $\mathbf{D(X)}$, směrodatná odchylka $\mathbf{\sigma(X)}$, p--kvantily $\mathbf{x_p}$
+	\item \textbf{Náhodná veličina} -- číselné vyjádření výsledku náhodného pokusu.
+	\item Základní typy NV -- \textbf{diskrétní} NV, \textbf{spojitá} NV.
+	\item \textbf{Rozdělení pravděpodobnosti} -- Předpis, který jednoznačně určuje všechny pravděpodobnosti typu $P(X \in M)$, kde $M \subset \mathbb{R}$
+	
+	(tj. $P (X = a), P (X < a), P(X > a), P(a < X < b), ...,$ kde $a, b \in \mathbb{R}$).
+	\begin{itemize}
+	\item Rozdělení pravděpodobnosti \textbf{DNV} -- distribuční funkcí $F(x) = P(X < x),$ resp. \textbf{pravěpodobnostní funkcí} $P(x_i)$.
+	\item Rozdělení pravděpodobnosti \textbf{SNV} -- distribuční funkcí $F(x) = P(X < x),$ resp. \textbf{hustotou pravěpodobnostní} $f(x)$.
+\end{itemize}
+	\item \textbf{Číselné charakteristiky pro popis NV} -- střední hodnota $\mathbf{E(X)}$, rozptyl $\mathbf{D(X)}$, směrodatná odchylka $\mathbf{\sigma(X)}$, p--kvantily $\mathbf{x_p}$
 \end{itemize}
 
 \subsection{Diskrétní náhodná veličina}
@@ -30,18 +34,24 @@
 \end{itemize}
 \subsubsection{Bernoulliho pokusy}
 \begin{itemize}
-	\item \textbf{Posloupnost nezávislých pokusů majících pouze dva možné výsledky} (takových pokusů, kdy úspěch v libovolné skupině pokusů neovlivňuje pravděpodobnost úspěchů v pokusu, který do této skupiny nepatří)
+	\item \textbf{Posloupnost nezávislých pokusů majících pouze dva možné výsledky} (takových pokusů, kdy úspěch v libovolné skupině pokusů neovlivňuje pravděpodobnost úspěchů v pokusu, který do této skupiny nepatří).
 	\item \textbf{v nichž jev A} (úspěch) \textbf{nastává s pravděpodobností } $\mathbf{\pi}$ a neúspěch s pravděpodobností $1 - \pi$.
-	\item[$\circ$] \textit{Příklad} Předpokládejme, že pravděpodobnost narození dívky je $0,49$. Jaká je pravděpodobnost toho, že mezi čtyřmi dětmi v rodině je právě jedna dívka? \\ X… počet dívek mezi 4 dětmi \\ D ... narodí se dívka, $P(D) = \pi$ \\ $\bar{D}$ ...  narodí se kluk, $P(D) = 1 - \pi$
-	\begin{equation*}
-	\begin{split}
-	&(X = 1)... \{D\bar{D}\bar{D}\bar{D},\bar{D}D\bar{D}\bar{D},\bar{D}\bar{D}D\bar{D},\bar{D}\bar{D}\bar{D}D\} \\
+\end{itemize}
+
+\textit{Příklad:} Předpokládejme, že pravděpodobnost narození dívky je $0,49$. Jaká je pravděpodobnost toho, že mezi čtyřmi dětmi v rodině je právě jedna dívka?
+\begin{itemize}
+\item X… počet dívek mezi 4 dětmi 
+\item D ... narodí se dívka, $P(D) = \pi$ 
+\item $\bar{D}$ ...  narodí se kluk, $P(D) = 1 - \pi$
+\end{itemize}
+\begin{equation*}
+\begin{split}
+&(X = 1) \,... \, \{D\bar{D}\bar{D}\bar{D},\bar{D}D\bar{D}\bar{D},\bar{D}\bar{D}D\bar{D},\bar{D}\bar{D}\bar{D}D\} \\
 &P(D\bar{D}\bar{D}\bar{D}) = P(\bar{D}D\bar{D}\bar{D}) = P(\bar{D}\bar{D}D\bar{D}) = P(\bar{D}\bar{D}\bar{D}D) = \pi \cdot (1 - \pi)^3 \\
 &P(X = 1) = P(D\bar{D}\bar{D}\bar{D} \cup \bar{D}D\bar{D}\bar{D} \cup \bar{D}\bar{D}D\bar{D} \cup \bar{D}\bar{D}\bar{D}D) = \binom{4}{1} \cdot \pi \cdot (1 - \pi)^3 \\
 &P(X = 1) = 0,260
-		\end{split}
-		\end{equation*}
-\end{itemize}
+\end{split}
+\end{equation*}
 
 \subsubsection{Binomické rozdělení}
 \begin{itemize}
@@ -76,13 +86,13 @@
 		\end{tikzpicture}
 		\end{center}
 		$$P(X = 8) = \frac{\binom{50}{8} \binom{150}{12}} {\binom{200}{20}}$$ 
-		\item[] počet příznivých možností -- vybíráme 8 prasklých z 50 prasklých a zároveň 12 ze 150 neprasklých \\ počet všech možností -- vybíráme 20 vajec z 200
+		\item[] \textbf{počet příznivých možností} -- vybíráme 8 prasklých z 50 prasklých a zároveň 12 ze 150 neprasklých \\ \textbf{počet všech možností }-- vybíráme 20 vajec z 200
 	\end{itemize}
 \end{itemize}
 
 \subsubsection{Hypergeometrické rozdělení}
 \begin{itemize}
-	\item \textbf{ $\mathbf{X}$ ... počet prvků se sledovanou vlastostí ve výběru $n$ prvků}
+	\item \textbf{ $\mathbf{X}$ ... počet prvků se sledovanou vlastností ve výběru $n$ prvků}
 	\item V souboru \textbf{N} prvků je \textbf{M} s danou vlastností a zbylých (\textbf{N -- M}) prvků tuto vlastnost nemá. Postupně vybereme ze souboru \textbf{n} prvků, z nichž žádný \textbf{nevracíme zpět}. 
 	$$X \sim H(N;M;n)$$ \\ $N$ -- rozsah základního souboru \\ $M$ -- počet prvků s danou vlastností \\ $n$ -- rozsah výběru
 	\item \textbf{Pravděpodobnostní funkce}: $P(X = k) = \frac {\mathbin{\color{blue} \binom{M}{k} \binom{N-M}{n-k}}} {\mathbin{\color{magenta}\binom{N}{n}}}$
@@ -141,7 +151,7 @@ Jako \textbf{Poissonův proces} označujeme proces, který je:
 
 \subsection{Spojitá náhodná veličina}
 \begin{itemize}
-	\item[\pointing] Hustota pravděpodobnosti f(x) -- funkce $f(x)$ je \textbf{hustotou pravděpodobnosti} (na intervalu $a \leq x \leq b$), jestliže splňuje následující podmínky:
+	\item Hustota pravděpodobnosti f(x) -- funkce $f(x)$ je \textbf{hustotou pravděpodobnosti} (na intervalu $a \leq x \leq b$), jestliže splňuje následující podmínky:
 	\begin{itemize}
 		\item $f(x) \geq 0; x \in \mathbb{R}$
 		\item plocha pod křivkou hustoty je rovna 1 ($\int_{-\infty}^{\infty} f(x)dx = 1$).
@@ -185,7 +195,7 @@ Jako \textbf{Poissonův proces} označujeme proces, který je:
 \subsubsection{Weibullovo rozdělení}
 \begin{itemize}
 	\item \textbf{X ... délka časových intervalů mezi událostmi v Poissonově procesu}
-	\item Zobrecnění exponenciálního rozdělení
+	\item Zobecnění exponenciálního rozdělení
 	\item Tímto rozdělením lze modelovat i dobu do výskytu události u systémů (jedinců), které jsou v období dětských nemocí, resp. období stárnutí.
 	$$X \sim W(\theta;\beta)$$
 	\\ $\theta$ -- parametr měřítka (scale) $\theta = \frac{1}{\lambda}; \theta > 0$ \\ $\beta$ -- parametr tvaru (shape); $\beta > 0$
@@ -213,7 +223,7 @@ Jako \textbf{Poissonův proces} označujeme proces, který je:
 \subsubsection{Normální rozdělení}
 \begin{itemize}
 	\item Bývá vhodné k popisu náhodných veličin, které lze interpretovat jako aditivní výsledek mnoha nepatrných a vzájemně nezávislých faktorů (výška člověka, IQ, délka končetiny).
-	\item Popisuje náhodné veličiny, jejichž hodnoty se symetricky shlukují kolem střední hodnoty a vytvářejí tak charakteristický tvar hustoty pravděpodobnosti známý pod názvem Gaussova křivka. $$X \sim N (\mu;\sigma^2)$$  \\$\mu$ -- střední hodnota \\ $\sigma^2$ -- rozptyl
+	\item Popisuje náhodné veličiny, jejichž hodnoty se symetricky shlukují kolem střední hodnoty a vytvářejí tak charakteristický tvar hustoty pravděpodobnosti známý pod názvem \textbf{Gaussova křivka}. $$X \sim N (\mu;\sigma^2)$$  \\$\mu$ -- střední hodnota \\ $\sigma^2$ -- rozptyl
 	\item \textbf{Hustota pravděpodobnosti}: $f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}({\frac{x - \mu}{\sigma}})^2}$
 	\begin{figure}[H]
 	\centering

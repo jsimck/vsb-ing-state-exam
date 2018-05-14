@@ -1,5 +1,7 @@
+\textbf{Popisná statistika} zjišťuje a \textbf{sumarizuje} informace, zpracovává je ve formě grafů a tabulek a vypočítává jejich \textbf{číselné charakteristiky} jako průměr, rozptyl percentily, rozpětí a pod.
+
  \subsection{Kvantitativní -- Numerická proměnná}
-\begin{itemize}
+\begin{enumerate}
 	\item \textbf{Míry polohy} --  určující typické rozložení hodnot proměnné (jejich rozmístění na číselné ose).
 
  		\begin{itemize}
@@ -27,18 +29,18 @@
  			\item Z--souřadnice
  			\item Mediánová souřadnice
  		\end{itemize}
-\end{itemize}
+\end{enumerate}
 
-\textbf{Grafické zobrazení numerické proměnné:}
+\subsubsection{Grafické zobrazení numerické proměnné}
 \begin{itemize}
 	\item Empirická distribuční funkce
 	\item Krabicový graf (box plot)
 	\item Číslicový histogram (lodyha s listy, steam and leaf)
 \end{itemize}
 
- \subsection{Kvalitativní --Kategoriální proměnná}
-\begin{enumerate}[label=\alph*)]
-	\item Nominální proměnná -- nemá smysl uspořádaní
+ \subsection{Kvalitativní -- Kategoriální proměnná}
+\begin{enumerate}
+	\item \textbf{Nominální proměnná} -- nemá smysl uspořádaní.
 	\begin{itemize}
 		\item \textbf{Základní statistiky pro popis nominální proměnné:}
 	 		\begin{itemize}
@@ -52,7 +54,7 @@
 				\item výsečový graf
 			\end{itemize}
 	\end{itemize}
-	\item Ordinální proměnná -- má smysl uspořádání
+	\item \textbf{Ordinální proměnná} -- má smysl uspořádání.
 	\begin{itemize}
 		\item \textbf{Základní statistiky pro popis ordinální proměnné:}
 	 		\begin{itemize}
@@ -74,22 +76,23 @@
 \textbf{Paretův princip} – 80\% následků pramení z 20\% příčin.\\
 \textbf{Paretova analýza} – postup vedoucí k nalezení \uv{životně důležité menšiny} (spektra příčin ovlivňujících rozhodujícím způsobem následky).
 
-
 \subsection{Míry polohy a variability}
-Snad nejpoužívanějšími mírami polohy jsou průměry proměnných. Průměry představují průměrnou nebo typickou hodnotu výběrového souboru. Zřejmě nejznámějším průměrem pro kvantitativní proměnnou je \textbf{aritmetický průměr}
+Snad nejpoužívanějšími mírami polohy jsou \textbf{průměry} proměnných. Průměry představují průměrnou nebo typickou hodnotu výběrového souboru. Zřejmě nejznámějším průměrem pro kvantitativní proměnnou je \textbf{aritmetický průměr}.
 \begin{itemize}
 	\item \textbf{Aritmetický průměr} $\mathbf{\bar{x}}$ (mean)
 	\item \textbf{Aritmetický vážený průměr}
 	\item \textbf{Harmonický průměr}  -- Pro výpočet průměru v případech, kdy proměnná má charakter části z celku (úlohy o společné práci, ...).
 	\item \textbf{Harmonický vážený průměr} -- Pokud máme údaje setříděné do tabulky četností.
-	\item \textbf{Geometrický průměr} -- Pracujeme-li s kladnou proměnnou představující relativní změny (růstové indexy,cenové indexy...). $\bar{x}_G = \sqrt[n]{x_1 \cdot x_2 \cdot ... \cdot x_n}$
-	\item \textbf{Geometrický vážený průměr} -- Pracujeme-li s kladnou proměnnou představující relativní změny (růstové indexy,cenové indexy...). $\bar{x}_G = \sqrt[n]{x_1^{n_1} \cdot x_2^{n_2} \cdot ... \cdot x_n^{n_k}}$ kde $n = \sum\limits_{i=1}^k n_i$. \\
+	\item \textbf{Geometrický průměr} -- Pracujeme-li s kladnou proměnnou představující relativní změny (růstové indexy, cenové indexy...). $\bar{x}_G = \sqrt[n]{x_1 \cdot x_2 \cdot ... \cdot x_n}$
+	\item \textbf{Geometrický vážený průměr} -- Pracujeme-li s kladnou proměnnou představující relativní změny (růstové indexy, cenové indexy...). $\bar{x}_G = \sqrt[n]{x_1^{n_1} \cdot x_2^{n_2} \cdot ... \cdot x_n^{n_k}}$ kde $n = \sum\limits_{i=1}^k n_i$. \\
 
-	\item \textbf{Modus} -- Pro \textbf{diskrétní proměnnou} definujeme modus jako hodnotu nejčetnější varianty proměnné (podobně jako u kvalitativní proměnné), u spojité proměnné považujeme za modus $\mathbf{\hat{x}}$ hodnotu kolem níž je největší koncentrace hodnot proměnné. Mnohdy mluvíme o typické hodnotě proměnné. Pro určení této hodnoty využijeme tzv. \textbf{short}, což je nejkratší interval, v němž leží alespoň 50\% hodnot proměnné (v případě výběru o rozsahu $n = 2k(k \in N)$ (sudý počet hodnot), leží v shorthu $k$ hodnotě - což je 50\% $(n/2)$ hodnot proměnné, v případě výběru o rozsahu $n = 2k + 1(k \in N)$ (lichý počet hodnot), leží v shorthu $k + 1$ hodnot - což je o 1 více než je 50\% hodnot proměnné). \textbf{Modus pak definujeme jako střed shorthu}. \\
+	\item \textbf{Modus} -- Pro \textbf{diskrétní proměnnou} definujeme modus jako \textbf{hodnotu nejčetnější varianty proměnné} (podobně jako u kvalitativní proměnné), u \textbf{spojité} proměnné považujeme za modus $\mathbf{\hat{x}}$ hodnotu kolem níž je největší koncentrace hodnot proměnné. Mnohdy mluvíme o typické hodnotě proměnné.
+	
+	Pro určení této hodnoty využijeme tzv. \textbf{short}, což je nejkratší interval, v němž leží alespoň 50\% hodnot proměnné (v případě výběru o rozsahu $n = 2k(k \in N)$ (sudý počet hodnot), leží v shorthu $k$ hodnotě - což je 50\% $(n/2)$ hodnot proměnné, v případě výběru o rozsahu $n = 2k + 1(k \in N)$ (lichý počet hodnot), leží v shorthu $k + 1$ hodnot - což je o 1 více než je 50\% hodnot proměnné). \textbf{Modus pak definujeme jako střed shorthu}.
 
-	\item \textbf{Výběrové kvantily} (quantile, resp. percentile) -- jsou to statistiky, které charakterizují polohu jednotlivých hodnot v rámci proměnné. Podobně jako modus, jsou i výběrové kvantily \textbf{rezistentní} (odolné) vůči odlehlým pozorováním. Obecně je výběrový kvantil chápán jako hodnota, která rozděluje výběrový soubor na dvě části -- hodnoty, které jsou menší než daný kvantil, druhá část obsahuje hodnoty, které jsou větší nebo rovno danému kvantilu. Pro určení kvantilu je nutné \textbf{výběr uspořádat} od nejmenší hodnoty k největší. \\
-
-	\item \textbf{Kvartily}
+	\item \textbf{Výběrové kvantily} (quantile, resp. percentile) -- jsou to statistiky, které charakterizují polohu jednotlivých hodnot v rámci proměnné. Podobně jako modus, jsou i výběrové kvantily \textbf{rezistentní} (odolné) vůči odlehlým pozorováním.
+	
+	Obecně je výběrový kvantil chápán jako hodnota, která rozděluje výběrový soubor na dvě části -- hodnoty, které jsou menší než daný kvantil, druhá část obsahuje hodnoty, které jsou větší nebo rovno danému kvantilu. Pro určení kvantilu je nutné \textbf{výběr uspořádat} od nejmenší hodnoty k největší. \textbf{Kvantily}:
 		\begin{itemize}
 			\item \textbf{Dolní kvartil} $x_{0,25}$ -- $25\%$--ní kvartil  (rozděluje datový soubor tak, že 25\% hodnot je menších než tento kvartil a zbytek, tj. 75\% větších (nebo rovných))
 			\item \textbf{Medián} $x_{0,5}$ -- $50\%$--ní kvartil
@@ -110,7 +113,7 @@ Snad nejpoužívanějšími mírami polohy jsou průměry proměnných. Průměr
 	\end{itemize}
 
 	\item \textbf{Interkvartilové rozpětí IQR} -- Tato statistika je mírou variability souboru a je definována jako vzdálenost mezi horním a dolním kvartilem.
-	\item \textbf{MAD} (median absolute deviation from the median) -- medián absolutních odchylek od mediánu 
+	\item \textbf{MAD} (median absolute deviation from the median) -- medián absolutních odchylek od mediánu.
 			\begin{enumerate}
 				\item Výběrový soubor uspořádáme podle velikosti.
 				\item Určíme medián souboru.
@@ -120,12 +123,12 @@ Snad nejpoužívanějšími mírami polohy jsou průměry proměnných. Průměr
 			\end{enumerate}
 	\item \textbf{Výběrový rozptyl} $\mathbf{s^2}$ (\uv{s kvadrát}, sample variance) --
 		\begin{itemize}
-			\item  je nejrozšířenější mírou variability výběrového souboru
+ 			\item  je nejrozšířenější mírou variability výběrového souboru
 			\begin{equation*}
 				s^2 = \frac{\sum\limits_{i=1}^n (x_1 - \bar{x})^2} {n - 1}
 			\end{equation*}
 		\item Výběrový rozptyl je dán podílem součtu kvadrátu odchylek jednotlivých hodnot od průměru a rozsahu souboru sníženého o jedničku.
-		\item Nevýhodou použití výběrového rozptylu jakožto míry variability je to, že jednotka této charakteristiky je druhou mocninou jednotky proměnné. Např. je--li proměnnou denní tržba uvedena v Kč, bude výběrový rozptyl této proměnné vyjádřen v Kč$^2$.
+		\item Nevýhodou použití výběrového rozptylu jakožto míry variability je to, že jednotka této charakteristiky je \textbf{druhou mocninou} jednotky proměnné. Např. je--li proměnnou denní tržba uvedena v Kč, bude výběrový rozptyl této proměnné vyjádřen v Kč$^2$.
 		\item Následující míra variability tuto vlastnost nemá.
 	\end{itemize}
 	\item \textbf{Výběrová směrodatná odchylka s} -- je definována jako kladná odmocnina výběrového rozptylu
@@ -145,8 +148,9 @@ Snad nejpoužívanějšími mírami polohy jsou průměry proměnných. Průměr
 	\item \textbf{z--souřadnice (z--skóre)} Za odlehlé pozorování lze považovat takovou hodnotu $x_i$, jejíž absolutní hodnota z-souřadnice je větší než 3, tj. hodnota, která je od průměru vzdálenější než 3s. Tedy: $z-skore_i = \frac{x_i - \bar{x}}{s}$ \\	
 		$|z-skore_i| > 3 \Rightarrow |\frac{x_i - \bar{x}}{s}| >3s \Rightarrow x_i$ je odlehlým pozorováním.
 
-	\item $\mathbf{x_{0,5}}$\textbf{--souřadnice ($\mathbf{x_{0,5}}$--skóre)} -- : Za odlehlé pozorování lze považovat takovou hodnotu $x_i$, jejíž absolutní hodnota mediánové souřadnice je větší než 3, tj. hodnota, která je od mediánu vzdálenější než $3 \cdot 1,483\cdot MAD$. Tedy: $x_{0,5}-skore_i = \frac{x_i - x_{0,5}}{1,483MAD}$ \\	
-		$|x_{0,5}-skore_i| > 3 \Rightarrow |\frac{x_i - x_{0,5}}{1,483MAD}| >3 \Rightarrow |x_i - x_{0,5}| >3 \cdot 1,483MAD \Rightarrow x_i$ je odlehlým pozorováním.
+	\item $\mathbf{x_{0,5}}$\textbf{--souřadnice ($\mathbf{x_{0,5}}$--skóre)} -- : Za odlehlé pozorování lze považovat takovou hodnotu $x_i$, jejíž absolutní hodnota mediánové souřadnice je větší než 3, tj. hodnota, která je od mediánu vzdálenější než $3 \cdot 1,483\cdot \textrm{MAD}$. Tedy: $x_{0,5}-\textrm{skore}_i = \frac{x_i - x_{0,5}}{1,483\textrm{MAD}}$
+	
+		$|x_{0,5}-\textrm{skore}_i| > 3 \Rightarrow |\frac{x_i - x_{0,5}}{1,483\textrm{MAD}}| >3 \Rightarrow |x_i - x_{0,5}| >3 \cdot 1,483\textrm{MAD} \Rightarrow x_i$ je odlehlým pozorováním.
 \end{itemize}
 
 \subsection{Míra šikmosti a špičatosti}	
@@ -220,9 +224,9 @@ Snad nejpoužívanějšími mírami polohy jsou průměry proměnných. Průměr
 	\end{itemize}
 \end{itemize}
 
-\subsection{Statistické charakteristiky kvalitativních proměnných}
+\subsection{Statistické charakteristiky kvalitativních (kategoriálních) proměnných}
 \subsubsection{Nominální proměnná}
-Nominální proměnná nabývá v rámci souboru různých, avšak rovnocenných kategorií. Počet těchto kategorií nebývá příliš vysoký, a proto první statistickou charakteristikou, kterou k popisu proměnné použijeme je četnost.
+Nominální proměnná nabývá v rámci souboru \textbf{různých}, \textbf{avšak rovnocenných kategorií}. Počet těchto kategorií nebývá příliš vysoký, a proto první statistickou charakteristikou, kterou k popisu proměnné použijeme je četnost.
 \begin{itemize}
 	\item \textbf{Četnost} $\mathbf{n_i}$ (absolutní četnost, \uv{frequency}) --  je definována jako počet výskytu dané varianty kvalitativní proměnné. V případě, že kvalitativní proměnná ve statistickém souboru o rozsahu $n$ hodnot  nabývá $k$ různých variant, jejichž četnosti označíme $n_1, n_2, ... , n_k$, musí zřejmě platit $n_1 + n_2 + ... + n_k = \sum\limits_{i=1}^k n_i = n$. \\
 	Chceme-li vyjádřit, jakou část souboru tvoří proměnné s některou variantou, použijeme pro popis proměnné relativní četnost.
@@ -241,14 +245,17 @@ Nominální proměnná nabývá v rámci souboru různých, avšak rovnocenných
 	\end{itemize}
 \end{itemize}
 \subsubsection{Ordinální proměnná}
-Ordinální proměnná, stejně jako proměnná nominální, nabývá v rámci souboru různých slovních variant, avšak tyto varianty mají přirozené uspořádání, tj. můžeme určit, která je \uv{menší} a která \uv{větší}. 
+Ordinální proměnná, stejně jako proměnná nominální, nabývá v rámci souboru různých slovních variant, avšak tyto varianty mají \textbf{přirozené uspořádání}, tj. můžeme určit, která je \uv{menší} a která \uv{větší}. 
 \begin{itemize}
-	\item \textbf{Kumulativní četnost} $\mathbf{m_i}$ i (\uv{cumulative frequency}) -- definujeme jako počet hodnot proměnné, které nabývají varianty nižší nebo rovné i-té variantě. \\ 
-	\textit{Uvažte např. proměnnou \uv{známka ze statistiky}, která nabývá variant: \uv{výborně}, \uv{velmi dobře}, \uv{prospěl}, \uv{neprospěl}, pak např. kumulativní četnost pro variantu \uv{prospěl} bude rovna počtu studentů, kteří ze statistiky získali známku \uv{prospěl} nebo lepší.} \\
+	\item \textbf{Kumulativní četnost} $\mathbf{m_i}$ i (\uv{cumulative frequency}) -- definujeme jako počet hodnot proměnné, které nabývají varianty nižší nebo rovné i-té variantě. 
+	
+	\textit{Uvažte např. proměnnou \uv{známka ze statistiky}, která nabývá variant: \uv{výborně}, \uv{velmi dobře}, \uv{prospěl}, \uv{neprospěl}, pak např. kumulativní četnost pro variantu \uv{prospěl} bude rovna počtu studentů, kteří ze statistiky získali známku \uv{prospěl} nebo lepší.}
+	
 	Jsou-li jednotlivé varianty uspořádány podle své \uv{velikosti}(\uv{$x_1 < x_2 < ... < x_k$}), platí $m_i = \sum\limits_{i=1}^i n_j$, Je tedy zřejmé, že kumulativní četnost $k$--té (\uv{nejvyšší}) varianty je rovna rozsahu proměnné $– mk = n$.
 
-	\item \textbf{Kumulativní relativní četnost} $\mathbf{F_i}$ (\uv{cumulative relative frequency}) -- vyjadřuje jakou část souboru tvoří hodnoty nabývající i-té a nižší varianty. $F_i = \sum\limits_{j=1}^i p_j,$ což není nic jiného než relativní vyjádření kumulativní četnosti: $F_i = \frac{m_i}{n}$. \\ 
-	Obdobně jako pro nominální proměnné, můžeme i pro proměnné ordinální prezentovat statistické charakteristiky pomocí tabulky rozdělení četnosti. Ta obsahuje ve srovnání s tabulkou rozdělení četností pro nominální proměnnou navíc hodnoty kumulativních a kumulativních relativních četností.\\
+	\item \textbf{Kumulativní relativní četnost} $\mathbf{F_i}$ (\uv{cumulative relative frequency}) -- vyjadřuje jakou část souboru tvoří hodnoty nabývající i-té a nižší varianty. $F_i = \sum\limits_{j=1}^i p_j,$ což není nic jiného než relativní vyjádření kumulativní četnosti: $F_i = \frac{m_i}{n}$.
+	
+	Obdobně jako pro nominální proměnné, můžeme i pro proměnné ordinální prezentovat statistické charakteristiky pomocí tabulky rozdělení četnosti. Ta obsahuje ve srovnání s tabulkou rozdělení četností pro nominální proměnnou navíc hodnoty kumulativních a kumulativních relativních četností.
 				\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.8\textwidth]{assets/13_tabl_cetnost_ord}
