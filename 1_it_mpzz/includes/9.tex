@@ -11,7 +11,7 @@ které splňuje následující axiomy:
 \item \textbf{Nezápornost}: $\forall x, y \, \rho(x, y) \geq 0$.
 \item \textbf{Totožnost}: $\forall x, y \, \rho (x, y)  = 0 \Leftrightarrow x = y$.
 \item \textbf{Symetrie}: $\forall x, y \in M: \, \rho(x, y) = \rho(y,x)$.
-\item \textbf{Trojúhelníková nerovnost}: $\forall x, y \in M: \, \rho(x, y) + \rho(y,z) \geq \rho(x, y)$.
+\item \textbf{Trojúhelníková nerovnost}: $\forall x, y, z \in M: \, \rho(x, y) + \rho(y,z) \geq \rho(x, y)$.
 \end{enumerate}
 
 \subsubsection{Metriky v $\mathbb{R}^n$}
@@ -89,17 +89,19 @@ Topologickým prostorem nazveme množinu $X$ společně s kolekcí $\tau$ podmno
 $A \in \tau$ \ldots A je \textbf{otevřená} pokud:
 \begin{itemize}
 \item $\emptyset, X \in \tau$,
-\item $\forall A, B \in \tau \Rightarrow  A \cup B \in \tau $,
-\item $\forall A, B \in \tau \Rightarrow A \cap B \in \tau $.
+\item $\forall A, B \in \tau \Rightarrow  A \cap B \in \tau $,
+\item $\forall A_i \in \tau \Rightarrow \cup A_i \in \tau $.
 \end{itemize}
+$\cup A_i \Leftrightarrow A_1 \cup A_2 \cup ... \cup A_n $
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 $A \in \tau$ \ldots A je \textbf{uzavřená} pokud:
 \begin{itemize}
 \item $\emptyset, X \in \tau$,
-\item $\forall A, B \in \tau \Rightarrow  A \cap B \in \tau $,
-\item $\forall A, B \in \tau \Rightarrow A \cup B \in \tau $.
+\item $\forall A, B \in \tau \Rightarrow  A \cup B \in \tau $,
+\item $\forall A_i \in \tau \Rightarrow \cap A_i \in \tau $.
 \end{itemize}
+$\cap A_i \Leftrightarrow A_1 \cap A_2 \cap ... \cap A_n $
 \end{minipage}
 
 \subsubsection{Souvislost nesouvislost}
