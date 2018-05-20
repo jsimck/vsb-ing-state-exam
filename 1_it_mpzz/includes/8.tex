@@ -71,7 +71,7 @@ $e_2 = \{\textrm{4 nohy}\}^\downarrow = \{\textrm{pes, ovce, koza}\}$\\
 $e_3 = \{\textrm{mléko}\}^\downarrow = \{\textrm{ovce, koza}\}$\\
 $e_1 = \{\textrm{2 nohy}\}^\downarrow = \{\textrm{slepice}\}$\\
 $e_4 = \{\textrm{vlna}\}^\downarrow = \{\textrm{ovce}\}$\\
-$e_5 = e_2 \cap e_3 = \{\textrm{pes}\}$\\
+$e_5 = e_2 \cap e_3 = \{\textrm{ovce, koza}\}$\\
 $e_6 = \emptyset$
 \end{minipage}
 \begin{minipage}[t]{0.5\textwidth}
@@ -80,7 +80,7 @@ $i_2 = e_2^\uparrow = \{\textrm{4 nohy}\}$\\
 $i_3 = e_3^\uparrow = \{\textrm{4 nohy, mléko}\}$\\
 $i_1 = e_1^\uparrow = \{\textrm{2 nohy}\}$\\
 $i_4 = e_4^\uparrow = \{\textrm{4 nohy, mléko, vlna}\}$\\
-$i_5 = e_5^\uparrow = \{\textrm{4 nohy}\}$\\
+$i_5 = e_5^\uparrow = \{\textrm{4 nohy, mléko}\}$\\
 $i_6 = e_6^\uparrow = \{\textrm{2 nohy, 4 nohy, mléko, vlna}\}$\\
 \end{minipage}
 
@@ -116,7 +116,7 @@ Svaz je algebra $(L, \cap, \cup)$ s dvěma základními binárními operacemi $x
 \end{figure}
 \item \textbf{Modulární} -- slabší reprezentace distributivity, \textbf{nesmí} obsahovat \textbf{pentagon}, $a \geq c: a \land (b \lor c) = (a \land b) \lor c$.
 \item \textbf{Komplementární} -- platí zde, že pro každý prvek $ x $ existuje komplement $x' $, kdy: $x \cap x' = $ [svazová 0] a $x \cup x' = $ [svazová 1]
-\item \textbf{Boleaovský svaz} -- komplementární $\land$ distributivní
+\item \textbf{Booleovský svaz} -- komplementární $\land$ distributivní
 \end{enumerate}
 
 \subsubsection{Vlastnosti svazů}
@@ -161,7 +161,7 @@ sup(Ant \Rightarrow Suc) = \frac{a}{a + b + c + d}, \, \in \, \langle 0; 1 \rang
 \end{equation}
 \item \textbf{Confidence (spolehlivost)} -- podmíněná pravděpodobnost závěru pokud platí předpoklad, tedy {\scriptsize$\frac{\textrm{podpora obou}}{\textrm{podpora závěru}}$}:
 \begin{equation}
-conf(Ant \Rightarrow Suc) = \frac{sup(Ant \cup Suc)}{sup(Suc)}.
+conf(Ant \Rightarrow Suc) = \frac{sup(Ant \cup Suc)}{sup(Suc)} = \frac{a}{a + b}.
 \end{equation}
 \item Další: \textbf{pokrytí}, \textbf{zajímavost}, \textbf{závislost}.
 \end{itemize}
