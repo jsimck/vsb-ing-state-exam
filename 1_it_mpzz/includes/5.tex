@@ -57,6 +57,7 @@ $\forall x (O(x) \rightarrow B(x)); O(J) \neq B(J)$, kde x je \textbf{individuov
 \noindent\textbf{Atomické formule:}
 \begin{itemize}
 \item je-li $ P $ n-ární predikátový symbol a jsou-li $ t_1, \ldots, t_n $ termy, pak výraz $ P(t_1, \ldots, t_n) $ je \textbf{atomická formule} (na vstupu jsou pouze termy).
+\item jsou-li $t1$ a $t2$ termy, tak $t1 = t2$ je atomická formule.
 \end{itemize}
 
 \noindent\textbf{Formule:}
@@ -76,7 +77,7 @@ $\forall x (O(x) \rightarrow B(x)); O(J) \neq B(J)$, kde x je \textbf{individuov
 \begin{itemize}
 \item Žádný student není důchodce: $\forall x (S(x) \rightarrow \neg D(x))$.
 \item Ale, ,,všichni studenti nejsou důchodci'' čteme jako ,,ne všichni studenti jsou důchodci'': 
-$\neg \forall x (S(x) \rightarrow D(x)) \leftrightarrow x (S(x) \rightarrow \neg D(x))$
+$\neg \forall x (S(x) \rightarrow D(x)) \leftrightarrow \existsx (S(x) \land \neg D(x))$
 \end{itemize}
 
 \noindent Jako \textbf{pomůcka} k řešení může sloužit tato zásada:
