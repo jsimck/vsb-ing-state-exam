@@ -49,7 +49,9 @@ Slouží k \textbf{rozpoznání bezkontextových jazyků}. S využitím zásobn�
 \item ZA na základě \textbf{aktuálního znaku} na pásce, \textbf{prvního znaku v zásobníku} a \textbf{aktuálního stavu} změní svůj stav a \textbf{přepíše} znak v zásobníku podle daných pravidel.
 \item ZA \textbf{přijímá} dané slovo, jestliže skončí v konfiguraci $(q, \epsilon, \epsilon)$, tedy když se přečte celé vstupní slovo a zásobník je \textbf{prázdný}.
 \item \textbf{Konfigurace} je dána: aktuálním stavem, obsahem pásky a obsahem zásobníku.
-\item \textbf{Deterministický} -- nesmí se objevit \textbf{stejná konfigurace vícekrát}.
+\item \textbf{Deterministický} -- nesmí se objevit dvě pravidla se stejnou levou stranou, a pokud existuje
+pravidlo $(q, \epsilon, X)$, tak nesmí zároveň existovat pravidlo $(q, a, Y)$. Pokud se deterministický ZNKA ocitne
+ve stejné konfiguraci více než jednou, tak obsahuje nekonečný cyklus.
 \end{itemize}
 
 \subsubsection{Formální definice zásobníkového automatu}
@@ -70,7 +72,7 @@ Instrukce (sady instrukcí reprezentují přechodovou funkci $\delta$) definují
 \end{equation}
 Tato instrukce je aplikovatelná jen v situaci (neboli konfiguraci), kdy \textbf{řídicí jednotka} je ve stavu $q$, \textbf{čtecí hlava} na vstupní pásce čte symbol $a$ a na vrcholu zásobníku je symbol $X$. Pokud je \textbf{instrukce aplikována}, vykoná se následující:
 \begin{enumerate}
-\item řídicí jednotka \textbf{přejde do stavu} $q$,
+\item řídicí jednotka \textbf{přejde do stavu} $q'$,
 \item čtecí hlava na vstupní pásce se \textbf{posune o jedno políčko doprava},
 \item vrchní symbol v zásobníku se \textbf{odebere} (vymaže),
 \item \textbf{na vrchol zásobníku se přidá} řetězec $\alpha$ tak, že jeho nejlevější symbol je aktuálním vrcholem zásobníku.
